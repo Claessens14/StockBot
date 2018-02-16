@@ -9,6 +9,7 @@ var Conversation = require('watson-developer-cloud/conversation/v1'); // watson 
 require('dotenv').config();
 
 var search = require('./search');
+var output = require('./output');
 
 //declare global vars
 var workspace=process.env.WATSON_WORKSPACE_ID;
@@ -84,6 +85,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
           });
         }
       }
+
+      output.makeChart(session, "AAPL", (err, res) => {
+        session.send(res);
+      }); 
 
 
 

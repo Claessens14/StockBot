@@ -11,7 +11,7 @@ var request = require('request');
 // }
 
 function getPrice(str, callback) {
-	getQuote(str, (err, quote) => {
+	getStock(str, (err, quote) => {
 		if (err) {
 			callback(err, null);
 		} else {
@@ -22,8 +22,29 @@ function getPrice(str, callback) {
 }
 
 
-function getQuote(str, callback) {
-	request('https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=quote', function (err, response, body) {
+
+function getChartData(str, callback) {
+	getStock(str, (err, stock) => {
+		if (err) {
+			callback(err, null);
+		} else {
+			var json = JSON.parse(stock);
+			//console.log(stock);
+			var Xarray = [];
+			var Yarray = [];
+			json[str].chart.forEach(function(element) {
+				//console.log(element.close);
+				Xarray.push(element.date);
+				Yarray.push(element.close);
+			});
+			callback(null, {Xarray, Yarray});
+		}
+	});
+}
+
+
+function getStock(str, callback) {
+	request('https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=quote,news,chart', function (err, response, body) {
 		if (err) {
 			callback(err, null);
 		} else {
@@ -32,8 +53,13 @@ function getQuote(str, callback) {
 	});
 }
 
+
+
+
+
 module.exports = {
-	getPrice : getPrice
+	getPrice : getPrice,
+	getChartData : getChartData
 }
 
 /*
