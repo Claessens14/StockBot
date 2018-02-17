@@ -4,11 +4,11 @@
 
 1. Type in `node app.js`
 
-2. Open the microsoft bot emulator and enter url with local host
+2. Open the microsoft bot emulator and enter url with local host (may need to plug in credentials from .env)
 
 3. Only trained to pickup company names ford and tesla so far
 
-## Repo
+## About Repo
 
 * output.js is mostly for making cards, call functions that get data needed
 * chart.js makes the graphs, calls the search function to get the data
