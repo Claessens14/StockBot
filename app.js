@@ -75,18 +75,28 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
       if (watsonData.output.hasOwnProperty('action')) {
         if(watsonData.output.action == "findStock") {
-          var stock = watsonData.entities[0].entity;
-          search.getPrice(stock, (err, res) => {
+          var str = watsonData.entities[0].entity;
+          var stock = {};
+          search.getStock(str, (err, stockJson) => {
+            if (err) {
+              console.log(err);
+            } else {
+              
+              var msg = new builder.Message(session)
+                .addAttachment(output.buildStockCard(str, stockJson, null));
+              session.send(msg);
+            }
+          });
+          //console.log("(app.js->searchAction)" + stock);
+
+          /*search.getPrice(stock, (err, res) => {
             if(err) {
               session.send("the search was unsuccessful");
               console.log(err);
             } else {
               session.send("The price of " + res);
             }
-          });
-          output.makeChart(session, stock, (err, res) => {
-            session.send(res);
-          }); 
+          });*/
         }
       }
          userHolder = {};

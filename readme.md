@@ -1,5 +1,8 @@
 # StockZia
 
+## Note
+Right now i only have one entity in watson, it is tesla. if you want to test the current adaptive card. ask it "what is tesla at". 
+
 ## Run 
 
 1. Type in `node app.js`

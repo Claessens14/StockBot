@@ -39,7 +39,6 @@ function grapher(str, x_data, y_data, callback) {
 	    imageStream.pipe(fileStream);
 	    callback(null, name);
 	});
-
 	    
 }
 

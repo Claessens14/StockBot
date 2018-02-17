@@ -15,7 +15,7 @@ function getPrice(str, callback) {
 		if (err) {
 			callback(err, null);
 		} else {
-			var json = JSON.parse(quote);
+			var json = quote;
 			callback(null, json[str].quote.latestPrice);
 		}
 	});
@@ -28,7 +28,7 @@ function getChartData(str, callback) {
 		if (err) {
 			callback(err, null);
 		} else {
-			var json = JSON.parse(stock);
+			var json = stock;
 			//console.log(stock);
 			var Xarray = [];
 			var Yarray = [];
@@ -44,11 +44,12 @@ function getChartData(str, callback) {
 
 
 function getStock(str, callback) {
+	console.log(str);
 	request('https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=quote,news,chart', function (err, response, body) {
 		if (err) {
 			callback(err, null);
 		} else {
-			callback(null, body);
+			callback(null, JSON.parse(body));
 		}
 	});
 }
@@ -59,7 +60,8 @@ function getStock(str, callback) {
 
 module.exports = {
 	getPrice : getPrice,
-	getChartData : getChartData
+	getChartData : getChartData,
+	getStock : getStock
 }
 
 /*
