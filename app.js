@@ -75,7 +75,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
       if (watsonData.output.hasOwnProperty('action')) {
         if(watsonData.output.action == "findStock") {
-          search.getPrice(watsonData.entities[0].entity, (err, res) => {
+          var stock = watsonData.entities[0].entity;
+          search.getPrice(stock, (err, res) => {
             if(err) {
               session.send("the search was unsuccessful");
               console.log(err);
@@ -83,19 +84,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
               session.send("The price of " + res);
             }
           });
+          output.makeChart(session, stock, (err, res) => {
+            session.send(res);
+          }); 
         }
       }
-
-      output.makeChart(session, "AAPL", (err, res) => {
-        session.send(res);
-      }); 
-
-
-
-
-
-
-
          userHolder = {};
          userHolder = watsonData.context;
 

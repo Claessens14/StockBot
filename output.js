@@ -1,16 +1,34 @@
+
 var builder = require('botbuilder');
+var cloudinary = require('cloudinary');
+require('dotenv').config();
 
 var search = require('./search');
 var chart = require('./chart');
 
+cloudinary.config({
+    cloud_name: process.env.cloud_id,
+    api_key: process.env.cloudinary_api_key,
+    api_secret: process.env.cloudinary_app_secret
+});
 
 
 function makeChart(session, str, callback) {
 	search.getChartData(str, (err, res) => {
-		chart.grapher(res.Xarray, res.Yarray, (err, url) => {
-			var card = createHeroCard(session, str, url);
-			var msg = new builder.Message(session).addAttachment(card);
-			callback(null, msg);
+		chart.grapher(str, res.Xarray, res.Yarray, (err, img) => {
+            console.log(img);
+    //         cloudinary.v2.uploader.upload(img, 
+    // function(error, result) {console.log(result)});
+
+            cloudinary.uploader.upload(img, (result) => {
+            //console.log(JSON.stringify(result, null, 2));
+                url = result.secure_url;
+
+                var card = createHeroCard(session, str, url);
+    			var msg = new builder.Message(session).addAttachment(card);
+    			// callback(null, msg);
+                callback(null, msg);
+            });
 		});
 	});
 }
@@ -32,19 +50,8 @@ function createHeroCard(session, str, url) {
         ]);
 }
 
-function makeCard(session) {
-
-    // create the card based on selection
-
-    var card = createHeroCard(session);
-
-    // attach the card to the reply message
-    var msg = new builder.Message(session).addAttachment(card);
-    session.send(msg);
-}
-
 
 module.exports = {
-	makeCard : makeCard,
+
 	makeChart : makeChart
 }
