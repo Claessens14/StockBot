@@ -75,7 +75,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
       if (watsonData.output.hasOwnProperty('action')) {
         if(watsonData.output.action == "findStock") {
-          var str = watsonData.entities[0].entity;
+          var str = watsonData.entities[0].value;
           var stock = {};
           search.getStock(str, (err, stockJson) => {
             if (err) {

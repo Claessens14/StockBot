@@ -45,11 +45,23 @@ function getChartData(str, callback) {
 
 function getStock(str, callback) {
 	console.log(str);
-	request('https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=quote,news,chart', function (err, response, body) {
+	request('https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=quote,news,chart', function (err, resp, body) {
 		if (err) {
 			callback(err, null);
 		} else {
-			callback(null, JSON.parse(body));
+			body = JSON.parse(body);
+			request('https://api.iextrading.com/1.0/stock/' + str + '/company', function (err, resp, result) {
+				if (err) {
+					callback(err, null);
+				} else {
+					request("https://api.iextrading.com/1.0/stock/" + str + "/logo", function(err, status, res) {
+						body[str].aboutCompany = JSON.parse(result);
+						body[str].aboutCompany.logo = JSON.parse(res);
+						//console.log(JSON.parse(result));
+						callback(null, body);
+					});
+				}
+			});
 		}
 	});
 }
