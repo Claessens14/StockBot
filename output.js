@@ -49,7 +49,7 @@ function buildStockCard(name, stock, chart) {
                         "items": [
                             {
                                 "type": "TextBlock",
-                                "text": stock[name].quote.companyName,
+                                "text": stock.company.companyName,
                                 "weight": "bolder",
                                 "size": "medium"
                             },
@@ -69,21 +69,21 @@ function buildStockCard(name, stock, chart) {
                                         "items": [
                                             {
                                                 "type": "TextBlock",
-                                                "text": "$" + stock[name].quote.latestPrice,
+                                                "text": "$" + stock.quote.latestPrice,
                                                 "weight": "bolder",
                                                 "wrap": true
                                             },
                                             {
                                                 "type": "TextBlock",
                                                 "spacing": "none",
-                                                "text": stock[name].quote.primaryExchange + " ("+ stock[name].quote.symbol + ")",
+                                                "text": stock.company.exchange + " ("+ stock.company.symbol + ")",
                                                 "isSubtle": true,
                                                 "wrap": true
                                             },
                                             {
                                                 "type": "TextBlock",
                                                 "spacing": "noe",
-                                                "text": stock[name].aboutCompany.description,
+                                                "text": stock.company.description,
                                                 "isSubtle": false,
                                                 "wrap": true
                                             }
@@ -96,7 +96,7 @@ function buildStockCard(name, stock, chart) {
                                         "items": [
                                             {
                                                 "type": "Image",
-                                                "url": stock[name].aboutCompany.logo.url,
+                                                "url": stock.logo.url,
                                                 "size": "small",
                                                 "style": ""
                                             }
@@ -110,7 +110,7 @@ function buildStockCard(name, stock, chart) {
                 "actions": [
                     {
                         "type": "Action.ShowCard",
-                        "title" : "Ratios",
+                        "title" : "Stats",
                         "size" : "large",
                         "card": {
                             "type":"AdaptiveCard",
@@ -122,20 +122,24 @@ function buildStockCard(name, stock, chart) {
                                             "type": "FactSet",
                                             "facts": [
                                                 {
+                                                    "title": "Market Cap:",
+                                                    "value": dataToStr(stock.stats.marketCap)
+                                                },
+                                                {
                                                     "title": "P/E:",
-                                                    "value": "23"
+                                                    "value": dataToStr(stock.quote.peRatio)
                                                 },
                                                 {
-                                                    "title": "EPS:",
-                                                    "value": "$2.75"
+                                                    "title": "EPS(ttm):",
+                                                    "value": dataToStr(stock.stats.ttmEPS)
                                                 },
                                                 {
-                                                    "title": "DY:",
-                                                    "value": "3.12%"
+                                                    "title": "Divident Yield",
+                                                    "value": dataToStr(stock.stats.divendYield)
                                                 },
                                                 {
                                                     "title": "Beta:",
-                                                    "value": "1.3"
+                                                    "value": dataToStr(stock.stats.beta)
                                                 }
                                             ]
                                         }
@@ -162,7 +166,7 @@ function buildStockCard(name, stock, chart) {
                     },
                     {
                         "type": "Action.ShowCard",
-                        "title" : "Fundimentals",
+                        "title" : "Financials",
                         "size" : "large",
                         "card": {
                             "type":"AdaptiveCard",
@@ -174,29 +178,29 @@ function buildStockCard(name, stock, chart) {
                                             "type": "FactSet",
                                             "facts": [
                                                 {
-                                                    "title": "Revinue:",
-                                                    "value": "5 183 million"
+                                                    "title": "Revenue",
+                                                    "value": dataToStr(stock.financials.financials[0].totalRevenue)
                                                 },
                                                 {
-                                                    "title": "Gross Profit:",
-                                                    "value": "543 million"
+                                                    "title": "Net Income:",
+                                                    "value": dataToStr(stock.financials.financials[0].netIncome)
                                                 },
                                                 {
-                                                    "title": "Net Profit",
-                                                    "value": "142 million"
+                                                    "title": "Total Cash",
+                                                    "value": dataToStr(stock.financials.financials[0].totalCash)
                                                 },
                                                 {
-                                                    "title": "Net Assets:",
-                                                    "value": "6 943 million"
+                                                    "title": "Equity:",
+                                                    "value": dataToStr(stock.financials.financials[0].shareholderEquity)
                                                 },
                                                 {
-                                                    "title": "Long Term Debt:",
-                                                    "value": "8 972 million"
+                                                    "title": "CashFlow:",
+                                                    "value": dataToStr(stock.financials.financials[0].cashFlow)
                                                 },
                                                 {
-                                                    "title": "Short Term Debt:",
-                                                    "value": "972 million"
-                                                }
+                                                    "title": "Report Date:",
+                                                    "value": dataToStr(stock.financials.financials[0].reportDate)
+                                                },
                                             ]
                                         }
                                     ]
@@ -209,7 +213,22 @@ function buildStockCard(name, stock, chart) {
         }
 }
 
-
+function dataToStr(value) {
+    var str = "";
+    if (typeof value == "number") {
+        console.log('This is a number ' + value);
+        str = String(value);
+        if (str == "") {
+            str = "N/A";
+        }
+    } else {
+        str = JSON.stringify(value, null, 2);
+    }
+    // value = value.replace(/000000000/g, 'B');
+    // value = value.replace(/000000/g, 'M');
+    // value = value.replace(/000/g, 'K');
+    return str;
+}
 
 function createHeroCard(session, str, url) {
     return new builder.HeroCard(session)

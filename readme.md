@@ -1,7 +1,7 @@
 # StockZia
 
 ## Note
-Right now i only have one entity in watson, it is tesla. if you want to test the current adaptive card. ask it "what is tesla at". 
+Right now it only has FANG companies in watson conversation as entities. If you want to test the current adaptive card. Ask "what is facebook at". 
 
 ## Run 
 
