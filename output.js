@@ -2,6 +2,7 @@
 var builder = require('botbuilder');
 var cloudinary = require('cloudinary');
 require('dotenv').config();
+const roundTo = require('round-to');
 
 var search = require('./search');
 var chart = require('./chart');
@@ -37,6 +38,16 @@ function buildStockCard(name, stock, chart) {
     console.log("name : ", name);
     console.log(JSON.stringify(stock, null, 2));
 
+    var todaysSign = "";
+    var todaysColor = "";
+    
+    if (String(stock.quote.change).match("-")) {
+        todaysMove = "▼";
+        todaysColor = "attention";
+    } else {
+        todaysMove = "▲";
+        todaysColor = "good";
+    }
     return {
                 'contentType': 'application/vnd.microsoft.card.adaptive',
                 'content': {
@@ -46,32 +57,32 @@ function buildStockCard(name, stock, chart) {
                 "body": [
                     {
                         "type": "Container",
+                        "spacing": "none",
                         "items": [
-                            {
-                                "type": "TextBlock",
-                                "text": stock.company.companyName,
-                                "weight": "bolder",
-                                "size": "medium"
-                            },
-                            {
-                                "type": "Image",
-                                "url": "https://cdn.thesimpledollar.com/wp-content/uploads/2008/10/goog.jpg",
-                                "width":"strech",
-                                "size": "large"
-                            },
                             {
                                 "type": "ColumnSet",
                                 "columns": [
-                                    
                                     {
                                         "type": "Column",
                                         "width": "stretch",
                                         "items": [
                                             {
                                                 "type": "TextBlock",
-                                                "text": "$" + stock.quote.latestPrice,
+                                                "text": stock.company.companyName,
                                                 "weight": "bolder",
-                                                "wrap": true
+                                                "size": "medium"
+                                            },
+                                            {
+                                                "type": "TextBlock",
+                                                "text": "$" + stock.quote.latestPrice,
+                                                "size": "extraLarge"
+                                            },
+                                            {
+                                                "type": "TextBlock",
+                                                "text": todaysMove + stock.quote.change + " (" + stock.quote.changePercent + "%)",
+                                                "size": "small",
+                                                "color": todaysColor,
+                                                "spacing": "none"
                                             },
                                             {
                                                 "type": "TextBlock",
@@ -82,13 +93,10 @@ function buildStockCard(name, stock, chart) {
                                             },
                                             {
                                                 "type": "TextBlock",
-                                                "spacing": "noe",
-                                                "text": stock.company.description,
-                                                "isSubtle": false,
-                                                "wrap": true
+                                                "text": stock.quote.latestTime,
+                                                "isSubtle": true
                                             }
-                                            
-                                        ]
+                                        ],
                                     },
                                     {
                                         "type": "Column",
@@ -97,11 +105,45 @@ function buildStockCard(name, stock, chart) {
                                             {
                                                 "type": "Image",
                                                 "url": stock.logo.url,
-                                                "size": "small",
+                                                "size": "large",
                                                 "style": ""
                                             }
                                         ]
                                     }
+                            
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+/*
+                            {
+                                "type": "Image",
+                                "url": "https://cdn.thesimpledollar.com/wp-content/uploads/2008/10/goog.jpg",
+                                "width":"strech",
+                                "size": "large"
+                            },*/
+                            {
+                                "type": "ColumnSet",
+                                "columns": [
+                                    
+                                    {
+                                        "type": "Column",
+                                        "width": "stretch",
+                                        "items": [
+                                            {
+                                                "type": "TextBlock",
+                                                "spacing": "noe",
+                                                "text": stock.company.description,
+                                                "isSubtle": false,
+                                                "wrap": true
+                                            }
+                                            
+                                        ]
+                                    },
+                                    
                                 ]
                             }
                         ]
@@ -135,7 +177,7 @@ function buildStockCard(name, stock, chart) {
                                                 },
                                                 {
                                                     "title": "Divident Yield",
-                                                    "value": dataToStr(stock.stats.divendYield)
+                                                    "value": dataToStr(stock.stats.dividendYield)
                                                 },
                                                 {
                                                     "title": "Beta:",
@@ -159,7 +201,13 @@ function buildStockCard(name, stock, chart) {
                                     "type": "TextBlock",
                                     "id": "dueDate",
                                     "wrap": "true",
-                                    "text": "Responding to a recent event involving a Tesla Model 3 crash, CEO Elon Musk announced that the electric car maker would be rolling out a software update to address observations about the car’s glove box that were shared by the ill-fated vehicle’s driver online. Musk also teased an addition to the glass 15-inch center touchscreen of the electric car, which would make the Model 3 even safer in the event of an accident."
+                                    "text": dataToStr(stock.news[0].headline)
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "id": "dueDate",
+                                    "wrap": "true",
+                                    "text": dataToStr(stock.news[1].headline)
                                 }
                             ]
                         }
@@ -179,27 +227,27 @@ function buildStockCard(name, stock, chart) {
                                             "facts": [
                                                 {
                                                     "title": "Revenue",
-                                                    "value": dataToStr(stock.financials.financials[0].totalRevenue)
+                                                    "value": dataToStr(stock.financials.financials[1].totalRevenue)
                                                 },
                                                 {
                                                     "title": "Net Income:",
-                                                    "value": dataToStr(stock.financials.financials[0].netIncome)
+                                                    "value": dataToStr(stock.financials.financials[1].netIncome)
                                                 },
                                                 {
                                                     "title": "Total Cash",
-                                                    "value": dataToStr(stock.financials.financials[0].totalCash)
+                                                    "value": dataToStr(stock.financials.financials[1].totalCash)
                                                 },
                                                 {
                                                     "title": "Equity:",
-                                                    "value": dataToStr(stock.financials.financials[0].shareholderEquity)
+                                                    "value": dataToStr(stock.financials.financials[1].shareholderEquity)
                                                 },
                                                 {
                                                     "title": "CashFlow:",
-                                                    "value": dataToStr(stock.financials.financials[0].cashFlow)
+                                                    "value": dataToStr(stock.financials.financials[1].cashFlow)
                                                 },
                                                 {
                                                     "title": "Report Date:",
-                                                    "value": dataToStr(stock.financials.financials[0].reportDate)
+                                                    "value": dataToStr(stock.financials.financials[1].reportDate)
                                                 },
                                             ]
                                         }
@@ -217,16 +265,23 @@ function dataToStr(value) {
     var str = "";
     if (typeof value == "number") {
         console.log('This is a number ' + value);
+        value = roundTo(value, 2);
         str = String(value);
-        if (str == "") {
+        if (str.match("000")) {
+            str = str.replace(/000000000/g, 'B          ');
+            str = str.replace(/000000/g, 'M          ');
+            str = str.replace(/000/g, 'K         ');
+        }
+        if (str == "" || str == null) {
             str = "N/A";
         }
     } else {
         str = JSON.stringify(value, null, 2);
+        if (str == null || str == "null") {
+            str = "";
+        }
     }
-    // value = value.replace(/000000000/g, 'B');
-    // value = value.replace(/000000/g, 'M');
-    // value = value.replace(/000/g, 'K');
+
     return str;
 }
 
