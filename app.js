@@ -31,8 +31,8 @@ var conversation = new Conversation({
 
 // Create chat connector for communicating with the Bot Framework Service
 var connector = new builder.ChatConnector({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword,
+    appId: process.env.BOT_APP_ID,
+    appPassword: process.env.BOT_PASSWORD,
     openIdMetadata: process.env.BotOpenIdMetadata
 });
 
@@ -88,15 +88,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
             }
           });
           //console.log("(app.js->searchAction)" + stock);
-
-          /*search.getPrice(stock, (err, res) => {
-            if(err) {
-              session.send("the search was unsuccessful");
-              console.log(err);
-            } else {
-              session.send("The price of " + res);
-            }
-          });*/
         }
       }
          userHolder = {};

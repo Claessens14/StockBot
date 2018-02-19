@@ -127,6 +127,8 @@ function buildStockCard(name, stock, chart) {
                             },*/
                             {
                                 "type": "ColumnSet",
+                                "spacing": "large",
+                                "separator": true,
                                 "columns": [
                                     
                                     {
@@ -135,7 +137,6 @@ function buildStockCard(name, stock, chart) {
                                         "items": [
                                             {
                                                 "type": "TextBlock",
-                                                "spacing": "noe",
                                                 "text": stock.company.description,
                                                 "isSubtle": false,
                                                 "wrap": true
