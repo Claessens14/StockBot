@@ -183,7 +183,7 @@ function buildStockCard(name, stock, chart) {
                                                 {
                                                     "title": "Beta:",
                                                     "value": dataToStr(stock.stats.beta)
-                                                }
+                                                },
                                             ]
                                         }
                                     ]
