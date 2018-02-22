@@ -177,7 +177,7 @@ function buildStockCard(name, stock, chart) {
                                                     "value": dataToStr(stock.stats.ttmEPS)
                                                 },
                                                 {
-                                                    "title": "Divident Yield",
+                                                    "title": "Dividend Yield",
                                                     "value": dataToStr(stock.stats.dividendYield)
                                                 },
                                                 {
