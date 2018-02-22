@@ -156,34 +156,39 @@ function buildStockCard(name, stock, chart) {
                         "title" : "Stats",
                         "size" : "large",
                         "card": {
-                            "type":"AdaptiveCard",
-                            "body" :[
-                                {   
-                                    "type": "Container",
-                                    "items": [
-                                        {
-                                            "type": "FactSet",
-                                            "facts": [
+                            "type": "ColumnSet",
+                            "columns": [
+                                {
+                                    "type":"AdaptiveCard",
+                                    "body" :[
+                                        {   
+                                            "type": "Container",
+                                            "items": [
                                                 {
-                                                    "title": "Market Cap:",
-                                                    "value": dataToStr(stock.stats.marketCap)
-                                                },
-                                                {
-                                                    "title": "P/E:",
-                                                    "value": dataToStr(stock.quote.peRatio)
-                                                },
-                                                {
-                                                    "title": "EPS(ttm):",
-                                                    "value": dataToStr(stock.stats.ttmEPS)
-                                                },
-                                                {
-                                                    "title": "Dividend Yield",
-                                                    "value": dataToStr(stock.stats.dividendYield)
-                                                },
-                                                {
-                                                    "title": "Beta:",
-                                                    "value": dataToStr(stock.stats.beta)
-                                                },
+                                                    "type": "FactSet",
+                                                    "facts": [
+                                                        {
+                                                            "title": "Market Cap:",
+                                                            "value": dataToStr(stock.stats.marketCap)
+                                                        },
+                                                        {
+                                                            "title": "P/E:",
+                                                            "value": dataToStr(stock.quote.peRatio)
+                                                        },
+                                                        {
+                                                            "title": "EPS(ttm):",
+                                                            "value": dataToStr(stock.stats.ttmEPS)
+                                                        },
+                                                        {
+                                                            "title": "Dividend Yield",
+                                                            "value": dataToStr(stock.stats.dividendYield)
+                                                        },
+                                                        {
+                                                            "title": "Beta:",
+                                                            "value": dataToStr(stock.stats.beta)
+                                                        }
+                                                    ]
+                                                }
                                             ]
                                         }
                                     ]
