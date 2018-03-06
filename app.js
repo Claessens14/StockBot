@@ -1,7 +1,3 @@
-/*-----------------------------------------------------------------------------
-A simple echo bot for the Microsoft Bot Framework. 
------------------------------------------------------------------------------*/
-
 var restify = require('restify');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
@@ -61,7 +57,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
       input: { text: session.message.text}
    };
 
-   console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
+   //console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
 
    conversation.message(payload, function(err, watsonData) {
       console.log(JSON.stringify(watsonData));
@@ -84,6 +80,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
               
               var msg = new builder.Message(session)
                 .addAttachment(output.buildStockCard(str, stockJson, null));
+              console.log(JSON.stringify(msg, null, 2));
               session.send(msg);
             }
           });
@@ -93,14 +90,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
          userHolder = {};
          userHolder = watsonData.context;
 
-         console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
+         //console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
       }
    });
 
 });
 //bot.set('storage', tableStorage);
-
-// bot.dialog('/', function (session) {
-//     console.log("HERE?");
-//     session.send('YOU TOLD ME ' + session.message.text);
-// });

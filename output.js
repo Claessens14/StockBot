@@ -34,6 +34,60 @@ function makeChart(session, str, callback) {
 	});
 }
 
+function makeNewsCard(stock, callback) {
+    var array = [];
+    var news = stock.news;
+    for (var index in news) {
+        var newsLogo = "";
+        if (news[index].source === 'CNBC') newsLogo = "https://lh3.googleusercontent.com/z1UDoxRq7-yLISA0gYHYjbxygwTFGQrEe84Tvu9sRi8fA8nmb6MGRu0hU-BJx1i2rdI=w300";
+        else if (news[index].source === 'SeekingAlpha') newsLogo = "https://pbs.twimg.com/profile_images/534299535552421888/eHacq8EQ.png";
+        else newsLogo = "https://www.exterro.com/legacy/files/2012/04/BREAKING-NEWS.png";
+        array.push(
+            {
+                "type": "ColumnSet",
+                "separator": true,
+                "columns": [
+                    {
+                        "type": "Column",
+                        "width": "auto",
+                        "items": [
+                            {
+                                "type": "Image",
+                                "url": newsLogo,
+                                "size": "small",
+                                "spacing": "none"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Column",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "horizontalAlignment": "left",
+                                "text": news[index].headline,
+                                "weight" : "bolder"
+                            },
+                            {
+                                "type": "TextBlock",
+                                "horizontalAlignment": "left",
+                                "text": news[index].datetime
+                            }
+                        ]
+                    }
+                ],
+                "selectAction": {
+                "type": "Action.OpenUrl",
+                "title": "View Friday",
+                "url": news[index].url
+              }
+            }
+        )
+    }
+    return array;
+}
+
+
 function buildStockCard(name, stock, chart) {
     console.log("name : ", name);
     console.log(JSON.stringify(stock, null, 2));
@@ -48,223 +102,295 @@ function buildStockCard(name, stock, chart) {
         todaysMove = "▲";
         todaysColor = "good";
     }
+
+
     return {
-                'contentType': 'application/vnd.microsoft.card.adaptive',
-                'content': {
-                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                "type": "AdaptiveCard",
-                "version": "1.0",
-                "body": [
-                    {
-                        "type": "Container",
-                        "spacing": "none",
-                        "items": [
-                            {
-                                "type": "ColumnSet",
-                                "columns": [
-                                    {
-                                        "type": "Column",
-                                        "width": "stretch",
-                                        "items": [
-                                            {
-                                                "type": "TextBlock",
-                                                "text": stock.company.companyName,
-                                                "weight": "bolder",
-                                                "size": "medium"
-                                            },
-                                            {
-                                                "type": "TextBlock",
-                                                "text": "$" + stock.quote.latestPrice,
-                                                "size": "extraLarge"
-                                            },
-                                            {
-                                                "type": "TextBlock",
-                                                "text": todaysMove + stock.quote.change + " (" + stock.quote.changePercent + "%)",
-                                                "size": "small",
-                                                "color": todaysColor,
-                                                "spacing": "none"
-                                            },
-                                            {
-                                                "type": "TextBlock",
-                                                "spacing": "none",
-                                                "text": stock.company.exchange + " ("+ stock.company.symbol + ")",
-                                                "isSubtle": true,
-                                                "wrap": true
-                                            },
-                                            {
-                                                "type": "TextBlock",
-                                                "text": stock.quote.latestTime,
-                                                "isSubtle": true
-                                            }
-                                        ],
-                                    },
-                                    {
-                                        "type": "Column",
-                                        "width": "auto",
-                                        "items": [
-                                            {
-                                                "type": "Image",
-                                                "url": stock.logo.url,
-                                                "size": "large",
-                                                "style": ""
-                                            }
-                                        ]
-                                    }
-                            
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "Container",
-                        "items": [
-/*
-                            {
-                                "type": "Image",
-                                "url": "https://cdn.thesimpledollar.com/wp-content/uploads/2008/10/goog.jpg",
-                                "width":"strech",
-                                "size": "large"
-                            },*/
-                            {
-                                "type": "ColumnSet",
-                                "spacing": "large",
-                                "separator": true,
-                                "columns": [
-                                    
-                                    {
-                                        "type": "Column",
-                                        "width": "stretch",
-                                        "items": [
-                                            {
-                                                "type": "TextBlock",
-                                                "text": stock.company.description,
-                                                "isSubtle": false,
-                                                "wrap": true
-                                            }
-                                            
-                                        ]
-                                    },
-                                    
-                                ]
-                            }
-                        ]
-                    }
+  'contentType': 'application/vnd.microsoft.card.adaptive',
+  'content': {
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "Container",
+        "spacing": "none",
+        "items": [
+          {
+            "type": "ColumnSet",
+            "columns": [
+              {
+                "type": "Column",
+                "width": "stretch",
+                "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": stock.company.companyName,
+                    "weight": "bolder",
+                    "size": "medium"
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": "$"+stock.quote.latestPrice,
+                    "size": "extraLarge"
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": todaysMove+stock.quote.change+" ("+stock.quote.changePercent+"%)",
+                    "size": "small",
+                    "color": todaysColor,
+                    "spacing": "none"
+                  },
+                  {
+                    "type": "TextBlock",
+                    "spacing": "none",
+                    "text": stock.company.exchange+" ("+stock.company.symbol+")",
+                    "isSubtle": true,
+                    "wrap": true
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": stock.quote.latestTime,
+                    "isSubtle": true
+                  }
                 ],
-                "actions": [
-                    {
-                        "type": "Action.ShowCard",
-                        "title" : "Stats",
-                        "size" : "large",
-                        "card": {
-                            "type": "ColumnSet",
-                            "columns": [
-                                {
-                                    "type":"AdaptiveCard",
-                                    "body" :[
-                                        {   
-                                            "type": "Container",
-                                            "items": [
-                                                {
-                                                    "type": "FactSet",
-                                                    "facts": [
-                                                        {
-                                                            "title": "Market Cap:",
-                                                            "value": dataToStr(stock.stats.marketCap)
-                                                        },
-                                                        {
-                                                            "title": "P/E:",
-                                                            "value": dataToStr(stock.quote.peRatio)
-                                                        },
-                                                        {
-                                                            "title": "EPS(ttm):",
-                                                            "value": dataToStr(stock.stats.ttmEPS)
-                                                        },
-                                                        {
-                                                            "title": "Dividend Yield",
-                                                            "value": dataToStr(stock.stats.dividendYield)
-                                                        },
-                                                        {
-                                                            "title": "Beta:",
-                                                            "value": dataToStr(stock.stats.beta)
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "type": "Action.ShowCard",
-                        "title": "News",
-                        "card": {
-                            "type": "AdaptiveCard",
-                            
-                            "body": [
-                                {
-                                    "type": "TextBlock",
-                                    "id": "dueDate",
-                                    "wrap": "true",
-                                    "text": dataToStr(stock.news[0].headline)
-                                },
-                                {
-                                    "type": "TextBlock",
-                                    "id": "dueDate",
-                                    "wrap": "true",
-                                    "text": dataToStr(stock.news[1].headline)
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "type": "Action.ShowCard",
-                        "title" : "Financials",
-                        "size" : "large",
-                        "card": {
-                            "type":"AdaptiveCard",
-                            "body" :[
-                                {   
-                                    "type": "Container",
-                                    "items": [
-                                        {
-                                            "type": "FactSet",
-                                            "facts": [
-                                                {
-                                                    "title": "Revenue",
-                                                    "value": dataToStr(stock.financials.financials[1].totalRevenue)
-                                                },
-                                                {
-                                                    "title": "Net Income:",
-                                                    "value": dataToStr(stock.financials.financials[1].netIncome)
-                                                },
-                                                {
-                                                    "title": "Total Cash",
-                                                    "value": dataToStr(stock.financials.financials[1].totalCash)
-                                                },
-                                                {
-                                                    "title": "Equity:",
-                                                    "value": dataToStr(stock.financials.financials[1].shareholderEquity)
-                                                },
-                                                {
-                                                    "title": "CashFlow:",
-                                                    "value": dataToStr(stock.financials.financials[1].cashFlow)
-                                                },
-                                                {
-                                                    "title": "Report Date:",
-                                                    "value": dataToStr(stock.financials.financials[1].reportDate)
-                                                },
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }      
-                    }
+                
+              },
+              {
+                "type": "Column",
+                "width": "auto",
+                "items": [
+                  {
+                    "type": "Image",
+                    "url": stock.logo.url,
+                    "size": "large",
+                    "style": ""
+                  }
                 ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Container",
+        "items": [
+          {
+            "type": "ColumnSet",
+            "spacing": "large",
+            "separator": true,
+            "columns": [
+              {
+                "type": "Column",
+                "width": "stretch",
+                "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": stock.company.description,
+                    "isSubtle": false,
+                    "wrap": true
+                  }
+                ]
+              },
+              
+            ]
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "type": "Action.ShowCard",
+        "title": "Stats",
+        "size": "large",
+        "card": {
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Container",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                          "title": "Volume:",
+                          "value": dataToStr(stock.quote.latestVolume)
+                        },
+                        {
+                          "title": "Avg Volume",
+                          "value": dataToStr(stock.quote.avgTotalVolume)
+                        },
+                        {
+                          "title": "52 Low",
+                          "value": dataToStr(stock.stats.week52low)
+                        },
+                        {
+                          "title": "52 High",
+                          "value": dataToStr(stock.stats.week52high)
+                        },
+                        {
+                          "title": "Dividend",
+                          "value": dataToStr(stock.stats.dividendYield)
+                        },
+                        {
+                          "title": "Profit Margin",
+                          "value": dataToStr(stock.stats.profitMargin)
+                        },
+                        {
+                          "title": "EBITA",
+                          "value": dataToStr(stock.stats.EBITDA)
+                        },
+                        {
+                          "title": "50 dayMV",
+                          "value": dataToStr(stock.stats.day50MovingAvg)
+                        }                       
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                          "title": "Market Cap:",
+                          "value": dataToStr(stock.stats.marketcap)
+                        },
+                        {
+                          "title": "EPS:",
+                          "value": dataToStr(stock.stats.latestEPS)
+                        }, 
+                        {
+                          "title": "P/E:",
+                          "value": dataToStr(stock.quote.peRatio)
+                        },
+                        {
+                          "title": "P/Book:",
+                          "value": dataToStr(stock.stats.priceToBook)
+                        },
+                        {
+                          "title": "P/Sales:",
+                          "value": dataToStr(stock.stats.priceToSales)
+                        },
+                        {
+                          "title": "Beta:",
+                          "value": dataToStr(stock.stats.beta)
+                        },
+                        {
+                          "title": "ShortRatio",
+                          "value": dataToStr(stock.stats.shortRatio)
+                        },
+                        {
+                          "title": "200 dayMV",
+                          "value": dataToStr(stock.stats.day200MovingAvg)
+                        }     
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
+          ]
         }
+      },
+      {
+        "type": "Action.ShowCard",
+        "title": "News",
+        "card": {
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": makeNewsCard(stock)
+        }
+      },
+      {
+        "type": "Action.ShowCard",
+        "title": "Earnings",
+        "card": {
+          "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+          "type": "AdaptiveCard",
+          "version": "1.0",
+          "body": [
+            {
+              "type": "Container",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Publish Adaptive Card schema",
+                  "weight": "bolder",
+                  "size": "medium"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "Action.ShowCard",
+        "title": "Financials",
+        "size": "large",
+        "card": {
+          "type": "AdaptiveCard",
+          "body": [
+            {
+              "type": "Container",
+              "items": [
+                {
+                  "type": "FactSet",
+                  "facts": [
+                    {
+                      "title": "Revenue",
+                      "value": dataToStr(stock.financials.financials[
+                        1
+                      ].totalRevenue)
+                    },
+                    {
+                      "title": "Net Income:",
+                      "value": dataToStr(stock.financials.financials[
+                        1
+                      ].netIncome)
+                    },
+                    {
+                      "title": "Total Cash",
+                      "value": dataToStr(stock.financials.financials[
+                        1
+                      ].totalCash)
+                    },
+                    {
+                      "title": "Equity:",
+                      "value": dataToStr(stock.financials.financials[
+                        1
+                      ].shareholderEquity)
+                    },
+                    {
+                      "title": "CashFlow:",
+                      "value": dataToStr(stock.financials.financials[
+                        1
+                      ].cashFlow)
+                    },
+                    {
+                      "title": "Report Date:",
+                      "value": dataToStr(stock.financials.financials[
+                        1
+                      ].reportDate)
+                    },
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
 }
 
 function dataToStr(value) {
@@ -273,10 +399,12 @@ function dataToStr(value) {
         console.log('This is a number ' + value);
         value = roundTo(value, 2);
         str = String(value);
+        str = str.replace(/\"/g, "");
+        str = str.replace(/\'/g, "");
         if (str.match("000")) {
-            str = str.replace(/000000000/g, 'B          ');
-            str = str.replace(/000000/g, 'M          ');
-            str = str.replace(/000/g, 'K         ');
+            str = str.replace(/000000000/g, 'B');
+            str = str.replace(/000000/g, 'M');
+            str = str.replace(/000/g, 'K');
         }
         if (str == "" || str == null) {
             str = "N/A";
