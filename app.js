@@ -6,6 +6,7 @@ require('dotenv').config();
 
 var search = require('./search');
 var output = require('./output');
+var analysis = require('./analysis');
 
 //declare global vars
 var workspace=process.env.WATSON_WORKSPACE_ID;
@@ -82,6 +83,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 .addAttachment(output.buildStockCard(str, stockJson, null));
               console.log(JSON.stringify(msg, null, 2));
               session.send(msg);
+
+              session.send(analysis.reviewStock(stockJson));
             }
           });
           //console.log("(app.js->searchAction)" + stock);
