@@ -1,7 +1,7 @@
 # StockZia
 
-## Note
-Right now it only has FANG companies in watson conversation as entities. If you want to test the current adaptive card. Ask "what is facebook at". 
+## App
+The lastest stable version of the app can be tested [here](https://webchat.botframework.com/embed/StockBro?s=cl1X6EqYpG8.cwA.Ch0.ccequknZJSzEVkIKbNfH3bmeWzYE7gLki4BXRQEnwv8).
 
 ## Run 
 
@@ -25,5 +25,9 @@ Open the [bot card editor](http://adaptivecards.io/visualizer/index.html?hostApp
 
 The [Stock market API](https://iextrading.com/developer/docs/#batch-requests) is called via http request, and returns a json
 
+List of [companies](https://api.iextrading.com/1.0/ref-data/symbols)
+-remove -B and -b from ticker then split at (the). replace 'e' wit 'a'
 
+Example Stock [Data](https://api.iextrading.com/1.0/stock/aap/batch?types=company,logo,quote,stats,financials,news,chart,earnings)
 
+upload the xml map to https://draw.io
