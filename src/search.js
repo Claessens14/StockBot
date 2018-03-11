@@ -45,6 +45,65 @@ function getStock(str, callback) {
 	});
 }
 
+function getIndex(symbol, series,  callback) {
+	request("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + symbol +  "&interval=" + series + "min&apikey=your_api_key&outputsize=full", function (err, resp, body) {
+		if (err) {
+			callback(err, null);
+		} else {
+			body = JSON.parse(body);
+			function findData(body, cb) {
+			
+			var openNum = 0;
+			var closeNum = 0;
+			var mostRecent = true
+			var today = "";
+			var hold = "";
+			//console.log(body["Time Series (60min)"]);
+			var data = body["Time Series (" + series + "min)"]
+				try {
+					for (var line in data) {
+						//console.log(data[line]);
+						if (mostRecent) {
+							mostRecent = false;
+							data[line]["4. close"]
+							closeNum = data[line]["4. close"];
+							//console.log(line.split() );
+							today = line.split(" ")[0];
+							//console.log(today);
+
+						} else {
+							if (line.match(today)) {
+								hold = line;
+							} else {
+								openNum = data[hold]["1. open"];
+								throw "Got Index Data";
+							}
+						}
+					}
+				} catch (e) {
+					console.log(e);
+					cb(today, openNum, closeNum)
+				}
+				
+				
+			}
+
+			var log = function (day, open, close) {
+				console.log("day: " + day + ", Open " + open + ", close: " + close);
+			}
+			findData(body, log);
+
+
+			// console.log(today);
+			// console.log("open: " +  openNum + ", close: " + closeNum);
+			//callback(null, body);
+
+		}
+	});
+}
+
+getIndex('^GSPC', "1");
+
 module.exports = {
 	getPrice : getPrice,
 	getChartData : getChartData,
