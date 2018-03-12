@@ -49,7 +49,7 @@ function pickStr(array) {
 	return array[rn(options)];
 }
 
-console.log(pickStr(['hi', 'ok', 'bye']));
+//console.log(pickStr(['hi', 'ok', 'bye']));
 module.exports = {
 	reviewStock : reviewStock
 }

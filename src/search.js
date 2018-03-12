@@ -95,7 +95,7 @@ function getIndex(symbol, series,  callback) {
 }
 
 function getMarketData(symbol, callback) {
-	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=full", function (err, resp, body) {
+	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
 	    if (err) {
 	      callback(err, null);
 	    } else {

@@ -48,9 +48,12 @@ server.post('/api/messages', connector.listen());
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector, function (session) {
-
+  session.sendTyping();
   //console.log("ID client "+ session.message.address.conversation.id);
   //console.log(JSON.stringify(session.message, null, 2));
+
+  //before sending to watson..
+  session.message.text = session.message.text.replace(/^#/, "teach me about ");
 
    var payload = {
       workspace_id: workspace,
