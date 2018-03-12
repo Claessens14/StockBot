@@ -1,4 +1,3 @@
-
 var builder = require('botbuilder');
 var cloudinary = require('cloudinary');
 require('dotenv').config();
@@ -256,8 +255,7 @@ function makeFinCard(stock) {
 
 
 function buildStockCard(name, stock, chart) {
-  console.log("name : ", name);
-  console.log(JSON.stringify(stock, null, 2));
+  if (process.env.STOCKDATA) console.log(JSON.stringify(stock, null, 2));
 
   var todaysSign = "";
   var todaysColor = "";
@@ -269,7 +267,6 @@ function buildStockCard(name, stock, chart) {
       todaysMove = "▲";
       todaysColor = "good";
   }
-
 
   return {
     'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -501,14 +498,104 @@ function buildStockCard(name, stock, chart) {
   }
 }
 
-function buildMarketCard(str) {
-  
+function buildMarketCard(data) {
+  var change = roundTo(data.close - data.open, 2);
+  var changePercent = roundTo(change / data.open, 2);
+
+  var todaysSign = "";
+  var todaysColor = "";
+  if (String(change).match("-")) {
+      todaysMove = "▼";
+      todaysColor = "attention";
+  } else {
+      todaysMove = "▲";
+      todaysColor = "good";
+  }
+  return {    
+    "contentType": "application/vnd.microsoft.card.adaptive",
+    "content": {
+      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+      "type": "AdaptiveCard",
+      "version": "1.0",
+      "speak": "Microsoft stock is trading at $62.30 a share, which is down .32%",
+      "body": [
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": data.name,
+              "size": "medium",
+              "isSubtle": true
+            },
+            {
+              "type": "TextBlock",
+              "text": data.dataStr,
+              "isSubtle": true
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "none",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": data.close,
+                      "size": "extraLarge"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": todaysMove+change+" ("+changePercent+"%)",
+                      "size": "small",
+                      "color": todaysColor,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                          "title": "Open",
+                          "value": data.open
+                        },
+                        {
+                          "title": "High",
+                          "value": data.high
+                        },
+                        {
+                          "title": "Low",
+                          "value": data.low
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
 }
 
 function dataToStr(value) {
     var str = "";
     if (typeof value == "number") {
-        console.log('This is a number ' + value);
+        //console.log('This is a number ' + value);
         value = roundTo(value, 2);
         str = String(value);
         str = str.replace(/\"/g, "");
@@ -553,6 +640,7 @@ function getBestIndex(array) {
   }
 }
 
+
 function createHeroCard(session, str, url) {
     return new builder.HeroCard(session)
         .title(str)
@@ -569,5 +657,6 @@ function createHeroCard(session, str, url) {
 
 module.exports = {
     buildStockCard: buildStockCard,
-	makeChart : makeChart
+	makeChart : makeChart,
+  buildMarketCard : buildMarketCard
 }

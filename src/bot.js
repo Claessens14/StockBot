@@ -61,13 +61,32 @@ var bot = new builder.UniversalBot(connector, function (session) {
    //console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
 
    conversation.message(payload, function(err, watsonData) {
-      console.log(JSON.stringify(watsonData));
+      if (process.env.WATSONDATA) console.log(JSON.stringify(watsonData));
       if (err) {
          session.send(err);
       } else {
          //console.log(JSON.stringify(response, null, 2));  //console log the JSON array
       if (watsonData.output.text != "") {
          session.send(watsonData.output.text);
+      }
+
+
+      if (watsonData.output.hasOwnProperty('action')) {
+        if(watsonData.output.action == "showMarket") {
+          var str = watsonData.entities[0].value;
+          search.getMarketData(str, (err, data) => {
+            console.log(data);
+            if (err) {
+              callback(err, null)
+            } else {
+              var card = output.buildMarketCard(data);
+              var msg = new builder.Message(session)
+                .addAttachment(card);
+              console.log(JSON.stringify(card, null, 2));
+              session.send(msg);
+            }
+          });
+        }
       }
 
       if (watsonData.output.hasOwnProperty('action')) {
@@ -81,7 +100,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
               
               var msg = new builder.Message(session)
                 .addAttachment(output.buildStockCard(str, stockJson, null));
-              console.log(JSON.stringify(msg, null, 2));
+              //console.log(JSON.stringify(msg, null, 2));
               session.send(msg);
 
               session.send(analysis.reviewStock(stockJson));
@@ -90,10 +109,13 @@ var bot = new builder.UniversalBot(connector, function (session) {
           //console.log("(app.js->searchAction)" + stock);
         }
       }
+
+
+
          userHolder = {};
          userHolder = watsonData.context;
 
-         //console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
+         ///console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
       }
    });
 

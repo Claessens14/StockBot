@@ -1,6 +1,5 @@
 var request = require('request');
 
-
 function getPrice(str, callback) {
 	getStock(str, (err, quote) => {
 		if (err) {
@@ -11,8 +10,6 @@ function getPrice(str, callback) {
 		}
 	});
 }
-
-
 
 function getChartData(str, callback) {
 	getStock(str, (err, stock) => {
@@ -34,7 +31,7 @@ function getChartData(str, callback) {
 }
 
 function getStock(str, callback) {
-	console.log(str);
+	//console.log(str);
 	request('https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,chart,earnings', function (err, resp, body) {
 		if (err) {
 			callback(err, null);
@@ -45,6 +42,9 @@ function getStock(str, callback) {
 	});
 }
 
+/* get the stock index. series is the time series
+* callback(open, close)
+*/
 function getIndex(symbol, series,  callback) {
 	request("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + symbol +  "&interval=" + series + "min&apikey=your_api_key&outputsize=full", function (err, resp, body) {
 		if (err) {
@@ -82,37 +82,66 @@ function getIndex(symbol, series,  callback) {
 					}
 				} catch (e) {
 					console.log(e);
-					cb(today, openNum, closeNum)
+					cb(openNum, closeNum)
 				}
-				
-				
 			}
 
 			var log = function (day, open, close) {
 				console.log("day: " + day + ", Open " + open + ", close: " + close);
 			}
-			findData(body, log);
-
-
-			// console.log(today);
-			// console.log("open: " +  openNum + ", close: " + closeNum);
-			//callback(null, body);
-
+			findData(body, callback);
 		}
 	});
 }
 
-getIndex('^GSPC', "1");
+function getMarketData(symbol, callback) {
+	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=full", function (err, resp, body) {
+	    if (err) {
+	      callback(err, null);
+	    } else {
+	      body = JSON.parse(body);
+	      var json = body["Time Series (Daily)"];
+	      //console.log(body);
+	      try {
+	        for (var key in json) {
+	        	throw json[key];
+	        }
+	      } catch (e) {
+	      	var json = {}
+	      	for (var key in e) {
+	      		if(e[key].match(/[0-9]\.[0-9]/g)) {
+				 e[key] = e[key].replace(/[0-9][0-9]$/g, "");
+				 console.log(e[key]);
+				}
+	      		json[key.slice(3)] = e[key];
+	      	}
+	      	json["name"] = body["Meta Data"]["2. Symbol"];
+	      	//need a formatted date
+	      	getStock("AAPL", (err, stock) => {
+	      		if (err) {
+	      			callback(err, null);
+	      		} else {
+	      			json["dateStr"] = stock.quote.latestTime;
+	      			callback(null, json)
+	      		}
+	      	});
+	      }
+	    }
+	});
+}
+
+// getMarketData('^GSPC', (err, json) => {
+// 	console.log(JSON.stringify(json, null, 2));
+// })
+
+
+
+//getIndex('^GSPC', "1");
 
 module.exports = {
 	getPrice : getPrice,
 	getChartData : getChartData,
-	getStock : getStock
+	getStock : getStock,
+	getMarketData : getMarketData,
+	getIndex : getIndex
 }
-
-/*
-request('https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl&types=quote', function (error, response, body) {
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
-}); */
