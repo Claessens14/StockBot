@@ -5,8 +5,9 @@ var Conversation = require('watson-developer-cloud/conversation/v1'); // watson 
 require('dotenv').config();
 
 var search = require('./search');
-var output = require('./output');
+var softOut = require('./softOut');
 var analysis = require('./analysis');
+var socialCard = require('./socialCard');
 
 //declare global vars
 var workspace=process.env.WATSON_WORKSPACE_ID;
@@ -48,6 +49,8 @@ server.post('/api/messages', connector.listen());
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector, function (session) {
+  if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');;
+
   session.sendTyping();
   //console.log("ID client "+ session.message.address.conversation.id);
   //console.log(JSON.stringify(session.message, null, 2));
@@ -61,15 +64,17 @@ var bot = new builder.UniversalBot(connector, function (session) {
       input: { text: session.message.text}
    };
 
-   //console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
-
+   
+   if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
    conversation.message(payload, function(err, watsonData) {
-      if (process.env.WATSONDATA) console.log(JSON.stringify(watsonData));
+      if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
+
       if (err) {
          session.send(err);
       } else {
          //console.log(JSON.stringify(response, null, 2));  //console log the JSON array
       if (watsonData.output.text != "") {
+         console.log(watsonData.output.text);
          session.send(watsonData.output.text);
       }
 
@@ -82,7 +87,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
             if (err) {
               callback(err, null)
             } else {
-              var card = output.buildMarketCard(data);
+              var card = softOut.buildMarketCard(data);
               var msg = new builder.Message(session)
                 .addAttachment(card);
               console.log(JSON.stringify(card, null, 2));
@@ -92,19 +97,29 @@ var bot = new builder.UniversalBot(connector, function (session) {
         }
       }
 
-      if (watsonData.output.hasOwnProperty('action')) {
-        if(watsonData.output.action == "findStock") {
-          var str = watsonData.entities[0].value;
+      if (watsonData.context.hasOwnProperty('mode')) {
+        if(watsonData.context.mode == "stock") {
+          var str = getEntity(watsonData, "SP500");
           var stock = {};
           search.getStock(str, (err, stockJson) => {
             if (err) {
               console.log(err);
             } else {
+              watsonData.context["stock"] = stockJson;
+              if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
+                var msg = new builder.Message(session)
+                  .addAttachment(softOut.buildStockCard(stockJson));
+                //console.log(JSON.stringify(msg, null, 2));
+                session.send(msg);
+              } else {
+                var msg = new builder.Message(session)
+                  .addAttachment(socialCard.makeHeaderCard(stockJson));
+                session.send(msg);
+                if (watsonData.output.action) {
+                  sendData(session, stockJson, watsonData.output.action);
+                }
+              }
               
-              var msg = new builder.Message(session)
-                .addAttachment(output.buildStockCard(str, stockJson, null));
-              //console.log(JSON.stringify(msg, null, 2));
-              session.send(msg);
 
               session.send(analysis.reviewStock(stockJson));
             }
@@ -112,9 +127,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
           //console.log("(app.js->searchAction)" + stock);
         }
       }
-
-
-
          userHolder = {};
          userHolder = watsonData.context;
 
@@ -123,4 +135,44 @@ var bot = new builder.UniversalBot(connector, function (session) {
    });
 
 });
+
+function sendData(session, stock, action) {
+  var card = {};
+  if (action == "wantStats") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeStatsCard(stock);
+    msg.addAttachment(card);
+    session.send(msg);
+  } else if (action == "wantEarnings") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeEarningsCard(stock);
+    msg.addAttachment(card);
+    session.send(msg);
+  } else if (action == "wantNews") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeNewsCard(stock)
+    msg.addAttachment(card);
+    session.send(msg);
+  } else if (action == "wantFin") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeFinCard(stock)
+    msg.addAttachment(card);
+    session.send(msg);
+  } else {
+    console.log("(sendData) Does not know of this action : " + action);
+  }
+  if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
+}
+
+ function getEntity(watsonData, entity) {
+  if (watsonData.entities) {
+    for (var i in watsonData.entities) {
+      if (watsonData.entities[i].entity == entity) {
+        return watsonData.entities[i].value;
+      }
+    }
+    return null;
+  }
+}
+
 //bot.set('storage', tableStorage);
