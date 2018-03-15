@@ -97,17 +97,23 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
 
 function makeStatsCard(stock) {
 	return [
-              {
+              
 
-                "type": "ColumnSet",
-                "columns": [
-                  {
-                    "type": "Container",
-                    "items": [
-                      {
-                        "type": "FactSet",
-                        "facts": [
-                          {
+			{
+          "type": "Container",
+          "spacing": "none",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
                             "title": "Volume:",
                             "value": dataToStr(stock.quote.latestVolume)
                           },
@@ -138,18 +144,19 @@ function makeStatsCard(stock) {
                           {
                             "title": "50 dayMV",
                             "value": dataToStr(stock.stats.day50MovingAvg)
-                          }                       
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "Container",
-                    "items": [
-                      {
-                        "type": "FactSet",
-                        "facts": [
-                          {
+                          }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
                             "title": "Market Cap:",
                             "value": dataToStr(stock.stats.marketcap)
                           },
@@ -180,14 +187,16 @@ function makeStatsCard(stock) {
                           {
                             "title": "200 dayMV",
                             "value": dataToStr(stock.stats.day200MovingAvg)
-                          }     
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ];
+                          }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+    ];
 }
 
 

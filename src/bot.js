@@ -99,31 +99,38 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
       if (watsonData.context.hasOwnProperty('mode')) {
         if(watsonData.context.mode == "stock") {
-          var str = getEntity(watsonData, "SP500");
+          var str = getEntity(watsonData, "SP500")
           var stock = {};
-          search.getStock(str, (err, stockJson) => {
-            if (err) {
-              console.log(err);
-            } else {
-              watsonData.context["stock"] = stockJson;
-              if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
-                var msg = new builder.Message(session)
-                  .addAttachment(softOut.buildStockCard(stockJson));
-                //console.log(JSON.stringify(msg, null, 2));
-                session.send(msg);
+          //if a new search then show header
+          if (str) {
+            search.getStock(str, (err, stockJson) => {
+              if (err) {
+                console.log(err);
               } else {
-                var msg = new builder.Message(session)
-                  .addAttachment(socialCard.makeHeaderCard(stockJson));
-                session.send(msg);
-                if (watsonData.output.action) {
-                  sendData(session, stockJson, watsonData.output.action);
+                watsonData.context.lastStock = str;
+                watsonData.context["stock"] = stockJson;
+                if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
+                  var msg = new builder.Message(session)
+                    .addAttachment(softOut.buildStockCard(stockJson));
+                  //console.log(JSON.stringify(msg, null, 2));
+                  session.send(msg);
+                } else {
+                  var msg = new builder.Message(session)
+                    .addAttachment(socialCard.makeHeaderCard(stockJson));
+                  session.send(msg);
+                  if (watsonData.output.action) {
+                    sendData(session, stockJson, watsonData.output.action);
+                  }
                 }
+                session.send(analysis.reviewStock(stockJson));
               }
-              
+            });
+          } else if (watsonData.context.lastStock) {
+            
+          } else {
+            console.log("ERROR : no stock found in entity or context")
+          }
 
-              session.send(analysis.reviewStock(stockJson));
-            }
-          });
           //console.log("(app.js->searchAction)" + stock);
         }
       }
