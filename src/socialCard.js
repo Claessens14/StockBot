@@ -66,6 +66,29 @@ function makeNewsCard(stock) {
   } 
 }
 
+
+function createNewsCards(session, stock) {
+    function checkStr(str) {
+      if (str) {
+        return str
+      } else {
+        return " ";
+      }
+    }
+    var array = []; 
+    stock.news.forEach(function(element) {
+      array.push(new builder.HeroCard(session)
+      .title(checkStr(element.headline))
+      .text(checkStr(element.summary))
+      .buttons([
+          builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
+      ]));
+    });
+    return array;
+  }
+
+
+
 function makeFinCard(stock) {
   return {
     'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -78,10 +101,12 @@ function makeFinCard(stock) {
   } 
 }
 
+
 module.exports = {
 	makeHeaderCard : makeHeaderCard,
 	makeStatsCard : makeStatsCard,
 	makeEarningsCard : makeEarningsCard,
 	makeFinCard : makeFinCard,
-	makeNewsCard : makeNewsCard
+	makeNewsCard : makeNewsCard,
+  createNewsCards : createNewsCards
 }

@@ -96,6 +96,21 @@ var bot = new builder.UniversalBot(connector, function (session) {
           });
         }
       }
+      var suggest = new builder.Message(session)
+        .suggestedActions(
+          builder.SuggestedActions.create(
+              session, [
+                builder.CardAction.imBack(session, "educate", "educate"),
+                builder.CardAction.imBack(session, "portfolio", "portfolio"),
+                builder.CardAction.imBack(session, "market", "market"), 
+                builder.CardAction.imBack(session, "news", "news")
+              ]
+            ));
+      session.send(suggest);
+
+
+
+
 
       if (watsonData.context.hasOwnProperty('mode')) {
         if(watsonData.context.mode == "stock") {
@@ -112,21 +127,46 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
                   var msg = new builder.Message(session)
                     .addAttachment(softOut.buildStockCard(stockJson));
-                  //console.log(JSON.stringify(msg, null, 2));
                   session.send(msg);
-                } else {
+                  } else {
                   var msg = new builder.Message(session)
                     .addAttachment(socialCard.makeHeaderCard(stockJson));
                   session.send(msg);
+
+
+
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
                   }
+
+
+//            msg.sourceEvent({
+//                 facebook: {
+//                     attachment:{
+//                       type:"template",
+//                       payload:{
+//                         template_type:"generic",
+//                         elements:[{
+//                             title:"title",
+//                             subtitle:"context",
+//                             image_url:"https://en.wikipedia.org/wiki/Space_Needle.jpg",
+//                             item_url: "http://m.me",
+//                             buttons:[{
+//                                 type:"element_share"
+//                               }]
+//                             }]
+//                         }
+//                     }
+//                 }
+//             });
+// }
+//                   session.send(buttons);
                 }
                 session.send(analysis.reviewStock(stockJson));
               }
             });
           } else if (watsonData.context.lastStock) {
-            
+
           } else {
             console.log("ERROR : no stock found in entity or context")
           }
@@ -156,10 +196,11 @@ function sendData(session, stock, action) {
     msg.addAttachment(card);
     session.send(msg);
   } else if (action == "wantNews") {
-    var msg = new builder.Message(session);
-    card = socialCard.makeNewsCard(stock)
-    msg.addAttachment(card);
-    session.send(msg);
+      var cards = socialCard.createNewsCards(session, stock);
+      var reply = new builder.Message(session)
+        .attachmentLayout(builder.AttachmentLayout.carousel)
+        .attachments(cards);
+      session.send(reply);
   } else if (action == "wantFin") {
     var msg = new builder.Message(session);
     card = socialCard.makeFinCard(stock)
