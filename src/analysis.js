@@ -12,10 +12,13 @@ function reviewStock(stock) {
 	var validResp = [];
 
 	//recent earnings
-	if (stock.earnings.earnings[0].EPSSurpriseDollar > 0) {
-		validResp.push(pickStr(responses.upEarnings).replace(/@/g, company).replace(/#/g, String(stock.earnings.earnings[0].EPSSurpriseDollar)));
-	} else if (stock.earnings.earnings[0].EPSSurpriseDollar <= 0) {
-		validResp.push(pickStr(responses.upEarnings).replace(/@/g, company).replace(/#/g, String(stock.earnings.earnings[0].EPSSurpriseDollar)));
+	var q = 0;
+	if (!(stock.earnings.earnings[q].EPSSurpriseDollar)) q = 1;
+		
+	if (stock.earnings.earnings[q].EPSSurpriseDollar > 0) {
+		validResp.push(pickStr(responses.upEarnings).replace(/@/g, company).replace(/#/g, String(stock.earnings.earnings[q].EPSSurpriseDollar)));
+	} else if (stock.earnings.earnings[q].EPSSurpriseDollar <= 0) {
+		validResp.push(pickStr(responses.upEarnings).replace(/@/g, company).replace(/#/g, String(stock.earnings.earnings[q].EPSSurpriseDollar)));
 	}
 
 	//todays change
@@ -46,7 +49,7 @@ function pickStr(array) {
 	return array[rn(options)];
 }
 
-console.log(pickStr(['hi', 'ok', 'bye']));
+//console.log(pickStr(['hi', 'ok', 'bye']));
 module.exports = {
 	reviewStock : reviewStock
 }

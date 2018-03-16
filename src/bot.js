@@ -5,8 +5,9 @@ var Conversation = require('watson-developer-cloud/conversation/v1'); // watson 
 require('dotenv').config();
 
 var search = require('./search');
-var output = require('./output');
+var softOut = require('./softOut');
 var analysis = require('./analysis');
+var socialCard = require('./socialCard');
 
 //declare global vars
 var workspace=process.env.WATSON_WORKSPACE_ID;
@@ -48,9 +49,14 @@ server.post('/api/messages', connector.listen());
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector, function (session) {
+  if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');;
 
+  session.sendTyping();
   //console.log("ID client "+ session.message.address.conversation.id);
   //console.log(JSON.stringify(session.message, null, 2));
+
+  //before sending to watson..
+  session.message.text = session.message.text.replace(/^#/, "teach me about ");
 
    var payload = {
       workspace_id: workspace,
@@ -58,44 +64,163 @@ var bot = new builder.UniversalBot(connector, function (session) {
       input: { text: session.message.text}
    };
 
-   //console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
-
+   
+   if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
    conversation.message(payload, function(err, watsonData) {
-      console.log(JSON.stringify(watsonData));
+      if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
+
       if (err) {
          session.send(err);
       } else {
          //console.log(JSON.stringify(response, null, 2));  //console log the JSON array
       if (watsonData.output.text != "") {
+         console.log(watsonData.output.text);
          session.send(watsonData.output.text);
       }
 
-      if (watsonData.output.hasOwnProperty('action')) {
-        if(watsonData.output.action == "findStock") {
-          var str = watsonData.entities[0].value;
-          var stock = {};
-          search.getStock(str, (err, stockJson) => {
-            if (err) {
-              console.log(err);
-            } else {
-              
-              var msg = new builder.Message(session)
-                .addAttachment(output.buildStockCard(str, stockJson, null));
-              console.log(JSON.stringify(msg, null, 2));
-              session.send(msg);
 
-              session.send(analysis.reviewStock(stockJson));
+      if (watsonData.output.hasOwnProperty('action')) {
+        if(watsonData.output.action == "showMarket") {
+          var str = watsonData.entities[0].value;
+          search.getMarketData(str, (err, data) => {
+            console.log(data);
+            if (err) {
+              callback(err, null)
+            } else {
+              var card = softOut.buildMarketCard(data);
+              var msg = new builder.Message(session)
+                .addAttachment(card);
+              console.log(JSON.stringify(card, null, 2));
+              session.send(msg);
             }
           });
+        }
+      }
+      var suggest = new builder.Message(session)
+        .suggestedActions(
+          builder.SuggestedActions.create(
+              session, [
+                builder.CardAction.imBack(session, "educate", "educate"),
+                builder.CardAction.imBack(session, "portfolio", "portfolio"),
+                builder.CardAction.imBack(session, "market", "market"), 
+                builder.CardAction.imBack(session, "news", "news")
+              ]
+            ));
+      session.send(suggest);
+
+
+
+
+
+      if (watsonData.context.hasOwnProperty('mode')) {
+        if(watsonData.context.mode == "stock") {
+          var str = getEntity(watsonData, "SP500")
+          var stock = {};
+          //if a new search then show header
+          if (str) {
+            search.getStock(str, (err, stockJson) => {
+              if (err) {
+                console.log(err);
+              } else {
+                watsonData.context.lastStock = str;
+                watsonData.context["stock"] = stockJson;
+                if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
+                  var msg = new builder.Message(session)
+                    .addAttachment(softOut.buildStockCard(stockJson));
+                  session.send(msg);
+                  } else {
+                  var msg = new builder.Message(session)
+                    .addAttachment(socialCard.makeHeaderCard(stockJson));
+                  session.send(msg);
+
+
+
+                  if (watsonData.output.action) {
+                    sendData(session, stockJson, watsonData.output.action);
+                  }
+
+
+//            msg.sourceEvent({
+//                 facebook: {
+//                     attachment:{
+//                       type:"template",
+//                       payload:{
+//                         template_type:"generic",
+//                         elements:[{
+//                             title:"title",
+//                             subtitle:"context",
+//                             image_url:"https://en.wikipedia.org/wiki/Space_Needle.jpg",
+//                             item_url: "http://m.me",
+//                             buttons:[{
+//                                 type:"element_share"
+//                               }]
+//                             }]
+//                         }
+//                     }
+//                 }
+//             });
+// }
+//                   session.send(buttons);
+                }
+                session.send(analysis.reviewStock(stockJson));
+              }
+            });
+          } else if (watsonData.context.lastStock) {
+
+          } else {
+            console.log("ERROR : no stock found in entity or context")
+          }
+
           //console.log("(app.js->searchAction)" + stock);
         }
       }
          userHolder = {};
          userHolder = watsonData.context;
 
-         //console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
+         ///console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
       }
    });
 
 });
+
+function sendData(session, stock, action) {
+  var card = {};
+  if (action == "wantStats") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeStatsCard(stock);
+    msg.addAttachment(card);
+    session.send(msg);
+  } else if (action == "wantEarnings") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeEarningsCard(stock);
+    msg.addAttachment(card);
+    session.send(msg);
+  } else if (action == "wantNews") {
+      var cards = socialCard.createNewsCards(session, stock);
+      var reply = new builder.Message(session)
+        .attachmentLayout(builder.AttachmentLayout.carousel)
+        .attachments(cards);
+      session.send(reply);
+  } else if (action == "wantFin") {
+    var msg = new builder.Message(session);
+    card = socialCard.makeFinCard(stock)
+    msg.addAttachment(card);
+    session.send(msg);
+  } else {
+    console.log("(sendData) Does not know of this action : " + action);
+  }
+  if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
+}
+
+ function getEntity(watsonData, entity) {
+  if (watsonData.entities) {
+    for (var i in watsonData.entities) {
+      if (watsonData.entities[i].entity == entity) {
+        return watsonData.entities[i].value;
+      }
+    }
+    return null;
+  }
+}
+
 //bot.set('storage', tableStorage);

@@ -28,6 +28,8 @@ The [Stock market API](https://iextrading.com/developer/docs/#batch-requests) is
 List of [companies](https://api.iextrading.com/1.0/ref-data/symbols)
 -remove -B and -b from ticker then split at (the). replace 'e' wit 'a'
 
-Example Stock [Data](https://api.iextrading.com/1.0/stock/aap/batch?types=company,logo,quote,stats,financials,news,chart,earnings)
+Example Stock [Data](https://api.iextrading.com/1.0/stock/aap/batch?types=company,logo,quote,stats,financials,news,chart,earnings)  
 
-upload the xml map to https://draw.io
+Upload the xml map to https://draw.io
+
+Advantage Index [data](https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=^GSPC&interval=60min&apikey=your_api_key&outputsize=full) and [site](https://www.alphavantage.co/documentation/) and [reference](https://www.alpha-vantage.community/post/world-indexes-9627480?highlight=gspc)
