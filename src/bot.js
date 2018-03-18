@@ -73,27 +73,36 @@ var bot = new builder.UniversalBot(connector, function (session) {
          session.send(err);
       } else {
          //console.log(JSON.stringify(response, null, 2));  //console log the JSON array
-      if (watsonData.output.text != "") {
+      if (watsonData.output.text && watsonData.output.text != "") {
          console.log(watsonData.output.text);
-         session.send(watsonData.output.text);
+         watsonData.output.text.forEach(function(element) {
+            session.send(element)
+         });
       }
 
 
       if (watsonData.output.hasOwnProperty('action')) {
+        function searchMarket(str) {
+            search.getMarketData(str, (err, data) => {
+              if (process.env.MARKETDATA == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(data, null, 2) + '\n________________________________\n');
+              if (err) {
+                callback(err, null)
+              } else {
+                var card = softOut.buildMarketCard(data);
+                var msg = new builder.Message(session)
+                  .addAttachment(card);
+                 if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
+                session.send(msg);
+              }
+            });
+        }
         if(watsonData.output.action == "showMarket") {
           var str = watsonData.entities[0].value;
-          search.getMarketData(str, (err, data) => {
-            console.log(data);
-            if (err) {
-              callback(err, null)
-            } else {
-              var card = softOut.buildMarketCard(data);
-              var msg = new builder.Message(session)
-                .addAttachment(card);
-              console.log(JSON.stringify(card, null, 2));
-              session.send(msg);
-            }
-          });
+          searchMarket(str);
+        } else if(watsonData.output.action == "rollout") {
+          searchMarket("DJI");
+          searchMarket("GSPC");
+          searchMarket("IXIC");
         }
       }
       var suggest = new builder.Message(session)
@@ -107,10 +116,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
               ]
             ));
       session.send(suggest);
-
-
-
-
 
       if (watsonData.context.hasOwnProperty('mode')) {
         if(watsonData.context.mode == "stock") {
@@ -132,8 +137,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   var msg = new builder.Message(session)
                     .addAttachment(socialCard.makeHeaderCard(stockJson));
                   session.send(msg);
-
-
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
@@ -165,8 +168,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 session.send(analysis.reviewStock(stockJson));
               }
             });
-          } else if (watsonData.context.lastStock) {
-
+          } else if (watsonData.context.lastStock && watsonData.output.action) {
+            if (watsonData.output.action) {
+              sendData(session, stockJson, watsonData.output.action);
+            }
           } else {
             console.log("ERROR : no stock found in entity or context")
           }

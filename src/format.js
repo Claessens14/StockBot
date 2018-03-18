@@ -31,6 +31,11 @@ function dataToStr(value) {
     return str;
 }
 
+//[WAT -> WAT11]
+// function tickerToFake(actual) {
+
+// }
+
 module.exports = {
 	dataToStr : dataToStr
 }
