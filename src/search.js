@@ -31,12 +31,13 @@ function getChartData(str, callback) {
 }
 
 function getStock(str, callback) {
-	//console.log(str);
-	request('https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings', function (err, resp, body) {
+	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
+	request(url, function (err, resp, body) {
 		if (err) {
 			callback(err, null);
 		} else {
 			body = JSON.parse(body);
+			body["url"] = url;
 			callback(null, body);
 		}
 	});
