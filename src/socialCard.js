@@ -88,7 +88,6 @@ function createNewsCards(session, stock) {
   }
 
 
-
 function makeFinCard(stock) {
   return {
     'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -100,6 +99,99 @@ function makeFinCard(stock) {
   	}
   } 
 }
+/*
+function buildPortCard(oldStock, newStock) {
+  var change = roundTo(data.close - data.open, 2);
+  var changePercent = roundTo(change / data.open, 2);
+
+  var todaysSign = "";
+  var todaysColor = "";
+  if (String(change).match("-")) {
+      todaysMove = "▼";
+      todaysColor = "attention";
+  } else {
+      todaysMove = "▲";
+      todaysColor = "good";
+  }
+  return {    
+    'contentType': 'application/vnd.microsoft.card.adaptive',
+    'content': {
+        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+        'type': 'AdaptiveCard',
+        'version': '1.0',
+      "body": [
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": oldStock.name,
+              "size": "medium",
+              "isSubtle": true
+            },
+            {
+              "type": "TextBlock",
+              "text": data.dateStr,
+              "isSubtle": true
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "none",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": data.close,
+                      "size": "extraLarge"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": todaysMove+change+" ("+changePercent+"%)",
+                      "size": "small",
+                      "color": todaysColor,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                          "title": "Open",
+                          "value": data.open
+                        },
+                        {
+                          "title": "High",
+                          "value": data.high
+                        },
+                        {
+                          "title": "Low",
+                          "value": data.low
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}*/
 
 
 module.exports = {

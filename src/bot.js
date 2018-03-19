@@ -9,6 +9,7 @@ var search = require('./search');
 var softOut = require('./softOut');
 var analysis = require('./analysis');
 var socialCard = require('./socialCard');
+var portfolio = require('./portfolio');
 //var users = require('../assets/users.json');
 
 var users = require('../assets/users.json');
@@ -56,8 +57,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
   if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');;
 
   session.sendTyping();
-  //console.log("ID client "+ session.message.address.conversation.id);
-  //console.log(JSON.stringify(session.message, null, 2));
 
   //before sending to watson..
   session.message.text = session.message.text.replace(/^#/, "teach me about ");
@@ -68,7 +67,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
       input: { text: session.message.text}
    };
 
-   
    if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
    conversation.message(payload, function(err, watsonData) {
       if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
@@ -79,8 +77,21 @@ var bot = new builder.UniversalBot(connector, function (session) {
          //console.log(JSON.stringify(response, null, 2));  //console log the JSON array
       if (watsonData.output.text && watsonData.output.text != "") {
          console.log(watsonData.output.text);
+         var i = 0
          watsonData.output.text.forEach(function(element) {
-            session.send(element)
+            ///session.send(element)
+            var suggest = new builder.Message(session)
+              .text(element)
+              .suggestedActions(
+                builder.SuggestedActions.create(
+                    session, [
+                      builder.CardAction.imBack(session, "educate", "educate"),
+                      builder.CardAction.imBack(session, "portfolio", "portfolio"),
+                      builder.CardAction.imBack(session, "market", "market"), 
+                      builder.CardAction.imBack(session, "news", "news")
+                    ]
+                  ));
+            session.send(suggest);
          });
       }
 
@@ -94,7 +105,16 @@ var bot = new builder.UniversalBot(connector, function (session) {
               } else {
                 var card = softOut.buildMarketCard(data);
                 var msg = new builder.Message(session)
-                  .addAttachment(card);
+                  .addAttachment(card)
+                  .suggestedActions(
+                    builder.SuggestedActions.create(
+                      session, [
+                        builder.CardAction.imBack(session, "educate", "educate"),
+                        builder.CardAction.imBack(session, "portfolio", "portfolio"),
+                        builder.CardAction.imBack(session, "market", "market"), 
+                        builder.CardAction.imBack(session, "news", "news")
+                      ]
+                  ));
                  if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
                 session.send(msg);
               }
@@ -109,17 +129,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
           searchMarket("IXIC");
         }
       }
-      var suggest = new builder.Message(session)
-        .suggestedActions(
-          builder.SuggestedActions.create(
-              session, [
-                builder.CardAction.imBack(session, "educate", "educate"),
-                builder.CardAction.imBack(session, "portfolio", "portfolio"),
-                builder.CardAction.imBack(session, "market", "market"), 
-                builder.CardAction.imBack(session, "news", "news")
-              ]
-            ));
-      session.send(suggest);
+
 
       if (watsonData.context.hasOwnProperty('mode')) {
         if(watsonData.context.mode == "stock") {
@@ -133,6 +143,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
               } else {
                 watsonData.context.lastStock = str;
                 watsonData.context["stock"] = stockJson;
+
                 if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
                   var msg = new builder.Message(session)
                     .addAttachment(softOut.buildStockCard(stockJson));
@@ -144,51 +155,56 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
+                                  var temp = updatePortfolio(session, watsonData, watsonData.output.action);
+              watsonData.context.portfolio = {};
+              watsonData.context.portfolio = temp;
                   }
-
-
-//            msg.sourceEvent({
-//                 facebook: {
-//                     attachment:{
-//                       type:"template",
-//                       payload:{
-//                         template_type:"generic",
-//                         elements:[{
-//                             title:"title",
-//                             subtitle:"context",
-//                             image_url:"https://en.wikipedia.org/wiki/Space_Needle.jpg",
-//                             item_url: "http://m.me",
-//                             buttons:[{
-//                                 type:"element_share"
-//                               }]
-//                             }]
-//                         }
-//                     }
-//                 }
-//             });
-// }
-//                   session.send(buttons);
                 }
-                session.send(analysis.reviewStock(stockJson));
+                //session.send(analysis.reviewStock(stockJson));
+                var insight = new builder.Message(session)
+                  .text(analysis.reviewStock(stockJson))
+                  .suggestedActions(
+                    builder.SuggestedActions.create(
+                        session, [
+                          builder.CardAction.imBack(session, "add to portfolio", "add to portfolio"),
+                          builder.CardAction.imBack(session, "earnings", "earnings"),
+                          builder.CardAction.imBack(session, "ratios", "ratios"),
+                          builder.CardAction.imBack(session, "financials", "financials"), 
+                          builder.CardAction.imBack(session, "news", "news")
+                        ]
+                      ));
+              session.send(insight);
+
               }
             });
           } else if (watsonData.context.lastStock && watsonData.output.action) {
             if (watsonData.output.action) {
               sendData(session, watsonData.context.stock, watsonData.output.action);
+              var temp = updatePortfolio(session, watsonData, watsonData.output.action);
+              watsonData.context.portfolio = {};
+              watsonData.context.portfolio = temp;
             }
           } else {
             console.log("ERROR : no stock found in entity or context")
           }
-
-          //console.log("(app.js->searchAction)" + stock);
         }
       }
-        watsonData.context["user"] = session.message.address;
 
-         putUser(session.message.user.name, watsonData.context);
-        
+      if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "showPortfolio") {
+        session.send("Stock \\n hey");
+      }
 
-         ///console.log('________________________________\nPOST CONVO CONTEXT : ' + JSON.stringify(userHolder, null, 2) + '\n________________________________\n');
+      if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "logRequest") {
+        fs.appendFile('./log/anythingElse.csv', session.message.user.name + ', ' +  session.message.text + '\n', function (err) {
+          if (err) return console.log(err);
+        });
+      }
+      console.log(watsonData.context);
+      watsonData.context["user"] = session.message.address;
+      //putUser(session.message.user.name, {});
+      putUser(session.message.user.name, watsonData.context);
+      
+
       }
    });
 
@@ -223,8 +239,24 @@ function sendData(session, stock, action) {
     }
   }
   if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
-  
 }
+
+function updatePortfolio(session, watsonData, action) {
+  if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "addToPortfolio") {
+        portfolio.addStock(watsonData.context.portfolio, watsonData.context.stock, (msg, portfolio) => {
+          session.send(msg);
+          return portfolio;
+        });
+      }    
+  if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "removeFromPortfolio") {
+    portfolio.removeStock(watsonData.context.portfolio, watsonData.context.lastStock, (msg, portfolio) => {
+      session.send(msg);
+      return portfolio;
+    });
+  }  
+}
+
+
  function getEntity(watsonData, entity) {
   if (watsonData.entities) {
     for (var i in watsonData.entities) {
@@ -244,8 +276,6 @@ function putUser(name, data) {
   users[name] = data;
   fs.writeFile('./assets/users.json', JSON.stringify(users, null, 2), function (err) {
     if (err) return console.log(err);
-    //console.log(JSON.stringify(file));
-    //console.log('writing to ' + fileName);
   });
 }
 

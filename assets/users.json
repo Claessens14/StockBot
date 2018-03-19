@@ -1,0 +1,373 @@
+{
+  "Jacob Claessens": {
+    "conversation_id": "214993f0-5a07-423c-8fb1-a97ece6d0cc3",
+    "system": {
+      "dialog_stack": [
+        {
+          "dialog_node": "root"
+        }
+      ],
+      "dialog_turn_counter": 8,
+      "dialog_request_counter": 8,
+      "_node_output_map": {
+        "node_2_1521177918907": [
+          0,
+          1,
+          0
+        ]
+      },
+      "branch_exited": true,
+      "branch_exited_reason": "completed"
+    },
+    "mode": "other",
+    "user": {
+      "id": "mid.$cAAcRR38D9CZobXvbzliPDaTmFXly",
+      "channelId": "facebook",
+      "user": {
+        "id": "1531011940353275",
+        "name": "Jacob Claessens"
+      },
+      "conversation": {
+        "isGroup": false,
+        "id": "1531011940353275-2053562471594797"
+      },
+      "bot": {
+        "id": "2053562471594797",
+        "name": "StockZia-Dev"
+      },
+      "serviceUrl": "https://facebook.botframework.com"
+    },
+    "lastStock": "AAPL",
+    "stock": {
+      "company": {
+        "symbol": "AAPL",
+        "companyName": "Apple Inc.",
+        "exchange": "Nasdaq Global Select",
+        "industry": "Computer Hardware",
+        "website": "http://www.apple.com",
+        "description": "Apple Inc is designs, manufactures and markets mobile communication and media devices and personal computers, and sells a variety of related software, services, accessories, networking solutions and third-party digital content and applications.",
+        "CEO": "Timothy D. Cook",
+        "issueType": "cs",
+        "sector": "Technology"
+      },
+      "logo": {
+        "url": "https://storage.googleapis.com/iex/api/logos/AAPL.png"
+      },
+      "quote": {
+        "symbol": "AAPL",
+        "companyName": "Apple Inc.",
+        "primaryExchange": "Nasdaq Global Select",
+        "sector": "Technology",
+        "calculationPrice": "close",
+        "open": 178.65,
+        "openTime": 1521207000237,
+        "close": 178.02,
+        "closeTime": 1521230400638,
+        "high": 179.12,
+        "low": 177.62,
+        "latestPrice": 178.02,
+        "latestSource": "Close",
+        "latestTime": "March 16, 2018",
+        "latestUpdate": 1521230400638,
+        "latestVolume": 38284107,
+        "iexRealtimePrice": null,
+        "iexRealtimeSize": null,
+        "iexLastUpdated": null,
+        "delayedPrice": 177.95,
+        "delayedPriceTime": 1521233998588,
+        "previousClose": 178.65,
+        "change": -0.63,
+        "changePercent": -0.00353,
+        "iexMarketPercent": null,
+        "iexVolume": null,
+        "avgTotalVolume": 42106322,
+        "iexBidPrice": null,
+        "iexBidSize": null,
+        "iexAskPrice": null,
+        "iexAskSize": null,
+        "marketCap": 903275794260,
+        "peRatio": 19.35,
+        "week52High": 183.5,
+        "week52Low": 138.62,
+        "ytdChange": 0.037651440745393144
+      },
+      "stats": {
+        "companyName": "Apple Inc.",
+        "marketcap": 903275794260,
+        "beta": 1.211028,
+        "week52high": 183.5,
+        "week52low": 138.62,
+        "week52change": 28.535398,
+        "shortInterest": 58730906,
+        "shortDate": "2018-02-28",
+        "dividendRate": 2.52,
+        "dividendYield": 1.4155713,
+        "exDividendDate": "2018-02-09 00:00:00.0",
+        "latestEPS": 9.2,
+        "latestEPSDate": "2017-09-30",
+        "sharesOutstanding": 5074013000,
+        "float": 5064348266,
+        "returnOnEquity": 34.7,
+        "consensusEPS": 1.87,
+        "numberOfEstimates": 10,
+        "EPSSurpriseDollar": null,
+        "EPSSurprisePercent": 10.6952,
+        "symbol": "AAPL",
+        "EBITDA": 79386000000,
+        "revenue": 239176000000,
+        "grossProfit": 91922000000,
+        "cash": 295194000000,
+        "debt": 444941000000,
+        "ttmEPS": 9.2,
+        "revenuePerShare": 47,
+        "revenuePerEmployee": 1944520,
+        "peRatioHigh": 114.1,
+        "peRatioLow": 0,
+        "returnOnAssets": 12.88,
+        "returnOnCapital": null,
+        "profitMargin": 20.67,
+        "priceToSales": 3.7899806,
+        "priceToBook": 6.44,
+        "day200MovingAvg": 161.60107,
+        "day50MovingAvg": 172.21722,
+        "institutionPercent": 37.8,
+        "insiderPercent": null,
+        "shortRatio": 1.2254795,
+        "year5ChangePercent": 2.011994172953639,
+        "year2ChangePercent": 0.7435505670799789,
+        "year1ChangePercent": 0.2783567636504906,
+        "ytdChangePercent": 0.037651440745393144,
+        "month6ChangePercent": 0.13014866133694264,
+        "month3ChangePercent": 0.024096940019973485,
+        "month1ChangePercent": 0.03590340413151013,
+        "day5ChangePercent": -0.02036099493726606,
+        "day30ChangePercent": 0.11368160542314533
+      },
+      "financials": {
+        "symbol": "AAPL",
+        "financials": [
+          {
+            "reportDate": "2017-12-31",
+            "grossProfit": 33912000000,
+            "costOfRevenue": 54381000000,
+            "operatingRevenue": 88293000000,
+            "totalRevenue": 88293000000,
+            "operatingIncome": 26274000000,
+            "netIncome": 20065000000,
+            "researchAndDevelopment": 3407000000,
+            "operatingExpense": 7638000000,
+            "currentAssets": 143810000000,
+            "totalAssets": 406794000000,
+            "totalLiabilities": 266595000000,
+            "currentCash": 27491000000,
+            "currentDebt": 18478000000,
+            "totalCash": 77153000000,
+            "totalDebt": 122400000000,
+            "shareholderEquity": 140199000000,
+            "cashChange": 7202000000,
+            "cashFlow": 28293000000,
+            "operatingGainsLosses": null
+          },
+          {
+            "reportDate": "2017-09-30",
+            "grossProfit": 19931000000,
+            "costOfRevenue": 32648000000,
+            "operatingRevenue": 52579000000,
+            "totalRevenue": 52579000000,
+            "operatingIncome": 13120000000,
+            "netIncome": 10714000000,
+            "researchAndDevelopment": 2997000000,
+            "operatingExpense": 6811000000,
+            "currentAssets": 128645000000,
+            "totalAssets": 375319000000,
+            "totalLiabilities": 241272000000,
+            "currentCash": 20289000000,
+            "currentDebt": 18473000000,
+            "totalCash": 74181000000,
+            "totalDebt": 115680000000,
+            "shareholderEquity": 134047000000,
+            "cashChange": 1718000000,
+            "cashFlow": 15656000000,
+            "operatingGainsLosses": null
+          },
+          {
+            "reportDate": "2017-06-30",
+            "grossProfit": 17488000000,
+            "costOfRevenue": 27920000000,
+            "operatingRevenue": 45408000000,
+            "totalRevenue": 45408000000,
+            "operatingIncome": 10768000000,
+            "netIncome": 8717000000,
+            "researchAndDevelopment": 2937000000,
+            "operatingExpense": 6720000000,
+            "currentAssets": 112875000000,
+            "totalAssets": 345173000000,
+            "totalLiabilities": 212748000000,
+            "currentCash": 18571000000,
+            "currentDebt": 18475000000,
+            "totalCash": 76759000000,
+            "totalDebt": 108339000000,
+            "shareholderEquity": 132425000000,
+            "cashChange": 3414000000,
+            "cashFlow": 8363000000,
+            "operatingGainsLosses": null
+          },
+          {
+            "reportDate": "2017-03-31",
+            "grossProfit": 20591000000,
+            "costOfRevenue": 32305000000,
+            "operatingRevenue": 52896000000,
+            "totalRevenue": 52896000000,
+            "operatingIncome": 14097000000,
+            "netIncome": 11029000000,
+            "researchAndDevelopment": 2776000000,
+            "operatingExpense": 6494000000,
+            "currentAssets": 101990000000,
+            "totalAssets": 334532000000,
+            "totalLiabilities": 200450000000,
+            "currentCash": 15157000000,
+            "currentDebt": 13991000000,
+            "totalCash": 67101000000,
+            "totalDebt": 98522000000,
+            "shareholderEquity": 134082000000,
+            "cashChange": -1214000000,
+            "cashFlow": 12345000000,
+            "operatingGainsLosses": null
+          }
+        ]
+      },
+      "news": [
+        {
+          "datetime": "2018-03-18T21:57:00-04:00",
+          "headline": "Samsung, Sharp and others tumble on report Apple is producing its own screens",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/8131836579052492",
+          "summary": "No summary available.",
+          "related": "AAPL,JPDYY"
+        },
+        {
+          "datetime": "2018-03-18T17:00:00-04:00",
+          "headline": "Washington turmoil has the bull market 'limping,' but RBC says the S&P at 3,000 still looks likely",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/5920372730512040",
+          "summary": "No summary available.",
+          "related": "AAPL,BA,NVDA,WYNN"
+        },
+        {
+          "datetime": "2018-03-18T04:13:10-04:00",
+          "headline": "Podcast: Digital Assistants, Advanced Micro Devices Chip Flaws, Apple Education Event, Fitbit",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/6750096363040177",
+          "summary": "   This weeks Tech.pinions podcast features Carolina Milanesi and Bob ODonnell analyzing recent developments around digital assistants such as Apples (AAPL) Siri, discussing [[AMD]] chip flaws, chatting about the upcoming Apple Education event, and talking about Fitbit&#x2…",
+          "related": "AAPL,AMD,Computer Hardware,CON31167138,FIT,NASDAQ01,Computing and Information Technology"
+        },
+        {
+          "datetime": "2018-03-17T14:52:27-04:00",
+          "headline": "Transatlantic trade rift is widening",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/8283794373778224",
+          "summary": "     Washington has  opposed  the EU's plans for a levy on digital revenues, while Brussels published a list of 200 U.S. products that would be targets for higher duties if it failed to secure an exemption from U.S. steel and aluminum tariffs.   More news on: Alphabet Inc., Alphabet Inc., Apple I…",
+          "related": "AAPL,AMZN,FB,GOOG,GOOGL,INT31168144,NASDAQ01,ONL31168,Computing and Information Technology,TWTR"
+        },
+        {
+          "datetime": "2018-03-17T00:57:40-04:00",
+          "headline": "Why I Love Spotify But Not Its IPO",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/4874698722092419",
+          "summary": "   Music has been my passion from a very young age, and consuming music is a daily ritual for me. As a CD collector, I initially opposed the likes of streaming services that didn't support the artist, and I much preferred the physical touch of a CD with its lush artwork. However, as much as I hat…",
+          "related": "AAPL,AMZN,Entertainment,GOOG,GOOGL,NASDAQ01"
+        },
+        {
+          "datetime": "2018-03-16T20:04:00-04:00",
+          "headline": "Top VC deals: Apple buys Texture, Magna backs Lyft, Snoop Dogg raises a $45 million fund",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/8410310920757395",
+          "summary": "No summary available.",
+          "related": "AAPL,BA,GOOGL"
+        },
+        {
+          "datetime": "2018-03-16T17:24:00-04:00",
+          "headline": "Steve Mnuchin visits Apple HQ, tweets photo with Tim Cook",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/8270502735416804",
+          "summary": "No summary available.",
+          "related": "AAPL"
+        },
+        {
+          "datetime": "2018-03-16T17:14:00-04:00",
+          "headline": "Amazon is hiring a former FDA official to work on its secretive health tech business",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/6390548880484063",
+          "summary": "No summary available.",
+          "related": "AAPL,AMZN,BRK.A,GOOGL,JPM"
+        },
+        {
+          "datetime": "2018-03-16T14:51:00-04:00",
+          "headline": "The Nasdaq just hit a major milestone after a record run, but one trader sees some yellow flags",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/9003348988187669",
+          "summary": "No summary available.",
+          "related": "AAPL,GOOGL,NFLX,QQQ"
+        },
+        {
+          "datetime": "2018-03-16T12:36:23-04:00",
+          "headline": "Barclays lowers its Apple price target; Apple education event coming March 27",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/aapl/article/8492941903442050",
+          "summary": "      Barclays lowers its Apple (NASDAQ: AAPL ) price target by $2 to $168.   More news on: Apple Inc., Tech stocks news, Stocks on the move,     Read more …     ",
+          "related": "AAPL,Computer Hardware,CON31167138,NASDAQ01,Computing and Information Technology"
+        }
+      ],
+      "earnings": {
+        "symbol": "AAPL",
+        "earnings": [
+          {
+            "actualEPS": 2.07,
+            "consensusEPS": 1.87,
+            "estimatedEPS": 1.87,
+            "announceTime": "AMC",
+            "numberOfEstimates": 10,
+            "EPSSurpriseDollar": 0.2,
+            "EPSReportDate": "2017-11-02",
+            "fiscalPeriod": "Q4 2017",
+            "fiscalEndDate": "2017-09-30"
+          },
+          {
+            "actualEPS": 1.67,
+            "consensusEPS": 1.57,
+            "estimatedEPS": 1.57,
+            "announceTime": "AMC",
+            "numberOfEstimates": 13,
+            "EPSSurpriseDollar": 0.1,
+            "EPSReportDate": "2017-08-01",
+            "fiscalPeriod": "Q3 2017",
+            "fiscalEndDate": "2017-06-30"
+          },
+          {
+            "actualEPS": 2.1,
+            "consensusEPS": 2.02,
+            "estimatedEPS": 2.02,
+            "announceTime": "AMC",
+            "numberOfEstimates": 14,
+            "EPSSurpriseDollar": 0.08,
+            "EPSReportDate": "2017-05-02",
+            "fiscalPeriod": "Q2 2017",
+            "fiscalEndDate": "2017-03-31"
+          },
+          {
+            "actualEPS": 3.36,
+            "consensusEPS": 3.22,
+            "estimatedEPS": 3.22,
+            "announceTime": "AMC",
+            "numberOfEstimates": 15,
+            "EPSSurpriseDollar": 0.14,
+            "EPSReportDate": "2017-01-31",
+            "fiscalPeriod": "Q1 2017",
+            "fiscalEndDate": "2016-12-31"
+          }
+        ]
+      },
+      "url": "https://api.iextrading.com/1.0/stock/AAPL/batch?types=company,logo,quote,stats,financials,news,earnings"
+    }
+  }
+}

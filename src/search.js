@@ -131,9 +131,9 @@ function getMarketData(symbol, callback) {
 	});
 }
 
-// getMarketData('^GSPC', (err, json) => {
-// 	console.log(JSON.stringify(json, null, 2));
-// })
+getMarketData('^GSPC', (err, json) => {
+	console.log(JSON.stringify(json, null, 2));
+})
 
 
 
