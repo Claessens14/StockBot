@@ -114,7 +114,7 @@ function synonyms(str, symbol) {
     list = addTo(list, newStr.replace(/ys/gi, "ies"));
     list = addTo(list, newStr.replace(/s$/gi, ""));
 
-    //check for valid upload
+    //check for valid upload  
     // for (i in list) {
     //   //if minimum length is to short
     //   if (list[i].length <= 0) {
