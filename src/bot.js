@@ -14,7 +14,6 @@ var portfolio = require('./portfolio');
 
 var users = require('../assets/users.json');
 
-
 //declare global vars
 var workspace=process.env.WATSON_WORKSPACE_ID;
 

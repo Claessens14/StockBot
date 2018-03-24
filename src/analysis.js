@@ -222,6 +222,7 @@ function stripName(str) {
     str = str.replace(/.com$/gi, "");
     str = str.replace(/ Ltd$/gi, "");
     str = str.replace(/ group$/gi, "");
+    str = str.replace(/\(the\)/gi, "");
     return str;
 }
 

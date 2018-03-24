@@ -75,16 +75,55 @@ function createNewsCards(session, stock) {
         return " ";
       }
     }
-    var array = []; 
+
+    function stripName(str) {
+        str = str.replace(/\./g, "");
+        str = str.replace(/,/g, "");
+        str = str.replace(/!/g, "");
+        str = str.replace(/\?/g, "");
+        str = str.replace(/\'/g, "");
+        str = str.replace(/The/gi, "the");
+        str = str.replace(/ company$/gi, "");
+        str = str.replace(/ corporation$/gi, "");
+        str = str.replace(/ corp$/gi, "");
+        str = str.replace(/ co$/gi, "");
+        str = str.replace(/ inc/gi, "");
+        str = str.replace(/.com$/gi, "");
+        str = str.replace(/ Ltd$/gi, "");
+        str = str.replace(/ group$/gi, "");
+        str = str.replace(/(the)/gi, "");
+        str = str.replace(/ /gi, "");
+        return str;
+    }
+
+    var relevant = []; 
+    var irrelevant = []
+    var company = stripName(stock.company.companyName);
     stock.news.forEach(function(element) {
-      array.push(new builder.HeroCard(session)
-      .title(checkStr(element.headline))
-      .text(checkStr(element.summary))
-      .buttons([
-          builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
-      ]));
+      var head = element.headline.toLowerCase().replace(/ /g, "");
+      var sum = element.headline.toLowerCase().replace(/ /g, "");
+      //var prioritize news that is about the company
+      if ((head.indexOf(company) != -1) || (sum.indexOf(company) != -1)) {
+      relevant.push(new builder.HeroCard(session)
+        .title(checkStr(element.headline))
+        .text(checkStr(element.summary))
+        .buttons([
+            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
+        ]));
+      } else {
+      irrelevant.push(new builder.HeroCard(session)
+        .title(checkStr(element.headline))
+        .text(checkStr(element.summary))
+        .buttons([
+            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
+        ]));
+      }
     });
-    return array;
+    if (relevant.length > 3) {
+      return relevant;
+    } else {
+      return relevant.concat(irrelevant);
+    }
   }
 
 
