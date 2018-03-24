@@ -95,7 +95,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
          });
       }
 
-
+      //show marketData!
       if (watsonData.output.hasOwnProperty('action')) {
         function searchMarket(str) {
             search.getMarketData(str, (err, data) => {
@@ -120,6 +120,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
               }
             });
         }
+        //send market data!
         if(watsonData.output.action == "showMarket") {
           var str = watsonData.entities[0].value;
           searchMarket(str);
@@ -148,41 +149,42 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   var msg = new builder.Message(session)
                     .addAttachment(softOut.buildStockCard(stockJson));
                   session.send(msg);
-                  } else {
+                  session.send(analysis.reviewStock(stockJson));
+                } else {
                   var msg = new builder.Message(session)
                     .addAttachment(socialCard.makeHeaderCard(stockJson));
                   session.send(msg);
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
-                                  var temp = updatePortfolio(session, watsonData, watsonData.output.action);
-              watsonData.context.portfolio = {};
-              watsonData.context.portfolio = temp;
-                  }
+                      // var temp = updatePortfolio(session, watsonData, watsonData.output.action);
+                      // watsonData.context.portfolio = {};
+                      // watsonData.context.portfolio = temp;
+                  }                
+                  //attach insight
+                  var insight = new builder.Message(session)
+                    .text(analysis.reviewStock(stockJson))
+                    .suggestedActions(
+                      builder.SuggestedActions.create(
+                          session, [
+                            builder.CardAction.imBack(session, "add to portfolio", "add to portfolio"),
+                            builder.CardAction.imBack(session, "earnings", "earnings"),
+                            builder.CardAction.imBack(session, "ratios", "ratios"),
+                            builder.CardAction.imBack(session, "financials", "financials"), 
+                            builder.CardAction.imBack(session, "news", "news")
+                          ]
+                        ));
+                  session.send(insight);
                 }
-                //session.send(analysis.reviewStock(stockJson));
-                var insight = new builder.Message(session)
-                  .text(analysis.reviewStock(stockJson))
-                  .suggestedActions(
-                    builder.SuggestedActions.create(
-                        session, [
-                          builder.CardAction.imBack(session, "add to portfolio", "add to portfolio"),
-                          builder.CardAction.imBack(session, "earnings", "earnings"),
-                          builder.CardAction.imBack(session, "ratios", "ratios"),
-                          builder.CardAction.imBack(session, "financials", "financials"), 
-                          builder.CardAction.imBack(session, "news", "news")
-                        ]
-                      ));
-              session.send(insight);
-
               }
             });
           } else if (watsonData.context.lastStock && watsonData.output.action) {
+            //if there is a stock to talk about and an action
             if (watsonData.output.action) {
               sendData(session, watsonData.context.stock, watsonData.output.action);
-              var temp = updatePortfolio(session, watsonData, watsonData.output.action);
-              watsonData.context.portfolio = {};
-              watsonData.context.portfolio = temp;
+              // var temp = updatePortfolio(session, watsonData, watsonData.output.action);
+              // watsonData.context.portfolio = {};
+              // watsonData.context.portfolio = temp;
             }
           } else {
             console.log("ERROR : no stock found in entity or context")
@@ -190,21 +192,21 @@ var bot = new builder.UniversalBot(connector, function (session) {
         }
       }
 
+      //show portfolio
       if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "showPortfolio") {
         session.send("Stock \\n hey");
       }
 
+      //if the anything else node is triggered, log it
       if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "logRequest") {
         fs.appendFile('./log/anythingElse.csv', session.message.user.name + ', ' +  session.message.text + '\n', function (err) {
           if (err) return console.log(err);
         });
       }
-      console.log(watsonData.context);
-      watsonData.context["user"] = session.message.address;
-      //putUser(session.message.user.name, {});
-      putUser(session.message.user.name, watsonData.context);
-      
 
+      //save user
+      watsonData.context["user"] = session.message.address;
+      putUser(session.message.user.name, watsonData.context);
       }
    });
 
@@ -241,20 +243,20 @@ function sendData(session, stock, action) {
   if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
 }
 
-function updatePortfolio(session, watsonData, action) {
-  if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "addToPortfolio") {
-        portfolio.addStock(watsonData.context.portfolio, watsonData.context.stock, (msg, portfolio) => {
-          session.send(msg);
-          return portfolio;
-        });
-      }    
-  if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "removeFromPortfolio") {
-    portfolio.removeStock(watsonData.context.portfolio, watsonData.context.lastStock, (msg, portfolio) => {
-      session.send(msg);
-      return portfolio;
-    });
-  }  
-}
+// function updatePortfolio(session, watsonData, action) {
+//   if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "addToPortfolio") {
+//         portfolio.addStock(watsonData.context.portfolio, watsonData.context.stock, (msg, portfolio) => {
+//           session.send(msg);
+//           return portfolio;
+//         });
+//       }    
+//   if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "removeFromPortfolio") {
+//     portfolio.removeStock(watsonData.context.portfolio, watsonData.context.lastStock, (msg, portfolio) => {
+//       session.send(msg);
+//       return portfolio;
+//     });
+//   }  
+// }
 
 
  function getEntity(watsonData, entity) {
