@@ -1,8 +1,10 @@
 var watson = require('watson-developer-cloud');
+const fs = require('fs');
+var request = require('request');
 require('dotenv').config();
 
-var sp500 = require('./assets/sp500names.js').array;
-var iex = require('./assets/iexList.json');
+var sp500 = require('../assets/sp500names.js').array;
+var iex = require('../assets/iexList.json');
 
 var conversation = new watson.ConversationV1({
    username: process.env.WATSON_USERNAME,
@@ -11,10 +13,18 @@ var conversation = new watson.ConversationV1({
    version_date: process.env.WATSON_VERSION
 });
 
+
+//params for watson conversation
+var params = {
+  workspace_id: process.env.WATSON_WORKSPACE_ID,
+}
 var entities = []
 
+
+/* Load the S & P 500 
+*data in a format that is friendly to watsons entity field?*/
 function sp500Load() {
-    for (var index in sp500) {
+  for (var index in sp500) {
     if ((sp500[index].Name != null) && (sp500[index].Symbol != null)) {
       entities.push({
           type: "synonyms",
@@ -23,8 +33,14 @@ function sp500Load() {
       });
     }
   }
+  params.entity= 'sp500',
+  params.values= entities  
 }
-const fs = require('fs');
+
+
+
+/*Load all the iex data
+Load the data in a format that is friendly to the watson entity*/
 function iexLoad() {
   if (iex) {
     for (var index in iex) {
@@ -42,28 +58,68 @@ function iexLoad() {
         });
       }
     }
-  } else {
+  params.entity= 'iexV1',
+  params.values= entities  
+} else {
     console.log("ERROR : (iexLoad) iex is null");
   }
 }
 
-iexLoad()
-console.log(entities);
+//iexLoad()
+//console.log(entities);
 
-
-function synonyms(str, symbol) {
-    if (str == null) {
-      console.log("(synonyms) ERROR str is null, returning null");
-      return null;
+/*this function is meant to find reference data from iex, such as sector and industry labels*/
+function gatherData() {
+  var sector = [];
+  var industry = [];
+  var res = {};
+  var tickers = "";
+  if (sp500) {
+  for (var index in sp500) {
+    if ((sp500[index].Name != null) && (sp500[index].Symbol != null)) {
+        ///tickers = tickers + sp500[index].Symbol + ',';
+        //tickers = tickers.replace(/,$/, "");
+    var url = 'https://api.iextrading.com/1.0/stock/' + sp500[index].Symbol + '/batch?types=company';
+          request(url, function (err, resp, body) {
+            if (err) {
+              console.log("ERROR" + sp500[index].Symbol)
+            } else {
+              //res = JSON.parse(body);
+              try {
+                var temp = JSON.parse(body)
+                console.log(JSON.stringify(temp.company.sector, null, 2));
+                sector = addTo(sector, temp.company.sector)
+                industry = addTo(industry, temp.company.industry)
+                console.log('$$$$$$$' + sector +  '$$$$$$$$');
+                console.log('==========' + industry +  '============');
+              } catch (e) {
+                console.log(sp500[index].Symbol)
+              }
+              
+              // if (body.company.sector && body.company.sector != "") sector.push(body.company.sector);
+              // if (body.company.industry && body.company.industry != "") industry.pus(body.company.industry);
+            }
+        });
+      }
     }
-    if (symbol == null) {
-      console.log("(synonyms) ERROR symbol is null, returning null");
-      return null;
-    }
-    var newStr = str;
+    tickers = tickers.replace(/,$/, "");
+    var url = 'https://api.iextrading.com/1.0/stock/' + tickers + '/batch?types=company';
+          request(url, function (err, resp, body) {
+            if (err) {
+              callback(err, null);
+            } else {
+              res = JSON.parse(body);
+              console.log(res);
+              // if (body.company.sector && body.company.sector != "") sector.push(body.company.sector);
+              // if (body.company.industry && body.company.industry != "") industry.pus(body.company.industry);
+            }
+        });
+  }
+}
 
-    //add to array, but dont allow duplicates
-    function addTo(array, addStr) {
+
+//add to array, but dont allow duplicates
+function addTo(array, addStr) {
         function check(checkArray, checkStr) {
             try {
               checkArray.forEach(function(el) {
@@ -83,7 +139,22 @@ function synonyms(str, symbol) {
         } else {
             return array;
         }
+}
+
+//DERIVE SYNONYMS
+//returns an array of words to use
+function synonyms(str, symbol) {
+    if (str == null) {
+      console.log("(synonyms) ERROR str is null, returning null");
+      return null;
     }
+    if (symbol == null) {
+      console.log("(synonyms) ERROR symbol is null, returning null");
+      return null;
+    }
+    var newStr = str;
+
+
     var list = [symbol, str];
 
     //if b shares then, remove tags and treat them as default
@@ -132,11 +203,6 @@ function synonyms(str, symbol) {
 }
 
 
-var params = {
-  workspace_id: process.env.WATSON_WORKSPACE_ID,
-  entity: 'iexV1',
-  values: entities
-}
 
 //console.log(entities);
 

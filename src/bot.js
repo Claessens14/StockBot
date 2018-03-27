@@ -69,29 +69,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
    if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
    conversation.message(payload, function(err, watsonData) {
       if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
-
       if (err) {
          session.send(err);
       } else {
-         //console.log(JSON.stringify(response, null, 2));  //console log the JSON array
+
       if (watsonData.output.text && watsonData.output.text != "") {
-         console.log(watsonData.output.text);
-         var i = 0
-         watsonData.output.text.forEach(function(element) {
-            ///session.send(element)
-            var suggest = new builder.Message(session)
-              .text(element)
-              .suggestedActions(
-                builder.SuggestedActions.create(
-                    session, [
-                      builder.CardAction.imBack(session, "educate", "educate"),
-                      builder.CardAction.imBack(session, "portfolio", "portfolio"),
-                      builder.CardAction.imBack(session, "market", "market"), 
-                      builder.CardAction.imBack(session, "news", "news")
-                    ]
-                  ));
-            session.send(suggest);
-         });
+         send(session, watsonData.output.text);
       }
 
       //show marketData!
@@ -103,19 +86,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 callback(err, null)
               } else {
                 var card = softOut.buildMarketCard(data);
-                var msg = new builder.Message(session)
-                  .addAttachment(card)
-                  .suggestedActions(
-                    builder.SuggestedActions.create(
-                      session, [
-                        builder.CardAction.imBack(session, "educate", "educate"),
-                        builder.CardAction.imBack(session, "portfolio", "portfolio"),
-                        builder.CardAction.imBack(session, "market", "market"), 
-                        builder.CardAction.imBack(session, "news", "news")
-                      ]
-                  ));
-                 if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
-                session.send(msg);
+                send(session, null, card);
+                if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
               }
             });
         }
@@ -132,6 +104,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
 
       if (watsonData.context.hasOwnProperty('mode')) {
+        var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
         if(watsonData.context.mode == "stock") {
           var str = getEntity(watsonData, "SP500")
           var stock = {};
@@ -147,12 +120,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
                   var msg = new builder.Message(session)
                     .addAttachment(softOut.buildStockCard(stockJson));
-                  session.send(msg);
-                  session.send(analysis.reviewStock(stockJson));
+                  send(session, analysis.reviewStock(stockJson), msg, stockModes);
                 } else {
                   var msg = new builder.Message(session)
                     .addAttachment(socialCard.makeHeaderCard(stockJson));
-                  session.send(msg);
+                  send(session, null, msg);
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
@@ -160,20 +132,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
                       // watsonData.context.portfolio = {};
                       // watsonData.context.portfolio = temp;
                   }                
-                  //attach insight
-                  var insight = new builder.Message(session)
-                    .text(analysis.reviewStock(stockJson))
-                    .suggestedActions(
-                      builder.SuggestedActions.create(
-                          session, [
-                            builder.CardAction.imBack(session, "add to portfolio", "add to portfolio"),
-                            builder.CardAction.imBack(session, "earnings", "earnings"),
-                            builder.CardAction.imBack(session, "ratios", "ratios"),
-                            builder.CardAction.imBack(session, "financials", "financials"), 
-                            builder.CardAction.imBack(session, "news", "news")
-                          ]
-                        ));
-                  session.send(insight);
+                  send(session, analysis.reviewStock(stockJson), null, stockModes);
                 }
               }
             });
@@ -185,8 +144,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
               // watsonData.context.portfolio = {};
               // watsonData.context.portfolio = temp;
             }
-          } else {
-            console.log("ERROR : no stock found in entity or context")
           }
         }
       }
@@ -236,7 +193,7 @@ function sendData(session, stock, action) {
       msg.addAttachment(card);
       session.send(msg);
     } else {
-      console.log("(sendData) Does not know of this action : " + action);
+      console.log("ERROR (sendData) Does not know of this action : " + action);
     }
   }
   if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
@@ -256,6 +213,63 @@ function sendData(session, stock, action) {
 //     });
 //   }  
 // }
+
+
+/*array is for multiple strings
+* obj is for a specific attachment
+* buttons is for specific button
+* top is for addition buttons to be add
+*/
+function send(session, val, obj, buttons, top) {
+  
+  /*send the buttons..
+  * if str is null then just send buttons
+  * if str is set then send it with str, should be used for last one
+  * if buttons is set then use it
+  */
+  function sendModes(str) {
+    if (!str) str = "";
+    var modes = ["quote", "educate", "market", "watchlist", "help"];
+    if ((buttons && buttons[0]) && top) {
+      modes = buttons.concat(modes);
+    } else if (buttons && buttons[0]) {
+      modes = buttons;
+    }
+    var objArray = [];
+    modes.forEach(function(el) {
+      objArray.push(builder.CardAction.imBack(session, el, el));
+    });
+    var msg = new builder.Message(session)
+      .text(str)
+      .suggestedActions(
+        builder.SuggestedActions.create(
+          session, objArray
+        ));
+    session.send(msg);
+  }
+
+
+  if (val) {
+    if (typeof val == "string") {
+      sendModes(val)
+    } else {
+      var stop = val.length - 1;
+      for (var i = 0; i < stop; i++) {
+        session.send(val[i]);
+      }
+      sendModes(val[i]);
+    }  
+  } 
+  if (obj) {
+    session.send(obj);
+    sendModes();
+  }
+  
+  if (!(val || obj)) {
+    console.log("ERROR (send) val and obj are null, not sending anything");
+  }
+
+}
 
 
  function getEntity(watsonData, entity) {
