@@ -122,9 +122,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
                     .addAttachment(softOut.buildStockCard(stockJson));
                   send(session, analysis.reviewStock(stockJson), msg, stockModes);
                 } else {
-                  var msg = new builder.Message(session)
-                    .addAttachment(socialCard.makeHeaderCard(stockJson));
-                  send(session, null, msg);
+                  // var msg = new builder.Message(session)
+                  //   .addAttachment(socialCard.makeHeaderCard(stockJson));
+                  send(session, null, socialCard.makeHeaderCard(stockJson));
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
@@ -169,29 +169,39 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 function sendData(session, stock, action) {
+  var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
   if (stock) {
     var card = {};
     if (action == "wantStats") {
       var msg = new builder.Message(session);
       card = socialCard.makeStatsCard(stock);
-      msg.addAttachment(card);
-      session.send(msg);
+      send(session, null, card);
+      // msg.addAttachment(card);
+      // // session.send(msg);
     } else if (action == "wantEarnings") {
       var msg = new builder.Message(session);
       card = socialCard.makeEarningsCard(stock);
-      msg.addAttachment(card);
-      session.send(msg);
+      send(session, null, card);
+        var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+              send(session, callStr, null);
+      // msg.addAttachment(card);
+      // session.send(msg);
     } else if (action == "wantNews") {
         var cards = socialCard.createNewsCards(session, stock);
-        var reply = new builder.Message(session)
-          .attachmentLayout(builder.AttachmentLayout.carousel)
-          .attachments(cards);
-        session.send(reply);
+        // var reply = new builder.Message(session)
+        //   .attachmentLayout(builder.AttachmentLayout.carousel)
+        //   .attachments(cards);
+        // session.send(reply);
+        send(session, null, cards, null, null, true);
+
     } else if (action == "wantFin") {
       var msg = new builder.Message(session);
       card = socialCard.makeFinCard(stock)
-      msg.addAttachment(card);
-      session.send(msg);
+      // msg.addAttachment(card);
+      // session.send(msg);
+      send(session, null, card);
+              var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+              send(session, callStr, null);
     } else {
       console.log("ERROR (sendData) Does not know of this action : " + action);
     }
@@ -219,16 +229,17 @@ function sendData(session, stock, action) {
 * obj is for a specific attachment
 * buttons is for specific button
 * top is for addition buttons to be add
+* carousel is set true when in use
 */
-function send(session, val, obj, buttons, top) {
-  
+function send(session, val, obj, buttons, top, carousel) {
+  console.log("----------\nSEND: " + val + "-----\n" + obj + "----------\n");
   /*send the buttons..
   * if str is null then just send buttons
   * if str is set then send it with str, should be used for last one
   * if buttons is set then use it
   */
   function sendModes(str) {
-    if (!str) str = "";
+    //build mode buttons
     var modes = ["quote", "educate", "market", "watchlist", "help"];
     if ((buttons && buttons[0]) && top) {
       modes = buttons.concat(modes);
@@ -239,13 +250,46 @@ function send(session, val, obj, buttons, top) {
     modes.forEach(function(el) {
       objArray.push(builder.CardAction.imBack(session, el, el));
     });
-    var msg = new builder.Message(session)
-      .text(str)
-      .suggestedActions(
-        builder.SuggestedActions.create(
-          session, objArray
-        ));
-    session.send(msg);
+
+    //send to user
+    if (str) {
+      var msg = new builder.Message(session)
+        .text(str)
+        .suggestedActions(
+          builder.SuggestedActions.create(
+            session, objArray
+          ));
+      session.send(msg);
+    } else if (obj) {
+      if (carousel) {
+        console.log("HERE  " + obj);
+        var reply = new builder.Message(session)
+          .attachmentLayout(builder.AttachmentLayout.carousel)
+          .attachments(obj)
+          .suggestedActions(
+            builder.SuggestedActions.create(
+              session, objArray
+            ));
+        session.send(reply);
+      }else {
+        var msg = new builder.Message(session)
+        .addAttachment(obj)
+        .suggestedActions(
+          builder.SuggestedActions.create(
+            session, objArray
+          ));
+        session.send(msg);
+      }
+      
+    } else {
+      var msg = new builder.Message(session)
+        .text("")
+        .suggestedActions(
+          builder.SuggestedActions.create(
+            session, objArray
+          ));
+      session.send(msg);
+    }
   }
 
 
@@ -255,13 +299,12 @@ function send(session, val, obj, buttons, top) {
     } else {
       var stop = val.length - 1;
       for (var i = 0; i < stop; i++) {
-        session.send(val[i]);
+        session.send(val[i].replace(/  /g, " "));
       }
-      sendModes(val[i]);
+      sendModes(val[i].replace(/  /g, " "));
     }  
   } 
   if (obj) {
-    session.send(obj);
     sendModes();
   }
   
