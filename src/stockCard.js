@@ -131,11 +131,11 @@ function makeStatsCard(stock) {
                           },
                           {
                             "title": "Dividend",
-                            "value": dataToStr(stock.stats.dividendYield)
+                            "value": dataToStr(stock.stats.dividendYield) + '%'
                           },
                           {
                             "title": "Profit Margin",
-                            "value": dataToStr(stock.stats.profitMargin)
+                            "value": dataToStr(stock.stats.profitMargin)  + '%'
                           },
                           {
                             "title": "EBITA",

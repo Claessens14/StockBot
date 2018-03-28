@@ -75,18 +75,56 @@ function createNewsCards(session, stock) {
         return " ";
       }
     }
-    var array = []; 
-    stock.news.forEach(function(element) {
-      array.push(new builder.HeroCard(session)
-      .title(checkStr(element.headline))
-      .text(checkStr(element.summary))
-      .buttons([
-          builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
-      ]));
-    });
-    return array;
-  }
 
+    function stripName(str) {
+        str = str.replace(/\./g, "");
+        str = str.replace(/,/g, "");
+        str = str.replace(/!/g, "");
+        str = str.replace(/\?/g, "");
+        str = str.replace(/\'/g, "");
+        str = str.replace(/The/gi, "the");
+        str = str.replace(/ company$/gi, "");
+        str = str.replace(/ corporation$/gi, "");
+        str = str.replace(/ corp$/gi, "");
+        str = str.replace(/ co$/gi, "");
+        str = str.replace(/ inc/gi, "");
+        str = str.replace(/.com$/gi, "");
+        str = str.replace(/ Ltd$/gi, "");
+        str = str.replace(/ group$/gi, "");
+        str = str.replace(/(the)/gi, "");
+        str = str.replace(/ /gi, "");
+        return str;
+    }
+
+    var relevant = []; 
+    var irrelevant = []
+    var company = stripName(stock.company.companyName);
+    stock.news.forEach(function(element) {
+      var head = element.headline.toLowerCase().replace(/ /g, "");
+      var sum = element.headline.toLowerCase().replace(/ /g, "");
+      //var prioritize news that is about the company
+      if ((head.indexOf(company) != -1) || (sum.indexOf(company) != -1)) {
+      relevant.push(new builder.HeroCard(session)
+        .title(checkStr(element.headline))
+        .text(checkStr(element.summary))
+        .buttons([
+            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
+        ]));
+      } else {
+      irrelevant.push(new builder.HeroCard(session)
+        .title(checkStr(element.headline))
+        .text(checkStr(element.summary))
+        .buttons([
+            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
+        ]));
+      }
+    });
+    if (relevant.length > 3) {
+      return relevant;
+    } else {
+      return relevant.concat(irrelevant);
+    }
+  }
 
 
 function makeFinCard(stock) {
@@ -100,6 +138,99 @@ function makeFinCard(stock) {
   	}
   } 
 }
+/*
+function buildPortCard(oldStock, newStock) {
+  var change = roundTo(data.close - data.open, 2);
+  var changePercent = roundTo(change / data.open, 2);
+
+  var todaysSign = "";
+  var todaysColor = "";
+  if (String(change).match("-")) {
+      todaysMove = "▼";
+      todaysColor = "attention";
+  } else {
+      todaysMove = "▲";
+      todaysColor = "good";
+  }
+  return {    
+    'contentType': 'application/vnd.microsoft.card.adaptive',
+    'content': {
+        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+        'type': 'AdaptiveCard',
+        'version': '1.0',
+      "body": [
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": oldStock.name,
+              "size": "medium",
+              "isSubtle": true
+            },
+            {
+              "type": "TextBlock",
+              "text": data.dateStr,
+              "isSubtle": true
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "spacing": "none",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": data.close,
+                      "size": "extraLarge"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": todaysMove+change+" ("+changePercent+"%)",
+                      "size": "small",
+                      "color": todaysColor,
+                      "spacing": "none"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                          "title": "Open",
+                          "value": data.open
+                        },
+                        {
+                          "title": "High",
+                          "value": data.high
+                        },
+                        {
+                          "title": "Low",
+                          "value": data.low
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}*/
 
 
 module.exports = {

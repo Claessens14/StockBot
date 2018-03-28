@@ -31,12 +31,13 @@ function getChartData(str, callback) {
 }
 
 function getStock(str, callback) {
-	//console.log(str);
-	request('https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings', function (err, resp, body) {
+	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
+	request(url, function (err, resp, body) {
 		if (err) {
 			callback(err, null);
 		} else {
 			body = JSON.parse(body);
+			body["url"] = url;
 			callback(null, body);
 		}
 	});
@@ -94,14 +95,15 @@ function getIndex(symbol, series,  callback) {
 	});
 }
 
+
 function getMarketData(symbol, callback) {
 	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
 	    if (err) {
 	      callback(err, null);
-	    } else {
+	    } else if (body){
 	      body = JSON.parse(body);
 	      var json = body["Time Series (Daily)"];
-	      //console.log(body);
+	      //console.log(body)
 	      try {
 	        for (var key in json) {
 	        	throw json[key];
@@ -116,7 +118,7 @@ function getMarketData(symbol, callback) {
 	      		json[key.slice(3)] = e[key];
 	      	}
 	      	json["name"] = body["Meta Data"]["2. Symbol"];
-	      	//need a formatted date
+	      	//get a formatted date
 	      	getStock("AAPL", (err, stock) => {
 	      		if (err) {
 	      			callback(err, null);
@@ -126,14 +128,17 @@ function getMarketData(symbol, callback) {
 	      		}
 	      	});
 	      }
+	    } else {
+	    	console.log("ERROR (getMarketData) body is null from request");
+	    	callback("ERROR (getMarketData) body is null from request", null);
 	    }
 	});
 }
 
-// getMarketData('^GSPC', (err, json) => {
+// getMarketData('N100', (err, json) => {
+// 	console.log("hey")
 // 	console.log(JSON.stringify(json, null, 2));
-// })
-
+// });
 
 
 //getIndex('^GSPC', "1");

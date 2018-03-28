@@ -1,0 +1,382 @@
+{
+  "Jacob Claessens": {
+    "conversation_id": "b2c0645c-5073-46db-ad35-71553d8ae5b5",
+    "system": {
+      "dialog_stack": [
+        {
+          "dialog_node": "root"
+        }
+      ],
+      "dialog_turn_counter": 45,
+      "dialog_request_counter": 45,
+      "_node_output_map": {
+        "node_2_1521177918907": [
+          1,
+          0,
+          1
+        ],
+        "node_2_1520827543880": [
+          1
+        ],
+        "node_2_1522114814887": [
+          0
+        ],
+        "node_7_1520476242297": [
+          0
+        ]
+      },
+      "branch_exited": true,
+      "branch_exited_reason": "completed"
+    },
+    "user": {
+      "id": "mid.$cAAcRR38D9CZom9R6Tliao8yGA_Ji",
+      "channelId": "facebook",
+      "user": {
+        "id": "1531011940353275",
+        "name": "Jacob Claessens"
+      },
+      "conversation": {
+        "isGroup": false,
+        "id": "1531011940353275-2053562471594797"
+      },
+      "bot": {
+        "id": "2053562471594797",
+        "name": "StockZia-Dev"
+      },
+      "serviceUrl": "https://facebook.botframework.com"
+    },
+    "mode": "stock",
+    "lastStock": "MU",
+    "stock": {
+      "company": {
+        "symbol": "MU",
+        "companyName": "Micron Technology Inc.",
+        "exchange": "Nasdaq Global Select",
+        "industry": "Semiconductors",
+        "website": "http://www.micron.com",
+        "description": "Micron Technology Inc along with its subsidiaries provide memory and storage solutions. Its product portfolio consists of memory and storage technologies such as DRAM, NAND, NOR and 3D XPoint memory.",
+        "CEO": "",
+        "issueType": "cs",
+        "sector": "Technology"
+      },
+      "logo": {
+        "url": "https://storage.googleapis.com/iex/api/logos/MU.png"
+      },
+      "quote": {
+        "symbol": "MU",
+        "companyName": "Micron Technology Inc.",
+        "primaryExchange": "Nasdaq Global Select",
+        "sector": "Technology",
+        "calculationPrice": "close",
+        "open": 55.1,
+        "openTime": 1522157400244,
+        "close": 52.4,
+        "closeTime": 1522180800471,
+        "high": 55.47,
+        "low": 51.68,
+        "latestPrice": 52.4,
+        "latestSource": "Close",
+        "latestTime": "March 27, 2018",
+        "latestUpdate": 1522180800471,
+        "latestVolume": 67591009,
+        "iexRealtimePrice": 52.435,
+        "iexRealtimeSize": 4,
+        "iexLastUpdated": 1522180796599,
+        "delayedPrice": 52.38,
+        "delayedPriceTime": 1522184334775,
+        "previousClose": 55.56,
+        "change": -3.16,
+        "changePercent": -0.05688,
+        "iexMarketPercent": 0.01724,
+        "iexVolume": 1165269,
+        "avgTotalVolume": 60966088,
+        "iexBidPrice": 0,
+        "iexBidSize": 0,
+        "iexAskPrice": 0,
+        "iexAskSize": 0,
+        "marketCap": 60590904533,
+        "peRatio": 11.8,
+        "week52High": 63.42,
+        "week52Low": 26.3601,
+        "ytdChange": 0.2722692924204259
+      },
+      "stats": {
+        "companyName": "Micron Technology Inc.",
+        "marketcap": 64244859844,
+        "beta": 1.2838,
+        "week52high": 63.42,
+        "week52low": 26.3601,
+        "week52change": 95.4274,
+        "shortInterest": 62469320,
+        "shortDate": "2018-02-28",
+        "dividendRate": 0,
+        "dividendYield": 0,
+        "exDividendDate": 0,
+        "latestEPS": 4.36,
+        "latestEPSDate": "2017-08-31",
+        "sharesOutstanding": 1156314972,
+        "float": 1141968327,
+        "returnOnEquity": 49.7,
+        "consensusEPS": 1.73,
+        "numberOfEstimates": 4,
+        "EPSSurpriseDollar": null,
+        "EPSSurprisePercent": 15.0289,
+        "symbol": "MU",
+        "EBITDA": 12541000000,
+        "revenue": 23155000000,
+        "grossProfit": 11172000000,
+        "cash": 19830000000,
+        "debt": 44278000000,
+        "ttmEPS": 4.44,
+        "revenuePerShare": 20,
+        "revenuePerEmployee": 679032,
+        "peRatioHigh": 0,
+        "peRatioLow": 0,
+        "returnOnAssets": 26.85,
+        "returnOnCapital": null,
+        "profitMargin": 38.56,
+        "priceToSales": 2.4241562,
+        "priceToBook": 2.78,
+        "day200MovingAvg": 39.78075,
+        "day50MovingAvg": 48.1582,
+        "institutionPercent": 77.2,
+        "insiderPercent": null,
+        "shortRatio": 1.4331967,
+        "year5ChangePercent": 4.578313253012048,
+        "year2ChangePercent": 4.352601156069364,
+        "year1ChangePercent": 0.9318497913769124,
+        "ytdChangePercent": 0.2722692924204259,
+        "month6ChangePercent": 0.6255119953189,
+        "month3ChangePercent": 0.3150295857988166,
+        "month1ChangePercent": 0.157982492705294,
+        "day5ChangePercent": -0.09141455437448891,
+        "day30ChangePercent": 0.31689973927470977
+      },
+      "financials": {
+        "symbol": "MU",
+        "financials": [
+          {
+            "reportDate": "2017-11-30",
+            "grossProfit": 3747000000,
+            "costOfRevenue": 3056000000,
+            "operatingRevenue": 6803000000,
+            "totalRevenue": 6803000000,
+            "operatingIncome": 3097000000,
+            "netIncome": 2678000000,
+            "researchAndDevelopment": 448000000,
+            "operatingExpense": 650000000,
+            "currentAssets": 13358000000,
+            "totalAssets": 37191000000,
+            "totalLiabilities": 14665000000,
+            "currentCash": 6130000000,
+            "currentDebt": 1401000000,
+            "totalCash": 6174000000,
+            "totalDebt": 9045000000,
+            "shareholderEquity": 22526000000,
+            "cashChange": 914000000,
+            "cashFlow": 3636000000,
+            "operatingGainsLosses": 195000000
+          },
+          {
+            "reportDate": "2017-08-31",
+            "grossProfit": 3112000000,
+            "costOfRevenue": 3026000000,
+            "operatingRevenue": 6138000000,
+            "totalRevenue": 6138000000,
+            "operatingIncome": 2502000000,
+            "netIncome": 2368000000,
+            "researchAndDevelopment": 447000000,
+            "operatingExpense": 610000000,
+            "currentAssets": 12457000000,
+            "totalAssets": 35336000000,
+            "totalLiabilities": 16715000000,
+            "currentCash": 5216000000,
+            "currentDebt": 1262000000,
+            "totalCash": 5428000000,
+            "totalDebt": 11134000000,
+            "shareholderEquity": 18621000000,
+            "cashChange": 1045000000,
+            "cashFlow": 3203000000,
+            "operatingGainsLosses": 36000000
+          },
+          {
+            "reportDate": "2017-05-31",
+            "grossProfit": 2609000000,
+            "costOfRevenue": 2957000000,
+            "operatingRevenue": 5566000000,
+            "totalRevenue": 5566000000,
+            "operatingIncome": 1963000000,
+            "netIncome": 1647000000,
+            "researchAndDevelopment": 434000000,
+            "operatingExpense": 646000000,
+            "currentAssets": 11023000000,
+            "totalAssets": 33267000000,
+            "totalLiabilities": 17096000000,
+            "currentCash": 4048000000,
+            "currentDebt": 1161000000,
+            "totalCash": 4330000000,
+            "totalDebt": 11646000000,
+            "shareholderEquity": 16171000000,
+            "cashChange": 415000000,
+            "cashFlow": 2407000000,
+            "operatingGainsLosses": 60000000
+          },
+          {
+            "reportDate": "2017-02-28",
+            "grossProfit": 1704000000,
+            "costOfRevenue": 2944000000,
+            "operatingRevenue": 4648000000,
+            "totalRevenue": 4648000000,
+            "operatingIncome": 1044000000,
+            "netIncome": 894000000,
+            "researchAndDevelopment": 473000000,
+            "operatingExpense": 660000000,
+            "currentAssets": 9945000000,
+            "totalAssets": 32355000000,
+            "totalLiabilities": 18068000000,
+            "currentCash": 3633000000,
+            "currentDebt": 1117000000,
+            "totalCash": 3898000000,
+            "totalDebt": 12453000000,
+            "shareholderEquity": 14287000000,
+            "cashChange": -455000000,
+            "cashFlow": 1405000000,
+            "operatingGainsLosses": -77000000
+          }
+        ]
+      },
+      "news": [
+        {
+          "datetime": "2018-03-27T13:07:21-04:00",
+          "headline": "Micron Technology: Proven Track Record At A 32% Discount",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/5361169217569129",
+          "summary": "   Micron Technology, Inc. (NASDAQ:  MU ) is the most alluring stock for value investors within the semiconductors industry due to its proven track record and discounted valuation. The company has a flawless balance sheet and favourable prospects upheld by the DRAM demand continues to come for a …",
+          "related": "AMD,INTC,MU,NASDAQ01,SEM31169,SEM31169147,Computing and Information Technology,WOMPOLIX"
+        },
+        {
+          "datetime": "2018-03-27T10:46:08-04:00",
+          "headline": "Shareholders Can Still Act On Micron Technologies",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/8635885494758449",
+          "summary": "   Investment Thesis   My previous Micron Technology ( MU ) article back in January 2018 argued that '  Investors Still Have Time To Act  ', and although the stock has rallied quite a bit since January and is up more than 25% (in spite of the last week's drop), I continue to believe that there is…",
+          "related": "MU,NASDAQ01,SEM31169,SEM31169146,Computing and Information Technology,WOMPOLIX"
+        },
+        {
+          "datetime": "2018-03-27T10:30:10-04:00",
+          "headline": "Micron: Up, Up And Away",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/6714394305293163",
+          "summary": "   Micron ( MU ) posted its latest earnings report last week; the chipmaker managed to  beat  the street's revenue and EPS forecasts yet again in Q2 and came out with a rather strong  guidance  for the third quarter. But those are just the highlights of its Q2 earnings report. Evaluating Micron's…",
+          "related": "Earnings,Financial,Investment Opinion,MU,NASDAQ01,SEM31169,SEM31169146,Computing and Information Technology,WOMPOLIX"
+        },
+        {
+          "datetime": "2018-03-27T09:05:00-04:00",
+          "headline": "Your first trade for Tuesday, March 27",
+          "source": "CNBC",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/4504429331253145",
+          "summary": "No summary available.",
+          "related": "AAPL,AMD,MU,NVDA"
+        },
+        {
+          "datetime": "2018-03-26T18:46:06-04:00",
+          "headline": "Lam Research Will Benefit From A Strong Memory Market In 2018 As In 2017",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/8476434456343460",
+          "summary": "   Bank of America Merrill Lynch initiated Lam Research ( LRCX ) on March 20, 2018 with a Buy rating due to Lams exposure to the memory upcycle. Lets look more deeply about this memory upcycle and how it will impact LRCX and its competitors in the plasma etch and d…",
+          "related": "AMAT,INTC,LRCX,MU,NASDAQ01,OTCBULLB,SCEQPMAT,SEM31169,SSNLF,Computing and Information Technology"
+        },
+        {
+          "datetime": "2018-03-26T15:46:15-04:00",
+          "headline": "Micron Technology Inc. 2018 Q2 - Results - Earnings Call Slides",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/5917189695401156",
+          "summary": "   The following slide deck was published by Micron Technology Inc. in conjunction with their 2018 Q2 earnings   Read more …    ",
+          "related": "MU,NASDAQ01,SEM31169,SEM31169146,Computing and Information Technology"
+        },
+        {
+          "datetime": "2018-03-26T06:52:05-04:00",
+          "headline": "Micron: The Selling Is Overdone",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/8037021864956803",
+          "summary": "   Over the past couple of months, Micron ( MU ) has led the pack of memory stocks as they barreled toward multiyear highs amid expectations that the so-called \"memory supercycle\" still has momentum in 2018 despite getting a little long in the tooth. Wall Street has lauded its praises on Micron, …",
+          "related": "MU,NASDAQ01,SEM31169,SEM31169146,Computing and Information Technology"
+        },
+        {
+          "datetime": "2018-03-25T07:30:08-04:00",
+          "headline": "Micron: Back On The Train, Y'all",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/5870981228947106",
+          "summary": "   Technology stocks  got hammered last week , losing billions. The primary catalyst was a privacy probe at Facebook ( FB ), which prompted a 10% hit to the stock price last week, planting the social media behemoth firmly in bear territory. Despite their recent spectacular slump, tech stocks are …",
+          "related": "AMD,FB,FNG,FTEC,FXL,IGM,INT31168144,IYW,JHMT,MU,NASDAQ01,NVDA,ONL31168,QTEC,REW,ROM,RYT,TCHF:BZX,Computing and Information Technology,TECL,TECS,TECZ,VGT,WOMPOLIX,XITK,XLK,XNTK"
+        },
+        {
+          "datetime": "2018-03-24T15:38:49-04:00",
+          "headline": "Micron: Is The Catbird Seat Heating Up?",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/6580837213069803",
+          "summary": "   Micron ( MU ) reported Q2 revenue of $7.35 billion and eps of $2.82. The company  beat on revenue  by $70 million and beat on eps by $0.08. MU fell nearly 8% after earnings. I had the following takeaways on the quarter.   Top Line Growth Remains Gaudy   Last quarter Micron grew total revenue b…",
+          "related": "Financial,MU,NASDAQ01,SEM31169,SEM31169146,Computing and Information Technology,WOMPOLIX"
+        },
+        {
+          "datetime": "2018-03-24T09:59:32-04:00",
+          "headline": "Stocks To Watch: Back To School For Apple",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/mu/article/5069728188865563",
+          "summary": "   Welcome to Seeking Alpha's Stocks to Watch - a preview of key events scheduled for the next week. Follow this account and turn the e-mail alert on to receive this article in your inbox every Saturday morning.   Investors are looking for a swing back in momentum next week after the Dow Jones In…",
+          "related": "AAPL,ADDYY,ADSK,AMBA,AOS,ARRS,AVGO,AXL,AZN,BB,BB:CA,BOX,Computer Hardware,CON31167138,DAN,DCPH,DDAIF,F,FB,FDX,FIXX,GDDY,GHG,GLW,GM,GME,GMM.U:CA,GPI,IBEX,IMGN,INTC,INTHPINK,JASO,KAR,KND,LEN,LLL:CA,LULU,LZB,Meetings,MRK,MU,NASDAQ01,NCNA,NITE,NKE,NRG,NSANY,OLBK,ONE,OPBK,OTCBULLB,PAYX,PQG,PVH,QCOM,QQQ,QRVO,R,RHT,ROKU,RYB,SHLO,SNCR,SPY,STZ,SWKS,TEAM,Computing and Information Technology,TM,TSRO,TSXTSX01,TWX,UNUM,UPS,VEEV,WBA,WKHS"
+        }
+      ],
+      "earnings": {
+        "symbol": "MU",
+        "earnings": [
+          {
+            "actualEPS": 1.99,
+            "consensusEPS": 1.73,
+            "estimatedEPS": 1.73,
+            "announceTime": "AMC",
+            "numberOfEstimates": 4,
+            "EPSSurpriseDollar": 0.26,
+            "EPSReportDate": "2017-09-26",
+            "fiscalPeriod": "Q4 2017",
+            "fiscalEndDate": "2017-08-31"
+          },
+          {
+            "actualEPS": 1.4,
+            "consensusEPS": 1.37,
+            "estimatedEPS": 1.37,
+            "announceTime": "AMC",
+            "numberOfEstimates": 4,
+            "EPSSurpriseDollar": 0.03,
+            "EPSReportDate": "2017-06-29",
+            "fiscalPeriod": "Q3 2017",
+            "fiscalEndDate": "2017-05-31"
+          },
+          {
+            "actualEPS": 0.77,
+            "consensusEPS": 0.77,
+            "estimatedEPS": 0.77,
+            "announceTime": "AMC",
+            "numberOfEstimates": 3,
+            "EPSSurpriseDollar": null,
+            "EPSReportDate": "2017-03-23",
+            "fiscalPeriod": "Q2 2017",
+            "fiscalEndDate": "2017-02-28"
+          },
+          {
+            "actualEPS": 0.28,
+            "consensusEPS": 0.24,
+            "estimatedEPS": 0.24,
+            "announceTime": "AMC",
+            "numberOfEstimates": 2,
+            "EPSSurpriseDollar": 0.04,
+            "EPSReportDate": "2016-12-21",
+            "fiscalPeriod": "Q1 2017",
+            "fiscalEndDate": "2016-11-30"
+          }
+        ]
+      },
+      "url": "https://api.iextrading.com/1.0/stock/MU/batch?types=company,logo,quote,stats,financials,news,earnings"
+    }
+  }
+}

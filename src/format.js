@@ -8,15 +8,14 @@ function dataToStr(value) {
         str = String(value);
         str = str.replace(/\"/g, "");
         str = str.replace(/\'/g, "");
-        if (str.match("000")) {
-            str = str.replace(/000000000/g, 'B');
-            str = str.replace(/000000/g, 'M');
-            str = str.replace(/000/g, 'K');
-        }
+        //str = str.slice(0, str.indexOf(".") + 2);  //round to 2
+
         if (str.length > 9) {
-            str = str.replace(/[0-9][0-9][0-9][0-9][0-9][0-9]$/g, 'M');
-        } else if (str.length > 7) {
-            str = str.replace(/[0-9][0-9][0-9]$/g, 'K');
+            str = str.replace(/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/, 'B');
+        } else if (str.length > 6) {
+            str = str.replace(/[0-9][0-9][0-9][0-9][0-9][0-9]$/, 'M');
+        } else if (str.length > 3) {
+            str = str.replace(/[0-9][0-9][0-9]$/, 'K');
         }
         if (str == "" || str == null) {
             str = "N/A";
@@ -25,11 +24,19 @@ function dataToStr(value) {
         str = JSON.stringify(value, null, 2);
         if (str == null || str == "null") {
             str = "N/A";
+        } else {
+            str = str.replace(/\"/g, "");
+            str = str.replace(/\'/g, "");
+            str = str.replace(/BTO/g, "N/A");
         }
-    }
-
+    } 
     return str;
 }
+
+//[WAT -> WAT11]
+// function tickerToFake(actual) {
+
+// }
 
 module.exports = {
 	dataToStr : dataToStr
