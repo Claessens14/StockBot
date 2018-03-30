@@ -30,6 +30,26 @@ function getChartData(str, callback) {
 	});
 }
 
+function getVantageChart(str, length, interval, callback) {
+	if (!(length)) length = 360;
+	if (!(interval)) interval = "daily";
+	var url = "https://www.alphavantage.co/query?function=SMA&symbol="+ str +"&interval="+interval+"&time_period="+ length +"&series_type=close&apikey=PA82VSM72BJ8OPTE";
+	request(url, function (err, resp, body) {
+		if (err) {
+			callback(err, null);
+		} else {
+			body = JSON.parse(body);
+			if (body["Technical Analysis: SMA"]) {
+				callback(null, body);
+			}
+		}
+	});
+}
+
+getVantageChart("AAPL" , "365", "daily", (err, res) => {
+	console.log(res);
+})
+
 function getStock(str, callback) {
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
 	request(url, function (err, resp, body) {
