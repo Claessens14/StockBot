@@ -175,33 +175,20 @@ function sendData(session, stock, action) {
     if (action == "wantStats") {
       var msg = new builder.Message(session);
       card = socialCard.makeStatsCard(stock);
-      send(session, null, card);
-      // msg.addAttachment(card);
-      // // session.send(msg);
+      send(session, null, card, stockModes);
     } else if (action == "wantEarnings") {
       var msg = new builder.Message(session);
       card = socialCard.makeEarningsCard(stock);
-      send(session, null, card);
-        var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
-              send(session, callStr, null);
-      // msg.addAttachment(card);
-      // session.send(msg);
+      send(session, null, card, stockModes);
     } else if (action == "wantNews") {
         var cards = socialCard.createNewsCards(session, stock);
-        // var reply = new builder.Message(session)
-        //   .attachmentLayout(builder.AttachmentLayout.carousel)
-        //   .attachments(cards);
-        // session.send(reply);
-        send(session, null, cards, null, null, true);
-
+        send(session, null, cards, stockModes, null, true);
     } else if (action == "wantFin") {
       var msg = new builder.Message(session);
       card = socialCard.makeFinCard(stock)
-      // msg.addAttachment(card);
-      // session.send(msg);
-      send(session, null, card);
-              var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
-              send(session, callStr, null);
+      send(session, null, card, stockModes);
+      var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+      send(session, callStr, null);
     } else {
       console.log("ERROR (sendData) Does not know of this action : " + action);
     }

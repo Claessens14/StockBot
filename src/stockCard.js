@@ -308,7 +308,12 @@ function makeFinCard(stock) {
 
 function makeEarningsCard(stock) {
   earn = stock.earnings.earnings;
-  var i = getBestIndex(earn)
+  var i = 0;
+  if (typeof earn[0].EPSSurpriseDollar == "number") {
+    i = 0;
+  } else if (typeof earn[1].EPSSurpriseDollar == "number") {
+    i = 1;
+  }
     return [
       {
         "type": "Container",

@@ -11,8 +11,6 @@ cloudinary.config({
 });
 
 
-
-
 var trace1 = {
   x: [3, 6, 1, 8, 4],
   y: [1, 2, 3, 4, 5],
