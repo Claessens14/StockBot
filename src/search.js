@@ -1,4 +1,5 @@
 var request = require('request');
+require('dotenv').config();
 
 function getPrice(str, callback) {
 	getStock(str, (err, quote) => {
@@ -30,25 +31,76 @@ function getChartData(str, callback) {
 	});
 }
 
-function getVantageChart(str, length, interval, callback) {
-	if (!(length)) length = 360;
+/* Get stock data from vantage, where chart formats are pre made
+* str : ticker symbol
+* type : SMA, TIME_SERIES_DAILY
+* length : 365, 90
+* interval: daily, weekly, 60min, 15min,
+* callback(err, res);
+*/
+function getVantageChart(str, type, length, interval, callback) {
+	if (!(length)) length = 365;
 	if (!(interval)) interval = "daily";
-	var url = "https://www.alphavantage.co/query?function=SMA&symbol="+ str +"&interval="+interval+"&time_period="+ length +"&series_type=close&apikey=PA82VSM72BJ8OPTE";
+	var url = "https://www.alphavantage.co/query?function="+ type +"&symbol="+ str +"&interval="+interval+"&time_period="+ length +"&series_type=close&outputsize=full&apikey=" + process.env.VANTAGE_KEY;
 	request(url, function (err, resp, body) {
 		if (err) {
 			callback(err, null);
 		} else {
 			body = JSON.parse(body);
-			if (body["Technical Analysis: SMA"]) {
-				callback(null, body);
+
+			var name = "";
+			switch (type.toUpperCase()) {
+				case 'SMA':
+					name = "Technical Analysis: SMA";
+					break;
+				case 'TIME_SERIES_DAILY':
+					name = "Time Series (Daily)";
+					break;
+			}
+
+			//remove number in front of open and close fields, also convert strings to numbers, and return only the data
+			var data = {};
+			if (body[name]) {
+				var i = 1;
+				length = length * 5 / 7;
+				try {
+					for (var day in body[name]) {
+						if (i <= length) {
+							data[day] = {};
+							for (var row in body[name][day]) {
+								data[day][row.replace(/[0-9]. /, "")] = Number(body[name][day][row]);
+							}
+							i++;
+						} else {
+							throw "done";
+						}
+					}
+					callback("did not send a done message", data);	
+				} catch (e) {
+					if (type.toUpperCase() === 'TIME_SERIES_DAILY') {
+						var row = "";
+						var start = -1;
+						
+						for (row in data) {
+							if (start == -1) start = data[row];
+
+						}
+						var end = data[row];
+						callback(null, data, {"start" : start, "end" : end});
+					} else {
+						callback(null, data);
+					}
+					
+
+				}	
+			} else {
+				callback(body, null);
 			}
 		}
 	});
 }
 
-getVantageChart("AAPL" , "365", "daily", (err, res) => {
-	console.log(res);
-})
+
 
 function getStock(str, callback) {
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
@@ -168,5 +220,6 @@ module.exports = {
 	getChartData : getChartData,
 	getStock : getStock,
 	getMarketData : getMarketData,
-	getIndex : getIndex
+	getIndex : getIndex,
+	getVantageChart : getVantageChart
 }

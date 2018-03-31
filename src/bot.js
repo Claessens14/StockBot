@@ -6,10 +6,12 @@ var Conversation = require('watson-developer-cloud/conversation/v1'); // watson 
 require('dotenv').config();
 
 var search = require('./search');
+var chart = require('./chart');
 var softOut = require('./softOut');
 var analysis = require('./analysis');
 var socialCard = require('./socialCard');
 var portfolio = require('./portfolio');
+
 //var users = require('../assets/users.json');
 
 var users = require('../assets/users.json');
@@ -40,6 +42,8 @@ var connector = new builder.ChatConnector({
 
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
+
+
 
 /*----------------------------------------------------------------------------------------
 * Bot Storage: This is a great spot to register the private state storage for your bot. 
@@ -103,6 +107,22 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
 
+
+//       var msg = new builder.Message(session);
+//     msg.attachmentLayout(builder.AttachmentLayout.carousel)
+//     msg.attachments([
+//         new builder.HeroCard(session)
+//             .title("Classic White T-Shirt")
+//             .subtitle("100% Soft and Luxurious Cotton")
+//             .text("Price is $25 and carried in sizes (S, M, L, and XL)")
+//             .images([builder.CardImage.create(session, "https://www.stocktrader.com/wp-content/uploads/2007/10/goog-102907.png")])
+//             .buttons([
+//                 builder.CardAction.openUrl(session, "https://www.stocktrader.com/wp-content/uploads/2007/10/goog-102907.png", "Enlarge")
+//             ])
+//     ]);
+
+// session.send(msg);
+
       if (watsonData.context.hasOwnProperty('mode')) {
         var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
         if(watsonData.context.mode == "stock") {
@@ -114,6 +134,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
               if (err) {
                 console.log(err);
               } else {
+
                 watsonData.context.lastStock = str;
                 watsonData.context["stock"] = stockJson;
 
@@ -122,15 +143,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
                     .addAttachment(softOut.buildStockCard(stockJson));
                   send(session, analysis.reviewStock(stockJson), msg, stockModes);
                 } else {
-                  // var msg = new builder.Message(session)
-                  //   .addAttachment(socialCard.makeHeaderCard(stockJson));
+                  
                   send(session, null, socialCard.makeHeaderCard(stockJson));
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
-                      // var temp = updatePortfolio(session, watsonData, watsonData.output.action);
-                      // watsonData.context.portfolio = {};
-                      // watsonData.context.portfolio = temp;
                   }                
                   send(session, analysis.reviewStock(stockJson), null, stockModes);
                 }
@@ -169,7 +186,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 function sendData(session, stock, action) {
-  var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
+  var stockModes = ["add to wishlist", "chart", "earnings", "ratio", "financials", "news"];
   if (stock) {
     var card = {};
     if (action == "wantStats") {
@@ -183,6 +200,24 @@ function sendData(session, stock, action) {
     } else if (action == "wantNews") {
         var cards = socialCard.createNewsCards(session, stock);
         send(session, null, cards, stockModes, null, true);
+    } else if (action == "wantChart") {
+        search.getVantageChart(stock.company.symbol , "TIME_SERIES_DAILY", 365, "daily", (err, res, change) => {
+          if (err) {
+              console.log(err)
+              send(session, "Sorry but I can't seem to retrieve that stock data", stockModes);
+            } else {
+
+              chart.grapher(stock, res, {"dp": "close", "title" : stock.company.companyName, "length" : "1 Year"}, (err, url) => {
+                if (err) {
+                  console.log(err)
+                  send(session, "Sorry but I can't seem to build a graph", stockModes);
+                } else {
+                  var cards = socialCard.makeChartCard(session, stock, url, change);
+                  send(session, null, cards, stockModes, null, true);
+                }
+              });
+            }
+        })
     } else if (action == "wantFin") {
       var msg = new builder.Message(session);
       card = socialCard.makeFinCard(stock)
@@ -195,22 +230,6 @@ function sendData(session, stock, action) {
   }
   if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
 }
-
-// function updatePortfolio(session, watsonData, action) {
-//   if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "addToPortfolio") {
-//         portfolio.addStock(watsonData.context.portfolio, watsonData.context.stock, (msg, portfolio) => {
-//           session.send(msg);
-//           return portfolio;
-//         });
-//       }    
-//   if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "removeFromPortfolio") {
-//     portfolio.removeStock(watsonData.context.portfolio, watsonData.context.lastStock, (msg, portfolio) => {
-//       session.send(msg);
-//       return portfolio;
-//     });
-//   }  
-// }
-
 
 /*array is for multiple strings
 * obj is for a specific attachment
@@ -248,8 +267,8 @@ function send(session, val, obj, buttons, top, carousel) {
           ));
       session.send(msg);
     } else if (obj) {
+      //an object is being send
       if (carousel) {
-        console.log("HERE  " + obj);
         var reply = new builder.Message(session)
           .attachmentLayout(builder.AttachmentLayout.carousel)
           .attachments(obj)
@@ -258,7 +277,7 @@ function send(session, val, obj, buttons, top, carousel) {
               session, objArray
             ));
         session.send(reply);
-      }else {
+      } else {
         var msg = new builder.Message(session)
         .addAttachment(obj)
         .suggestedActions(
@@ -267,8 +286,8 @@ function send(session, val, obj, buttons, top, carousel) {
           ));
         session.send(msg);
       }
-      
     } else {
+      //just send the modes
       var msg = new builder.Message(session)
         .text("")
         .suggestedActions(
