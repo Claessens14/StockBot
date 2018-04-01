@@ -33,9 +33,13 @@ function dataToStr(value) {
     return str;
 }
 
-//[WAT -> WAT11]
-// function tickerToFake(actual) {
-
+//[WAT -> WAT1]
+//[A -> nothing, use name]
+// function explicitTicker(input) {
+//     var ticker = input.indexOf([" WAT "])
+//     if (input.indexOf([" WAT "]) != -1) {
+//         ticker
+//     }
 // }
 
 module.exports = {

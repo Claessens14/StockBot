@@ -6,10 +6,12 @@ var Conversation = require('watson-developer-cloud/conversation/v1'); // watson 
 require('dotenv').config();
 
 var search = require('./search');
+var chart = require('./chart');
 var softOut = require('./softOut');
 var analysis = require('./analysis');
 var socialCard = require('./socialCard');
 var portfolio = require('./portfolio');
+
 //var users = require('../assets/users.json');
 
 var users = require('../assets/users.json');
@@ -40,6 +42,8 @@ var connector = new builder.ChatConnector({
 
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
+
+
 
 /*----------------------------------------------------------------------------------------
 * Bot Storage: This is a great spot to register the private state storage for your bot. 
@@ -83,9 +87,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
             search.getMarketData(str, (err, data) => {
               if (process.env.MARKETDATA == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(data, null, 2) + '\n________________________________\n');
               if (err) {
-                callback(err, null)
+                console.log("ERROR (searchMarket) there was an error in getting the market data" + err);
+                send(session, "Sorry but something went wrong");
               } else {
-                var card = softOut.buildMarketCard(data);
+                var card = softOut.singleMarketCard(data);
                 send(session, null, card);
                 if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
               }
@@ -103,6 +108,22 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
 
+
+//       var msg = new builder.Message(session);
+//     msg.attachmentLayout(builder.AttachmentLayout.carousel)
+//     msg.attachments([
+//         new builder.HeroCard(session)
+//             .title("Classic White T-Shirt")
+//             .subtitle("100% Soft and Luxurious Cotton")
+//             .text("Price is $25 and carried in sizes (S, M, L, and XL)")
+//             .images([builder.CardImage.create(session, "https://www.stocktrader.com/wp-content/uploads/2007/10/goog-102907.png")])
+//             .buttons([
+//                 builder.CardAction.openUrl(session, "https://www.stocktrader.com/wp-content/uploads/2007/10/goog-102907.png", "Enlarge")
+//             ])
+//     ]);
+
+// session.send(msg);
+
       if (watsonData.context.hasOwnProperty('mode')) {
         var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
         if(watsonData.context.mode == "stock") {
@@ -114,6 +135,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
               if (err) {
                 console.log(err);
               } else {
+
                 watsonData.context.lastStock = str;
                 watsonData.context["stock"] = stockJson;
 
@@ -122,15 +144,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
                     .addAttachment(softOut.buildStockCard(stockJson));
                   send(session, analysis.reviewStock(stockJson), msg, stockModes);
                 } else {
-                  // var msg = new builder.Message(session)
-                  //   .addAttachment(socialCard.makeHeaderCard(stockJson));
+                  
                   send(session, null, socialCard.makeHeaderCard(stockJson));
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
-                      // var temp = updatePortfolio(session, watsonData, watsonData.output.action);
-                      // watsonData.context.portfolio = {};
-                      // watsonData.context.portfolio = temp;
                   }                
                   send(session, analysis.reviewStock(stockJson), null, stockModes);
                 }
@@ -169,61 +187,52 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 function sendData(session, stock, action) {
-  var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
+  var stockModes = ["add to wishlist", "chart", "earnings", "ratio", "financials", "news"];
   if (stock) {
     var card = {};
     if (action == "wantStats") {
       var msg = new builder.Message(session);
       card = socialCard.makeStatsCard(stock);
-      send(session, null, card);
-      // msg.addAttachment(card);
-      // // session.send(msg);
+      send(session, null, card, stockModes);
     } else if (action == "wantEarnings") {
       var msg = new builder.Message(session);
       card = socialCard.makeEarningsCard(stock);
-      send(session, null, card);
-        var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
-              send(session, callStr, null);
-      // msg.addAttachment(card);
-      // session.send(msg);
+      send(session, null, card, stockModes);
     } else if (action == "wantNews") {
         var cards = socialCard.createNewsCards(session, stock);
-        // var reply = new builder.Message(session)
-        //   .attachmentLayout(builder.AttachmentLayout.carousel)
-        //   .attachments(cards);
-        // session.send(reply);
-        send(session, null, cards, null, null, true);
+        send(session, null, cards, stockModes, null, true);
+    } else if (action == "wantChart") {
+        search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
+          if (err) {
+              console.log(err)
+              send(session, "Sorry but I can't seem to retrieve that stock data", stockModes);
+            } else {
 
+              chart.grapher(stock, res.year, {"dp": "close", "title" : stock.company.companyName, "length" : "1 Year"}, (err, yearUrl) => {
+                if (err) {
+                  console.log(err)
+                  send(session, "Sorry but I can't seem to build a graph", stockModes);
+                } else {
+                  chart.grapher(stock, res.month, {"dp": "close", "title" : stock.company.companyName, "length" : "3 Month"}, (err, monthUrl) => {
+                    var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month")];
+                    send(session, null, cards, stockModes, null, true);
+                  });
+                }
+              });
+            }
+        })
     } else if (action == "wantFin") {
       var msg = new builder.Message(session);
       card = socialCard.makeFinCard(stock)
-      // msg.addAttachment(card);
-      // session.send(msg);
-      send(session, null, card);
-              var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
-              send(session, callStr, null);
+      send(session, null, card, stockModes);
+      var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+      send(session, callStr, null);
     } else {
       console.log("ERROR (sendData) Does not know of this action : " + action);
     }
   }
   if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
 }
-
-// function updatePortfolio(session, watsonData, action) {
-//   if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "addToPortfolio") {
-//         portfolio.addStock(watsonData.context.portfolio, watsonData.context.stock, (msg, portfolio) => {
-//           session.send(msg);
-//           return portfolio;
-//         });
-//       }    
-//   if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "removeFromPortfolio") {
-//     portfolio.removeStock(watsonData.context.portfolio, watsonData.context.lastStock, (msg, portfolio) => {
-//       session.send(msg);
-//       return portfolio;
-//     });
-//   }  
-// }
-
 
 /*array is for multiple strings
 * obj is for a specific attachment
@@ -236,8 +245,7 @@ function send(session, val, obj, buttons, top, carousel) {
   /*send the buttons..
   * if str is null then just send buttons
   * if str is set then send it with str, should be used for last one
-  * if buttons is set then use it
-  */
+  * if buttons is set then use it*/
   function sendModes(str) {
     //build mode buttons
     var modes = ["quote", "educate", "market", "watchlist", "help"];
@@ -261,8 +269,8 @@ function send(session, val, obj, buttons, top, carousel) {
           ));
       session.send(msg);
     } else if (obj) {
+      //an object is being send
       if (carousel) {
-        console.log("HERE  " + obj);
         var reply = new builder.Message(session)
           .attachmentLayout(builder.AttachmentLayout.carousel)
           .attachments(obj)
@@ -271,7 +279,7 @@ function send(session, val, obj, buttons, top, carousel) {
               session, objArray
             ));
         session.send(reply);
-      }else {
+      } else {
         var msg = new builder.Message(session)
         .addAttachment(obj)
         .suggestedActions(
@@ -280,8 +288,8 @@ function send(session, val, obj, buttons, top, carousel) {
           ));
         session.send(msg);
       }
-      
     } else {
+      //just send the modes
       var msg = new builder.Message(session)
         .text("")
         .suggestedActions(

@@ -13,15 +13,11 @@ function reviewStock(stock, query) {
 			query[2] = query[0] + " " + query[1];
 		}
 	}
-	
-
 	//only use once per sentence
 	var fallback = [];
 	var validResp = [];	//responses that are valid
 	var queryResp = [];  //responses for query
 	var overResp = [];  //response that specific to multiple entities
-
-
 
 	function addResp(tag, str) {
 		console.log("Tag: " + tag + " Adding: " + str);
@@ -60,7 +56,7 @@ function reviewStock(stock, query) {
 	//EPS surprise		
 	if ((stock.earnings.earnings[0].EPSSurpriseDollar) && (stock.earnings.earnings[0].EPSSurpriseDollar > 0)) {
 		addResp("epsSurpriseUp", pickStr(responses.epsSurpriseUp).replace(/@/g, company).replace(/#/g, toStr(stock.earnings.earnings[0].EPSSurpriseDollar)));
-	} else if ((stock.earnings.earnings[0].EPSSurpriseDollar) && (stock.earnings.earnings[0].EPSSurpriseDollar <= 0)) {
+	} else if ((stock.earnings.earnings[0].EPSSurpriseDollar) && (stock.earnings.earnings[0].EPSSurpriseDollar < 0)) {
 		addResp("epsSurpriseMiss", pickStr(responses.epsSurpriseMiss).replace(/@/g, company).replace(/#/g, toStr(stock.earnings.earnings[0].EPSSurpriseDollar)));
 	}
 
@@ -90,7 +86,6 @@ function reviewStock(stock, query) {
 		} else if (rev) {
 			addResp("third", pickStr(responses.third).replace(/@/g, company))
 		}
-
 	}
 
 	//todays dollar change
@@ -182,17 +177,17 @@ function reviewStock(stock, query) {
 
 ///MUST USE UP OR DOWN
 var responses = {
-	"upMover" : ["@  had a good day gaining # points on the day", "The bulls are pushing on @ with a # point increase on the day"],
-	"downMover" : ["@ was hit, losing # points on the day", "The bears are pulling on @ with a # point decrease on the day"],
+	"upMover" : ["@ had a good day gaining # points on the day", "The bulls are pushing on @ with a # point increase on the day"],
+	"downMover" : ["@ was hit, losing # points on the day", "The bears are pulling down @ with a # point decrease on the day"],
 	"week52High" : ["@ is around its 52 week high, I like it", "At a price of $#, @ is at a 52 week high!"],
 	"week52Low" : ["@ is close to its 52 week low!, may want to stay away", "Things aren't looking good for @, with its stock price approaching a 52 Week Low!"],
 	"lowVolume" : ["@ has an average trading volume below 10 000 shares, beware of getting in and out of this stock!", "Warning! @ has an average trading volume below 10 000 shares, it could be difficult to get in and out of this stock"],
-	"penny" : ["With a share price of ##, @ is getting close to penny stock territory", "I am not a fan of penny stocks, and with a share price of $#, @ still needs to prove itself to me"],
+	"penny" : ["With a share price of #, @ is getting close to penny stock cata", "I am not a fan of penny stocks, and with a share price of $#, @ still needs to prove itself"],
 	"highDividend" : ["A dividend yield of # very high, look at out for the dividend yield trap!", "The dividend yield is quite high at #, you may want to check the fundimentals and payout ratio to make sure @ can support it"],
 	"goodDividend" : ["@ offers a nice dividend at #%"],
 	"peValue" : ["With a P/E Ratio of #, this could be a decent value play", "Could be a potential value stock as it's P/E ratio is only #"],
 	"highBeta" : ["With a beta of #, @ may be of higher risk in the sector", "The beta of @ is quite high at #, it could be quite volitile compared to its peers"],
-	"short" : ["Currently, #% of the shares of @ are shorted, this may not be the best entry point", "With #% of the shares shorted, this does not look like a god time to buy"],
+	"short" : ["Currently, @ has #% of the shares are shorted, this may not be the best entry point", "With #% of the shares shorted, this does not look like a god time to buy"],
 	"squeeze" : ["#% of the shares are shorted, if stock price raises in value, there could be a short squeeze", "With #% of shares shorted, there could be the potential of a short squeeze!"],
 	"epsSurpriseUp" : ["@ beat its earnings estimates, things are looking good", "With a # earnings beat, I am liking @"],
 	"epsSurpriseDown" : ["@ missed earnings expectations, I am not a fan", "With an earnings miss of #, I am not impressed"],

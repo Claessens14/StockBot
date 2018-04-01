@@ -79,7 +79,38 @@ function buildStockCard(stock) {
   }
 }
 
-function buildMarketCard(data) {
+/* build a card that shows multiple markets
+*/
+function multiMarketCard(data) {
+  return {    
+    'contentType': 'application/vnd.microsoft.card.adaptive',
+    'content': {
+        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+        'type': 'AdaptiveCard',
+        'version': '1.0',
+      "body": buildMarketCardSlip(data)
+    }
+  }
+}
+
+/*Build a single card for the market index of choice
+*/
+function singleMarketCard(data) {
+  
+  return {    
+    'contentType': 'application/vnd.microsoft.card.adaptive',
+    'content': {
+        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+        'type': 'AdaptiveCard',
+        'version': '1.0',
+      "body": buildMarketCardSlip(data)
+    }
+  }
+}
+
+/*build the body of the card
+*/
+function buildMarketCardSlip(data) {
   var change = roundTo(data.close - data.open, 2);
   var changePercent = roundTo(change / data.open, 2);
 
@@ -92,13 +123,7 @@ function buildMarketCard(data) {
       todaysMove = "▲";
       todaysColor = "good";
   }
-  return {    
-    'contentType': 'application/vnd.microsoft.card.adaptive',
-    'content': {
-        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
-        'type': 'AdaptiveCard',
-        'version': '1.0',
-      "body": [
+  return [
         {
           "type": "Container",
           "items": [
@@ -168,10 +193,8 @@ function buildMarketCard(data) {
           ]
         }
       ]
-    }
-  }
+      
 }
-
 
 
 
@@ -180,5 +203,5 @@ function buildMarketCard(data) {
 
 module.exports = {
   buildStockCard: buildStockCard,
-  buildMarketCard : buildMarketCard
+  singleMarketCard : singleMarketCard
 }

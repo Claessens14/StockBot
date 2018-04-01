@@ -13,46 +13,64 @@ cloudinary.config({
 
 
 
-var trace1 = {
-  x: [3, 6, 1, 8, 4],
-  y: [1, 2, 3, 4, 5],
-  type: "scatter"
-};
+function grapher(stock, data, params, callback) {
+  var xData = [];
+  var yData = [];
+  console.log(params)
+  for (var day in data) {
+    xData.push(day);
+    yData.push(data[day][params["dp"]]);
+  }
+//console.log(xData + yData);
 
-var figure = { 'data': [trace1] };
+  var trace1 = {
+    x: xData,
+    y: yData,
+    type: "scatter"
+  };
 
-var imgOpts = {
-    format: 'png',
-    width: 1000,
-    height: 500
-};
+  if (params.length) {
+    params.title = params.title + " ("+ params.length + ")";
+  }
+  var figure = { 'data': [trace1], "layout" : {"title" : params.title}};
 
-plotly.getImage(figure, imgOpts, function (error, imageStream) {
-    if (error) return console.log (error);
-	var options = {
-	  min:  1
-	, max:  980
-	, integer: true
-	}
-	var name = "./bin/" + rn(options) + ".png";
-    var fileStream = fs.createWriteStream(name)
-    	.on('finish', () => upload());
-    imageStream.pipe(fileStream);
+  var imgOpts = {
+      format: 'png',
+      width: 1000,
+      height: 500,
+      "layout": {
+      "title": "Stock"
+      }
+  };
 
-    function upload() {
-    	cloudinary.uploader.upload(name, function(result) { 
-		  console.log(result) 
-		});
+  //plot image
+  plotly.getImage(figure, imgOpts, function (error, imageStream) {
+    if (error) callback(error, null);
+    var options = {
+      min:  1
+    , max:  980
+    , integer: true
     }
-    // cloudinary.uploader.upload("HERE.png", function(result) { 
-//   console.log(result) 
-// });
-});
+    var name = "./bin/" + rn(options) + ".png";
+      var fileStream = fs.createWriteStream(name)
+        .on('finish', () => upload());
+      imageStream.pipe(fileStream);
+
+      //upload image
+      function upload() {
+        cloudinary.uploader.upload(name, function(result) { 
+        if (result) {
+          callback(null, result.url);
+        } else {
+          callback("ERROR (grapher) result is set to null from cloudinary", null);
+        }
+      });
+    }
+  });
+}
 
 
 
-
-
-// module.exports = {
-// 	grapher : grapher
-// }
+module.exports = {
+	grapher : grapher
+}

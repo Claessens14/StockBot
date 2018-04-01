@@ -1,4 +1,5 @@
 var request = require('request');
+require('dotenv').config();
 
 function getPrice(str, callback) {
 	getStock(str, (err, quote) => {
@@ -29,6 +30,75 @@ function getChartData(str, callback) {
 		}
 	});
 }
+
+/* Get stock data from vantage, where chart formats are pre made
+* str : ticker symbol
+* type : SMA, TIME_SERIES_DAILY
+* length : 365, 90
+* interval: daily, weekly, 60min, 15min,
+* callback(err, res);
+*/
+function getVantageChart(str, type, length, interval, callback) {
+	if (!(length)) length = 254;  //one year of buesiness days
+	if (!(interval)) interval = "daily";
+	if (!(type))  type = "TIME_SERIES_DAILY";
+	var url = "https://www.alphavantage.co/query?function="+ type +"&symbol="+ str +"&interval="+interval+"&time_period="+ length +"&series_type=close&outputsize=full&apikey=" + process.env.VANTAGE_KEY;
+	request(url, function (err, resp, body) {
+		if (err) {
+			callback(err, null);
+		} else {
+			body = JSON.parse(body);
+
+			var name = "";
+			switch (type.toUpperCase()) {
+				case 'SMA':
+					name = "Technical Analysis: SMA";
+					break;
+				case 'TIME_SERIES_DAILY':
+					name = "Time Series (Daily)";
+					break;
+			}
+
+			//remove number in front of open and close fields, also convert strings to numbers, and return only the data
+			var data = {};
+			var sub = {};
+			if (body[name]) {
+				var i = 1;
+				try {
+					for (var day in body[name]) {
+						if (i <= length) {
+							data[day] = {};
+							if (i < 42 && length == 254) sub[day] = {};
+							for (var row in body[name][day]) {
+								var index = row.replace(/[0-9]. /, "");
+								var dp = Number(body[name][day][row]);
+								data[day][index] = dp;
+								if (i < 42 && length == 254) {  //if your make a 1 year than make a 3 month
+									sub[day][index] = dp;
+								}
+							}
+							i++;
+						} else {
+							throw "done";
+						}
+					}
+					callback("did not send a done message", data);	
+				} catch (e) {
+					var year = name + "_year";
+					var month = name + "_3month";
+					callback(null, {year: data, month: sub});
+				}	
+			} else {
+				callback(body, null);
+			}
+		}
+	});
+}
+
+getVantageChart("MMM", null, null, null, (err, res) => {
+	console.log(res);
+})
+
 
 function getStock(str, callback) {
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
@@ -148,5 +218,6 @@ module.exports = {
 	getChartData : getChartData,
 	getStock : getStock,
 	getMarketData : getMarketData,
-	getIndex : getIndex
+	getIndex : getIndex,
+	getVantageChart : getVantageChart
 }

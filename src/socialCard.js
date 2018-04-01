@@ -138,6 +138,19 @@ function makeFinCard(stock) {
   	}
   } 
 }
+
+function makeChartCard(session, stock, url, title, text) {
+  if (!text) text = "";
+  return new builder.HeroCard(session)
+    .title(title)
+    .subtitle(text)
+    .images([
+        builder.CardImage.create(session, url)
+    ])
+    .buttons([
+        builder.CardAction.openUrl(session, url, "open")
+  ]);
+}
 /*
 function buildPortCard(oldStock, newStock) {
   var change = roundTo(data.close - data.open, 2);
@@ -239,5 +252,6 @@ module.exports = {
 	makeEarningsCard : makeEarningsCard,
 	makeFinCard : makeFinCard,
 	makeNewsCard : makeNewsCard,
-  createNewsCards : createNewsCards
+  createNewsCards : createNewsCards,
+  makeChartCard : makeChartCard
 }
