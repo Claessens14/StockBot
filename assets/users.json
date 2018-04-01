@@ -7,8 +7,8 @@
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 89,
-      "dialog_request_counter": 89,
+      "dialog_turn_counter": 103,
+      "dialog_request_counter": 103,
       "_node_output_map": {
         "node_2_1521177918907": [
           1,
@@ -29,7 +29,7 @@
       "branch_exited_reason": "completed"
     },
     "user": {
-      "id": "mid.$cAAcRR38D9CZor0vkv1ifgacj0Zk_",
+      "id": "mid.$cAAcRR38D9CZos-wVmligqbNXSo1z",
       "channelId": "facebook",
       "user": {
         "id": "1531011940353275",

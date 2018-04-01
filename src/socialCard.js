@@ -139,17 +139,17 @@ function makeFinCard(stock) {
   } 
 }
 
-function makeChartCard(session, stock, url, change) {
-
-       return [new builder.HeroCard(session)
-        .title('1 Year')
-        .subtitle('')
-        .images([
-            builder.CardImage.create(session, url)
-        ])
-        .buttons([
-            builder.CardAction.openUrl(session, url, "open")
-        ])];
+function makeChartCard(session, stock, url, title, text) {
+  if (!text) text = "";
+  return new builder.HeroCard(session)
+    .title(title)
+    .subtitle(text)
+    .images([
+        builder.CardImage.create(session, url)
+    ])
+    .buttons([
+        builder.CardAction.openUrl(session, url, "open")
+  ]);
 }
 /*
 function buildPortCard(oldStock, newStock) {

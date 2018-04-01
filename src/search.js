@@ -39,8 +39,9 @@ function getChartData(str, callback) {
 * callback(err, res);
 */
 function getVantageChart(str, type, length, interval, callback) {
-	if (!(length)) length = 365;
+	if (!(length)) length = 254;  //one year of buesiness days
 	if (!(interval)) interval = "daily";
+	if (!(type))  type = "TIME_SERIES_DAILY";
 	var url = "https://www.alphavantage.co/query?function="+ type +"&symbol="+ str +"&interval="+interval+"&time_period="+ length +"&series_type=close&outputsize=full&apikey=" + process.env.VANTAGE_KEY;
 	request(url, function (err, resp, body) {
 		if (err) {
@@ -60,15 +61,21 @@ function getVantageChart(str, type, length, interval, callback) {
 
 			//remove number in front of open and close fields, also convert strings to numbers, and return only the data
 			var data = {};
+			var sub = {};
 			if (body[name]) {
 				var i = 1;
-				length = length * 5 / 7;
 				try {
 					for (var day in body[name]) {
 						if (i <= length) {
 							data[day] = {};
+							if (i < 42 && length == 254) sub[day] = {};
 							for (var row in body[name][day]) {
-								data[day][row.replace(/[0-9]. /, "")] = Number(body[name][day][row]);
+								var index = row.replace(/[0-9]. /, "");
+								var dp = Number(body[name][day][row]);
+								data[day][index] = dp;
+								if (i < 42 && length == 254) {  //if your make a 1 year than make a 3 month
+									sub[day][index] = dp;
+								}
 							}
 							i++;
 						} else {
@@ -77,21 +84,9 @@ function getVantageChart(str, type, length, interval, callback) {
 					}
 					callback("did not send a done message", data);	
 				} catch (e) {
-					if (type.toUpperCase() === 'TIME_SERIES_DAILY') {
-						var row = "";
-						var start = -1;
-						
-						for (row in data) {
-							if (start == -1) start = data[row];
-
-						}
-						var end = data[row];
-						callback(null, data, {"start" : start, "end" : end});
-					} else {
-						callback(null, data);
-					}
-					
-
+					var year = name + "_year";
+					var month = name + "_3month";
+					callback(null, {year: data, month: sub});
 				}	
 			} else {
 				callback(body, null);
@@ -100,6 +95,9 @@ function getVantageChart(str, type, length, interval, callback) {
 	});
 }
 
+getVantageChart("MMM", null, null, null, (err, res) => {
+	console.log(res);
+})
 
 
 function getStock(str, callback) {

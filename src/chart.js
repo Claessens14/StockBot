@@ -16,9 +16,10 @@ cloudinary.config({
 function grapher(stock, data, params, callback) {
   var xData = [];
   var yData = [];
+  console.log(params)
   for (var day in data) {
     xData.push(day);
-    yData.push(data[day][params.dp]);
+    yData.push(data[day][params["dp"]]);
   }
 //console.log(xData + yData);
 

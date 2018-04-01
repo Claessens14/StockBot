@@ -87,9 +87,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
             search.getMarketData(str, (err, data) => {
               if (process.env.MARKETDATA == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(data, null, 2) + '\n________________________________\n');
               if (err) {
-                callback(err, null)
+                console.log("ERROR (searchMarket) there was an error in getting the market data" + err);
+                send(session, "Sorry but something went wrong");
               } else {
-                var card = softOut.buildMarketCard(data);
+                var card = softOut.singleMarketCard(data);
                 send(session, null, card);
                 if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
               }
@@ -201,19 +202,21 @@ function sendData(session, stock, action) {
         var cards = socialCard.createNewsCards(session, stock);
         send(session, null, cards, stockModes, null, true);
     } else if (action == "wantChart") {
-        search.getVantageChart(stock.company.symbol , "TIME_SERIES_DAILY", 365, "daily", (err, res, change) => {
+        search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
           if (err) {
               console.log(err)
               send(session, "Sorry but I can't seem to retrieve that stock data", stockModes);
             } else {
 
-              chart.grapher(stock, res, {"dp": "close", "title" : stock.company.companyName, "length" : "1 Year"}, (err, url) => {
+              chart.grapher(stock, res.year, {"dp": "close", "title" : stock.company.companyName, "length" : "1 Year"}, (err, yearUrl) => {
                 if (err) {
                   console.log(err)
                   send(session, "Sorry but I can't seem to build a graph", stockModes);
                 } else {
-                  var cards = socialCard.makeChartCard(session, stock, url, change);
-                  send(session, null, cards, stockModes, null, true);
+                  chart.grapher(stock, res.month, {"dp": "close", "title" : stock.company.companyName, "length" : "3 Month"}, (err, monthUrl) => {
+                    var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month")];
+                    send(session, null, cards, stockModes, null, true);
+                  });
                 }
               });
             }
@@ -242,8 +245,7 @@ function send(session, val, obj, buttons, top, carousel) {
   /*send the buttons..
   * if str is null then just send buttons
   * if str is set then send it with str, should be used for last one
-  * if buttons is set then use it
-  */
+  * if buttons is set then use it*/
   function sendModes(str) {
     //build mode buttons
     var modes = ["quote", "educate", "market", "watchlist", "help"];
