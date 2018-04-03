@@ -146,7 +146,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   send(session, analysis.reviewStock(stockJson), msg, stockModes);
                 } else {
                   
-                  send(session, null, socialCard.makeHeaderCard(stockJson));
+                  send(session, null, socialCard.makeHeaderCard(stockJson), stockModes);
                   if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
 
                   if (watsonData.output.action) {
@@ -207,13 +207,13 @@ function sendData(session, stock, action) {
         search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
           if (err) {
               console.log(err)
-              send(session, "Sorry but I can't seem to retrieve that stock data", stockModes);
+              send(session, "Sorry but I can't seem to retrieve that stock data", null, stockModes);
             } else {
 
               chart.grapher(stock, res.year, {"dp": "close", "title" : stock.company.companyName, "length" : "1 Year"}, (err, yearUrl) => {
                 if (err) {
                   console.log(err)
-                  send(session, "Sorry but I can't seem to build a graph", stockModes);
+                  send(session, "Sorry but I can't seem to build a graph", null, stockModes);
                 } else {
                   chart.grapher(stock, res.month, {"dp": "close", "title" : stock.company.companyName, "length" : "3 Month"}, (err, monthUrl) => {
                     var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
@@ -228,7 +228,7 @@ function sendData(session, stock, action) {
       card = socialCard.makeFinCard(stock)
       send(session, null, card, stockModes);
       var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
-      send(session, callStr, null);
+      send(session, callStr, null, stockModes);
     } else {
       console.log("ERROR (sendData) Does not know of this action : " + action);
     }
