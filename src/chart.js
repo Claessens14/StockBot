@@ -46,19 +46,20 @@ function grapher(stock, data, params, callback) {
   //plot image
   plotly.getImage(figure, imgOpts, function (error, imageStream) {
     if (error) callback(error, null);
+    if (!imageSteam) callback("ERROR (plotly.getImage) imageStream is null, aborting", null);
     var options = {
       min:  1
     , max:  980
     , integer: true
     }
     var name = "./bin/" + rn(options) + ".png";
-      var fileStream = fs.createWriteStream(name)
-        .on('finish', () => upload());
-      imageStream.pipe(fileStream);
+    var fileStream = fs.createWriteStream(name)
+      .on('finish', () => upload());
+    imageStream.pipe(fileStream);
 
-      //upload image
-      function upload() {
-        cloudinary.uploader.upload(name, function(result) { 
+    //upload image
+    function upload() {
+      cloudinary.uploader.upload(name, function(result) { 
         if (result) {
           callback(null, result.url);
         } else {

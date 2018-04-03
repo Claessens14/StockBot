@@ -21,6 +21,8 @@ function makeHeaderCard(stock) {
     'contentType': 'application/vnd.microsoft.card.adaptive',
     'content': {
         '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+          //"backgroundImage": "https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg",
+
         'type': 'AdaptiveCard',
         'version': '1.0',
       	"body": stockCard.makeHeaderCard(stock, todaysMove, todaysColor) 

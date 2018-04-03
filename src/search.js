@@ -68,12 +68,12 @@ function getVantageChart(str, type, length, interval, callback) {
 					for (var day in body[name]) {
 						if (i <= length) {
 							data[day] = {};
-							if (i < 42 && length == 254) sub[day] = {};
+							if (i < 64 && length == 254) sub[day] = {};
 							for (var row in body[name][day]) {
 								var index = row.replace(/[0-9]. /, "");
 								var dp = Number(body[name][day][row]);
 								data[day][index] = dp;
-								if (i < 42 && length == 254) {  //if your make a 1 year than make a 3 month
+								if (i < 64 && length == 254) {  //if your make a 1 year than make a 3 month
 									sub[day][index] = dp;
 								}
 							}
@@ -95,9 +95,13 @@ function getVantageChart(str, type, length, interval, callback) {
 	});
 }
 
-getVantageChart("MMM", null, null, null, (err, res) => {
-	console.log(res);
-})
+// getVantageChart("MMM", null, null, null, (err, res) => {
+// 	var i = 1;
+// 	for (var key in res.month) {
+// 		console.log(i + "  " +  key);
+// 		i++;
+// 	}
+// })
 
 
 function getStock(str, callback) {

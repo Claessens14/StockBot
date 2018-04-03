@@ -11,7 +11,7 @@ function dataToStr(value) {
         //str = str.slice(0, str.indexOf(".") + 2);  //round to 2
 
         if (str.length > 9) {
-            str = str.replace(/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/, 'B');
+            str = str.replace(/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/, "B");
         } else if (str.length > 6) {
             str = str.replace(/[0-9][0-9][0-9][0-9][0-9][0-9]$/, 'M');
         } else if (str.length > 3) {

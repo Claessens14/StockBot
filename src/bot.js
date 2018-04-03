@@ -11,6 +11,7 @@ var softOut = require('./softOut');
 var analysis = require('./analysis');
 var socialCard = require('./socialCard');
 var portfolio = require('./portfolio');
+var format = require('./format');
 
 //var users = require('../assets/users.json');
 
@@ -125,7 +126,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 // session.send(msg);
 
       if (watsonData.context.hasOwnProperty('mode')) {
-        var stockModes = ["add to wishlist", "earnings", "ratio", "financials", "news"];
+        var stockModes = ["add to watchlist", "charts", "earnings", "ratios", "financials", "news"];
         if(watsonData.context.mode == "stock") {
           var str = getEntity(watsonData, "SP500")
           var stock = {};
@@ -146,6 +147,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 } else {
                   
                   send(session, null, socialCard.makeHeaderCard(stockJson));
+                  if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
 
                   if (watsonData.output.action) {
                     sendData(session, stockJson, watsonData.output.action);
@@ -187,7 +189,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 function sendData(session, stock, action) {
-  var stockModes = ["add to wishlist", "chart", "earnings", "ratio", "financials", "news"];
+  var stockModes = ["add to wishlist", "charts", "earnings", "ratios", "financials", "news"];
   if (stock) {
     var card = {};
     if (action == "wantStats") {
@@ -214,7 +216,7 @@ function sendData(session, stock, action) {
                   send(session, "Sorry but I can't seem to build a graph", stockModes);
                 } else {
                   chart.grapher(stock, res.month, {"dp": "close", "title" : stock.company.companyName, "length" : "3 Month"}, (err, monthUrl) => {
-                    var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month")];
+                    var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
                     send(session, null, cards, stockModes, null, true);
                   });
                 }

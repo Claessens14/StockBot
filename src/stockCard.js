@@ -31,7 +31,7 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
                     {
                       "type": "TextBlock",
                       "text": todaysMove+stock.quote.change+" ("+stock.quote.changePercent+"%)",
-                      "size": "small",
+                      "size": "medium",
                       "color": todaysColor,
                       "spacing": "none"
                     },
@@ -44,7 +44,19 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
                     },
                     {
                       "type": "TextBlock",
+                      "spacing": "none",
                       "text": stock.quote.latestTime,
+                      "isSubtle": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": stock.company.sector,
+                      "isSubtle": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "spacing": "none",
+                      "text": stock.company.industry,
                       "isSubtle": true
                     }
                   ],
@@ -71,22 +83,53 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
           "items": [
             {
               "type": "ColumnSet",
-              "spacing": "large",
-              "separator": true,
               "columns": [
                 {
                   "type": "Column",
-                  "width": "stretch",
+                  "width": "auto",
                   "items": [
                     {
-                      "type": "TextBlock",
-                      "text": stock.company.description,
-                      "isSubtle": false,
-                      "wrap": true
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                            "title": "Volume:",
+                            "value": dataToStr(stock.quote.latestVolume)
+                          },
+                          {
+                            "title": "Dividend",
+                            "value": dataToStr(stock.stats.dividendYield) + '%'
+                          },
+                          {
+                            "title": "Profit Margin",
+                            "value": dataToStr(stock.stats.profitMargin)  + '%'
+                          },
+                      ]
                     }
                   ]
                 },
-                
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                            "title": "Market Cap:",
+                            "value": dataToStr(stock.stats.marketcap)
+                          }, 
+                          {
+                            "title": "P/E:",
+                            "value": dataToStr(stock.quote.peRatio)
+                          },
+                          {
+                            "title": "EPS:",
+                            "value": dataToStr(stock.stats.latestEPS)
+                          }
+                      ]
+                    }
+                  ]
+                }
               ]
             }
           ]
@@ -97,8 +140,6 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
 
 function makeStatsCard(stock) {
 	return [
-              
-
 			{
           "type": "Container",
           "spacing": "none",
