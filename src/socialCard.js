@@ -21,8 +21,8 @@ function makeHeaderCard(stock) {
     'contentType': 'application/vnd.microsoft.card.adaptive',
     'content': {
         '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
-          //"backgroundImage": "https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg",
-
+//          "backgroundImage": "https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg",
+//"backgroundImage": "http://messagecardplayground.azurewebsites.net/assets/Mostly%20Cloudy-Background-Dark.jpg",
         'type': 'AdaptiveCard',
         'version': '1.0',
       	"body": stockCard.makeHeaderCard(stock, todaysMove, todaysColor) 
@@ -151,8 +151,23 @@ function makeChartCard(session, stock, url, title, text) {
     ])
     .buttons([
         builder.CardAction.openUrl(session, url, "open")
-  ]);
+    ]);
 }
+
+function makeNewsCard(session, source, title, text, img) {
+  if (!text) text = "";
+  return new builder.HeroCard(session)
+    .title(title)
+    .subtitle(text)
+    .images([
+        builder.CardImage.create(session, img)
+    ])
+    .buttons([
+        builder.CardAction.openUrl(session, source, "Open")
+    ]);
+}
+
+
 /*
 function buildPortCard(oldStock, newStock) {
   var change = roundTo(data.close - data.open, 2);

@@ -36,8 +36,7 @@ function getChartData(str, callback) {
 * type : SMA, TIME_SERIES_DAILY
 * length : 365, 90
 * interval: daily, weekly, 60min, 15min,
-* callback(err, res);
-*/
+* callback(err, res); */
 function getVantageChart(str, type, length, interval, callback) {
 	if (!(length)) length = 254;  //one year of buesiness days
 	if (!(interval)) interval = "daily";
@@ -47,8 +46,12 @@ function getVantageChart(str, type, length, interval, callback) {
 		if (err) {
 			callback(err, null);
 		} else {
-			body = JSON.parse(body);
-
+			try {
+				body = JSON.parse(body);
+			} catch (e) {
+				callback("ERROR (getVantageChart) JSON.parse failed!", null);
+			}
+			
 			var name = "";
 			switch (type.toUpperCase()) {
 				case 'SMA':
@@ -110,7 +113,11 @@ function getStock(str, callback) {
 		if (err) {
 			callback(err, null);
 		} else {
-			body = JSON.parse(body);
+			try {
+				body = JSON.parse(body);
+			} catch (e) {
+				callback("ERROR (getStock) JSON.parse failed!", null);
+			}
 			body["url"] = url;
 			callback(null, body);
 		}
@@ -125,16 +132,19 @@ function getIndex(symbol, series,  callback) {
 		if (err) {
 			callback(err, null);
 		} else {
-			body = JSON.parse(body);
+			// try {
+			// 	body = JSON.parse(body);
+			// } catch (e) {
+			// 	callback("ERROR (getIndex) JSON.parse failed!", null);
+			// }
 			function findData(body, cb) {
-			
-			var openNum = 0;
-			var closeNum = 0;
-			var mostRecent = true
-			var today = "";
-			var hold = "";
-			//console.log(body["Time Series (60min)"]);
-			var data = body["Time Series (" + series + "min)"]
+				var openNum = 0;
+				var closeNum = 0;
+				var mostRecent = true
+				var today = "";
+				var hold = "";
+				//console.log(body["Time Series (60min)"]);
+				var data = body["Time Series (" + series + "min)"]
 				try {
 					for (var line in data) {
 						//console.log(data[line]);
@@ -169,46 +179,129 @@ function getIndex(symbol, series,  callback) {
 	});
 }
 
+/* get the price of the MAJOR INDICES (DOW, S&P, NASDAQ) in parrellel
+*/
+function getIndices(callback) {
+	function getData(symbol) {
+		return new Promise(function(resolve, reject) {
+			request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
+				if (err) {
+					reject("ERROR (getIndices->getPrice->promise) an error occurred during request  \n " + err);
+				} else{
+					try {
+						
+					} catch(e) {
+
+					}
+								try {
+				body = JSON.parse(body);
+			} catch (e) {
+				callback("ERROR (getIndices->promise->getData) JSON.parse failed!", null);
+			}
+					var name = body["Meta Data"]["2. Symbol"];
+					var dateStr = body["Meta Data"]["3. Last Refreshed"];
+					var data = body["Time Series (Daily)"];
+					
+					var open = "";
+					var close = "";
+					var high = "";
+					var low = "";
+					var volume = "";
+					var mostRecent = true;
+					for (var line in data) {
+						if (mostRecent) {
+							mostRecent = false;
+							open = data[line]["1. open"];
+							close = data[line]["4. close"];
+							high = data[line]["2. high"];
+							low = data[line]["3. low"];
+							volume = data[line]["5. volume"];
+							resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume});
+						}
+						
+					}
+				}
+			});
+		});
+	}
+	var par = []; //parrellel
+	par.push(getData("DJI"));
+	par.push(getData("GSPC"));
+	par.push(getData("IXIC"));
+
+	Promise.all(par).then(function(values) {
+	  console.log(values);
+	  callback(null, values);
+	}).catch(function(values) {
+	  callback(values);
+	});
+}
+
 
 function getMarketData(symbol, callback) {
 	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
 	    if (err) {
 	      callback(err, null);
 	    } else if (body){
-	      body = JSON.parse(body);
-	      var json = body["Time Series (Daily)"];
-	      //console.log(body)
-	      try {
-	        for (var key in json) {
-	        	throw json[key];
-	        }
-	      } catch (e) {
-	      	var json = {}
-	      	for (var key in e) {
-	      		if(e[key].match(/[0-9]\.[0-9]/g)) {
-				 e[key] = e[key].replace(/[0-9][0-9]$/g, "");
-				 console.log(e[key]);
+			try {
+				body = JSON.parse(body);
+			} catch (e) {
+				callback("ERROR (getMarketData) JSON.parse failed");
+			}
+				var json = body["Time Series (Daily)"];
+				//console.log(body)
+				try {
+					for (var key in json) {
+						throw json[key];
+					}
+				} catch (e) {
+					var json = {}
+					for (var key in e) {
+					if(e[key].match(/[0-9]\.[0-9]/g)) {
+						e[key] = e[key].replace(/[0-9][0-9]$/g, "");
+						console.log(e[key]);
+					}
+						json[key.slice(3)] = e[key];
+					}
+					json["name"] = body["Meta Data"]["2. Symbol"];
+					//get a formatted date
+					getStock("AAPL", (err, stock) => {
+						if (err) {
+							callback(err, null);
+						} else {
+							json["dateStr"] = stock.quote.latestTime;
+							callback(null, json)
+						}
+					});
 				}
-	      		json[key.slice(3)] = e[key];
-	      	}
-	      	json["name"] = body["Meta Data"]["2. Symbol"];
-	      	//get a formatted date
-	      	getStock("AAPL", (err, stock) => {
-	      		if (err) {
-	      			callback(err, null);
-	      		} else {
-	      			json["dateStr"] = stock.quote.latestTime;
-	      			callback(null, json)
-	      		}
-	      	});
-	      }
 	    } else {
-	    	console.log("ERROR (getMarketData) body is null from request");
+	    	//console.log("ERROR (getMarketData) body is null from request");
 	    	callback("ERROR (getMarketData) body is null from request", null);
 	    }
 	});
 }
 
+/*Get Market News!
+*/
+function getNews(callback) {
+	request("https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=" + process.env.NEWS, (err, body, resp) => {
+		if (err) {
+			callback(err, null);
+		} else if (body) {
+			try {
+				body = JSON.parse(body);
+			} catch (e) {
+				callback("ERROR (getNews) JSON.parse failed");
+			}
+			console.log(JSON.stringify(body, null, 2));
+
+		} else {
+			callback("ERROR (getNews) body is null from get request");
+		}
+	});
+}
+
+//getNews((err, res) => console.log(err + res));
 // getMarketData('N100', (err, json) => {
 // 	console.log("hey")
 // 	console.log(JSON.stringify(json, null, 2));
@@ -223,5 +316,6 @@ module.exports = {
 	getStock : getStock,
 	getMarketData : getMarketData,
 	getIndex : getIndex,
-	getVantageChart : getVantageChart
+	getVantageChart : getVantageChart,
+	getIndices : getIndices
 }

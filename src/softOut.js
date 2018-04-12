@@ -5,11 +5,6 @@ const roundTo = require('round-to');
 var search = require('./search');
 var stockCard = require('./stockCard');
 
-
-
-
-
-
 function buildStockCard(stock) {
   if (process.env.STOCKDATA) console.log(JSON.stringify(stock, null, 2));
 
@@ -81,14 +76,27 @@ function buildStockCard(stock) {
 
 /* build a card that shows multiple markets
 */
-function multiMarketCard(data) {
+function multiMarketCard(array) {
+  var body = [];
+  array.forEach(function(line) {
+    console.log(line);
+    var arr = buildMarketCardSlip(line);
+    console.log(arr)
+    arr.forEach(function(obj) {
+      body.push(obj);
+    })
+  })
+  // buildMarketCardSlip(array[0]).forEach(function(el) {
+  //   body.push(el);
+  // });
+
   return {    
     'contentType': 'application/vnd.microsoft.card.adaptive',
     'content': {
         '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
         'type': 'AdaptiveCard',
         'version': '1.0',
-      "body": buildMarketCardSlip(data)
+      "body": body
     }
   }
 }
@@ -203,5 +211,6 @@ function buildMarketCardSlip(data) {
 
 module.exports = {
   buildStockCard: buildStockCard,
-  singleMarketCard : singleMarketCard
+  singleMarketCard : singleMarketCard,
+  multiMarketCard : multiMarketCard
 }

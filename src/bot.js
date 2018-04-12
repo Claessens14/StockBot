@@ -61,6 +61,14 @@ var bot = new builder.UniversalBot(connector, function (session) {
   if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');;
 
   session.sendTyping();
+  //var msg = new builder.Message(session)
+//     .speak('This is the text that will be spoken.')
+//     .inputHint(builder.InputHint.acceptingInput);
+// session.send(msg).endDialog();
+// session.say('Please hold while I calculate a response.', 
+//     'Please hold while I calculate a response.', 
+//     { inputHint: builder.InputHint.ignoringInput }
+// );
 
   //before sending to watson..
   session.message.text = session.message.text.replace(/^#/, "teach me about ");
@@ -84,7 +92,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
       //show marketData!
       if (watsonData.output.hasOwnProperty('action')) {
-        function searchMarket(str) {
+        function buildSlip(str) {
             search.getMarketData(str, (err, data) => {
               if (process.env.MARKETDATA == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(data, null, 2) + '\n________________________________\n');
               if (err) {
@@ -100,12 +108,25 @@ var bot = new builder.UniversalBot(connector, function (session) {
         //send market data!
         if(watsonData.output.action == "showMarket") {
           var str = watsonData.entities[0].value;
-          searchMarket(str);
+          buildSlip(str);
         } else if(watsonData.output.action == "rollout") {
-          searchMarket("DJI");
-          searchMarket("GSPC");
-          searchMarket("IXIC");
+          search.getIndices((err, res) => {
+            if (err) {
+              send(session, "Oops something went wront");
+              console.log(err);
+            } else {
+              var card = softOut.multiMarketCard(res);
+              send(session, null, card);
+            }
+          });
+          // marketBuild("DJI");
+          // marketBuild("GSPC");
+          // marketBuild("IXIC");
         }
+
+        // search.getNews((err, res) => {
+        //   //code for market goes here!
+        // });
       }
 
 
@@ -140,11 +161,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 watsonData.context.lastStock = str;
                 watsonData.context["stock"] = stockJson;
 
-                if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
-                  var msg = new builder.Message(session)
-                    .addAttachment(softOut.buildStockCard(stockJson));
-                  send(session, analysis.reviewStock(stockJson), msg, stockModes);
-                } else {
+                // if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
+                //   var msg = new builder.Message(session)
+                //     .addAttachment(softOut.buildStockCard(stockJson));
+                //   send(session, analysis.reviewStock(stockJson), msg, stockModes);
+                // } else {
                   
                   send(session, null, socialCard.makeHeaderCard(stockJson), stockModes);
                   if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
@@ -153,7 +174,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
                     sendData(session, stockJson, watsonData.output.action);
                   }                
                   send(session, analysis.reviewStock(stockJson), null, stockModes);
-                }
+               // }
               }
             });
           } else if (watsonData.context.lastStock && watsonData.output.action) {
@@ -218,6 +239,7 @@ function sendData(session, stock, action) {
                   chart.grapher(stock, res.month, {"dp": "close", "title" : stock.company.companyName, "length" : "3 Month"}, (err, monthUrl) => {
                     var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
                     send(session, null, cards, stockModes, null, true);
+                    //session.send(cards[0]);
                   });
                 }
               });
@@ -243,7 +265,15 @@ function sendData(session, stock, action) {
 * carousel is set true when in use
 */
 function send(session, val, obj, buttons, top, carousel) {
-  console.log("----------\nSEND: " + val + "-----\n" + obj + "----------\n");
+  if (process.env.SEND) console.log("----------\nSEND: " + val + "-----\n" + obj + "----------\n");
+  var temp =  "\"backgroundImage\": \"https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg,\""
+  // if (obj) {
+  //   var str = JSON.stringify(obj, null, 2);
+  //   //console.log(str)
+  //   obj = JSON.parse(str.replace(/\"container\"/g, temp + "\"container\""));
+  // }
+
+
   /*send the buttons..
   * if str is null then just send buttons
   * if str is set then send it with str, should be used for last one
@@ -302,7 +332,6 @@ function send(session, val, obj, buttons, top, carousel) {
     }
   }
 
-
   if (val) {
     if (typeof val == "string") {
       sendModes(val)
@@ -324,8 +353,7 @@ function send(session, val, obj, buttons, top, carousel) {
 
 }
 
-
- function getEntity(watsonData, entity) {
+function getEntity(watsonData, entity) {
   if (watsonData.entities) {
     for (var i in watsonData.entities) {
       if (watsonData.entities[i].entity == entity) {

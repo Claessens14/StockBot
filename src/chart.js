@@ -46,7 +46,7 @@ function grapher(stock, data, params, callback) {
   //plot image
   plotly.getImage(figure, imgOpts, function (error, imageStream) {
     if (error) callback(error, null);
-    if (!imageSteam) callback("ERROR (plotly.getImage) imageStream is null, aborting", null);
+    if (!imageStream) callback("ERROR (plotly.getImage) imageStream is null, aborting", null);
     var options = {
       min:  1
     , max:  980
@@ -70,6 +70,13 @@ function grapher(stock, data, params, callback) {
   });
 }
 
+
+// var data = [{x:[0,1,2], y:[3,2,1], type: 'bar'}];
+// var graphOptions = {fileopt : "extend", filename : "nodenodenode"};
+
+// plotly.plot(data, graphOptions, function (err, msg) {
+//     console.log(msg);
+// });
 
 
 module.exports = {
