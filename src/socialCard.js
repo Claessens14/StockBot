@@ -185,7 +185,7 @@ module.exports = {
 	makeStatsCard : makeStatsCard,
 	makeEarningsCard : makeEarningsCard,
 	makeFinCard : makeFinCard,
-	makeNewsCard : makeNewsCard,
+	// makeNewsCard : makeNewsCard,
   createNewsCards : createNewsCards,
   makeChartCard : makeChartCard,
   marketNews : marketNews
