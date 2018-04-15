@@ -154,16 +154,29 @@ function makeChartCard(session, stock, url, title, text) {
     ]);
 }
 
-function makeNewsCard(session, source, title, text, img) {
+function marketNews(session, source, title, text, img) {
   if (!text) text = "";
+  function checkStr(str) {
+    if (str) {
+      return str
+    } else {
+      return " ";
+    }
+  }
+  var imgUrl = "";
+  if (img && (img.indexOf(".gif") == -1)) {
+    imgUrl = img;
+  } else {
+    imgUrl = "https://botw-pd.s3.amazonaws.com/styles/logo-original-577x577/s3/0002/1670/brand.gif?itok=IqyVnz-Z";
+  }
   return new builder.HeroCard(session)
-    .title(title)
-    .subtitle(text)
+    .title(checkStr(title))
+    .subtitle(checkStr(text))
     .images([
-        builder.CardImage.create(session, img)
+        builder.CardImage.create(session, imgUrl)
     ])
     .buttons([
-        builder.CardAction.openUrl(session, source, "Open")
+        builder.CardAction.openUrl(session, checkStr(source), "Open")
     ]);
 }
 
@@ -270,5 +283,6 @@ module.exports = {
 	makeFinCard : makeFinCard,
 	makeNewsCard : makeNewsCard,
   createNewsCards : createNewsCards,
-  makeChartCard : makeChartCard
+  makeChartCard : makeChartCard,
+  marketNews : marketNews
 }

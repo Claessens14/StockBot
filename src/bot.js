@@ -117,16 +117,26 @@ var bot = new builder.UniversalBot(connector, function (session) {
             } else {
               var card = softOut.multiMarketCard(res);
               send(session, null, card);
+
+              //add the news
+              search.getNews((err, results) => {
+                //code for market goes here!
+                var news = [];
+                var array = results.articles;
+                // array.forEach(function(el) {
+                //   news.push(socialCard.marketNews(session, el.url, el.title, el.description, el.urlToImage));
+                // });
+                for (var i = 0; i < array.length; i++) {
+                  news.push(socialCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));
+                }
+                send(session, null, news, null, null, true);
+                //console.log(JSON.stringify(res.articles[0], null, 2));
+              });
             }
           });
-          // marketBuild("DJI");
-          // marketBuild("GSPC");
-          // marketBuild("IXIC");
         }
 
-        // search.getNews((err, res) => {
-        //   //code for market goes here!
-        // });
+
       }
 
 
@@ -265,7 +275,7 @@ function sendData(session, stock, action) {
 * carousel is set true when in use
 */
 function send(session, val, obj, buttons, top, carousel) {
-  if (process.env.SEND) console.log("----------\nSEND: " + val + "-----\n" + obj + "----------\n");
+  if (process.env.SEND) console.log("----------\nSEND: " + val + "-----\n" + JSON.stringify(obj, null, 2) + "----------\n");
   var temp =  "\"backgroundImage\": \"https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg,\""
   // if (obj) {
   //   var str = JSON.stringify(obj, null, 2);

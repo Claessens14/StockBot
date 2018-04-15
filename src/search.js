@@ -288,13 +288,14 @@ function getNews(callback) {
 		if (err) {
 			callback(err, null);
 		} else if (body) {
+			var data = {};
 			try {
-				body = JSON.parse(body);
+				data = JSON.parse(body.body);
 			} catch (e) {
 				callback("ERROR (getNews) JSON.parse failed");
 			}
-			console.log(JSON.stringify(body, null, 2));
-
+			callback(null, data)
+			//console.log(JSON.stringify(data, null, 2));
 		} else {
 			callback("ERROR (getNews) body is null from get request");
 		}
@@ -317,5 +318,6 @@ module.exports = {
 	getMarketData : getMarketData,
 	getIndex : getIndex,
 	getVantageChart : getVantageChart,
-	getIndices : getIndices
+	getIndices : getIndices,
+	getNews: getNews
 }

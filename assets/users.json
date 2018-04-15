@@ -7,13 +7,13 @@
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 179,
-      "dialog_request_counter": 179,
+      "dialog_turn_counter": 215,
+      "dialog_request_counter": 215,
       "_node_output_map": {
         "node_2_1521177918907": [
           1,
-          0,
-          1
+          1,
+          0
         ],
         "node_2_1520827543880": [
           1
@@ -22,6 +22,9 @@
           1
         ],
         "node_7_1520476242297": [
+          1
+        ],
+        "Anything else": [
           0
         ]
       },
@@ -29,7 +32,7 @@
       "branch_exited_reason": "completed"
     },
     "user": {
-      "id": "mid.$cAAcRR38D9CZo-9I-IViyoz1XbKh9",
+      "id": "mid.$cAAcRR38D9CZo_DFEe1iyuv8TfPBD",
       "channelId": "facebook",
       "user": {
         "id": "1531011940353275",
