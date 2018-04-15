@@ -79,9 +79,9 @@ function buildStockCard(stock) {
 function multiMarketCard(array) {
   var body = [];
   array.forEach(function(line) {
-    console.log(line);
+    //console.log(line);
     var arr = buildMarketCardSlip(line);
-    console.log(arr)
+    //console.log(arr)
     arr.forEach(function(obj) {
       body.push(obj);
     })
@@ -121,7 +121,7 @@ function singleMarketCard(data) {
 function buildMarketCardSlip(data) {
   var change = roundTo(data.close - data.open, 2);
   var changePercent = roundTo(change / data.open, 2);
-  var name = data.name.replace(/index/gi, "");
+  var name = data.name   //.replace(/index/gi, "");
 
   var todaysSign = "";
   var todaysColor = "";
@@ -135,19 +135,15 @@ function buildMarketCardSlip(data) {
   return [
         {
           "type": "Container",
+          "spacing": "large",
           "items": [
             {
               "type": "TextBlock",
               "text": name,
               "size": "medium",
-              "isSubtle": true
-            },
-            {
-              "type": "TextBlock",
-              "text": data.dateStr,
               "isSubtle": true,
-              "spacing": "none"
             }
+            
           ]
         },
         {
@@ -156,6 +152,7 @@ function buildMarketCardSlip(data) {
           "items": [
             {
               "type": "ColumnSet",
+              "spacing": "none",
               "columns": [
                 {
                   "type": "Column",
@@ -164,9 +161,9 @@ function buildMarketCardSlip(data) {
                     {
                       "type": "TextBlock",
                       "text": String(roundTo(Number(data.close), 2)),
-                      "separator": true,
                       "size": "extraLarge",
-                      "spacing": "large"                      
+                      "spacing": "none"   
+                                    
                     },
                     {
                       "type": "TextBlock",
@@ -182,7 +179,13 @@ function buildMarketCardSlip(data) {
                   "width": "auto",
                   "items": [
                     {
+                      "type": "TextBlock",
+                      "text": data.dateStr,
+                      "isSubtle": true
+                    },
+                    {
                       "type": "FactSet",
+                      "spacing": "none",
                       "facts": [
                         {
                           "title": "Open",
@@ -205,7 +208,6 @@ function buildMarketCardSlip(data) {
           ]
         }
       ]
-      
 }
 
 
