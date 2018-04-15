@@ -13,12 +13,7 @@ var socialCard = require('./socialCard');
 var portfolio = require('./portfolio');
 var format = require('./format');
 
-//var users = require('../assets/users.json');
-
 var users = require('../assets/users.json');
-
-//declare global vars
-var workspace=process.env.WATSON_WORKSPACE_ID;
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -44,37 +39,17 @@ var connector = new builder.ChatConnector({
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
-
-
-/*----------------------------------------------------------------------------------------
-* Bot Storage: This is a great spot to register the private state storage for your bot. 
-* We provide adapters for Azure Table, CosmosDb, SQL Azure, or you can implement your own!
-* For samples and documentation, see: https://github.com/Microsoft/BotBuilder-Azure
-* ---------------------------------------------------------------------------------------- */
-
-// var tableName = 'botdata';
-// var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
-// var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
-
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector, function (session) {
-  if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');;
+  if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');
 
   session.sendTyping();
-  //var msg = new builder.Message(session)
-//     .speak('This is the text that will be spoken.')
-//     .inputHint(builder.InputHint.acceptingInput);
-// session.send(msg).endDialog();
-// session.say('Please hold while I calculate a response.', 
-//     'Please hold while I calculate a response.', 
-//     { inputHint: builder.InputHint.ignoringInput }
-// );
 
   //before sending to watson..
   session.message.text = session.message.text.replace(/^#/, "teach me about ");
 
    var payload = {
-      workspace_id: workspace,
+      workspace_id: process.env.WATSON_WORKSPACE_ID,
       context: getUser(session.message.user.name),    //should be no context value when program starts
       input: { text: session.message.text}
    };
@@ -135,26 +110,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
             }
           });
         }
-
-
       }
-
-
-
-//       var msg = new builder.Message(session);
-//     msg.attachmentLayout(builder.AttachmentLayout.carousel)
-//     msg.attachments([
-//         new builder.HeroCard(session)
-//             .title("Classic White T-Shirt")
-//             .subtitle("100% Soft and Luxurious Cotton")
-//             .text("Price is $25 and carried in sizes (S, M, L, and XL)")
-//             .images([builder.CardImage.create(session, "https://www.stocktrader.com/wp-content/uploads/2007/10/goog-102907.png")])
-//             .buttons([
-//                 builder.CardAction.openUrl(session, "https://www.stocktrader.com/wp-content/uploads/2007/10/goog-102907.png", "Enlarge")
-//             ])
-//     ]);
-
-// session.send(msg);
 
       if (watsonData.context.hasOwnProperty('mode')) {
         var stockModes = ["add to watchlist", "charts", "earnings", "ratios", "financials", "news"];
@@ -170,30 +126,20 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
                 watsonData.context.lastStock = str;
                 watsonData.context["stock"] = stockJson;
-
-                // if ((session.message.address.channelId === "webchat") || (session.message.address.channelId === "emulator")) {
-                //   var msg = new builder.Message(session)
-                //     .addAttachment(softOut.buildStockCard(stockJson));
-                //   send(session, analysis.reviewStock(stockJson), msg, stockModes);
-                // } else {
                   
-                  send(session, null, socialCard.makeHeaderCard(stockJson), stockModes);
-                  if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
+                send(session, null, socialCard.makeHeaderCard(stockJson), stockModes);
+                if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
 
-                  if (watsonData.output.action) {
-                    sendData(session, stockJson, watsonData.output.action);
-                  }                
-                  send(session, analysis.reviewStock(stockJson), null, stockModes);
-               // }
+                if (watsonData.output.action) {
+                  sendData(session, stockJson, watsonData.output.action);
+                }                
+                send(session, analysis.reviewStock(stockJson), null, stockModes);
               }
             });
           } else if (watsonData.context.lastStock && watsonData.output.action) {
             //if there is a stock to talk about and an action
             if (watsonData.output.action) {
               sendData(session, watsonData.context.stock, watsonData.output.action);
-              // var temp = updatePortfolio(session, watsonData, watsonData.output.action);
-              // watsonData.context.portfolio = {};
-              // watsonData.context.portfolio = temp;
             }
           }
         }
@@ -216,7 +162,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
       putUser(session.message.user.name, watsonData.context);
       }
    });
-
 });
 
 function sendData(session, stock, action) {
@@ -272,17 +217,9 @@ function sendData(session, stock, action) {
 * obj is for a specific attachment
 * buttons is for specific button
 * top is for addition buttons to be add
-* carousel is set true when in use
-*/
+* carousel is set true when in use */
 function send(session, val, obj, buttons, top, carousel) {
   if (process.env.SEND) console.log("----------\nSEND: " + val + "-----\n" + JSON.stringify(obj, null, 2) + "----------\n");
-  var temp =  "\"backgroundImage\": \"https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg,\""
-  // if (obj) {
-  //   var str = JSON.stringify(obj, null, 2);
-  //   //console.log(str)
-  //   obj = JSON.parse(str.replace(/\"container\"/g, temp + "\"container\""));
-  // }
-
 
   /*send the buttons..
   * if str is null then just send buttons
@@ -311,24 +248,29 @@ function send(session, val, obj, buttons, top, carousel) {
           ));
       session.send(msg);
     } else if (obj) {
-      //an object is being send
-      if (carousel) {
-        var reply = new builder.Message(session)
-          .attachmentLayout(builder.AttachmentLayout.carousel)
-          .attachments(obj)
+      try {
+        //an object is being send
+        if (carousel) {
+          var reply = new builder.Message(session)
+            .attachmentLayout(builder.AttachmentLayout.carousel)
+            .attachments(obj)
+            .suggestedActions(
+              builder.SuggestedActions.create(
+                session, objArray
+              ));
+          session.send(reply);
+        } else {
+          //send as single attachment
+          var msg = new builder.Message(session)
+          .addAttachment(obj)
           .suggestedActions(
             builder.SuggestedActions.create(
               session, objArray
             ));
-        session.send(reply);
-      } else {
-        var msg = new builder.Message(session)
-        .addAttachment(obj)
-        .suggestedActions(
-          builder.SuggestedActions.create(
-            session, objArray
-          ));
-        session.send(msg);
+          session.send(msg);
+        }
+      } catch (e) {
+        console.log("ERROR (send) sending the object failed!!");
       }
     } else {
       //just send the modes
@@ -341,7 +283,7 @@ function send(session, val, obj, buttons, top, carousel) {
       session.send(msg);
     }
   }
-
+  //if string val or an array of strings
   if (val) {
     if (typeof val == "string") {
       sendModes(val)
@@ -353,6 +295,7 @@ function send(session, val, obj, buttons, top, carousel) {
       sendModes(val[i].replace(/  /g, " "));
     }  
   } 
+  //if object
   if (obj) {
     sendModes();
   }
@@ -363,6 +306,8 @@ function send(session, val, obj, buttons, top, carousel) {
 
 }
 
+/*pass in watson data and get out the entity value
+TODO: passback the first entity if there is more than one found for the entity group*/
 function getEntity(watsonData, entity) {
   if (watsonData.entities) {
     for (var i in watsonData.entities) {
@@ -385,5 +330,3 @@ function putUser(name, data) {
   });
 }
 
-
-//bot.set('storage', tableStorage);

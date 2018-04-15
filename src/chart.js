@@ -10,9 +10,6 @@ cloudinary.config({
   api_secret: process.env.cloudinary_app_secret
 });
 
-
-
-
 function grapher(stock, data, params, callback) {
   var xData = [];
   var yData = [];
@@ -21,7 +18,6 @@ function grapher(stock, data, params, callback) {
     xData.push(day);
     yData.push(data[day][params["dp"]]);
   }
-//console.log(xData + yData);
 
   var trace1 = {
     x: xData,
@@ -69,14 +65,6 @@ function grapher(stock, data, params, callback) {
     }
   });
 }
-
-
-// var data = [{x:[0,1,2], y:[3,2,1], type: 'bar'}];
-// var graphOptions = {fileopt : "extend", filename : "nodenodenode"};
-
-// plotly.plot(data, graphOptions, function (err, msg) {
-//     console.log(msg);
-// });
 
 
 module.exports = {

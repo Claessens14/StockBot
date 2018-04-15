@@ -1,37 +1,7 @@
 var request = require('request');
 require('dotenv').config();
 
-function getPrice(str, callback) {
-	getStock(str, (err, quote) => {
-		if (err) {
-			callback(err, null);
-		} else {
-			var json = quote;
-			callback(null, json[str].quote.latestPrice);
-		}
-	});
-}
-
-function getChartData(str, callback) {
-	getStock(str, (err, stock) => {
-		if (err) {
-			callback(err, null);
-		} else {
-			var json = stock;
-			//console.log(stock);
-			var Xarray = [];
-			var Yarray = [];
-			json[str].chart.forEach(function(element) {
-				//console.log(element.close);
-				Xarray.push(element.date);
-				Yarray.push(element.close);
-			});
-			callback(null, {Xarray, Yarray});
-		}
-	});
-}
-
-/* Get stock data from vantage, where chart formats are pre made
+/* GET CHART DATA from vantage, where chart formats are pre made
 * str : ticker symbol
 * type : SMA, TIME_SERIES_DAILY
 * length : 365, 90
@@ -98,6 +68,7 @@ function getVantageChart(str, type, length, interval, callback) {
 	});
 }
 
+// TEST STOCK CHART DATA
 // getVantageChart("MMM", null, null, null, (err, res) => {
 // 	var i = 1;
 // 	for (var key in res.month) {
@@ -124,62 +95,9 @@ function getStock(str, callback) {
 	});
 }
 
-/* get the stock index. series is the time series
-* callback(open, close)
-*/
-function getIndex(symbol, series,  callback) {
-	request("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + symbol +  "&interval=" + series + "min&apikey=your_api_key&outputsize=full", function (err, resp, body) {
-		if (err) {
-			callback(err, null);
-		} else {
-			// try {
-			// 	body = JSON.parse(body);
-			// } catch (e) {
-			// 	callback("ERROR (getIndex) JSON.parse failed!", null);
-			// }
-			function findData(body, cb) {
-				var openNum = 0;
-				var closeNum = 0;
-				var mostRecent = true
-				var today = "";
-				var hold = "";
-				//console.log(body["Time Series (60min)"]);
-				var data = body["Time Series (" + series + "min)"]
-				try {
-					for (var line in data) {
-						//console.log(data[line]);
-						if (mostRecent) {
-							mostRecent = false;
-							data[line]["4. close"]
-							closeNum = data[line]["4. close"];
-							//console.log(line.split() );
-							today = line.split(" ")[0];
-							//console.log(today);
 
-						} else {
-							if (line.match(today)) {
-								hold = line;
-							} else {
-								openNum = data[hold]["1. open"];
-								throw "Got Index Data";
-							}
-						}
-					}
-				} catch (e) {
-					console.log(e);
-					cb(openNum, closeNum)
-				}
-			}
-
-			var log = function (day, open, close) {
-				console.log("day: " + day + ", Open " + open + ", close: " + close);
-			}
-			findData(body, callback);
-		}
-	});
-}
-
-/* get the price of the MAJOR INDICES (DOW, S&P, NASDAQ) in parrellel
+/* GET MAJOR INDICES PRICE DATA in PARALLEL
+* callback (err, res)
 */
 function getIndices(callback) {
 	function getData(symbol) {
@@ -236,8 +154,9 @@ function getIndices(callback) {
 	  callback(values);
 	});
 }
-
-
+/*GET CHOSEN STOCK INDEX. series is the time series
+callback(err, json)
+*/
 function getMarketData(symbol, callback) {
 	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
 	    if (err) {
@@ -281,8 +200,8 @@ function getMarketData(symbol, callback) {
 	});
 }
 
-/*Get Market News!
-*/
+/*GET MARKET NEWS and send back the data
+TODO : append a source tag to the end*/
 function getNews(callback) {
 	request("https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=" + process.env.NEWS, (err, body, resp) => {
 		if (err) {
@@ -302,21 +221,9 @@ function getNews(callback) {
 	});
 }
 
-//getNews((err, res) => console.log(err + res));
-// getMarketData('N100', (err, json) => {
-// 	console.log("hey")
-// 	console.log(JSON.stringify(json, null, 2));
-// });
-
-
-//getIndex('^GSPC', "1");
-
 module.exports = {
-	getPrice : getPrice,
-	getChartData : getChartData,
 	getStock : getStock,
 	getMarketData : getMarketData,
-	getIndex : getIndex,
 	getVantageChart : getVantageChart,
 	getIndices : getIndices,
 	getNews: getNews
