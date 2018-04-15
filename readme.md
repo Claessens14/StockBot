@@ -18,6 +18,10 @@ The lastest stable version of the app can be tested [here](https://webchat.botfr
 * app.js is where the program is run and controlled from
 * search.js is where the stock market api is called and json is returned
 
+## Before Deployment
+1. Check that the deployment is stable!!
+2. Go to bot.js to change the credentails to prod
+
 ## Resources
 
 Open the [bot card editor](http://adaptivecards.io/visualizer/index.html?hostApp=Facebook%20(Bot%20Framework)) and copy the example json into the editor to make card that can be displayed to the user.
@@ -32,4 +36,6 @@ Example Stock [Data](https://api.iextrading.com/1.0/stock/aap/batch?types=compan
 
 Upload the xml map to https://draw.io
 
-Advantage Index [data](https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=^GSPC&interval=60min&apikey=your_api_key&outputsize=full) and [site](https://www.alphavantage.co/documentation/) and [reference](https://www.alpha-vantage.community/post/world-indexes-9627480?highlight=gspc)
+Advantage Index [data](https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=^GSPC&interval=60min&apikey=your_api_key&outputsize=full) and [site](https://www.alphavantage.co/documentation/) and [reference](https://www.alpha-vantage.community/post/world-indexes-9627480?highlight=gspc)  
+
+Market news if from [cnbc](https://newsapi.org/s/cnbc-api)

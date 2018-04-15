@@ -10,9 +10,6 @@ cloudinary.config({
   api_secret: process.env.cloudinary_app_secret
 });
 
-
-
-
 function grapher(stock, data, params, callback) {
   var xData = [];
   var yData = [];
@@ -21,7 +18,6 @@ function grapher(stock, data, params, callback) {
     xData.push(day);
     yData.push(data[day][params["dp"]]);
   }
-//console.log(xData + yData);
 
   var trace1 = {
     x: xData,
@@ -46,19 +42,20 @@ function grapher(stock, data, params, callback) {
   //plot image
   plotly.getImage(figure, imgOpts, function (error, imageStream) {
     if (error) callback(error, null);
+    if (!imageStream) callback("ERROR (plotly.getImage) imageStream is null, aborting", null);
     var options = {
       min:  1
     , max:  980
     , integer: true
     }
     var name = "./bin/" + rn(options) + ".png";
-      var fileStream = fs.createWriteStream(name)
-        .on('finish', () => upload());
-      imageStream.pipe(fileStream);
+    var fileStream = fs.createWriteStream(name)
+      .on('finish', () => upload());
+    imageStream.pipe(fileStream);
 
-      //upload image
-      function upload() {
-        cloudinary.uploader.upload(name, function(result) { 
+    //upload image
+    function upload() {
+      cloudinary.uploader.upload(name, function(result) { 
         if (result) {
           callback(null, result.url);
         } else {
@@ -68,7 +65,6 @@ function grapher(stock, data, params, callback) {
     }
   });
 }
-
 
 
 module.exports = {

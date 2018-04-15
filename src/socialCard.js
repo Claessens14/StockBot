@@ -5,7 +5,15 @@ const roundTo = require('round-to');
 var search = require('./search');
 var stockCard = require('./stockCard');
 
+/*----------------------------------------------------------------------
+Wrap around the contents of the adaptive card
+-the adaptive card was originally planned to be different between facebook
+and webchat, but now everything is compatable in facebook, so this is a 
+bit redundant
+----------------------------------------------------------------------*/
 
+/*The first card a user see when the found a stock
+  return an adaptive card */
 function makeHeaderCard(stock) {
   if (process.env.STOCKDATA) console.log(JSON.stringify(stock, null, 2));
   var todaysSign = "";
@@ -24,11 +32,11 @@ function makeHeaderCard(stock) {
         'type': 'AdaptiveCard',
         'version': '1.0',
       	"body": stockCard.makeHeaderCard(stock, todaysMove, todaysColor) 
-
   	}
   } 
 }
-
+/*the statistics card
+  return adaptive card */
 function makeStatsCard(stock) {
   return {
     'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -42,6 +50,8 @@ function makeStatsCard(stock) {
   } 
 }  
 
+/*earnings card
+  return adaptive card */
 function makeEarningsCard(stock) {
   return {
     'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -54,19 +64,8 @@ function makeEarningsCard(stock) {
   } 
 }   
 
-function makeNewsCard(stock) {
-  return {
-    'contentType': 'application/vnd.microsoft.card.adaptive',
-    'content': {
-        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
-        'type': 'AdaptiveCard',
-        'version': '1.0',
-      	"body": stockCard.makeNewsCard(stock)
-  	}
-  } 
-}
-
-
+/* STOCK NEWS
+  return an array of hero cards*/
 function createNewsCards(session, stock) {
     function checkStr(str) {
       if (str) {
@@ -75,7 +74,6 @@ function createNewsCards(session, stock) {
         return " ";
       }
     }
-
     function stripName(str) {
         str = str.replace(/\./g, "");
         str = str.replace(/,/g, "");
@@ -95,7 +93,6 @@ function createNewsCards(session, stock) {
         str = str.replace(/ /gi, "");
         return str;
     }
-
     var relevant = []; 
     var irrelevant = []
     var company = stripName(stock.company.companyName);
@@ -126,7 +123,8 @@ function createNewsCards(session, stock) {
     }
   }
 
-
+/* Stock finicials
+  return an adaptive card*/
 function makeFinCard(stock) {
   return {
     'contentType': 'application/vnd.microsoft.card.adaptive',
@@ -139,6 +137,8 @@ function makeFinCard(stock) {
   } 
 }
 
+/*STOCK CHART
+  return an hero card with the stock chart*/
 function makeChartCard(session, stock, url, title, text) {
   if (!text) text = "";
   return new builder.HeroCard(session)
@@ -149,101 +149,9 @@ function makeChartCard(session, stock, url, title, text) {
     ])
     .buttons([
         builder.CardAction.openUrl(session, url, "open")
-  ]);
+    ]);
 }
-/*
-function buildPortCard(oldStock, newStock) {
-  var change = roundTo(data.close - data.open, 2);
-  var changePercent = roundTo(change / data.open, 2);
 
-  var todaysSign = "";
-  var todaysColor = "";
-  if (String(change).match("-")) {
-      todaysMove = "▼";
-      todaysColor = "attention";
-  } else {
-      todaysMove = "▲";
-      todaysColor = "good";
-  }
-  return {    
-    'contentType': 'application/vnd.microsoft.card.adaptive',
-    'content': {
-        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
-        'type': 'AdaptiveCard',
-        'version': '1.0',
-      "body": [
-        {
-          "type": "Container",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": oldStock.name,
-              "size": "medium",
-              "isSubtle": true
-            },
-            {
-              "type": "TextBlock",
-              "text": data.dateStr,
-              "isSubtle": true
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "spacing": "none",
-          "items": [
-            {
-              "type": "ColumnSet",
-              "columns": [
-                {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": data.close,
-                      "size": "extraLarge"
-                    },
-                    {
-                      "type": "TextBlock",
-                      "text": todaysMove+change+" ("+changePercent+"%)",
-                      "size": "small",
-                      "color": todaysColor,
-                      "spacing": "none"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "auto",
-                  "items": [
-                    {
-                      "type": "FactSet",
-                      "facts": [
-                        {
-                          "title": "Open",
-                          "value": data.open
-                        },
-                        {
-                          "title": "High",
-                          "value": data.high
-                        },
-                        {
-                          "title": "Low",
-                          "value": data.low
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  }
-}*/
 
 
 module.exports = {
@@ -251,7 +159,8 @@ module.exports = {
 	makeStatsCard : makeStatsCard,
 	makeEarningsCard : makeEarningsCard,
 	makeFinCard : makeFinCard,
-	makeNewsCard : makeNewsCard,
+	// makeNewsCard : makeNewsCard,
   createNewsCards : createNewsCards,
   makeChartCard : makeChartCard
+
 }
