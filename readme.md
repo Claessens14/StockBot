@@ -36,4 +36,6 @@ Example Stock [Data](https://api.iextrading.com/1.0/stock/aap/batch?types=compan
 
 Upload the xml map to https://draw.io
 
-Advantage Index [data](https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=^GSPC&interval=60min&apikey=your_api_key&outputsize=full) and [site](https://www.alphavantage.co/documentation/) and [reference](https://www.alpha-vantage.community/post/world-indexes-9627480?highlight=gspc)
+Advantage Index [data](https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=^GSPC&interval=60min&apikey=your_api_key&outputsize=full) and [site](https://www.alphavantage.co/documentation/) and [reference](https://www.alpha-vantage.community/post/world-indexes-9627480?highlight=gspc)  
+
+Market news if from [cnbc](https://newsapi.org/s/cnbc-api)

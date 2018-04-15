@@ -7,10 +7,9 @@ require('dotenv').config();
 
 var search = require('./search');
 var chart = require('./chart');
-var softOut = require('./softOut');
+var marketCard = require('./marketCard');
 var analysis = require('./analysis');
 var socialCard = require('./socialCard');
-var portfolio = require('./portfolio');
 var format = require('./format');
 
 var users = require('../assets/users.json');
@@ -60,12 +59,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
       if (err) {
          session.send(err);
       } else {
-
+      //SEND WATSON RESPONSE
       if (watsonData.output.text && watsonData.output.text != "") {
          send(session, watsonData.output.text);
       }
 
-      //show marketData!
+      ////SEND MARKET UPDATE!
       if (watsonData.output.hasOwnProperty('action')) {
         function buildSlip(str) {
             search.getMarketData(str, (err, data) => {
@@ -74,13 +73,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 console.log("ERROR (searchMarket) there was an error in getting the market data" + err);
                 send(session, "Sorry but something went wrong");
               } else {
-                var card = softOut.singleMarketCard(data);
+                var card = marketCard.singleMarketCard(data);
                 send(session, null, card);
                 if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
               }
             });
         }
-        //send market data!
         if(watsonData.output.action == "showMarket") {
           var str = watsonData.entities[0].value;
           buildSlip(str);
@@ -90,22 +88,18 @@ var bot = new builder.UniversalBot(connector, function (session) {
               send(session, "Oops something went wront");
               console.log(err);
             } else {
-              var card = softOut.multiMarketCard(res);
+              var card = marketCard.multiMarketCard(res);
               send(session, null, card);
 
-              //add the news
+              //SEND MARKET NEWS
               search.getNews((err, results) => {
                 //code for market goes here!
                 var news = [];
                 var array = results.articles;
-                // array.forEach(function(el) {
-                //   news.push(socialCard.marketNews(session, el.url, el.title, el.description, el.urlToImage));
-                // });
                 for (var i = 0; i < array.length; i++) {
-                  news.push(socialCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));
+                  news.push(marketCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));
                 }
                 send(session, null, news, null, null, true);
-                //console.log(JSON.stringify(res.articles[0], null, 2));
               });
             }
           });

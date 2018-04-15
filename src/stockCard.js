@@ -4,6 +4,10 @@ const roundTo = require('round-to');
 
 var dataToStr = require('./format.js').dataToStr;
 
+/*----------------------------------------------------------------------------------
+Build all the adaptive card items
+----------------------------------------------------------------------------------*/
+
 function makeHeaderCard(stock, todaysMove, todaysColor) {
 	return [
         {
@@ -11,8 +15,6 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
           "spacing": "none",
           "items": [
             {
-              //          "backgroundImage": "https://www.samys.com/imagesproc/L2ltYWdlcy9wcm9kdWN0L21haW4vUy0wMDg2MDh4MTAwMC5qcGc=_H_SH400_MW400.jpg",
-
               "type": "ColumnSet",
               "columns": [
                 {
@@ -456,12 +458,7 @@ function makeNewsCard(stock) {
                                 }
                             ]
                         }
-                    ]/*,
-                    "selectAction": {
-                    "type": "Action.OpenUrl",
-                    "title": "View Friday",
-                    "url": news[index].url
-                  }*/
+                    ]
                 }
             )
         }
