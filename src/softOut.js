@@ -122,7 +122,7 @@ function buildMarketCardSlip(data) {
   var change = roundTo(data.close - data.open, 2);
   var changePercent = roundTo(change / data.open, 2);
   var name = data.name   //.replace(/index/gi, "");
-
+  if (name.match(/Dow Jones Industrial Average/gi) != -1) name = name.replace(/index/gi, "");
   var todaysSign = "";
   var todaysColor = "";
   if (String(change).match("-")) {
@@ -133,22 +133,21 @@ function buildMarketCardSlip(data) {
       todaysColor = "good";
   }
   return [
+        // {
+        //   "type": "Container",
+        //   "spacing": "large",
+        //   "items": [
+        //     {
+        //       "type": "TextBlock",
+        //       "text": name,
+        //       "size": "medium",
+        //       "isSubtle": true,
+        //     }
+        //   ]
+        // },
         {
           "type": "Container",
           "spacing": "large",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": name,
-              "size": "medium",
-              "isSubtle": true,
-            }
-            
-          ]
-        },
-        {
-          "type": "Container",
-          "spacing": "none",
           "items": [
             {
               "type": "ColumnSet",
@@ -158,6 +157,12 @@ function buildMarketCardSlip(data) {
                   "type": "Column",
                   "width": "stretch",
                   "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": name,
+                      "size": "medium",
+                      "isSubtle": true,
+                    },
                     {
                       "type": "TextBlock",
                       "text": String(roundTo(Number(data.close), 2)),
