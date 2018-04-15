@@ -121,6 +121,7 @@ function singleMarketCard(data) {
 function buildMarketCardSlip(data) {
   var change = roundTo(data.close - data.open, 2);
   var changePercent = roundTo(change / data.open, 2);
+  var name = data.name.replace(/index/gi, "");
 
   var todaysSign = "";
   var todaysColor = "";
@@ -137,14 +138,15 @@ function buildMarketCardSlip(data) {
           "items": [
             {
               "type": "TextBlock",
-              "text": data.name,
+              "text": name,
               "size": "medium",
               "isSubtle": true
             },
             {
               "type": "TextBlock",
               "text": data.dateStr,
-              "isSubtle": true
+              "isSubtle": true,
+              "spacing": "none"
             }
           ]
         },
@@ -161,13 +163,15 @@ function buildMarketCardSlip(data) {
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": data.close,
-                      "size": "extraLarge"
+                      "text": String(roundTo(Number(data.close), 2)),
+                      "separator": true,
+                      "size": "extraLarge",
+                      "spacing": "large"                      
                     },
                     {
                       "type": "TextBlock",
                       "text": todaysMove+change+" ("+changePercent+"%)",
-                      "size": "small",
+                      "size": "medium",
                       "color": todaysColor,
                       "spacing": "none"
                     }
@@ -182,15 +186,15 @@ function buildMarketCardSlip(data) {
                       "facts": [
                         {
                           "title": "Open",
-                          "value": data.open
+                          "value": String(roundTo(Number(data.open), 2))
                         },
                         {
                           "title": "High",
-                          "value": data.high
+                          "value": String(roundTo(Number(data.high), 2))
                         },
                         {
                           "title": "Low",
-                          "value": data.low
+                          "value": String(roundTo(Number(data.low), 2))
                         }
                       ]
                     }

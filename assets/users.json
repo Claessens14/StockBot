@@ -7,29 +7,29 @@
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 148,
-      "dialog_request_counter": 148,
+      "dialog_turn_counter": 163,
+      "dialog_request_counter": 163,
       "_node_output_map": {
         "node_2_1521177918907": [
-          1,
-          1,
-          0
+          0,
+          0,
+          1
         ],
         "node_2_1520827543880": [
-          1
+          0
         ],
         "node_2_1522114814887": [
           1
         ],
         "node_7_1520476242297": [
-          0
+          1
         ]
       },
       "branch_exited": true,
       "branch_exited_reason": "completed"
     },
     "user": {
-      "id": "mid.$cAAcRR38D9CZov_lWAFijrQNw_kiq",
+      "id": "mid.$cAAcRR38D9CZo-7nQL1iynSHRQvm0",
       "channelId": "facebook",
       "user": {
         "id": "1531011940353275",
@@ -45,7 +45,7 @@
       },
       "serviceUrl": "https://facebook.botframework.com"
     },
-    "mode": "stock",
+    "mode": "market",
     "lastStock": "GE",
     "stock": {
       "company": {
