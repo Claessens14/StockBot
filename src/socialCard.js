@@ -64,20 +64,6 @@ function makeEarningsCard(stock) {
   } 
 }   
 
-/*news card (DEPRECIRATED?)
-  return adaptive card */
-function makeNewsCard(stock) {
-  return {
-    'contentType': 'application/vnd.microsoft.card.adaptive',
-    'content': {
-        '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
-        'type': 'AdaptiveCard',
-        'version': '1.0',
-      	"body": stockCard.makeNewsCard(stock)
-  	}
-  } 
-}
-
 /* STOCK NEWS
   return an array of hero cards*/
 function createNewsCards(session, stock) {
