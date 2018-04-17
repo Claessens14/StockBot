@@ -125,16 +125,20 @@ function getIndices(callback) {
 					var high = "";
 					var low = "";
 					var volume = "";
-					var mostRecent = true;
+					var lastClose = "";
+					var i = 0;
 					for (var line in data) {
-						if (mostRecent) {
-							mostRecent = false;
+						if (i == 0) {
+							i++;
 							open = data[line]["1. open"];
 							close = data[line]["4. close"];
 							high = data[line]["2. high"];
 							low = data[line]["3. low"];
 							volume = data[line]["5. volume"];
-							resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume});
+						} else if (i == 1) {
+							lastClose = data[line]["4. close"];
+							resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume, "lastClose" : lastClose});
+							i++;
 						}
 						
 					}

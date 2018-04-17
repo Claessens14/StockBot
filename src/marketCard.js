@@ -77,8 +77,8 @@ function singleMarketCard(data) {
 /*build the body of the card
 */
 function buildMarketCardSlip(data) {
-  var change = roundTo(data.close - data.open, 2);
-  var changePercent = roundTo(change / data.open, 2);
+  var change = roundTo(data.close - data.lastClose, 2);
+  var changePercent = roundTo(change * 100/ data.lastClose, 2);
   var name = data.name   //.replace(/index/gi, "");
   if (name.match(/Dow Jones Industrial Average/gi) != -1) name = name.replace(/index/gi, "");
   var todaysSign = "";

@@ -769,22 +769,22 @@
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 66,
-      "dialog_request_counter": 66,
+      "dialog_turn_counter": 72,
+      "dialog_request_counter": 72,
       "_node_output_map": {
         "node_2_1521177918907": [
-          1,
           0,
-          1
+          1,
+          0
         ],
         "node_2_1520827543880": [
-          1
+          0
         ],
         "node_2_1522114814887": [
           0
         ],
         "node_7_1520476242297": [
-          1
+          0
         ],
         "Anything else": [
           0
@@ -794,20 +794,20 @@
       "branch_exited_reason": "completed"
     },
     "user": {
-      "id": "5ij795bm70nl",
+      "id": "ccgd4gie619k",
       "channelId": "emulator",
       "user": {
         "id": "default-user",
         "name": "User"
       },
       "conversation": {
-        "id": "jmm4c3i4d8b6"
+        "id": "laje11611dd8"
       },
       "bot": {
         "id": "default-bot",
         "name": "Bot"
       },
-      "serviceUrl": "https://80f465d9.ngrok.io"
+      "serviceUrl": "https://15315da8.ngrok.io"
     },
     "mode": "market",
     "lastStock": "FB",
