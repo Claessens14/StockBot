@@ -8,8 +8,9 @@ var dataToStr = require('./format.js').dataToStr;
 Build all the adaptive card items
 ----------------------------------------------------------------------------------*/
 
-function makeHeaderCard(stock, todaysMove, todaysColor) {
-	return [
+function makeHeaderCard(stock, todaysMove, todaysMovePercent, todaysColor) {
+  var companyName = stock.company.companyName.replace(/\(the\)/gi, "");
+  return [
         {
           "type": "Container",
           "spacing": "none",
@@ -23,7 +24,7 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": stock.company.companyName,
+                      "text": companyName,
                       "weight": "bolder",
                       "size": "medium"
                     },
@@ -34,7 +35,7 @@ function makeHeaderCard(stock, todaysMove, todaysColor) {
                     },
                     {
                       "type": "TextBlock",
-                      "text": todaysMove+stock.quote.change+" ("+stock.quote.changePercent+"%)",
+                      "text": todaysMove+stock.quote.change+" ("+ todaysMovePercent +"%)",
                       "size": "medium",
                       "color": todaysColor,
                       "spacing": "none"
@@ -151,6 +152,11 @@ function makeStatsCard(stock) {
           "spacing": "none",
           "items": [
             {
+              "type": "TextBlock",
+              "text": "Stats",
+              "size": "extraLarge"
+            },
+            {
               "type": "ColumnSet",
               "columns": [
                 {
@@ -254,6 +260,11 @@ function makeFinCard(stock) {
       {
         "type": "Container",
         "items": [
+          {
+            "type": "TextBlock",
+            "text": "Financials",
+            "size": "extraLarge"
+          },
           {
             "type": "FactSet",
             "facts": [ 
@@ -365,6 +376,11 @@ function makeEarningsCard(stock) {
       {
         "type": "Container",
         "items": [
+          {
+            "type": "TextBlock",
+            "text": "Earnings",
+            "size": "extraLarge"
+          },
           {
             "type": "FactSet",
             "facts": [ 

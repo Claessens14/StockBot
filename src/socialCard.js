@@ -18,6 +18,7 @@ function makeHeaderCard(stock) {
   if (process.env.STOCKDATA) console.log(JSON.stringify(stock, null, 2));
   var todaysSign = "";
   var todaysColor = "";
+  var todaysMovePercent = roundTo(stock.quote.changePercent * 100, 2)
   if (String(stock.quote.change).match("-")) {
       todaysMove = "▼";
       todaysColor = "attention";
@@ -31,7 +32,7 @@ function makeHeaderCard(stock) {
         '$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
         'type': 'AdaptiveCard',
         'version': '1.0',
-      	"body": stockCard.makeHeaderCard(stock, todaysMove, todaysColor) 
+      	"body": stockCard.makeHeaderCard(stock, todaysMove, todaysMovePercent, todaysColor) 
   	}
   } 
 }
@@ -68,8 +69,8 @@ function makeEarningsCard(stock) {
   return an array of hero cards*/
 function createNewsCards(session, stock) {
     function checkStr(str) {
-      if (str) {
-        return str
+      if (str && str != "No summary available.") {
+        return str.replace(/    /g, " ").replace(/   /g, " ").replace(/  /g, " ");
       } else {
         return " ";
       }
@@ -93,6 +94,7 @@ function createNewsCards(session, stock) {
         str = str.replace(/ /gi, "");
         return str;
     }
+
     var relevant = []; 
     var irrelevant = []
     var company = stripName(stock.company.companyName);

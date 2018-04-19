@@ -107,7 +107,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
       if (watsonData.context.hasOwnProperty('mode')) {
-        var stockModes = ["add to watchlist", "charts", "earnings", "ratios", "financials", "news"];
+        var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
         if(watsonData.context.mode == "stock") {
           var str = getEntity(watsonData, "SP500")
           var stock = {};
@@ -159,7 +159,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 function sendData(session, stock, action) {
-  var stockModes = ["add to wishlist", "charts", "earnings", "ratios", "financials", "news"];
+  var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
   if (stock) {
     var card = {};
     if (action == "wantStats") {
@@ -179,13 +179,13 @@ function sendData(session, stock, action) {
               console.log(err)
               send(session, "Sorry but I can't seem to retrieve that stock data", null, stockModes);
             } else {
-
-              chart.grapher(stock, res.year, {"dp": "close", "title" : stock.company.companyName, "length" : "1 Year"}, (err, yearUrl) => {
+              var companyName = stock.company.companyName.replace(/\(the\)/gi, "");
+              chart.grapher(stock, res.year, {"dp": "close", "title" : companyName, "length" : "1 Year"}, (err, yearUrl) => {
                 if (err) {
                   console.log(err)
                   send(session, "Sorry but I can't seem to build a graph", null, stockModes);
                 } else {
-                  chart.grapher(stock, res.month, {"dp": "close", "title" : stock.company.companyName, "length" : "3 Month"}, (err, monthUrl) => {
+                  chart.grapher(stock, res.month, {"dp": "close", "title" : companyName, "length" : "3 Month"}, (err, monthUrl) => {
                     var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
                     send(session, null, cards, stockModes, null, true);
                     //session.send(cards[0]);
@@ -221,7 +221,7 @@ function send(session, val, obj, buttons, top, carousel) {
   * if buttons is set then use it*/
   function sendModes(str) {
     //build mode buttons
-    var modes = ["quote", "educate", "market", "watchlist", "help"];
+    var modes = ["Quote", "Market", "Help!"];
     if ((buttons && buttons[0]) && top) {
       modes = buttons.concat(modes);
     } else if (buttons && buttons[0]) {
