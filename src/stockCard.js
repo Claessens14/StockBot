@@ -384,18 +384,9 @@ function makeEarningsCard(stock) {
                 "items": [
                   {
                     "type": "TextBlock",
-                    "text": "Earnings",
+                    "text": "Earnings:   " + earn[i].fiscalPeriod,
                     "size": "extraLarge",
                     "horizontalAlignment": "left"
-                  }
-                ],
-                "type": "Column",
-                "items": [
-                  {
-                    "type": "TextBlock",
-                    "text": "Q",
-                    "size": "extraLarge",
-                    "horizontalAlignment": "right"
                   }
                 ]
               }
