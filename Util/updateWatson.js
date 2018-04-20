@@ -45,30 +45,35 @@ function iexLoad() {
   if (iex) {
     for (var index in iex) {
       if ((iex[index].name != null) && (iex[index].symbol != null)) {
-        var syn = synonyms(iex[index].name, iex[index].symbol)
-        entities.push({
-            type: "synonyms",
-            value: iex[index].symbol,
-            synonyms: syn
-        });
-        
-        fs.appendFile('./assets/names.csv', syn[0] + ', ' + syn[syn.length -1] + '\n', function (err) {
-          if (err) throw err;
-          //console.log('Saved!');
-        });
+        if ((iex[index].type == "cs") && (iex[index].isEnabled == true)) {
+          var syn = synonyms(iex[index].name, iex[index].symbol)
+          entities.push({
+              type: "synonyms",
+              value: iex[index].symbol,
+              synonyms: syn
+          });
+          
+          fs.appendFile('./assets/namesv1.csv', syn[0] + ', ' + syn[syn.length -1] + '\n', function (err) {
+            if (err) throw err;
+            //console.log('Saved!');
+          });
+        }
       }
     }
-  params.entity= 'iexV1',
+  params.entity= 'iexStock',
   params.values= entities  
 } else {
     console.log("ERROR : (iexLoad) iex is null");
   }
 }
 
-//iexLoad()
-//console.log(entities);
+iexLoad()
+console.log(entities);
 
-/*this function is meant to find reference data from iex, such as sector and industry labels*/
+/* DATA GATHER
+  -does NOT upload to watson
+  this function is meant to find reference data from iex, 
+  such as sector and industry labels*/
 function gatherData() {
   var sector = [];
   var industry = [];
@@ -120,25 +125,26 @@ function gatherData() {
 
 //add to array, but dont allow duplicates
 function addTo(array, addStr) {
-        function check(checkArray, checkStr) {
-            try {
-              checkArray.forEach(function(el) {
-                if (el.toLowerCase() == checkStr.toLowerCase()) {
-                    throw el;
-                }
-              });
-              return true;
-            } catch (e) {
-              return false;
-            }
-        }
-        if (check(array, addStr)) {
-            array.push(addStr);
-            newStr = addStr;
-            return array;
-        } else {
-            return array;
-        }
+  function check(checkArray, checkStr) {
+      try {
+        checkArray.forEach(function(el) {
+          if (el.toLowerCase() == checkStr.toLowerCase()) {
+              throw el;
+          }
+        });
+        return true;
+      } catch (e) {
+        return false;
+      }
+  }
+  if (check(array, addStr)) {
+    addStr = addStr.slice(0, 63);  
+    array.push(addStr);
+      newStr = addStr;
+      return array;
+  } else {
+      return array;
+  }
 }
 
 //DERIVE SYNONYMS
@@ -152,17 +158,17 @@ function synonyms(str, symbol) {
       console.log("(synonyms) ERROR symbol is null, returning null");
       return null;
     }
+    str = str.slice(0, 63);
     var newStr = str;
+    var list = [symbol];
+    if (str != symbol) list.push(str);
 
-
-    var list = [symbol, str];
-
-    //if b shares then, remove tags and treat them as default
-    if (symbol.match(/-B$/g) || symbol.match(/.B$/g)) {
-      newStr = newStr.split('(The)')[0]
-      //console.log("SPLIT newStr = " + newStr);
-    }
-
+    // //if b shares then, remove tags and treat them as default
+    // if (symbol.match(/-B$/g) || symbol.match(/.B$/g)) {
+    //   newStr = newStr.split('(The)')[0]
+    //   //console.log("SPLIT newStr = " + newStr);
+    // }
+    list = addTo(list, newStr.replace(/.com/gi, ""));
     list = addTo(list, newStr.replace(/\./g, ""));
     list = addTo(list, newStr.replace(/,/g, ""));
     list = addTo(list, newStr.replace(/!/g, ""));
@@ -175,7 +181,6 @@ function synonyms(str, symbol) {
     list = addTo(list, newStr.replace(/ corp$/gi, ""));
     list = addTo(list, newStr.replace(/ co$/gi, ""));
     list = addTo(list, newStr.replace(/ inc/gi, ""));
-    list = addTo(list, newStr.replace(/.com$/gi, ""));
     list = addTo(list, newStr.replace(/ Ltd$/gi, ""));
     list = addTo(list, newStr.replace(/ group$/gi, ""));
     list = addTo(list, newStr.replace(/^the /gi, ""));
@@ -207,12 +212,11 @@ function synonyms(str, symbol) {
 //console.log(entities);
 
 
-// conversation.createEntity(params, function(err, response) {
-//   if (err) {
-//     console.error(err);
-//   } else {
-//     console.log(JSON.stringify(response, null, 2));
-//   }
-
-// });
+conversation.createEntity(params, function(err, response) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(JSON.stringify(response, null, 2));
+  }
+});
 

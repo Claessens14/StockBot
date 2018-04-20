@@ -9,6 +9,12 @@
             "request": "launch",
             "name": "Bash Launch",
             "program": "${workspaceFolder}/app.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Update Watson",
+            "program": "${workspaceFolder}/Util/updateWatson.js"
         }
    ]
 }
