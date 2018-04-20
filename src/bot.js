@@ -114,8 +114,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
           //if a new search then show header
           if (str) {
             search.getStock(str, (err, stockJson) => {
-              if (err) {
+              if (err || stockJson == null) {
                 console.log(err);
+                send(session, "Sorry but I couldn't pull up that stocks information");
               } else {
 
                 watsonData.context.lastStock = str;

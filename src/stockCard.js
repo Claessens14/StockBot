@@ -377,9 +377,29 @@ function makeEarningsCard(stock) {
         "type": "Container",
         "items": [
           {
-            "type": "TextBlock",
-            "text": "Earnings",
-            "size": "extraLarge"
+            "type": "ColumnSet",
+            "columns": [
+              {
+                "type": "Column",
+                "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Earnings",
+                    "size": "extraLarge",
+                    "horizontalAlignment": "left"
+                  }
+                ],
+                "type": "Column",
+                "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Q",
+                    "size": "extraLarge",
+                    "horizontalAlignment": "right"
+                  }
+                ]
+              }
+            ]
           },
           {
             "type": "FactSet",

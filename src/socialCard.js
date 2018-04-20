@@ -16,6 +16,7 @@ bit redundant
   return an adaptive card */
 function makeHeaderCard(stock) {
   if (process.env.STOCKDATA) console.log(JSON.stringify(stock, null, 2));
+  if (stock == null || stock == {}) return null;  //I shouldnt need this
   var todaysSign = "";
   var todaysColor = "";
   var todaysMovePercent = roundTo(stock.quote.changePercent * 100, 2)

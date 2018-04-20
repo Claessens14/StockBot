@@ -79,6 +79,7 @@ function getVantageChart(str, type, length, interval, callback) {
 
 
 function getStock(str, callback) {
+	str = str.replace(/1$/g, "");
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
 	request(url, function (err, resp, body) {
 		if (err) {
@@ -86,11 +87,12 @@ function getStock(str, callback) {
 		} else {
 			try {
 				body = JSON.parse(body);
+				body["url"] = url;
+				callback(null, body);
 			} catch (e) {
 				callback("ERROR (getStock) JSON.parse failed!", null);
 			}
-			body["url"] = url;
-			callback(null, body);
+			
 		}
 	});
 }
