@@ -5,7 +5,7 @@ const roundTo = require('round-to');
 var dataToStr = require('./format.js').dataToStr;
 
 /*----------------------------------------------------------------------------------
-Build all the adaptive card items
+Build all the adaptive card items for a stock
 ----------------------------------------------------------------------------------*/
 
 function makeHeaderCard(stock, todaysMove, todaysMovePercent, todaysColor) {

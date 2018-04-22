@@ -183,6 +183,7 @@ function synonyms(str, symbol) {
     list = addTo(list, newStr.replace(/ inc/gi, ""));
     list = addTo(list, newStr.replace(/ Ltd$/gi, ""));
     list = addTo(list, newStr.replace(/ group$/gi, ""));
+    
     list = addTo(list, newStr.replace(/^the /gi, ""));
     list = addTo(list, newStr.replace(/(the)/gi, ""));
     list = addTo(list, newStr.replace(/ $/gi, ""));
