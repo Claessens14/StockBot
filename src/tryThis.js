@@ -1,10 +1,3 @@
-var search = require('./search');
-var chart = require('./chart');
+var str = "amaz,98,75./.]n.com."
 
-search.getVantageChart("AAPL" , "TIME_SERIES_DAILY", 365, "daily", (err, res) => {
-	chart.grapher(res, "close", (err, res) => {
-
-	});
-})
-
-
+console.log(str.replace(/\./gi, "").replace(/\,/gi, ""));

@@ -17,6 +17,7 @@ var conversation = new watson.ConversationV1({
 //params for watson conversation
 var params = {
   workspace_id: process.env.WATSON_WORKSPACE_ID,
+  fuzzy_match: true
 }
 var entities = []
 
@@ -46,10 +47,13 @@ function iexLoad() {
     for (var index in iex) {
       if ((iex[index].name != null) && (iex[index].symbol != null)) {
         if ((iex[index].type == "cs") && (iex[index].isEnabled == true)) {
-          var syn = synonyms(iex[index].name, iex[index].symbol)
+          var symbol = iex[index].symbol;
+          var common = ["ARES", "SIR", "TSG", "QUOT", "INS", "FOR", "P", "S", "ISCA", "VALU", "ANDE", "MEI", "EDUC", "HYI", "HEI", "THST", "ALL", "tat", "tkat", "SO", "NOW", "OUT", "GTES", "NWS", "NWSA", "NWS", "TUES", "GES", "COOL", "BRO", "MANT", "CANT", "CART", "CGNT", "CANF", "CAMT", "CENT", "CRNT", "CAMT", "E", "A", "ANS", "ONS", "TRUE", "ANDE", "IN", "PE", "OFS", "BEAT", "EARN", "ANY", "COT", "GTT", "ARE", "DO", "WAT", "UPS", "HI", "ON", "GOOD", "SEE", "AT", "TELL", "IAM", "SUP", "MAN", "A", "I", "ACM"];
+          if (common.indexOf(symbol) != -1) symbol = symbol + "1";
+          var syn = synonyms(iex[index].name, symbol)
           entities.push({
               type: "synonyms",
-              value: iex[index].symbol,
+              value: symbol,
               synonyms: syn
           });
           
@@ -169,12 +173,21 @@ function synonyms(str, symbol) {
     //   //console.log("SPLIT newStr = " + newStr);
     // }
     list = addTo(list, newStr.replace(/.com/gi, ""));
+    list = addTo(list, newStr.replace(/.com Inc/gi, ""));
     list = addTo(list, newStr.replace(/\./g, ""));
     list = addTo(list, newStr.replace(/,/g, ""));
     list = addTo(list, newStr.replace(/!/g, ""));
     list = addTo(list, newStr.replace(/\?/g, ""));
     list = addTo(list, newStr.replace(/\'/g, ""));
     list = addTo(list, newStr.replace(/-/g, ""));
+    newStr = newStr.replace(/\./g, "");
+    newStr = newStr.replace(/\,/g, "");
+    newStr = newStr.replace(/\?/g, "");
+    newStr = newStr.replace(/\'/g, "");
+    newStr = newStr.replace(/\-/g, "");
+    newStr = newStr.replace(/\(the\)/gi, "");
+    newStr = newStr.replace(/\(new\)/gi, "");
+    newStr = newStr.replace(/\(\)/gi, "");
     list = addTo(list, newStr.replace(/&/g, "and"));
     list = addTo(list, newStr.replace(/ company$/gi, ""));
     list = addTo(list, newStr.replace(/ corporation$/gi, ""));
@@ -183,7 +196,65 @@ function synonyms(str, symbol) {
     list = addTo(list, newStr.replace(/ inc/gi, ""));
     list = addTo(list, newStr.replace(/ Ltd$/gi, ""));
     list = addTo(list, newStr.replace(/ group$/gi, ""));
-    
+    list = addTo(list, newStr.replace(/technologys/gi, ""));
+    list = addTo(list, newStr.replace(/technologies/gi, ""));
+    list = addTo(list, newStr.replace(/technology/gi, ""));
+    list = addTo(list, newStr.replace(/holdings/gi, ""));
+    list = addTo(list, newStr.replace(/holdings/gi, ""));
+    list = addTo(list, newStr.replace(/assets/gi, ""));
+    list = addTo(list, newStr.replace(/asset/gi, ""));
+    list = addTo(list, newStr.replace(/trust/gi, ""));
+    list = addTo(list, newStr.replace(/worldwide/gi, ""));
+    list = addTo(list, newStr.replace(/enterprise/gi, ""));
+    list = addTo(list, newStr.replace(/group/gi, ""));
+    list = addTo(list, newStr.replace(/groups/gi, ""));
+    list = addTo(list, newStr.replace(/stores/gi, ""));
+    list = addTo(list, newStr.replace(/stores/gi, ""));
+    list = addTo(list, newStr.replace(/markets/gi, ""));
+    list = addTo(list, newStr.replace(/markets/gi, ""));
+    list = addTo(list, newStr.replace(/automitive/gi, ""));
+    list = addTo(list, newStr.replace(/realty/gi, ""));
+    list = addTo(list, newStr.replace(/laboratorys/gi, ""));
+    list = addTo(list, newStr.replace(/laboratories/gi, ""));
+    list = addTo(list, newStr.replace(/laboratory/gi, ""));
+    list = addTo(list, newStr.replace(/lab/gi, ""));
+    list = addTo(list, newStr.replace(/gold/gi, ""));
+    list = addTo(list, newStr.replace(/capital/gi, ""));
+    list = addTo(list, newStr.replace(/Pharmaceuticals/gi, ""));
+    list = addTo(list, newStr.replace(/Pharmaceutical/gi, ""));
+    list = addTo(list, newStr.replace(/pharma/gi, ""));
+    list = addTo(list, newStr.replace(/communitys/gi, ""));
+    list = addTo(list, newStr.replace(/communities/gi, ""));
+    list = addTo(list, newStr.replace(/brands/gi, ""));
+    list = addTo(list, newStr.replace(/Financial/gi, ""));
+    list = addTo(list, newStr.replace(/limited/gi, ""));
+    list = addTo(list, newStr.replace(/healthcare/gi, ""));
+    list = addTo(list, newStr.replace(/sciences/gi, ""));
+    list = addTo(list, newStr.replace(/science/gi, ""));
+    list = addTo(list, newStr.replace(/Sponsored/gi, ""));
+    list = addTo(list, newStr.replace(/research/gi, ""));
+    list = addTo(list, newStr.replace(/biologics/gi, ""));
+    list = addTo(list, newStr.replace(/biotech/gi, ""));
+    list = addTo(list, newStr.replace(/equity/gi, ""));
+    list = addTo(list, newStr.replace(/fund/gi, ""));
+    list = addTo(list, newStr.replace(/International/gi, ""));
+    list = addTo(list, newStr.replace(/Investment/gi, ""));
+    list = addTo(list, newStr.replace(/Class A/gi, ""));
+    list = addTo(list, newStr.replace(/Class B/gi, ""));
+    list = addTo(list, newStr.replace(/Limited Partner Interest/gi, ""));
+    list = addTo(list, newStr.replace(/Services/gi, ""));
+    list = addTo(list, newStr.replace(/engineering/gi, ""));
+    list = addTo(list, newStr.replace(/common stock/gi, ""));
+    list = addTo(list, newStr.replace(/bank/gi, ""));
+    list = addTo(list, newStr.replace(/Entertainment/gi, ""));
+    list = addTo(list, newStr.replace(/co./gi, ""));
+    list = addTo(list, newStr.replace(/lab/gi, ""));
+    list = addTo(list, newStr.replace(/select/gi, ""));
+    list = addTo(list, newStr.replace(/plc/gi, ""));
+    list = addTo(list, newStr.replace(/rapeutics/gi, ""));
+    list = addTo(list, newStr.replace(/\(\)/gi, ""));
+    list = addTo(list, newStr.replace(/\(New\)/gi, ""));
+    list = addTo(list, newStr.replace(/communications/gi, ""));
     list = addTo(list, newStr.replace(/^the /gi, ""));
     list = addTo(list, newStr.replace(/(the)/gi, ""));
     list = addTo(list, newStr.replace(/ $/gi, ""));
