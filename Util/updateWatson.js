@@ -180,6 +180,7 @@ function synonyms(str, symbol) {
     list = addTo(list, newStr.replace(/\?/g, ""));
     list = addTo(list, newStr.replace(/\'/g, ""));
     list = addTo(list, newStr.replace(/-/g, ""));
+    newStr = newStr.replace(/\.com/gi, "");
     newStr = newStr.replace(/\./g, "");
     newStr = newStr.replace(/\,/g, "");
     newStr = newStr.replace(/\?/g, "");
@@ -284,11 +285,11 @@ function synonyms(str, symbol) {
 //console.log(entities);
 
 
-conversation.createEntity(params, function(err, response) {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(JSON.stringify(response, null, 2));
-  }
-});
+// conversation.createEntity(params, function(err, response) {
+//   if (err) {
+//     console.error(err);
+//   } else {
+//     console.log(JSON.stringify(response, null, 2));
+//   }
+// });
 

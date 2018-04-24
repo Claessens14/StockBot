@@ -109,7 +109,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
       if (watsonData.context.hasOwnProperty('mode')) {
         var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
         if(watsonData.context.mode == "stock") {
-          var str = getEntity(watsonData, "SP500")
+          var str = getEntity(watsonData, "iexStock")
           var stock = {};
           //if a new search then show header
           if (str) {
