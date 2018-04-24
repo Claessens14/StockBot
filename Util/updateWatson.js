@@ -49,7 +49,7 @@ function iexLoad() {
         if ((iex[index].type == "cs") && (iex[index].isEnabled == true)) {
           var symbol = iex[index].symbol;
           var common = ["ARES", "SIR", "TSG", "QUOT", "INS", "FOR", "P", "S", "ISCA", "VALU", "ANDE", "MEI", "EDUC", "HYI", "HEI", "THST", "ALL", "tat", "tkat", "SO", "NOW", "OUT", "GTES", "NWS", "NWSA", "NWS", "TUES", "GES", "COOL", "BRO", "MANT", "CANT", "CART", "CGNT", "CANF", "CAMT", "CENT", "CRNT", "CAMT", "E", "A", "ANS", "ONS", "TRUE", "ANDE", "IN", "PE", "OFS", "BEAT", "EARN", "ANY", "COT", "GTT", "ARE", "DO", "WAT", "UPS", "HI", "ON", "GOOD", "SEE", "AT", "TELL", "IAM", "SUP", "MAN", "A", "I", "ACM"];
-          if (common.indexOf(symbol) != -1) symbol = symbol + "1";
+          if (common.indexOf(symbol) != -1) symbol = symbol + "111";
           var syn = synonyms(iex[index].name, symbol)
           entities.push({
               type: "synonyms",
@@ -285,11 +285,11 @@ function synonyms(str, symbol) {
 //console.log(entities);
 
 
-// conversation.createEntity(params, function(err, response) {
-//   if (err) {
-//     console.error(err);
-//   } else {
-//     console.log(JSON.stringify(response, null, 2));
-//   }
-// });
+conversation.createEntity(params, function(err, response) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(JSON.stringify(response, null, 2));
+  }
+});
 

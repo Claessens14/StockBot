@@ -26,15 +26,16 @@ function marketNews(session, source, title, text, img) {
   } else {
     imgUrl = "https://botw-pd.s3.amazonaws.com/styles/logo-original-577x577/s3/0002/1670/brand.gif?itok=IqyVnz-Z";
   }
+  var buttons = [];
+  //if (title != "" && title  != " " && title != null && text != "" && text != " " && text != null && text != "No summary available.") buttons.push(buttons.push(builder.CardAction.openUrl(session, checkStr(source), "Open")));
+  buttons.push(builder.CardAction.openUrl(session, checkStr(source), "Open"));
   return new builder.HeroCard(session)
     .title(checkStr(title))
     .subtitle(checkStr(text))
     .images([
         builder.CardImage.create(session, imgUrl)
     ])
-    .buttons([
-        builder.CardAction.openUrl(session, checkStr(source), "Open")
-    ]);
+    .buttons(buttons);
 }
 
 /* build a card that shows multiple markets

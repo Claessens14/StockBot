@@ -53,6 +53,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
       input: { text: session.message.text}
    };
 
+   if (payload.context.news) {
+     for (var summary in payload.context.news) {
+       console.log(summary);
+     }
+   }
+
    if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
    conversation.message(payload, function(err, watsonData) {
       if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
@@ -96,8 +102,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 //code for market goes here!
                 var news = [];
                 var array = results.articles;
+                if (!watsonData.news) watsonData.news = [];
                 for (var i = 0; i < array.length; i++) {
                   news.push(marketCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));
+                  var title = array[i].title;
+                  var text = array[i].description;
+                  //if (title != "" && title  != " " && title != null && text != "" && text != " " && text != null && text != "No summary available.") watsonData.news.push({title : text});
                 }
                 send(session, null, news, null, null, true);
               });
@@ -109,7 +119,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
       if (watsonData.context.hasOwnProperty('mode')) {
         var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
         if(watsonData.context.mode == "stock") {
-          var str = getEntity(watsonData, "iexStock")
+          var str = getEntity(watsonData, "SP500");
+          if (str == null || str == "") str = getEntity(watsonData, "iexStock");
           var stock = {};
           //if a new search then show header
           if (str) {

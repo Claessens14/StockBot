@@ -80,6 +80,8 @@ function getVantageChart(str, type, length, interval, callback) {
 
 function getStock(str, callback) {
 	str = str.replace(/1$/g, "");
+	str = str.replace(/1$/g, "");
+	str = str.replace(/1$/g, "");
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
 	request(url, function (err, resp, body) {
 		if (err) {
