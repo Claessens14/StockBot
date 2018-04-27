@@ -1,5 +1,33 @@
 const roundTo = require('round-to');
 
+
+//provide an array
+function pickStr(array) {
+	if(array) {
+		if (typeof array != "string") {
+		var options = {
+			  min:  0
+			, max:  (array.length - 1)
+			, integer: true
+			}
+			return array[rn(options)];
+		} else {
+			return array;
+		}
+	} else {
+		console.log("ERROR : (pickStr) array is null");
+		return "";
+	}
+}
+
+function toStr(val) {
+	if (typeof val != "string") {
+		return String(roundTo(val, 2));
+	} else {
+		return val;
+	}
+}
+
 /*COVERT NUMBERS TO STRINGS, 
     and the engineering notation
     TODO : value is number, and na_on is for when a number of 0 should be turned to N/A instead (like for dividend). 
@@ -53,5 +81,7 @@ function dataToStr(value, na_on) {
 // }
 
 module.exports = {
-	dataToStr : dataToStr
+    dataToStr : dataToStr,
+    pickStr : pickStr,
+    toStr : toStr
 }

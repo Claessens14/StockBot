@@ -53,10 +53,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
       input: { text: session.message.text}
    };
 
-   if (payload.context.news) {
-     for (var summary in payload.context.news) {
-       console.log(summary);
-     }
+   if (payload.context) {
+    if (payload.context.news) {
+      for (var summary in payload.context.news) {
+        console.log(summary);
+      }
+    } 
    }
 
    if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
@@ -127,7 +129,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
             search.getStock(str, (err, stockJson) => {
               if (err || stockJson == null) {
                 console.log(err);
-                send(session, "Sorry but I couldn't pull up that stocks information");
+                //send(session, "Sorry but I couldn't pull up that stocks information");
               } else {
 
                 watsonData.context.lastStock = str;
@@ -149,11 +151,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
             }
           }
         }
-      }
-
-      //show portfolio
-      if (watsonData.output.hasOwnProperty('action') && watsonData.output.action === "showPortfolio") {
-        session.send("Stock \\n hey");
       }
 
       //if the anything else node is triggered, log it
@@ -186,26 +183,28 @@ function sendData(session, stock, action) {
         var cards = socialCard.createNewsCards(session, stock);
         send(session, null, cards, stockModes, null, true);
     } else if (action == "wantChart") {
-        search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
-          if (err) {
-              console.log(err)
-              send(session, "Sorry but I can't seem to retrieve that stock data", null, stockModes);
-            } else {
-              var companyName = stock.company.companyName.replace(/\(the\)/gi, "");
-              chart.grapher(stock, res.year, {"dp": "close", "title" : companyName, "length" : "1 Year"}, (err, yearUrl) => {
-                if (err) {
-                  console.log(err)
-                  send(session, "Sorry but I can't seem to build a graph", null, stockModes);
-                } else {
-                  chart.grapher(stock, res.month, {"dp": "close", "title" : companyName, "length" : "3 Month"}, (err, monthUrl) => {
-                    var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
-                    send(session, null, cards, stockModes, null, true);
-                    //session.send(cards[0]);
-                  });
-                }
-              });
-            }
-        })
+      var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
+      send(session, pickStr(arr));
+      search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
+        if (err) {
+            console.log(err)
+            send(session, "Sorry but I can't seem to retrieve that stock data", null, stockModes);
+          } else {
+            var companyName = stock.company.companyName.replace(/\(the\)/gi, "");
+            chart.grapher(stock, res.year, {"dp": "close", "title" : companyName, "length" : "1 Year"}, (err, yearUrl) => {
+              if (err) {
+                console.log(err)
+                send(session, "Sorry but I can't seem to build a graph", null, stockModes);
+              } else {
+                chart.grapher(stock, res.month, {"dp": "close", "title" : companyName, "length" : "3 Month"}, (err, monthUrl) => {
+                  var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
+                  send(session, null, cards, stockModes, null, true);
+                  //session.send(cards[0]);
+                });
+              }
+            });
+          }
+      })
     } else if (action == "wantFin") {
       var msg = new builder.Message(session);
       card = socialCard.makeFinCard(stock)

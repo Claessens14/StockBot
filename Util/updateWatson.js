@@ -167,6 +167,11 @@ function synonyms(str, symbol) {
     var list = [symbol];
     if (str != symbol) list.push(str);
 
+    var exceptions = ["NWS", "NWSA"];
+    symbol = symbol.replace(/1$/g, "");
+    symbol = symbol.replace(/1$/g, "");
+    symbol = symbol.replace(/1$/g, "");
+    if (exceptions.indexOf(symbol) != -1) return [newStr];
     // //if b shares then, remove tags and treat them as default
     // if (symbol.match(/-B$/g) || symbol.match(/.B$/g)) {
     //   newStr = newStr.split('(The)')[0]

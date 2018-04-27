@@ -1,6 +1,9 @@
 var rn = require('random-number');
 const roundTo = require('round-to');
 
+var pickStr = require('./format').pickStr;
+var toStr = require('./format').toStr;
+
 //query must be array thats a max of 2
 function reviewStock(stock, query) {
 	//@ = company name
@@ -222,32 +225,6 @@ function stripName(str) {
 }
 
 
-//provide an array
-function pickStr(array) {
-	if(array) {
-		if (typeof array != "string") {
-		var options = {
-			  min:  0
-			, max:  (array.length - 1)
-			, integer: true
-			}
-			return array[rn(options)];
-		} else {
-			return array;
-		}
-	} else {
-		console.log("ERROR : (pickStr) array is null");
-		return "";
-	}
-}
-
-function toStr(val) {
-	if (typeof val != "string") {
-		return String(roundTo(val, 2));
-	} else {
-		return val;
-	}
-}
 
 //console.log(pickStr(['hi', 'ok', 'bye']));
 module.exports = {
