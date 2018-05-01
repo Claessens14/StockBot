@@ -1,4 +1,3 @@
-var rn = require('random-number');
 const roundTo = require('round-to');
 
 var pickStr = require('./format').pickStr;

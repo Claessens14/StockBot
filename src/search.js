@@ -85,16 +85,16 @@ function getStock(str, callback) {
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
 	request(url, function (err, resp, body) {
 		if (err) {
-			callback(err, null);
+			callback("ERROR (search->getStock) request returned a error " + err, null);
 		} else {
 			try {
 				body = JSON.parse(body);
 				body["url"] = url;
-				callback(null, body);
+				
 			} catch (e) {
-				callback("ERROR (getStock) JSON.parse failed!", null);
+				return callback("ERROR (search->getStock) JSON.parse failed!" + e, null);
 			}
-			
+			callback(null, body);
 		}
 	});
 }

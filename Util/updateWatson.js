@@ -48,7 +48,7 @@ function iexLoad() {
       if ((iex[index].name != null) && (iex[index].symbol != null)) {
         if ((iex[index].type == "cs") && (iex[index].isEnabled == true)) {
           var symbol = iex[index].symbol;
-          var common = ["ARES", "SIR", "TSG", "QUOT", "INS", "FOR", "P", "S", "ISCA", "VALU", "ANDE", "MEI", "EDUC", "HYI", "HEI", "THST", "ALL", "tat", "tkat", "SO", "NOW", "OUT", "GTES", "NWS", "NWSA", "NWS", "TUES", "GES", "COOL", "BRO", "MANT", "CANT", "CART", "CGNT", "CANF", "CAMT", "CENT", "CRNT", "CAMT", "E", "A", "ANS", "ONS", "TRUE", "ANDE", "IN", "PE", "OFS", "BEAT", "EARN", "ANY", "COT", "GTT", "ARE", "DO", "WAT", "UPS", "HI", "ON", "GOOD", "SEE", "AT", "TELL", "IAM", "SUP", "MAN", "A", "I", "ACM"];
+          var common = ["ARES", "SIR", "TSG", "IF", "QUOT", "INS", "FOR", "P", "S", "ISCA", "VALU", "ANDE", "MEI", "EDUC", "HYI", "HEI", "THST", "ALL", "tat", "tkat", "SO", "NOW", "OUT", "GTES", "NWS", "NWSA", "NWS", "TUES", "GES", "COOL", "BRO", "MANT", "CANT", "CART", "CGNT", "CANF", "CAMT", "CENT", "CRNT", "CAMT", "E", "A", "ANS", "ONS", "TRUE", "ANDE", "IN", "PE", "OFS", "BEAT", "EARN", "ANY", "COT", "GTT", "ARE", "DO", "WAT", "UPS", "HI", "ON", "GOOD", "SEE", "AT", "TELL", "IAM", "SUP", "MAN", "A", "I", "ACM"];
           if (common.indexOf(symbol) != -1) symbol = symbol + "111";
           var syn = synonyms(iex[index].name, symbol)
           entities.push({
@@ -195,8 +195,8 @@ function synonyms(str, symbol) {
     newStr = newStr.replace(/\(new\)/gi, "");
     newStr = newStr.replace(/\(\)/gi, "");
     list = addTo(list, newStr.replace(/&/g, "and"));
-    list = addTo(list, newStr.replace(/ company$/gi, ""));
-    list = addTo(list, newStr.replace(/ corporation$/gi, ""));
+    list = addTo(list, newStr.replace(/ company/gi, ""));
+    list = addTo(list, newStr.replace(/ corporation/gi, ""));
     list = addTo(list, newStr.replace(/ corp$/gi, ""));
     list = addTo(list, newStr.replace(/ co$/gi, ""));
     list = addTo(list, newStr.replace(/ inc/gi, ""));
@@ -206,7 +206,7 @@ function synonyms(str, symbol) {
     list = addTo(list, newStr.replace(/technologies/gi, ""));
     list = addTo(list, newStr.replace(/technology/gi, ""));
     list = addTo(list, newStr.replace(/holdings/gi, ""));
-    list = addTo(list, newStr.replace(/holdings/gi, ""));
+    list = addTo(list, newStr.replace(/alliance/gi, ""));
     list = addTo(list, newStr.replace(/assets/gi, ""));
     list = addTo(list, newStr.replace(/asset/gi, ""));
     list = addTo(list, newStr.replace(/trust/gi, ""));

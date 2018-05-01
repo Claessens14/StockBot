@@ -1,5 +1,5 @@
 const roundTo = require('round-to');
-
+var rn = require('random-number');
 
 //provide an array
 function pickStr(array) {

@@ -41,11 +41,9 @@ server.post('/api/messages', connector.listen());
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector, function (session) {
   if (process.env.MESSAGE == "TRUE") console.log('________________________________\nMESSAGE : \n' + JSON.stringify(session.message, null, 2) + '\n________________________________\n');
-
+  console.log("message recieved now ")
   session.sendTyping();
 
-  //before sending to watson..
-  session.message.text = session.message.text.replace(/^#/, "teach me about ");
 
    var payload = {
       workspace_id: process.env.WATSON_WORKSPACE_ID,
@@ -127,9 +125,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
           //if a new search then show header
           if (str) {
             search.getStock(str, (err, stockJson) => {
-              if (err || stockJson == null) {
+              if (err) {
                 console.log(err);
-                //send(session, "Sorry but I couldn't pull up that stocks information");
+                send(session, "Sorry but I couldn't pull up that stocks information");
               } else {
 
                 watsonData.context.lastStock = str;
@@ -252,6 +250,7 @@ function send(session, val, obj, buttons, top, carousel) {
             session, objArray
           ));
       session.send(msg);
+      console.log("sent message")
     } else if (obj) {
       try {
         //an object is being send
