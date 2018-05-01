@@ -182,7 +182,7 @@ function sendData(session, stock, action) {
         send(session, null, cards, stockModes, null, true);
     } else if (action == "wantChart") {
       var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
-      send(session, pickStr(arr));
+      send(session, format.pickStr(arr));
       search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
         if (err) {
             console.log(err)
