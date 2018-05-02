@@ -406,16 +406,16 @@
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 15,
-      "dialog_request_counter": 15,
+      "dialog_turn_counter": 16,
+      "dialog_request_counter": 16,
       "_node_output_map": {
         "node_2_1521177918907": [
-          1,
-          1,
-          0
+          0,
+          0,
+          1
         ],
         "node_2_1520827543880": [
-          1
+          0
         ],
         "Anything else": [
           2
@@ -426,14 +426,14 @@
     },
     "mode": "other",
     "user": {
-      "id": "3ae5146abac8440db927c311040584df|0000007",
+      "id": "49b521762acc40ad970361806464aae6|0000000",
       "channelId": "webchat",
       "user": {
         "id": "7hW8bjeUYTj",
         "name": "You"
       },
       "conversation": {
-        "id": "3ae5146abac8440db927c311040584df"
+        "id": "49b521762acc40ad970361806464aae6"
       },
       "bot": {
         "id": "StockZia_Dev@ZXbcBkB5XsM",

@@ -72,8 +72,14 @@ var bot = new builder.UniversalBot(connector, function (session) {
    conversation.message(payload, function(err, watsonData) {
       if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
       if (err) {
-         session.send(err);
+         send(session, "Sorry but something went wrong");
       } else {
+
+      if (watsonData && watsonData.output && watsonData.output.error) {
+        console.log(watsonData.output.error);
+        send(session, "Sorry but something went wrong");
+        return;
+      } 
       //SEND WATSON RESPONSE
       if (watsonData.output.text && watsonData.output.text != "") {
          send(session, watsonData.output.text);
