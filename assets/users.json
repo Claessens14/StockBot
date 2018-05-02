@@ -397,5 +397,49 @@
       },
       "url": "https://api.iextrading.com/1.0/stock/VZ/batch?types=company,logo,quote,stats,financials,news,earnings"
     }
+  },
+  "You": {
+    "conversation_id": "da6e5d18-174a-493c-a197-d65138aff381",
+    "system": {
+      "dialog_stack": [
+        {
+          "dialog_node": "root"
+        }
+      ],
+      "dialog_turn_counter": 15,
+      "dialog_request_counter": 15,
+      "_node_output_map": {
+        "node_2_1521177918907": [
+          1,
+          1,
+          0
+        ],
+        "node_2_1520827543880": [
+          1
+        ],
+        "Anything else": [
+          2
+        ]
+      },
+      "branch_exited": true,
+      "branch_exited_reason": "completed"
+    },
+    "mode": "other",
+    "user": {
+      "id": "3ae5146abac8440db927c311040584df|0000007",
+      "channelId": "webchat",
+      "user": {
+        "id": "7hW8bjeUYTj",
+        "name": "You"
+      },
+      "conversation": {
+        "id": "3ae5146abac8440db927c311040584df"
+      },
+      "bot": {
+        "id": "StockZia_Dev@ZXbcBkB5XsM",
+        "name": "StockZia_Dev"
+      },
+      "serviceUrl": "https://webchat.botframework.com/"
+    }
   }
 }

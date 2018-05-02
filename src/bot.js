@@ -29,11 +29,20 @@ var conversation = new Conversation({
 });
 
 // Create chat connector for communicating with the Bot Framework Service
-var connector = new builder.ChatConnector({
-    appId: process.env.BOT_APP_ID,
-    appPassword: process.env.BOT_PASSWORD,
-    openIdMetadata: process.env.BotOpenIdMetadata
-});
+var thisBot = {
+  openIdMetadata: process.env.BotOpenIdMetadata
+}
+if (process.env.BOT == "DEV") {
+  thisBot["appId"] =  process.env.BOT_APP_ID_DEV;
+  thisBot["appPassword"] = process.env.BOT_PASSWORD_DEV;
+} else if (process.env.BOT == "FB") {
+  thisBot["appId"] =  process.env.BOT_APP_ID_FB;
+  thisBot["appPassword"] = process.env.BOT_PASSWORD_FB;
+} else {
+  console.log("ERROR : bot version was not decraled!");
+  process.exit(1);
+}
+var connector = new builder.ChatConnector(thisBot);
 
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
