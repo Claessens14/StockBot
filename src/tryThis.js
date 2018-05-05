@@ -1,3 +1,11 @@
-var str = "amaz,98,75./.]n.com."
+function testing(time, obj) {
+    time = "timeIt";
+    return time;
+}
 
-console.log(str.replace(/\./gi, "").replace(/\,/gi, ""));
+function me() {
+    var yo = "sup";
+    yo = testing(yo);
+    console.log(yo);
+}
+me();

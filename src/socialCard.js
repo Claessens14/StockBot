@@ -4,6 +4,7 @@ const roundTo = require('round-to');
 
 var search = require('./search');
 var stockCard = require('./stockCard');
+var format = require('./format');
 
 /*----------------------------------------------------------------------
 Wrap around the contents of the adaptive card
@@ -67,64 +68,44 @@ function makeEarningsCard(stock) {
 }   
 
 /* STOCK NEWS
-  return an array of hero cards*/
+  return an json with an array of hero cards
+  and a array of quick reads */
 function createNewsCards(session, stock) {
-    function checkStr(str) {
-      if (str && str != "No summary available.") {
-        return str.replace(/    /g, " ").replace(/   /g, " ").replace(/  /g, " ");
-      } else {
-        return " ";
-      }
-    }
-    function stripName(str) {
-        str = str.replace(/\./g, "");
-        str = str.replace(/,/g, "");
-        str = str.replace(/!/g, "");
-        str = str.replace(/\?/g, "");
-        str = str.replace(/\'/g, "");
-        str = str.replace(/The/gi, "the");
-        str = str.replace(/ company$/gi, "");
-        str = str.replace(/ corporation$/gi, "");
-        str = str.replace(/ corp$/gi, "");
-        str = str.replace(/ co$/gi, "");
-        str = str.replace(/ inc/gi, "");
-        str = str.replace(/.com$/gi, "");
-        str = str.replace(/ Ltd$/gi, "");
-        str = str.replace(/ group$/gi, "");
-        str = str.replace(/(the)/gi, "");
-        str = str.replace(/ /gi, "");
-        return str;
-    }
+  if (!session || !stock) return null;
+  if (stock.news) {
+    var array = [];  //an array of session objects
+    var news = [];   //array of quick read data
+    stock.news.forEach(function(el) {
+      el.headline = format.checkStr(el.headline);
+      el.summary = format.checkStr(el.summary);
+      el.url = format.checkStr(el.url);
+      if (el.headline == null) el.headline = "";
+      if (el.summary == null) el.summary = "";
+      if (el.url == null) el.url = "";
 
-    var relevant = []; 
-    var irrelevant = []
-    var company = stripName(stock.company.companyName);
-    stock.news.forEach(function(element) {
-      var head = element.headline.toLowerCase().replace(/ /g, "");
-      var sum = element.headline.toLowerCase().replace(/ /g, "");
-      //var prioritize news that is about the company
-      if ((head.indexOf(company) != -1) || (sum.indexOf(company) != -1)) {
-      relevant.push(new builder.HeroCard(session)
-        .title(checkStr(element.headline))
-        .text(checkStr(element.summary))
+      array.push(new builder.HeroCard(session)
+        .title(format.checkStr(el.headline))
+        .text(format.checkStr(el.summary))
         .buttons([
-            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
-        ]));
-      } else {
-      irrelevant.push(new builder.HeroCard(session)
-        .title(checkStr(element.headline))
-        .text(checkStr(element.summary))
-        .buttons([
-            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
-        ]));
+          builder.CardAction.imBack(session, format.checkStr(el.summary), 'Quick Read'),
+          builder.CardAction.openUrl(session, format.checkStr(el.url), 'Open')
+        ])
+      );
+      if (el.headline != "") {
+        var title = el.headline;
+        var sum = el.summary;
+        if (sum != "") {
+          news.push({"title" : title, "sum" : sum});
+        } else {
+          news.push({title : "Sorry but there is no summary Availble"});
+        }
       }
     });
-    if (relevant.length > 3) {
-      return relevant;
-    } else {
-      return relevant.concat(irrelevant);
-    }
+    return {"cards" : array, "news" : news};
+  } else {
+    return null;
   }
+}
 
 /* Stock finicials
   return an adaptive card*/
