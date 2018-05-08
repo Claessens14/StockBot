@@ -28,7 +28,9 @@ function marketNews(session, source, title, text, img) {
   }
   var buttons = [];
   //if (title != "" && title  != " " && title != null && text != "" && text != " " && text != null && text != "No summary available.") buttons.push(buttons.push(builder.CardAction.openUrl(session, checkStr(source), "Open")));
+  buttons.push(builder.CardAction.imBack(session, title, "Quick Read"))
   buttons.push(builder.CardAction.openUrl(session, checkStr(source), "Open"));
+
   return new builder.HeroCard(session)
     .title(checkStr(title))
     .subtitle(checkStr(text))

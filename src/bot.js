@@ -124,15 +124,35 @@ var bot = new builder.UniversalBot(connector, function (session) {
               search.getNews((err, results) => {
                 //code for market goes here!
                 var news = [];
+                var cards = [];
                 var array = results.articles;
                 if (!watsonData.news) watsonData.news = [];
                 for (var i = 0; i < array.length; i++) {
-                  news.push(marketCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));
-                  var title = array[i].title;
-                  var text = array[i].description;
-                  //if (title != "" && title  != " " && title != null && text != "" && text != " " && text != null && text != "No summary available.") watsonData.news.push({title : text});
+                  var headline = array[i].title;
+                  var summary = array[i].description;
+                  var url = array[i].url;
+
+                  headline = format.checkStr(headline);
+                  summary = format.checkStr(summary);
+                  url = format.checkStr(url);
+                  if (headline == null) headline = "";
+                  if (summary == null) summary = "";
+                  if (url == null) url = "";
+
+                  if (headline != "") {
+                    cards.push(marketCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));      
+                    var title = headline;
+                    var sum = summary;
+                    if (sum != "") {
+                      news.push({"title" : title, "sum" : sum});
+                    } else {
+                      news.push({"title" : title, sum : "Sorry but there is no summary Availble"});
+                    }
+                  }
                 }
-                send(session, null, news, null, null, true);
+                send(session, null, cards, null, null, true);
+                if (!watsonData.context.news) watsonData.context.news = [];
+                watsonData.context.news = watsonData.context.news.concat(news);
               });
             }
           });
