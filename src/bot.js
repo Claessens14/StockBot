@@ -12,7 +12,11 @@ var analysis = require('./analysis');
 var socialCard = require('./socialCard');
 var format = require('./format');
 
-var users = require('../assets/users.json');
+var users = {};
+if (process.env.USER == "HOLD") {
+  users = require('../assets/users.json');
+}
+  
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -62,11 +66,13 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
    if (payload.context) {
     if (payload.context.news) {
-      payload.context.news.forEach((el) => {
+      for (var i in payload.context.news) {
+        var el = payload.context.news[i];
         if (payload.input.text == el.title) {
           send(session, el.sum);
+          return;
         }
-      })
+      }
     } 
    }
 
@@ -156,7 +162,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   if (obj && obj.cards && obj.news) {
                     send(session, null, obj.cards, stockModes, null, true);
                     if (!watsonData.context.news) watsonData.context.news = [];
-                    watsonData.context.news.concat(obj.news);
+                    watsonData.context.news = watsonData.context.news.concat(obj.news);
                   } else {
                     send(session, "Sorry but something went wrong while getting the news");
                   }
@@ -348,7 +354,8 @@ function getEntity(watsonData, entity) {
 }
 
 function getUser(name) {
-  return users[name]
+  if (users[name]) return users[name];
+  return {}
 }
 
 function putUser(name, data) {

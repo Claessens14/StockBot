@@ -83,21 +83,22 @@ function createNewsCards(session, stock) {
       if (el.summary == null) el.summary = "";
       if (el.url == null) el.url = "";
 
-      array.push(new builder.HeroCard(session)
-        .title(format.checkStr(el.headline))
-        .text(format.checkStr(el.summary))
-        .buttons([
-          builder.CardAction.imBack(session, format.checkStr(el.summary), 'Quick Read'),
-          builder.CardAction.openUrl(session, format.checkStr(el.url), 'Open')
-        ])
-      );
       if (el.headline != "") {
+        array.push(new builder.HeroCard(session)
+          .title(format.checkStr(el.headline))
+          .text(format.checkStr(el.summary))
+          .buttons([
+            builder.CardAction.imBack(session, el.headline, "Quick Read"),
+            builder.CardAction.openUrl(session, format.checkStr(el.url), 'Open')
+          ])
+        );
+      
         var title = el.headline;
         var sum = el.summary;
         if (sum != "") {
           news.push({"title" : title, "sum" : sum});
         } else {
-          news.push({title : "Sorry but there is no summary Availble"});
+          news.push({"title" : title, sum : "Sorry but there is no summary Availble"});
         }
       }
     });

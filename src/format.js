@@ -43,7 +43,7 @@ function checkStr(str) {
     if (str && (typeof str == "string") && str != "" && str != " " && str != "No summary available.") {
       return str.replace(/    /g, " ").replace(/   /g, " ").replace(/  /g, " ");
     } else {
-      return " ";
+      return null;
     }
   }
 

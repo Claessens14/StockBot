@@ -1,11 +1,5 @@
-function testing(time, obj) {
-    time = "timeIt";
-    return time;
-}
+var arr = [];
+var tim = ["hey", "hi"];
 
-function me() {
-    var yo = "sup";
-    yo = testing(yo);
-    console.log(yo);
-}
-me();
+arr.concat(tim);
+console.log(arr);

@@ -1,14 +1,14 @@
 {
   "Jacob Claessens": {
-    "conversation_id": "48a06206-fd40-4d7f-bd05-561de93d77e0",
+    "conversation_id": "526a4b34-44d7-45fb-b6f8-22b6939ce502",
     "system": {
       "dialog_stack": [
         {
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 63,
-      "dialog_request_counter": 63,
+      "dialog_turn_counter": 3,
+      "dialog_request_counter": 3,
       "_node_output_map": {
         "node_2_1521177918907": [
           0,
@@ -16,28 +16,22 @@
           1
         ],
         "node_2_1520827543880": [
-          2,
           0,
           1,
           3,
+          0,
           2
         ],
         "node_3_1524485707605": [
-          1
-        ],
-        "Anything else": [
-          1
-        ],
-        "node_1_1518667497709": [
-          1
+          0
         ]
       },
       "branch_exited": true,
       "branch_exited_reason": "completed"
     },
-    "mode": "stock",
+    "mode": "other",
     "user": {
-      "id": "mid.$cAAcRR38D9CZpY69edVjMmoWQNAvx",
+      "id": "mid.$cAAcRR38D9CZpbtG3h1jPYxvMGn3W",
       "channelId": "facebook",
       "user": {
         "id": "1531011940353275",
@@ -53,402 +47,395 @@
       },
       "serviceUrl": "https://facebook.botframework.com"
     },
-    "lastStock": "MCD",
+    "lastStock": "L",
     "stock": {
       "company": {
-        "symbol": "MCD",
-        "companyName": "McDonald's Corporation",
+        "symbol": "L",
+        "companyName": "Loews Corporation",
         "exchange": "New York Stock Exchange",
-        "industry": "Restaurants",
-        "website": "http://www.aboutmcdonalds.com",
-        "description": "McDonald's Corp operates a chain of restaurants with approximately 37,200 restaurants in 120 countries. It also receives franchise royalties, and licensing pacts. The company offers a uniform value-priced menu with special additions based on regions.",
-        "CEO": "Stephen Easterbrook",
+        "industry": "Insurance - Property & Casualty",
+        "website": "http://www.loews.com",
+        "description": "Loews Corp deals in commercial property and casualty insurance business. Its other business operations are offshore oil and gas drilling rigs, transportation, storage of natural gas, and gathering and operation of a chain of hotels.",
+        "CEO": "James S. Tisch",
         "issueType": "cs",
-        "sector": "Consumer Cyclical"
+        "sector": "Financial Services"
       },
       "logo": {
-        "url": "https://storage.googleapis.com/iex/api/logos/MCD.png"
+        "url": "https://storage.googleapis.com/iex/api/logos/L.png"
       },
       "quote": {
-        "symbol": "MCD",
-        "companyName": "McDonald's Corporation",
+        "symbol": "L",
+        "companyName": "Loews Corporation",
         "primaryExchange": "New York Stock Exchange",
-        "sector": "Consumer Cyclical",
+        "sector": "Financial Services",
         "calculationPrice": "close",
-        "open": 159.95,
-        "openTime": 1525440600514,
-        "close": 165.03,
-        "closeTime": 1525464022133,
-        "high": 165.45,
-        "low": 159.9,
-        "latestPrice": 165.03,
+        "open": 51.01,
+        "openTime": 1525699800455,
+        "close": 51.2,
+        "closeTime": 1525723321206,
+        "high": 51.375,
+        "low": 50.87,
+        "latestPrice": 51.2,
         "latestSource": "Close",
-        "latestTime": "May 4, 2018",
-        "latestUpdate": 1525464022133,
-        "latestVolume": 4281564,
-        "iexRealtimePrice": null,
-        "iexRealtimeSize": null,
-        "iexLastUpdated": null,
-        "delayedPrice": 165.05,
-        "delayedPriceTime": 1525466969970,
-        "previousClose": 160.08,
-        "change": 4.95,
-        "changePercent": 0.03092,
-        "iexMarketPercent": null,
-        "iexVolume": null,
-        "avgTotalVolume": 4254512,
-        "iexBidPrice": null,
-        "iexBidSize": null,
-        "iexAskPrice": null,
-        "iexAskSize": null,
-        "marketCap": 129728023261,
-        "peRatio": 23.61,
-        "week52High": 178.7,
-        "week52Low": 142.58,
-        "ytdChange": -0.04125346393154051
+        "latestTime": "May 7, 2018",
+        "latestUpdate": 1525723321206,
+        "latestVolume": 612832,
+        "iexRealtimePrice": 51.17,
+        "iexRealtimeSize": 100,
+        "iexLastUpdated": 1525723195031,
+        "delayedPrice": 51.2,
+        "delayedPriceTime": 1525726477340,
+        "previousClose": 50.97,
+        "change": 0.23,
+        "changePercent": 0.00451,
+        "iexMarketPercent": 0.03234,
+        "iexVolume": 19819,
+        "avgTotalVolume": 1389976,
+        "iexBidPrice": 0,
+        "iexBidSize": 0,
+        "iexAskPrice": 0,
+        "iexAskSize": 0,
+        "marketCap": 16349297971,
+        "peRatio": 17.41,
+        "week52High": 53.59,
+        "week52Low": 45.01,
+        "ytdChange": 0.022908576417110704
       },
       "stats": {
-        "companyName": "McDonald's Corporation",
-        "marketcap": 125836890042,
-        "beta": 0.663861,
-        "week52high": 178.7,
-        "week52low": 142.26,
-        "week52change": 15.0165,
-        "shortInterest": 7566100,
+        "companyName": "Loews Corporation",
+        "marketcap": 16275853859,
+        "beta": 0.694929,
+        "week52high": 53.59,
+        "week52low": 45.01,
+        "week52change": 10.777901,
+        "shortInterest": 4806657,
         "shortDate": "2018-04-13",
-        "dividendRate": 4.04,
-        "dividendYield": 2.5237381,
-        "exDividendDate": "2018-02-28 00:00:00.0",
-        "latestEPS": 6.38,
+        "dividendRate": 0.25,
+        "dividendYield": 0.4904846,
+        "exDividendDate": "2018-02-27 00:00:00.0",
+        "latestEPS": 3.45,
         "latestEPSDate": "2017-12-31",
-        "sharesOutstanding": 786087519,
-        "float": 784828632,
-        "returnOnEquity": -232.9,
-        "consensusEPS": 1.67,
-        "numberOfEstimates": 13,
+        "sharesOutstanding": 319322226,
+        "float": 262634717,
+        "returnOnEquity": 6.28,
+        "consensusEPS": 0.78,
+        "numberOfEstimates": 3,
         "EPSSurpriseDollar": null,
-        "EPSSurprisePercent": 7.1856,
-        "symbol": "MCD",
-        "EBITDA": 8164000000,
-        "revenue": 17144500000,
-        "grossProfit": 8191400000,
-        "cash": 5063600000,
-        "debt": 56979200000,
-        "ttmEPS": 6.99,
-        "revenuePerShare": 22,
-        "revenuePerEmployee": 72955,
-        "peRatioHigh": 32.4,
-        "peRatioLow": 15.8,
-        "returnOnAssets": 14.73,
+        "EPSSurprisePercent": 14.1026,
+        "symbol": "L",
+        "EBITDA": 0,
+        "revenue": 10435000000,
+        "grossProfit": 0,
+        "cash": 0,
+        "debt": 34252000000,
+        "ttmEPS": 2.9400000000000004,
+        "revenuePerShare": 33,
+        "revenuePerEmployee": 576519,
+        "peRatioHigh": 66.7,
+        "peRatioLow": 22.2,
+        "returnOnAssets": 1.47,
         "returnOnCapital": null,
-        "profitMargin": 23.6,
-        "priceToSales": 5.647114,
-        "priceToBook": 146.07,
-        "day200MovingAvg": 161.85422,
-        "day50MovingAvg": 159.11813,
-        "institutionPercent": 71.2,
-        "insiderPercent": null,
-        "shortRatio": 1.6202577,
-        "year5ChangePercent": 0.8861886371507043,
-        "year2ChangePercent": 0.348188486602668,
-        "year1ChangePercent": 0.17469358527472523,
-        "ytdChangePercent": -0.04125346393154051,
-        "month6ChangePercent": -0.017674478405564808,
-        "month3ChangePercent": 0.013573893608827983,
-        "month1ChangePercent": 0.006587374199451129,
-        "day5ChangePercent": -0.014393215480171981,
-        "day30ChangePercent": 0.06484707704219907
+        "profitMargin": 10,
+        "priceToSales": 1.1491591,
+        "priceToBook": 0.88,
+        "day200MovingAvg": 49.17131,
+        "day50MovingAvg": 50.62131,
+        "institutionPercent": 68.4,
+        "insiderPercent": 17.3,
+        "shortRatio": 2.9433815,
+        "year5ChangePercent": 0.1620219227051378,
+        "year2ChangePercent": 0.3213940357090082,
+        "year1ChangePercent": 0.1075426763550394,
+        "ytdChangePercent": 0.022908576417110704,
+        "month6ChangePercent": 0.043673764412710814,
+        "month3ChangePercent": 0.06629568419070724,
+        "month1ChangePercent": 0.026999798508966274,
+        "day5ChangePercent": -0.028402592451391574,
+        "day30ChangePercent": 0.0387201956388832
       },
       "financials": {
-        "symbol": "MCD",
+        "symbol": "L",
         "financials": [
           {
             "reportDate": "2018-03-31",
-            "grossProfit": 2527700000,
-            "costOfRevenue": 2611200000,
-            "operatingRevenue": 5138900000,
-            "totalRevenue": 5138900000,
-            "operatingIncome": 1994600000,
-            "netIncome": 1375400000,
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 3581000000,
+            "operatingIncome": null,
+            "netIncome": 293000000,
             "researchAndDevelopment": null,
-            "operatingExpense": 533100000,
+            "operatingExpense": null,
             "currentAssets": null,
-            "totalAssets": null,
+            "totalAssets": 80786000000,
             "totalLiabilities": null,
-            "currentCash": null,
-            "currentDebt": null,
+            "currentCash": 451000000,
+            "currentDebt": 213000000,
             "totalCash": null,
-            "totalDebt": null,
-            "shareholderEquity": null,
-            "cashChange": null,
-            "cashFlow": null,
+            "totalDebt": 11468000000,
+            "shareholderEquity": 18532000000,
+            "cashChange": -22000000,
+            "cashFlow": 513000000,
             "operatingGainsLosses": null
           },
           {
             "reportDate": "2017-12-31",
-            "grossProfit": 2665500000,
-            "costOfRevenue": 2674700000,
-            "operatingRevenue": 5340200000,
-            "totalRevenue": 5340200000,
-            "operatingIncome": 2047900000,
-            "netIncome": 698700000,
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 3555000000,
+            "operatingIncome": 461000000,
+            "netIncome": 481000000,
             "researchAndDevelopment": null,
-            "operatingExpense": 617600000,
-            "currentAssets": 5327200000,
-            "totalAssets": 33803700000,
-            "totalLiabilities": 37071700000,
-            "currentCash": 2463800000,
-            "currentDebt": null,
-            "totalCash": 2463800000,
-            "totalDebt": null,
-            "shareholderEquity": -3268000000,
-            "cashChange": -241800000,
-            "cashFlow": 1109300000,
-            "operatingGainsLosses": -90600000
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 79586000000,
+            "totalLiabilities": 60382000000,
+            "currentCash": 472000000,
+            "currentDebt": 280000000,
+            "totalCash": null,
+            "totalDebt": 11533000000,
+            "shareholderEquity": 19204000000,
+            "cashChange": 56000000,
+            "cashFlow": 780000000,
+            "operatingGainsLosses": null
           },
           {
             "reportDate": "2017-12-31",
-            "grossProfit": 2665500000,
-            "costOfRevenue": 2674700000,
-            "operatingRevenue": 5340200000,
-            "totalRevenue": 5340200000,
-            "operatingIncome": 2047900000,
-            "netIncome": 698700000,
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 3555000000,
+            "operatingIncome": null,
+            "netIncome": 481000000,
             "researchAndDevelopment": null,
-            "operatingExpense": 617600000,
-            "currentAssets": 5327200000,
-            "totalAssets": 33803700000,
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 79586000000,
             "totalLiabilities": null,
-            "currentCash": 2463800000,
-            "currentDebt": null,
-            "totalCash": 2463800000,
-            "totalDebt": null,
-            "shareholderEquity": -3268000000,
-            "cashChange": -241800000,
-            "cashFlow": 1109300000,
-            "operatingGainsLosses": -90600000
+            "currentCash": 472000000,
+            "currentDebt": 280000000,
+            "totalCash": null,
+            "totalDebt": 11533000000,
+            "shareholderEquity": 19204000000,
+            "cashChange": 56000000,
+            "cashFlow": 780000000,
+            "operatingGainsLosses": null
           },
           {
             "reportDate": "2017-09-30",
-            "grossProfit": 2817500000,
-            "costOfRevenue": 2937100000,
-            "operatingRevenue": 5754600000,
-            "totalRevenue": 5754600000,
-            "operatingIncome": 2250500000,
-            "netIncome": 1883700000,
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 3521000000,
+            "operatingIncome": 264000000,
+            "netIncome": 157000000,
             "researchAndDevelopment": null,
-            "operatingExpense": 567000000,
-            "currentAssets": 4790300000,
-            "totalAssets": 32559600000,
-            "totalLiabilities": 36037200000,
-            "currentCash": 2671200000,
-            "currentDebt": 215800000,
-            "totalCash": 2671200000,
-            "totalDebt": 28618400000,
-            "shareholderEquity": -3477600000,
-            "cashChange": 49200000,
-            "cashFlow": 1684500000,
-            "operatingGainsLosses": -902000000
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 79527000000,
+            "totalLiabilities": 60506000000,
+            "currentCash": 416000000,
+            "currentDebt": 194000000,
+            "totalCash": null,
+            "totalDebt": 11433000000,
+            "shareholderEquity": 19021000000,
+            "cashChange": 55000000,
+            "cashFlow": 579000000,
+            "operatingGainsLosses": null
           }
         ]
       },
       "news": [
         {
-          "datetime": "2018-05-04T13:32:00-04:00",
-          "headline": "Del Taco looks beyond the after-party crowd to feed professional night owls",
-          "source": "CNBC",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/6637264014046860",
-          "summary": " ",
-          "related": "DE,DENN,MCD,TACO,YUM"
-        },
-        {
-          "datetime": "2018-05-04T13:10:33-04:00",
-          "headline": "Dividend Aristocrat Performance: April 2018",
+          "datetime": "2018-05-07T14:10:19-04:00",
+          "headline": "CNA Financial's Q1 2018: Improved Margins + Turnover Growth = A Higher Dividend?",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/5048393150035478",
-          "summary": " Dividend growth investing is on of my \" 5 Ways to Beat the Market \". The Dividend Aristocrats ( NOBL ), S&amp;P 500 constituent companies that have successfully increased their dividends for at least 25 years, have outperformed the S&amp;P 500 on both an absolute and risk-adjusted basis over t…",
-          "related": "CLX,CON205,CON20531,CVX,Cash Or Stock Dividend,GD,HOU20531076,ITW,LEG,Market,MCD,MMM,NOBL:BZX,SPY,Computing and Information Technology,VFC,WOMPOLIX"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/8164815793363422",
+          "summary": " Executive Summary On April 2018, CNA Financial ( CNA ) reported improved Q1 results. The post-tax income increased to $281 million, benefiting from higher margins of the P&amp;C activities and the lower tax rate, resulting from the tax reform. Furthermore, the company declared a quarterly di…",
+          "related": "CNA,Conference Calls Web Events,Financial and Business Services,INS10325,INS10325059,Investment Opinion,L"
         },
         {
-          "datetime": "2018-05-04T11:15:46-04:00",
-          "headline": "Top 'Safer' Dividend Aristocrats Are Leggett For Gains, And Procter & G For Yield Per May Data",
+          "datetime": "2018-05-06T12:19:19-04:00",
+          "headline": "Midstream Wins, MLPs Pull Up Lame",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/7918860954338485",
-          "summary": " Actionable Conclusions (1-10): Brokers Project Top Ten 'Safer' Dividend Aristocrats Stocks to Net 16.34% to 30.83% Gains To May, 2019 Three of ten top yield \"safer\" Dividend Aristocrats (tinted in the chart above) were also in the Top ten gainers for the coming year based on analyst 1 year…",
-          "related": "ABBV,APD,CINF,CLX,CVX,Cash Or Stock Dividend,DOV,DRU20636,DRUGMMAJ,GPC,Healthcare,ITW,JNJ,KMB,LEG,LOW,MCD,NASDAQ01,PEP,PG,PNR,Computing and Information Technology,WMT"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/8585973412324424",
+          "summary": " It was a pretty great week for Midstream (AMEI +1.9%), but not so much for MLPs (-0.2%). The busiest week for 1Q earnings started exciting with a big merger of MLP sponsors and very strong 1Q results from big MLPs [[EPD]] and [[MPLX]]. As the week continued, however, MLP investor sentiment was…",
+          "related": "AHGP,AM,ANDV,ANDX,ARLP,AROC,BPL,BWP,CEQP,CNX,CNXM,CQH,DCP,DM,EEP,ENBL,Energy,ENLC,ENLK,EPD,EQM,ETE,ETP,KENTUCKY,KEX,L,LNG,MMLP,MMP,MPC,MPLX,NASDAQ01,NS,NSH,OIL30949,OIL30949104,OKE,PAA,PBA,PPL:CA,QEPM,SHLX,TCP,TEGP,TRGP,TSXTSX01,WES,WMB,WNRL,WPZ"
         },
         {
-          "datetime": "2018-05-03T12:18:00-04:00",
-          "headline": "The Fed is looking clueless about economic growth that is in the late innings",
-          "source": "CNBC",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/4783853130857247",
-          "summary": " ",
-          "related": "AAPL,MCD"
-        },
-        {
-          "datetime": "2018-05-02T08:45:21-04:00",
-          "headline": "McDonald's Beats Earnings, But What's Next?",
+          "datetime": "2018-05-01T13:51:19-04:00",
+          "headline": "Loews Corporation 2018 Q1 - Results - Earnings Call Slides",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/6194288223669890",
-          "summary": " With earnings season in full swing and a flurry of macro headwinds hitting the tape, McDonalds (MCD) may be a name that gets lost on your watch list. The positive stock reaction post-earnings is confirmatory that the company is capable of delivering on large strategy changes effectivel…",
-          "related": "CON102,MCD,RES10216,RES10216032"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/8032994723029716",
+          "summary": " The following slide deck was published by Loews Corporation in conjunction with their 2018 Q1 earnings Read more … ",
+          "related": "Financial and Business Services,INS10325,INS10325059,L"
         },
         {
-          "datetime": "2018-05-02T06:00:17-04:00",
-          "headline": "The Old Faithful Portfolio",
+          "datetime": "2018-04-30T15:44:03-04:00",
+          "headline": "Loews Corp's (L) CEO James Tisch on Q1 2018 Results - Earnings Call Transcript",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/7879610176688670",
-          "summary": " By Gautam Dhingra, PhD, CFA and Christopher J. Olson, CFA Old Faithful is the most famous geyser in Yellowstone National Park, having earned its name because of the extraordinary reliability of its spectacular water shows. Since being dubbed Old Faithful in 1870, it has spouted more th…",
-          "related": "AAL,ALL,AMD,AZO,BAX,CBOE,CON102,CTL,DG,DUK,DVN,ETFC,FCX,HUM,LEN,LMT,MCD,MU,NASDAQ01,NEM,NFX,NKTR,NMC:CA,NRG,OKE,PAYX,RES10216,RES10216032,SO,T,TSXTSX01,VRTX,WM"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/5364360393112602",
+          "summary": " Loews Corp (L) Q1 2018 Earnings Conference Call April 30, 2018, 11:00 ET Executives Mary Skafidas - VP, IR &amp; Corporate Communications James Tisch - President, CEO &amp; Director David Edelson - SVP &amp; CFO Analysts Robert Glasspiegel - Janney Montgomery Scott Josh…",
+          "related": "Earnings,Financial,Financial and Business Services,INS10325,INS10325059,Investment Opinion,L"
         },
         {
-          "datetime": "2018-05-01T17:10:48-04:00",
-          "headline": "McDonald's: 3 Reasons It Continues Overperforming",
+          "datetime": "2018-04-30T10:10:49-04:00",
+          "headline": "Boardwalk Pipeline Partners +11% as Loews may take company private",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/5145893781207818",
-          "summary": " McDonald's ( MCD ) released strong quarterly results, following a recent trend of financial success as it expands oversees, increases its margin through raising prices and changes in its menus, and develops its corporate re-franchising strategy further. Strong comparable sales growth is espe…",
-          "related": "CON102,MCD,RES10216,RES10216032"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/6417524862362370",
+          "summary": " Boardwalk Pipeline Partners ( BWP +11.2% ) spikes in early trading after CEO Stanley Horton says in the company's earnings conference call that Loews ( L +1.3% ) may take the company private. More news on: Boardwalk Pipeline Partners, LP, Loews Corporation, Energy stocks news, Earnings…",
+          "related": "BWP,Energy,Futures Trading,Investment Opinion,L,OIL30949,OIL30949104,PIPELINE"
         },
         {
-          "datetime": "2018-05-01T08:19:40-04:00",
-          "headline": "Tariffs Delayed, Dollar Rising, And BP Too (Wall Street Breakfast Podcast)",
+          "datetime": "2018-04-30T06:02:27-04:00",
+          "headline": "Loews beats by $0.11",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/8606712023773298",
-          "summary": " Get today's Wall Street Breakfast in podcast form to listen on the go. Today's top stories: The U.S. dollar has broken into positive territory; President Trump is delaying a decision on steel and aluminum tariffs; and BP is up premarket thanks to the oil recovery. If you are inter…",
-          "related": "AAPL,AGN,ARNC,BA,BP,CMCSA,DIS,EPD,ERJ,FB,GM,GMM.U:CA,KLXI,MCD,NASDAQ01,QQQ,RIG,SPY,T,TSXTSX01,TWTR,TWX,VIA,WWD"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/8537997037520819",
+          "summary": " Loews (NYSE: L ): Q1 EPS of $0.89 beats by $0.11 . Revenue of $3.58B (+8.5% Y/Y) Press Release More news on: Loews Corporation, Earnings news and commentary, Financial stocks news, ",
+          "related": "Financial and Business Services,INS10325,INS10325059,L,NYSE0001,WOMPOLIX"
         },
         {
-          "datetime": "2018-05-01T07:39:51-04:00",
-          "headline": "Stick To The Strong Sectors - Cramer's Mad Money (4/30/18)",
-          "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/7118243872679249",
-          "summary": " Stocks discussed on the in-depth session of Jim Cramer's Mad Money TV Program, Monday , April 30. The markets were fickle again on Monday as stocks reversed early day gains. Cramer said this market lacks leaders. The banks were up on interest rate hikes but went down as the loan grow…",
-          "related": "AGN,CON102,EPD,FDC,INTC,MCD,MMP,MSFT,NASDAQ01,NOC,RES10216,RES10216032,S,T,TMUS,URI,V,VTR,VZ,WPZ"
+          "datetime": "2018-04-30T06:00:00-04:00",
+          "headline": "Loews Corporation Reports Net Income Of $293 Million For The First Quarter Of 2018",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/l/article/7206162050716107",
+          "summary": " NEW YORK , April 30, 2018 /PRNewswire/ --Loews Corporation (NYSE: L) today reported net income of $293 million , or $0.89 per share, for the three months ended March 31, 2018 , compared to $295 million , or $0.87 per share, in the prior year period. Net income for the thre…",
+          "related": "Banking and Finance,Banking,BWP,CNA,Conference Calls Web Events,DO,Earnings,Financial,Financial and Business Services,Futures Trading,Healthcare,INS10325,INS10325059,International Trade,Investment Opinion,L,Market,Market and Economy,Meetings,Mergers & Acquisitions,Metal and Mineral,NYSE0001"
         },
         {
-          "datetime": "2018-05-01T07:00:14-04:00",
-          "headline": "Wall Street Breakfast: Greenback Turns Positive For 2018",
+          "datetime": "2018-04-30T06:00:00-04:00",
+          "headline": "Diamond Offshore Announces First Quarter 2018 Results",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/l/article/7055879201062234",
+          "summary": " HOUSTON , April 30, 2018 /PRNewswire/ -- Net income of $19 million , or $0.14 per diluted share Includes a non-cash benefit of $43 million , or $0.32 per diluted share, related to tax reform clarification Adjusted net loss of $(21) million , or $(0.16) per diluted sha…",
+          "related": "Commodities,Conference Calls Web Events,DO,Earnings,Energy,Financial,Industrial Goods,International Trade,Investment Opinion,L,Market and Economy,Meetings,Metal and Mineral,NYSE0001,OIL30946,OIL30946101,Oil & Energy,Utilities,Utilities"
+        },
+        {
+          "datetime": "2018-04-29T17:30:26-04:00",
+          "headline": "Notable earnings before Monday's open",
           "source": "SeekingAlpha",
-          "url": "https://api.iextrading.com/1.0/stock/mcd/article/6136381041021949",
-          "summary": " Amid expectations of upcoming rate hikes, the dollar has broken into positive territory for the year. The move higher comes ahead of this week's Fed meeting and jobs report, two events that are likely to define its near-term fate. May Day holidays in many centers across Asia and Eu…",
-          "related": "AAPL,AGN,ARNC,ASIA0001,BA,BP,CMCSA,DIS,EPD,ERJ,Europe,FB,Futures Trading,GM,GMM.U:CA,KLXI,MCD,NASDAQ01,QQQ,RIG,SPY,T,TSXTSX01,TWTR,TWX,VIA,WWD"
+          "url": "https://api.iextrading.com/1.0/stock/l/article/5040099624026066",
+          "summary": " AGN , AHGP , AKS , AMG , ARLP , ARNC , AWI , BWP , CNA , CTB , CUBI , DAN , DO , EDR , EPD , FDC , GVA , HTA , IEX , KMPR , L , MCD , MCY , MOH , NSP , PEG , USCR For Seeking Alpha's full earnings season calendar, click here . More news on: Allergan plc, Al…",
+          "related": "AGN,AHGP,AKS,AMG,ARLP,ARNC,AWI,BWP,CNA,CTB,CUBI,DAN,DO,DRU20636,DRU20636086,EDR,EPD,FDC,Futures Trading,GVA,Healthcare,HTA,IEX,KMPR,L,MCD,MCY,MOH,NASDAQ01,NSP,PEG,USCR,WOMPOLIX"
+        },
+        {
+          "datetime": "2018-04-19T06:41:38-04:00",
+          "headline": "Market Volatility Bulletin: Stocks Got The Nap They Needed",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/l/article/4517425167994858",
+          "summary": " Market Intro CNBC: Wednesday Close US stocks ( SPY , DIA , QQQ , IWM ) enjoyed what the markets desperately need if they are to make a certified recovery: a day where not much happened at all. Energy ( XLE ) and industrials ( XLI ) posted reasonably strong gains, while none of the o…",
+          "related": "CVOL,DDM,DIA,DOG,DXD,EEH,EPS,EQL,FB,FEX,Futures Trading,FWDD,INT31168144,IVOP,IVV,IWL,IWM,JKD,L,NASDAQ01,ONL31168,OTPIX,PSQ,QID,QLD,QQEW,QQQ,QQQE,QQXT,RSP,RWL,RWM,SCHX,SDOW,SDS,SH,SMLL,SPDN,SPLX,SPUU,SPXE,SPXL,SPXS,SPXT,SPXU,SPY,SQQQ,SRTY,SSO,SVXY,SYE,Computing and Information Technology,TNA,TQQQ,TVIX,TVIZ,TWM,TZA,UDOW,UPRO,URTY,UVXY,UWM,VFINX,VIIX,VIIZ,VIXM,VIXY,VMAX,VMIN,VOO,VTWO,VV,VXX,VXZ,XIV,XLE,XLI,XVZ,ZIV"
         }
       ],
       "earnings": {
-        "symbol": "MCD",
+        "symbol": "L",
         "earnings": [
           {
-            "actualEPS": 1.79,
-            "consensusEPS": 1.67,
-            "estimatedEPS": 1.67,
+            "actualEPS": 0.89,
+            "consensusEPS": 0.78,
+            "estimatedEPS": 0.78,
             "announceTime": "BTO",
-            "numberOfEstimates": 13,
-            "EPSSurpriseDollar": 0.12,
+            "numberOfEstimates": 3,
+            "EPSSurpriseDollar": 0.11,
             "EPSReportDate": "2018-04-30",
             "fiscalPeriod": "Q1 2018",
             "fiscalEndDate": "2018-03-31",
-            "yearAgo": 1.47,
-            "yearAgoChangePercent": 22,
-            "estimatedChangePercent": 14,
-            "symbolId": 4263
+            "yearAgo": 0.87,
+            "yearAgoChangePercent": 2,
+            "estimatedChangePercent": -10,
+            "symbolId": 4011
           },
           {
-            "actualEPS": 1.71,
-            "consensusEPS": 1.59,
-            "estimatedEPS": 1.59,
+            "actualEPS": 0.83,
+            "consensusEPS": 0.72,
+            "estimatedEPS": 0.72,
             "announceTime": "BTO",
-            "numberOfEstimates": 14,
-            "EPSSurpriseDollar": 0.12,
-            "EPSReportDate": "2018-01-30",
+            "numberOfEstimates": 2,
+            "EPSSurpriseDollar": 0.11,
+            "EPSReportDate": "2018-02-12",
             "fiscalPeriod": "Q4 2017",
             "fiscalEndDate": "2017-12-31",
-            "yearAgo": 1.44,
-            "yearAgoChangePercent": 19,
-            "estimatedChangePercent": 10,
-            "symbolId": 4263
+            "yearAgo": 0.79,
+            "yearAgoChangePercent": 5,
+            "estimatedChangePercent": -9,
+            "symbolId": 4011
           },
           {
-            "actualEPS": 1.76,
-            "consensusEPS": 1.75,
-            "estimatedEPS": 1.75,
+            "actualEPS": 0.46,
+            "consensusEPS": 0.02,
+            "estimatedEPS": 0.02,
             "announceTime": "BTO",
-            "numberOfEstimates": 15,
-            "EPSSurpriseDollar": 0.01,
-            "EPSReportDate": "2017-10-24",
+            "numberOfEstimates": 2,
+            "EPSSurpriseDollar": 0.44,
+            "EPSReportDate": "2017-10-30",
             "fiscalPeriod": "Q3 2017",
             "fiscalEndDate": "2017-09-30",
-            "yearAgo": 1.62,
-            "yearAgoChangePercent": 9,
-            "estimatedChangePercent": 8,
-            "symbolId": 4263
+            "yearAgo": 0.97,
+            "yearAgoChangePercent": -53,
+            "estimatedChangePercent": -98,
+            "symbolId": 4011
           },
           {
-            "actualEPS": 1.73,
-            "consensusEPS": 1.62,
-            "estimatedEPS": 1.62,
+            "actualEPS": 0.76,
+            "consensusEPS": 0.76,
+            "estimatedEPS": 0.76,
             "announceTime": "BTO",
-            "numberOfEstimates": 13,
-            "EPSSurpriseDollar": 0.11,
-            "EPSReportDate": "2017-07-25",
+            "numberOfEstimates": 3,
+            "EPSSurpriseDollar": null,
+            "EPSReportDate": "2017-07-31",
             "fiscalPeriod": "Q2 2017",
             "fiscalEndDate": "2017-06-30",
-            "yearAgo": 1.45,
-            "yearAgoChangePercent": 19,
-            "estimatedChangePercent": 12,
-            "symbolId": 4263
+            "yearAgo": 0.6,
+            "yearAgoChangePercent": 27,
+            "estimatedChangePercent": 27,
+            "symbolId": 4011
           }
         ]
       },
-      "url": "https://api.iextrading.com/1.0/stock/MCD/batch?types=company,logo,quote,stats,financials,news,earnings"
+      "url": "https://api.iextrading.com/1.0/stock/L/batch?types=company,logo,quote,stats,financials,news,earnings"
     },
-    "news": []
-  },
-  "You": {
-    "conversation_id": "da6e5d18-174a-493c-a197-d65138aff381",
-    "system": {
-      "dialog_stack": [
-        {
-          "dialog_node": "root"
-        }
-      ],
-      "dialog_turn_counter": 18,
-      "dialog_request_counter": 18,
-      "_node_output_map": {
-        "node_2_1521177918907": [
-          0,
-          1,
-          0
-        ],
-        "node_2_1520827543880": [
-          0,
-          1,
-          3,
-          2,
-          0
-        ],
-        "Anything else": [
-          2
-        ]
+    "news": [
+      {
+        "title": "CNA Financial's Q1 2018: Improved Margins + Turnover Growth = A Higher Dividend?",
+        "sum": " Executive Summary On April 2018, CNA Financial ( CNA ) reported improved Q1 results. The post-tax income increased to $281 million, benefiting from higher margins of the P&amp;C activities and the lower tax rate, resulting from the tax reform. Furthermore, the company declared a quarterly di…"
       },
-      "branch_exited": true,
-      "branch_exited_reason": "completed"
-    },
-    "mode": "other",
-    "user": {
-      "id": "f26ed1dcc5e541ac881ccc799b8a4dc5|0000000",
-      "channelId": "webchat",
-      "user": {
-        "id": "7hW8bjeUYTj",
-        "name": "You"
+      {
+        "title": "Midstream Wins, MLPs Pull Up Lame",
+        "sum": " It was a pretty great week for Midstream (AMEI +1.9%), but not so much for MLPs (-0.2%). The busiest week for 1Q earnings started exciting with a big merger of MLP sponsors and very strong 1Q results from big MLPs [[EPD]] and [[MPLX]]. As the week continued, however, MLP investor sentiment was…"
       },
-      "conversation": {
-        "id": "f26ed1dcc5e541ac881ccc799b8a4dc5"
+      {
+        "title": "Loews Corporation 2018 Q1 - Results - Earnings Call Slides",
+        "sum": " The following slide deck was published by Loews Corporation in conjunction with their 2018 Q1 earnings Read more … "
       },
-      "bot": {
-        "id": "StockZia_Dev@ZXbcBkB5XsM",
-        "name": "StockZia_Dev"
+      {
+        "title": "Loews Corp's (L) CEO James Tisch on Q1 2018 Results - Earnings Call Transcript",
+        "sum": " Loews Corp (L) Q1 2018 Earnings Conference Call April 30, 2018, 11:00 ET Executives Mary Skafidas - VP, IR &amp; Corporate Communications James Tisch - President, CEO &amp; Director David Edelson - SVP &amp; CFO Analysts Robert Glasspiegel - Janney Montgomery Scott Josh…"
       },
-      "serviceUrl": "https://webchat.botframework.com/"
-    }
+      {
+        "title": "Boardwalk Pipeline Partners +11% as Loews may take company private",
+        "sum": " Boardwalk Pipeline Partners ( BWP +11.2% ) spikes in early trading after CEO Stanley Horton says in the company's earnings conference call that Loews ( L +1.3% ) may take the company private. More news on: Boardwalk Pipeline Partners, LP, Loews Corporation, Energy stocks news, Earnings…"
+      },
+      {
+        "title": "Loews beats by $0.11",
+        "sum": " Loews (NYSE: L ): Q1 EPS of $0.89 beats by $0.11 . Revenue of $3.58B (+8.5% Y/Y) Press Release More news on: Loews Corporation, Earnings news and commentary, Financial stocks news, "
+      },
+      {
+        "title": "Loews Corporation Reports Net Income Of $293 Million For The First Quarter Of 2018",
+        "sum": " NEW YORK , April 30, 2018 /PRNewswire/ --Loews Corporation (NYSE: L) today reported net income of $293 million , or $0.89 per share, for the three months ended March 31, 2018 , compared to $295 million , or $0.87 per share, in the prior year period. Net income for the thre…"
+      },
+      {
+        "title": "Diamond Offshore Announces First Quarter 2018 Results",
+        "sum": " HOUSTON , April 30, 2018 /PRNewswire/ -- Net income of $19 million , or $0.14 per diluted share Includes a non-cash benefit of $43 million , or $0.32 per diluted share, related to tax reform clarification Adjusted net loss of $(21) million , or $(0.16) per diluted sha…"
+      },
+      {
+        "title": "Notable earnings before Monday's open",
+        "sum": " AGN , AHGP , AKS , AMG , ARLP , ARNC , AWI , BWP , CNA , CTB , CUBI , DAN , DO , EDR , EPD , FDC , GVA , HTA , IEX , KMPR , L , MCD , MCY , MOH , NSP , PEG , USCR For Seeking Alpha's full earnings season calendar, click here . More news on: Allergan plc, Al…"
+      },
+      {
+        "title": "Market Volatility Bulletin: Stocks Got The Nap They Needed",
+        "sum": " Market Intro CNBC: Wednesday Close US stocks ( SPY , DIA , QQQ , IWM ) enjoyed what the markets desperately need if they are to make a certified recovery: a day where not much happened at all. Energy ( XLE ) and industrials ( XLI ) posted reasonably strong gains, while none of the o…"
+      }
+    ]
   }
 }
