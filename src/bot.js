@@ -56,19 +56,23 @@ var bot = new builder.UniversalBot(connector, function (session) {
   console.log("message recieved now ")
   session.sendTyping();
 
-
-   var payload = {
-      workspace_id: process.env.WATSON_WORKSPACE_ID,
-      context: getUser(session.message.user.name),    //should be no context value when program starts
-      input: { text: session.message.text}
-   };
+  var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
+  var payload = {
+    workspace_id: process.env.WATSON_WORKSPACE_ID,
+    context: getUser(session.message.user.name),    //should be no context value when program starts
+    input: { text: session.message.text}
+  };
 
    if (payload.context) {
     if (payload.context.news) {
       for (var i in payload.context.news) {
         var el = payload.context.news[i];
         if (payload.input.text == el.title) {
-          send(session, el.sum);
+          if (el.type && el.type == "stock") {
+            send(session, el.sum, null, stockModes);
+          } else {
+            send(session, el.sum);
+          }
           return;
         }
       }
@@ -159,13 +163,13 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
       if (watsonData.context.hasOwnProperty('mode')) {
-        var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
+        //var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
         if(watsonData.context.mode == "stock") {
           var str = getEntity(watsonData, "SP500");
           if (str == null || str == "") str = getEntity(watsonData, "iexStock");
           //var stock = {};
           function sendData(session, stock, action) {
-            var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
+            // stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
             if (stock) {
               var card = {};
               if (action == "wantStats") {

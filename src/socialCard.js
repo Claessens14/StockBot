@@ -96,9 +96,9 @@ function createNewsCards(session, stock) {
         var title = el.headline;
         var sum = el.summary;
         if (sum != "") {
-          news.push({"title" : title, "sum" : sum});
+          news.push({"title" : title, "sum" : sum, "type" : "stock"});
         } else {
-          news.push({"title" : title, sum : "Sorry but there is no summary Availble"});
+          news.push({"title" : title, sum : "Sorry but there is no summary Availble", "type" : "stock"});
         }
       }
     });
