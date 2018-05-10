@@ -82,7 +82,7 @@ function getStock(str, callback) {
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
-	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings';
+	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings,peers';
 	request(url, function (err, resp, body) {
 		if (err) {
 			callback("ERROR (search->getStock) request returned a error " + err, null);
@@ -90,7 +90,6 @@ function getStock(str, callback) {
 			try {
 				body = JSON.parse(body);
 				body["url"] = url;
-				
 			} catch (e) {
 				return callback("ERROR (search->getStock) JSON.parse failed!" + e, null);
 			}
@@ -111,15 +110,10 @@ function getIndices(callback) {
 					reject("ERROR (getIndices->getPrice->promise) an error occurred during request  \n " + err);
 				} else{
 					try {
-						
-					} catch(e) {
-
+						body = JSON.parse(body);
+					} catch (e) {
+						callback("ERROR (getIndices->promise->getData) JSON.parse failed!", null);
 					}
-								try {
-				body = JSON.parse(body);
-			} catch (e) {
-				callback("ERROR (getIndices->promise->getData) JSON.parse failed!", null);
-			}
 					var name = body["Meta Data"]["2. Symbol"];
 					var dateStr = body["Meta Data"]["3. Last Refreshed"];
 					var data = body["Time Series (Daily)"];
@@ -166,7 +160,7 @@ function getIndices(callback) {
 callback(err, json)
 */
 function getMarketData(symbol, callback) {
-	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
+	request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=" + process.env.VANTAGE_KEY + "&outputsize=compact", function (err, resp, body) {
 	    if (err) {
 	      callback(err, null);
 	    } else if (body){
@@ -208,6 +202,35 @@ function getMarketData(symbol, callback) {
 	});
 }
 
+
+/* GET STOCK PEERS DATA
+	array: is a an array of tickers
+	callback(err, res) */
+function getPeers(array, callback) {
+	var str = "";
+	for (var i in array) {
+		str = str + ',' + array[i];
+	}
+	if (str.length <= 0) {
+		callback("(search->getPeers) no tickers in the peer array");
+		return;
+	}
+	var url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=quote,logo';
+	request(url, function (err, resp, body) {
+		if (err) {
+			callback("ERROR (search->getPeers) request returned a error " + err, null);
+		} else {
+			try {
+				body = JSON.parse(body);
+				body["url"] = url;
+			} catch (e) {
+				return callback("ERROR (search->getPeers) JSON.parse failed!" + e, null);
+			}
+			callback(null, body);
+		}
+	});
+}
+
 /*GET MARKET NEWS and send back the data
 TODO : append a source tag to the end*/
 function getNews(callback) {
@@ -234,5 +257,6 @@ module.exports = {
 	getMarketData : getMarketData,
 	getVantageChart : getVantageChart,
 	getIndices : getIndices,
+	getPeers : getPeers,
 	getNews: getNews
 }

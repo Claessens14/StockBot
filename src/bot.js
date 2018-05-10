@@ -17,7 +17,6 @@ if (process.env.USER == "HOLD") {
   users = require('../assets/users.json');
 }
   
-
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -160,7 +159,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
       if (watsonData.context.hasOwnProperty('mode')) {
-        var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
+        var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
         if(watsonData.context.mode == "stock") {
           var str = getEntity(watsonData, "SP500");
           if (str == null || str == "") str = getEntity(watsonData, "iexStock");
@@ -186,6 +185,24 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   } else {
                     send(session, "Sorry but something went wrong while getting the news");
                   }
+              } else if (action == "wantPeers") {
+                var errMsg = "Sorry but I did not find any peers for this company";
+                if (stock.peers && stock.peers.length > 0) {
+                  search.getPeers(stock.peers, (err, res) =>  {
+                    if (err) {
+                      send(session, errMsg);
+                    } else {
+                      var cards = socialCard.makePeersCards(session, res);
+                      if (cards) {
+                        send(session, null, cards, stockModes, null, true)
+                      } else {
+                        send(session, errMsg);
+                      }
+                    }
+                  });
+                } else {
+                  send(session, errMsg);
+                }
               } else if (action == "wantChart") {
                 var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
                 send(session, format.pickStr(arr));

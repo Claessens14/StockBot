@@ -1,25 +1,20 @@
 {
   "Jacob Claessens": {
-    "conversation_id": "43aee6c7-cdd7-463f-b537-1b60dc0ba90c",
+    "conversation_id": "f5fa860a-607f-4dc7-997c-514a1a52548c",
     "system": {
       "dialog_stack": [
         {
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 1,
-      "dialog_request_counter": 1,
-      "_node_output_map": {
-        "node_7_1520476242297": [
-          0
-        ]
-      },
+      "dialog_turn_counter": 2,
+      "dialog_request_counter": 2,
       "branch_exited": true,
       "branch_exited_reason": "completed"
     },
-    "mode": "market",
+    "mode": "stock",
     "user": {
-      "id": "mid.$cAAcRR38D9CZpbuwSEFjPabJ0yDLa",
+      "id": "6Ma9WKJT7g4",
       "channelId": "facebook",
       "user": {
         "id": "1531011940353275",
@@ -34,6 +29,362 @@
         "name": "StockZia_Dev"
       },
       "serviceUrl": "https://facebook.botframework.com"
+    },
+    "lastStock": "BK",
+    "stock": {
+      "company": {
+        "symbol": "BK",
+        "companyName": "Bank of New York Mellon Corporation (The)",
+        "exchange": "New York Stock Exchange",
+        "industry": "Asset Management",
+        "website": "https://www.bnymellon.com",
+        "description": "Bank of New York Mellon Corporation is an investment company. The company provides investment management, investment services and wealth management that help institutions and individuals succeed in markets all over the world.",
+        "CEO": "Charles W. Scharf",
+        "issueType": "cs",
+        "sector": "Financial Services"
+      },
+      "logo": {
+        "url": "https://storage.googleapis.com/iex/api/logos/BK.png"
+      },
+      "quote": {
+        "symbol": "BK",
+        "companyName": "Bank of New York Mellon Corporation (The)",
+        "primaryExchange": "New York Stock Exchange",
+        "sector": "Financial Services",
+        "calculationPrice": "close",
+        "open": 56.19,
+        "openTime": 1525872649355,
+        "close": 56.86,
+        "closeTime": 1525896011055,
+        "high": 56.865,
+        "low": 55.945,
+        "latestPrice": 56.86,
+        "latestSource": "Close",
+        "latestTime": "May 9, 2018",
+        "latestUpdate": 1525896011055,
+        "latestVolume": 4034782,
+        "iexRealtimePrice": 56.84,
+        "iexRealtimeSize": 100,
+        "iexLastUpdated": 1525895977142,
+        "delayedPrice": 56.86,
+        "delayedPriceTime": 1525899098230,
+        "previousClose": 56.08,
+        "change": 0.78,
+        "changePercent": 0.01391,
+        "iexMarketPercent": 0.04856,
+        "iexVolume": 195929,
+        "avgTotalVolume": 4680640,
+        "iexBidPrice": 0,
+        "iexBidSize": 0,
+        "iexAskPrice": 0,
+        "iexAskSize": 0,
+        "marketCap": 57467037360,
+        "peRatio": 14.54,
+        "week52High": 58.99,
+        "week52Low": 46.055,
+        "ytdChange": 0.050897704253249805
+      },
+      "stats": {
+        "companyName": "Bank of New York Mellon Corporation (The)",
+        "marketcap": 56678710080,
+        "beta": 1.205102,
+        "week52high": 58.99,
+        "week52low": 46.055,
+        "week52change": 19.714699,
+        "shortInterest": 12189392,
+        "shortDate": "2018-04-13",
+        "dividendRate": 0.96,
+        "dividendYield": 1.7118403,
+        "exDividendDate": "2018-04-30 00:00:00.0",
+        "latestEPS": 3.73,
+        "latestEPSDate": "2017-12-31",
+        "sharesOutstanding": 1010676000,
+        "float": 1001759439,
+        "returnOnEquity": 10.77,
+        "consensusEPS": 0.97,
+        "numberOfEstimates": 8,
+        "EPSSurpriseDollar": null,
+        "EPSSurprisePercent": 13.4021,
+        "symbol": "BK",
+        "EBITDA": 0,
+        "revenue": 11700000000,
+        "grossProfit": 0,
+        "cash": 0,
+        "debt": 98257000000,
+        "ttmEPS": 3.91,
+        "revenuePerShare": 12,
+        "revenuePerEmployee": 222857,
+        "peRatioHigh": 0,
+        "peRatioLow": 0,
+        "returnOnAssets": 1.12,
+        "returnOnCapital": null,
+        "profitMargin": 25.41,
+        "priceToSales": 3.3474429,
+        "priceToBook": 1.49,
+        "day200MovingAvg": 53.34652,
+        "day50MovingAvg": 53.70854,
+        "institutionPercent": 84,
+        "insiderPercent": null,
+        "shortRatio": 2.3573368,
+        "year5ChangePercent": 1.174604282512428,
+        "year2ChangePercent": 0.4752886520102385,
+        "year1ChangePercent": 0.19714716926354517,
+        "ytdChangePercent": 0.050897704253249805,
+        "month6ChangePercent": 0.10424132634978137,
+        "month3ChangePercent": 0.05694060174749524,
+        "month1ChangePercent": 0.1148928048858069,
+        "day5ChangePercent": 0.0387108723837747,
+        "day30ChangePercent": 0.11049504950495045
+      },
+      "financials": {
+        "symbol": "BK",
+        "financials": [
+          {
+            "reportDate": "2018-03-31",
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 4178000000,
+            "operatingIncome": null,
+            "netIncome": 1171000000,
+            "researchAndDevelopment": null,
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 373597000000,
+            "totalLiabilities": null,
+            "currentCash": null,
+            "currentDebt": 3936000000,
+            "totalCash": null,
+            "totalDebt": 31875000000,
+            "shareholderEquity": 41728000000,
+            "cashChange": null,
+            "cashFlow": null,
+            "operatingGainsLosses": null
+          },
+          {
+            "reportDate": "2017-12-31",
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 3728000000,
+            "operatingIncome": null,
+            "netIncome": 1175000000,
+            "researchAndDevelopment": null,
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 371758000000,
+            "totalLiabilities": 330507000000,
+            "currentCash": 5382000000,
+            "currentDebt": 3075000000,
+            "totalCash": null,
+            "totalDebt": 31054000000,
+            "shareholderEquity": 41251000000,
+            "cashChange": -207000000,
+            "cashFlow": 1291000000,
+            "operatingGainsLosses": -76000000
+          },
+          {
+            "reportDate": "2017-09-30",
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 4016000000,
+            "operatingIncome": null,
+            "netIncome": 1018000000,
+            "researchAndDevelopment": null,
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 354397000000,
+            "totalLiabilities": 313874000000,
+            "currentCash": 5557000000,
+            "currentDebt": 2501000000,
+            "totalCash": null,
+            "totalDebt": 34262000000,
+            "shareholderEquity": 40523000000,
+            "cashChange": 788000000,
+            "cashFlow": 5205000000,
+            "operatingGainsLosses": -23000000
+          },
+          {
+            "reportDate": "2017-06-30",
+            "grossProfit": null,
+            "costOfRevenue": null,
+            "operatingRevenue": null,
+            "totalRevenue": 3956000000,
+            "operatingIncome": null,
+            "netIncome": 975000000,
+            "researchAndDevelopment": null,
+            "operatingExpense": null,
+            "currentAssets": null,
+            "totalAssets": 354815000000,
+            "totalLiabilities": 314841000000,
+            "currentCash": 4725000000,
+            "currentDebt": 876000000,
+            "totalCash": null,
+            "totalDebt": 29913000000,
+            "shareholderEquity": 39974000000,
+            "cashChange": -718000000,
+            "cashFlow": -622000000,
+            "operatingGainsLosses": -3000000
+          }
+        ]
+      },
+      "news": [
+        {
+          "datetime": "2018-05-09T10:00:00-04:00",
+          "headline": "BNY Mellon's Pershing Adds Capital First Trust Company to Its Trust Network",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/7166586086278490",
+          "summary": "      JERSEY CITY, N.J. ,  May 9, 2018  /PRNewswire/ --BNY Mellon's Pershing (Pershing) announced today that it has added Capital First Trust Company (Capital First) to its Trust Network. Capital First focuses on special needs trustsan area of growing interest for Pershing clients. …",
+          "related": "ASS10319,ASS10319042,Asset Management,Banking and Finance,Banking,BK,Computer Software,Financial and Business Services,Financial and Business Services,Industrial Goods,Market,Mutual Funds,New York,NYSE0001,Wholesale and Retail,Software,SOUTHDAK,WISCONSI"
+        },
+        {
+          "datetime": "2018-05-09T00:04:20-04:00",
+          "headline": "Valuation Dashboard: Financials And Real Estate - Update",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/5298154555237230",
+          "summary": "   This article series provides a monthly dashboard of industries in each sector of the GICS classification. It compares valuation and quality factors relative to their historical averages.    Executive summary    Mortgage REITs are underpriced regarding their historical average in valuation and …",
+          "related": "BFS,BK,ETFC,FII,IVR,LAMR,LUK,Mortgage,NASDAQ01,PCH,PFG,PGR,Real Estate,REI10428,REITRETA,RGA,SCHW,SIVB,SPY,WD,WPG,XLF,XLRE"
+        },
+        {
+          "datetime": "2018-05-08T11:17:00-04:00",
+          "headline": "BNY Mellon Renews Presenting Sponsorship with Head Of The Charles Regatta&#xAE; Through 2022",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/8225502682401377",
+          "summary": "      CAMBRIDGE, Mass. ,  May 8, 2018  /PRNewswire/ -- The Head Of The Charles Regatta  today announced that it has renewed its partnership with  BNY Mellon , extending the investment management leader's role as Presenting Sponsor and Official Investment &amp; Wealth Management Sponsor for …",
+          "related": "ASS10319,ASS10319042,Asset Management,BK,ENGLAND1,Financial and Business Services,Investment Opinion,Market,New York,NYSE0001,SPORTS"
+        },
+        {
+          "datetime": "2018-05-08T08:00:00-04:00",
+          "headline": "Endowment Plans Beat First Dip in Plan Sponsor Returns Since 3Q 2016, according to BNY Mellon U.S. Master Trust Universe/Asset Strategy View&#xAE;",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/6199301672829860",
+          "summary": "      NEW YORK ,  May 8, 2018  /PRNewswire/ --The BNY Mellon U.S. Master Trust Universe returned a median -0.39% for the first quarter of this year, the first negative result in ten quarters for the fund-level tracking service.    The BNY Mellon U.S. Master Trust Universe offers peer compar…",
+          "related": "ASS10319,ASS10319042,Banking and Finance,Banking,Big Data,BK,Bonds,Financial and Business Services,Hospitals,Market,New York,NYSE0001"
+        },
+        {
+          "datetime": "2018-05-07T00:00:00-04:00",
+          "headline": "BNY Mellon Names Veteran Engineer Nitin Chandel to Lead BNY Mellon Technology, India",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/6736171974771860",
+          "summary": "      NEW YORK ,  May 7, 2018  /PRNewswire/ -- BNY Mellon, a leader in Investment Services and Investment Management, today announced it has named  Nitin Chandel  as Head of BNY Mellon Technology,  India . Mr. Chandel will report to  Bridget Engle , Senior Executive Vice President and Chief Infor…",
+          "related": "ASIA0001,Asia Pacific,ASS10319,ASS10319042,Banking and Finance,Banking,BK,Economy Business and Finance,Financial and Business Services,INDIA001,Market,New York,NYSE0001"
+        },
+        {
+          "datetime": "2018-05-03T14:17:00-04:00",
+          "headline": "INSITE 2018 Announces Its Conference Agenda; Convenes Leading Experts, Thinkers and Business Leaders",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/4936804936380531",
+          "summary": "      JERSEY CITY, N.J. ,  May 3, 2018  /PRNewswire/ --BNY Mellon's Pershing is pleased to announce the agenda and the main themes of its 20 th  annual  INSITE  conference, taking place  Wednesday, June 6 , through  Friday, June 8 , at the Hyatt Regency Orlando in  Florida .                …",
+          "related": "ASS10319,ASS10319042,Asset Management,Banking and Finance,Banking,BK,Computer Software,FBI00001,Financial and Business Services,Financial and Business Services,FLORIDA1,Industrial Goods,Market,Market and Economy,Mergers & Acquisitions,Mutual Funds,New York,NYSE0001,Software,Computing and Information Technology"
+        },
+        {
+          "datetime": "2018-05-02T10:14:00-04:00",
+          "headline": "Alcentra Announces the Final Closure of Clareant Structured Credit Opportunity Fund III",
+          "source": "PR Newswire",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/4770930939476830",
+          "summary": "      LONDON  and  NEW YORK , May 2,2018 /PRNewswire/ --Alcentra NY, LLC and Alcentra Limited (together \"Alcentra\"), the alternative fixed income specialists for BNY Mellon Investment Management (IM), announced the final close of Clareant Structured Credit Opportunities Fund III (\"the…",
+          "related": "ASIA0001,ASS10319,ASS10319042,Asset Management,Banking and Finance,Banking,BK,ENGLAND1,Europe,Financial and Business Services,LONDON01,Market,MIDLEAST,Mutual Funds,New York,NYSE0001"
+        },
+        {
+          "datetime": "2018-05-01T05:15:59-04:00",
+          "headline": "Vulcan Value Partners Commentary - Q1 2018",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/4680357604783885",
+          "summary": "    Read more …    ",
+          "related": "ABC,ACIW,AET,AHL,AXS,AXTA,AYI,AZO,BK,BKNG,CHH,CON102,CVS,DESP,EADSF,EADSY,FB,FWRD,GKNCF,GOOG,GOOGL,HLT,IHG,INTHPINK,JLL,LODGING9,LQ,MA,MCK,MLHR,MLSRF,NASDAQ01,NAVG,ORCL,OTCBULLB,OUT,PH,RE,SNBR,SSNC,Computing and Information Technology,TPX,TRA10218,TUP,V,VVPLX,VVPSX,WOMPOLIX,WPP"
+        },
+        {
+          "datetime": "2018-04-30T08:36:50-04:00",
+          "headline": "Buy the dip in banks - Morgan Stanley",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/8546026880150349",
+          "summary": "     Large-cap bank stocks have struggled despite earnings beats, says Betsy Graseck, with the flattening yield curve and credit deterioration among investor concerns. Positive catalysts abound though, says Graseck - eased regulation, digitization, and reflation, among them.   More news on: The B…",
+          "related": "ASB,ASS10319,ASS10319042,BK,BOH,DFS,Financial and Business Services,Financial and Business Services,JPM,NASDAQ01,New York,NYCB,OZRK,PBCT,SIVB,STI,WBS"
+        },
+        {
+          "datetime": "2018-04-26T18:43:18-04:00",
+          "headline": "21 Dividend Increases To Check Out",
+          "source": "SeekingAlpha",
+          "url": "https://api.iextrading.com/1.0/stock/bk/article/5371463949730721",
+          "summary": "      Introduction   The information presented below was created based on combining the \"U.S. Dividend Champion\" spreadsheet compiled by David Fish hosted  here  with upcoming dividend information from the  NASDAQ . This meshes metrics about companies with dividend growth history with upcoming di…",
+          "related": "AES,AMP,ANDX,AON,ATLO,BK,BMRC,BMTC,BPFH,BSRR,CASY,CATC,CFG,CMS,DGICA,DGICB,Cash Or Stock Dividend,ETN,FCBC,FELE,FNHC,GT,HAS,HBCP,IBCP,IDA,JBHT,LBAI,MC,MET,NASDAQ01,NEP,NWBI,O,PBCT,PNM,PNW,SAFM,SIG,SRCE,STBA,UTI20744,UTI20744095,Utilities,VLP,VSEC,WBS,WES,WFC,WGP,WRK"
+        }
+      ],
+      "earnings": {
+        "symbol": "BK",
+        "earnings": [
+          {
+            "actualEPS": 1.1,
+            "consensusEPS": 0.97,
+            "estimatedEPS": 0.97,
+            "announceTime": "BTO",
+            "numberOfEstimates": 8,
+            "EPSSurpriseDollar": 0.13,
+            "EPSReportDate": "2018-04-19",
+            "fiscalPeriod": "Q1 2018",
+            "fiscalEndDate": "2018-03-31",
+            "yearAgo": 0.8,
+            "yearAgoChangePercent": 38,
+            "estimatedChangePercent": 21,
+            "symbolId": 767
+          },
+          {
+            "actualEPS": 0.91,
+            "consensusEPS": 0.91,
+            "estimatedEPS": 0.91,
+            "announceTime": "BTO",
+            "numberOfEstimates": 8,
+            "EPSSurpriseDollar": null,
+            "EPSReportDate": "2018-01-18",
+            "fiscalPeriod": "Q4 2017",
+            "fiscalEndDate": "2017-12-31",
+            "yearAgo": 0.77,
+            "yearAgoChangePercent": 18,
+            "estimatedChangePercent": 18,
+            "symbolId": 767
+          },
+          {
+            "actualEPS": 0.98,
+            "consensusEPS": 0.93,
+            "estimatedEPS": 0.93,
+            "announceTime": "BTO",
+            "numberOfEstimates": 8,
+            "EPSSurpriseDollar": 0.05,
+            "EPSReportDate": "2017-10-19",
+            "fiscalPeriod": "Q3 2017",
+            "fiscalEndDate": "2017-09-30",
+            "yearAgo": 0.9,
+            "yearAgoChangePercent": 9,
+            "estimatedChangePercent": 3,
+            "symbolId": 767
+          },
+          {
+            "actualEPS": 0.92,
+            "consensusEPS": 0.84,
+            "estimatedEPS": 0.84,
+            "announceTime": "BTO",
+            "numberOfEstimates": 7,
+            "EPSSurpriseDollar": 0.08,
+            "EPSReportDate": "2017-07-20",
+            "fiscalPeriod": "Q2 2017",
+            "fiscalEndDate": "2017-06-30",
+            "yearAgo": 0.76,
+            "yearAgoChangePercent": 21,
+            "estimatedChangePercent": 11,
+            "symbolId": 767
+          }
+        ]
+      },
+      "peers": [
+        "CM",
+        "NTRS",
+        "STT",
+        "WFC",
+        "JPM",
+        "C"
+      ],
+      "url": "https://api.iextrading.com/1.0/stock/BK/batch?types=company,logo,quote,stats,financials,news,earnings,peers"
     }
   }
 }

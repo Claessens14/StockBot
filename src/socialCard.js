@@ -137,6 +137,40 @@ function makeChartCard(session, stock, url, title, text) {
     ]);
 }
 
+/*STOCK PEERS
+  return an hero card with stock chart*/
+function makePeersCards(session, stocks) {
+  if (!stocks) return null;
+  var cards = [];
+  for (var sym in stocks) {
+    if (stocks[sym].quote && stocks[sym].quote.companyName != "") {
+      var logo = "";
+      if (stocks[sym].logo && stocks[sym].logo.url) {
+        logo = stocks[sym].logo.url;
+      } else {
+        logo = "https://www.ledr.com/colours/white.jpg";
+      }
+      console.log(stocks[sym].quote.companyName + ',  ' + sym +  ',  ' + logo);
+      
+      cards.push(new builder.HeroCard(session)
+        .title(stocks[sym].quote.companyName)
+        .images([
+            builder.CardImage.create(session, logo)
+        ])
+        .buttons([
+            builder.CardAction.imBack(session, sym, sym)
+        ])
+      )
+    }
+  }
+  if (cards.length > 0) {
+    return cards;
+  } else {
+    return null;
+  }
+  
+}
+
 
 
 module.exports = {
@@ -146,6 +180,7 @@ module.exports = {
 	makeFinCard : makeFinCard,
 	// makeNewsCard : makeNewsCard,
   createNewsCards : createNewsCards,
-  makeChartCard : makeChartCard
+  makeChartCard : makeChartCard,
+  makePeersCards : makePeersCards
 
 }
