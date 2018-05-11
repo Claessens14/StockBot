@@ -7,6 +7,12 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "data",
+            "program": "${workspaceFolder}/src/data.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Bash Launch",
             "program": "${workspaceFolder}/app.js"
         },

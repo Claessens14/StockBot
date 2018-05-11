@@ -2,13 +2,28 @@ require('dotenv').config();
 var fs = require('fs');
 var request = require('request');
 
-var iex = require('../assets/iexList.json');
+var iex = require('../assets/data/iexList.json');
+var market = require('../assets/data/market.json');
+var sp500 = require('../assets/data/sp500names.js').array;
 
-var industry = {};
 var str = "";
+var dir = './assets/data/';
+
+if (process.argv.length > 1) {
+    if (process.argv[2] == "getList") {
+        getList();
+    } else if (process.argv[2] == "getIndustry") {
+        getIndustry();
+    } else {
+        console.log("No command line argv was given");
+        //getIndustry();
+    }
+}
+
+
 
 function getList() {
-    fs.writeFile('./assets/market.json', "", function (err) {
+    fs.writeFile(dir + 'market.json', "", function (err) {
         if (err) return console.log(err);
     });
 
@@ -21,7 +36,7 @@ function getList() {
                     if (err) {
                         console.log(err);
                     } else {
-                        fs.appendFile('./assets/market.json', JSON.stringify(res, null, 2), function (err) {
+                        fs.appendFile(dir + 'market.json', JSON.stringify(res, null, 2) + ',', function (err) {
                             if (err) return console.log(err);
                         });
                     }
@@ -30,6 +45,44 @@ function getList() {
             }
         }
     } 
+}
+
+function getIndustry() {
+    if (!market || market == {}) return console.log("ERROR: market is not set right");
+    var industry = {};
+    var spIndustry = {};
+    for (var i in market) {
+        if (market[i]) {
+            for (var j in market[i]) {
+                var stock = market[i][j];
+                if (stock && stock.company && stock.company.industry && stock.company.industry != "") {
+                    if (industry[stock.company.industry]) {
+                        industry[stock.company.industry].push(stock);
+                    } else {
+                        industry[stock.company.industry] = [stock];
+                    }
+                    for (var k in sp500) {
+                        if (sp500[k] && sp500[k].Symbol && sp500[k].Symbol == stock.company.symbol) {
+                            console.log(stock.company.symbol)
+                            if (spIndustry[stock.company.industry]) {
+                                spIndustry[stock.company.industry].push(stock);
+                            } else {
+                                spIndustry[stock.company.industry] = [stock];
+                            }
+                        }
+                    }
+                    console.log("SP500 length : " + sp500.length);
+                }
+            }
+        }
+    }
+    fs.writeFile(dir + 'industry.json', JSON.stringify(industry, null, 2), function (err) {
+        if (err) return console.log(err);
+    });
+    fs.writeFile(dir + 'spIndustry.json', JSON.stringify(spIndustry, null, 2), function (err) {
+        if (err) return console.log(err);
+    });
+
 }
 
 function batchSearch(str, callback) {
@@ -48,7 +101,8 @@ function batchSearch(str, callback) {
 		}
 	});
 }
-getList();
+
+
 
 
 
