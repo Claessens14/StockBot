@@ -56,7 +56,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
   console.log("message recieved now ")
   session.sendTyping();
 
-  var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
+  var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials", "About"];
   var payload = {
     workspace_id: process.env.WATSON_WORKSPACE_ID,
     context: getUser(session.message.user.name),    //should be no context value when program starts
@@ -206,6 +206,12 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   });
                 } else {
                   send(session, errMsg);
+                }
+              } else if (action == "wantDesc") {
+                if (stock.company && stock.company.description && stock.company.description != "") {
+                  send(session, stock.company.description);
+                } else {
+                  send(session, "Sorry but I countn't find a description");
                 }
               } else if (action == "wantChart") {
                 var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
