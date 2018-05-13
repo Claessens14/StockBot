@@ -3,23 +3,29 @@ var fs = require('fs');
 var request = require('request');
 
 var iex = require('../assets/data/iexList.json');
+//var indJson = require('../assets/data/spIndustry.json');
 var market = require('../assets/data/market.json');
 var sp500 = require('../assets/data/sp500names.js').array;
 
 var str = "";
 var dir = './assets/data/';
 
+/*--------------------------------------------------------
+This File is for deriving static stock market information
+----------------------------------------------------------*/
+
 if (process.argv.length > 1) {
     if (process.argv[2] == "getList") {
         getList();
     } else if (process.argv[2] == "getIndustry") {
         getIndustry();
+    } else if (process.argv[2] == "getSectors") {
+        getSectors();
     } else {
         console.log("No command line argv was given");
         //getIndustry();
     }
 }
-
 
 
 function getList() {
@@ -85,6 +91,52 @@ function getIndustry() {
 
 }
 
+function getSectors() {
+    if (!market || market == {}) {
+        console.log('ERROR (getSectors) getSectors is not set correctly');
+        return;
+    }
+
+    var sector = {};
+    //var spSector = {};
+    for (var i in market) {
+        if (market[i]) {
+            for (var j in market[i]) {
+                var stock = market[i][j];
+                if (stock && stock.company && stock.company.sector && stock.company.sector != "") {
+                    if (sector[stock.company.sector]) {
+                        sector[stock.company.sector].push(stock);
+                    } else {
+                        sector[stock.company.sector] = [stock];
+                    }
+                    // for (var k in sp500) {
+                    //     if (sp500[k] && sp500[k].Symbol && sp500[k].Symbol == stock.company.symbol) {
+                    //         console.log(stock.company.symbol)
+                    //         if (spIndustry[stock.company.industry]) {
+                    //             spIndustry[stock.company.industry].push(stock);
+                    //         } else {
+                    //             spIndustry[stock.company.industry] = [stock];
+                    //         }
+                    //     }
+                    // }
+                    // console.log("SP500 length : " + sp500.length);
+                }
+            }
+        }
+    }
+    fs.writeFile(dir + 'sector.json', JSON.stringify(sector, null, 2), function (err) {
+        if (err) return console.log(err);
+    });
+    // fs.writeFile(dir + 'spIndustry.json', JSON.stringify(spIndustry, null, 2), function (err) {
+    //     if (err) return console.log(err);
+    // });
+
+
+
+
+
+}
+
 function batchSearch(str, callback) {
     var url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=company,quote';
     request(url, function (err, resp, body) {
@@ -101,8 +153,6 @@ function batchSearch(str, callback) {
 		}
 	});
 }
-
-
 
 
 
