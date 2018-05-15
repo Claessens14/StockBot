@@ -1,5 +1,5 @@
-var arr = [];
-var tim = ["hey", "hi"];
+var tmep = {stock : {hey : 'there'}}
 
-arr.concat(tim);
-console.log(arr);
+for (key in tmep) {
+    console.log(key);
+}

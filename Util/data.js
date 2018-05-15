@@ -3,8 +3,10 @@ var fs = require('fs');
 var request = require('request');
 
 var iex = require('../assets/data/iexList.json');
-//var indJson = require('../assets/data/spIndustry.json');
+var industry = require('../assets/data/industry.json');
+var sector = require('../assets/data/sector.json');
 var market = require('../assets/data/market.json');
+var outlook = require('../assets/data/outlook.json');
 var sp500 = require('../assets/data/sp500names.js').array;
 
 var str = "";
@@ -21,6 +23,8 @@ if (process.argv.length > 1) {
         getIndustry();
     } else if (process.argv[2] == "getSectors") {
         getSectors();
+    } else if (process.argv[2] == "bestIndex") {
+        bestIndex(process.argv[3]);
     } else {
         console.log("No command line argv was given");
         //getIndustry();
@@ -98,7 +102,7 @@ function getSectors() {
     }
 
     var sector = {};
-    //var spSector = {};
+    var spSector = {};
     for (var i in market) {
         if (market[i]) {
             for (var j in market[i]) {
@@ -109,16 +113,16 @@ function getSectors() {
                     } else {
                         sector[stock.company.sector] = [stock];
                     }
-                    // for (var k in sp500) {
-                    //     if (sp500[k] && sp500[k].Symbol && sp500[k].Symbol == stock.company.symbol) {
-                    //         console.log(stock.company.symbol)
-                    //         if (spIndustry[stock.company.industry]) {
-                    //             spIndustry[stock.company.industry].push(stock);
-                    //         } else {
-                    //             spIndustry[stock.company.industry] = [stock];
-                    //         }
-                    //     }
-                    // }
+                    for (var k in sp500) {
+                        if (sp500[k] && sp500[k].Symbol && sp500[k].Symbol == stock.company.symbol) {
+                            //console.log(stock.company.symbol)
+                            if (spSector[stock.company.sector]) {
+                                spSector[stock.company.sector].push(stock);
+                            } else {
+                                spSector[stock.company.sector] = [stock];
+                            }
+                        }
+                    }
                     // console.log("SP500 length : " + sp500.length);
                 }
             }
@@ -127,14 +131,93 @@ function getSectors() {
     fs.writeFile(dir + 'sector.json', JSON.stringify(sector, null, 2), function (err) {
         if (err) return console.log(err);
     });
-    // fs.writeFile(dir + 'spIndustry.json', JSON.stringify(spIndustry, null, 2), function (err) {
-    //     if (err) return console.log(err);
-    // });
+    fs.writeFile(dir + 'spSector.json', JSON.stringify(spSector, null, 2), function (err) {
+        if (err) return console.log(err);
+    });
+}
+
+function bestIndex(build) {
+    if (!sector || sector == {} || !industry || industry == {}) {
+        console.log("ERROR (bestIndex) something is set to null");
+        return;
+    }
+    if (build) {  
+        outlook = {};
+        for (var sec in sector) {
+            var maxm = 0;
+            for(var i in sector[sec]) {
+                var stock = sector[sec][i];
+                if (stock && stock.company && stock.company.sector && stock.company.sector != "" && stock.company.issueType && stock.company.issueType == 'et') {
+                    if (stock.quote && stock.quote.marketCap && stock.quote.marketCap > maxm) {
+                        outlook[stock.company.sector] = stock;
+                        maxm = stock.quote.marketCap;
+                    }
+                }
+            }
+        }
+        for (var ind in industry) {
+            var maxm = 0;
+            for(var i in industry[ind]) {
+                var stock = industry[ind][i];
+
+                if(stock && stock.company && stock.company.industry && stock.company.industry != "" && stock.company.issueType && stock.company.issueType == 'et') {
+                    
+                    if (stock.quote && stock.quote.marketCap && stock.quote.marketCap > maxm) {
+                        
+                        outlook[stock.company.industry] = stock;
+                        maxm = stock.quote.marketCap;
+                        // console.log(' MAX ' + maxm)
+                    }
+                }
+            }
+        }
+        console.log(outlook)
+            fs.writeFile(dir + 'outlook.json', JSON.stringify(outlook, null, 2), function (err) {
+                    if (err) return console.log(err);
+                });
+        
+        // var list = {};
+        // for (var sec in sector) {
+        //     var indArray = [];
+        //     for (i in sector[sec]) {
+        //         var stock = sector[sec][i];
+        //         if(stock && stock.company && stock.company.industry && stock.company.industry != "" && stock.company.sector && stock.company.sector != "") {
+        //             var newInd = true;
+        //             var tempArray = indArray;
+        //             for (var ind in indArray) {
+        //                 //indArray is the object
+        //                 if (stock.company.industry == ind) {
+        //                     newInd = false;
+        //                     indArray[ind].push(stock);
+        //                 }
+        //             }
+        //             if (newInd == true) {
+        //                 indArray[stock.company.industry] = [stock];
+        //             }
+        //         }
+        //     }
+        //     list[sec] = indArray;
+        // }
+        // outlook = list;
+        // fs.writeFile(dir + 'outlook.json', JSON.stringify(outlook, null, 2), function (err) {
+        //     if (err) return console.log(err);
+        // });
+    }
+
+    // for (i in market) {
+    //     var stock = market[i];
+    //     if (stock.company && stock.company.issueType && stock.company.issueType == "et" && stock.company.companyName && stock.company.issueType != "") {
+    //         if (outlook[stock.company.sector][stock.company.industry]) {
+    //             outlook[stock.company.sector][stock.company.industry] = [stock.company.companyName].concat(outlook[stock.company.sector][stock.company.industry]);
+    //         }
+    //     }
+    // }
+    // console.log(outlook)
 
 
 
 
-
+    
 }
 
 function batchSearch(str, callback) {
