@@ -56,7 +56,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
   console.log("message recieved now ")
   session.sendTyping();
 
-  var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials", "About"];
+  var stockModes = ["Charts", "News", "Peers", /*"Earnings",*/ "Stats", "Financials", "About"];
   var payload = {
     workspace_id: process.env.WATSON_WORKSPACE_ID,
     context: getUser(session.message.user.name),    //should be no context value when program starts
@@ -177,9 +177,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 card = socialCard.makeStatsCard(stock);
                 send(session, null, card, stockModes);
               } else if (action == "wantEarnings") {
-                var msg = new builder.Message(session);
-                card = socialCard.makeEarningsCard(stock);
-                send(session, null, card, stockModes);
+                // var msg = new builder.Message(session);
+                // card = socialCard.makeEarningsCard(stock);
+                // send(session, null, card, stockModes);
+                var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+                send(session, callStr, null, stockModes);
               } else if (action == "wantNews") {
                   var obj = socialCard.createNewsCards(session, stock);
                   if (obj && obj.cards && obj.news) {

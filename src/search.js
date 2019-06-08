@@ -82,6 +82,7 @@ function getStock(str, callback) {
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
+	// reference for api https://iextrading.com/developer/docs/#stocks
 	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings,peers';
 	request(url, function (err, resp, body) {
 		if (err) {

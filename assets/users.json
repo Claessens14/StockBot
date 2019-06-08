@@ -1,6 +1,6 @@
 {
   "Jacob Claessens": {
-    "conversation_id": "f0ed4db4-408e-4586-8062-189431de6fe5",
+    "conversation_id": "066bcfc8-8a1c-4d24-b57e-379450bb6cb3",
     "system": {
       "initialized": true,
       "dialog_stack": [
@@ -8,21 +8,14 @@
           "dialog_node": "root"
         }
       ],
-      "dialog_turn_counter": 2,
-      "dialog_request_counter": 2,
-      "_node_output_map": {
-        "node_3_1524485707605": [
-          0
-        ],
-        "node_7_1520476242297": [
-          0
-        ]
-      },
+      "dialog_turn_counter": 1,
+      "dialog_request_counter": 1,
       "branch_exited": true,
       "branch_exited_reason": "completed"
     },
+    "mode": "stock",
     "user": {
-      "id": "MmwU6mlMSDY_LNlMc46c6ONwj0DFh5zHG8lzTuiYCEvQ-mJcRymiKfSJ11Tk25W5TEQewb21axn0iVrystjBXA",
+      "id": "e61mrqNw5iMk7_z-5sOJU-Nwj0DFh5zHG8lzTuiYCEstz7rBYKfEDsHytGeab76k7sGfAi9OQIuoe7xLZ4KpoQ",
       "channelId": "facebook",
       "user": {
         "id": "1531011940353275",
@@ -37,7 +30,6 @@
         "name": "StockZia_Dev"
       },
       "serviceUrl": "https://facebook.botframework.com/"
-    },
-    "mode": "market"
+    }
   }
 }
