@@ -1,3 +1,5 @@
-var str = "amaz,98,75./.]n.com."
+var tmep = {stock : {hey : 'there'}}
 
-console.log(str.replace(/\./gi, "").replace(/\,/gi, ""));
+for (key in tmep) {
+    console.log(key);
+}

@@ -4,6 +4,7 @@ const roundTo = require('round-to');
 
 var search = require('./search');
 var stockCard = require('./stockCard');
+var format = require('./format');
 
 /*----------------------------------------------------------------------
 Wrap around the contents of the adaptive card
@@ -67,64 +68,45 @@ function makeEarningsCard(stock) {
 }   
 
 /* STOCK NEWS
-  return an array of hero cards*/
+  return an json with an array of hero cards
+  and a array of quick reads */
 function createNewsCards(session, stock) {
-    function checkStr(str) {
-      if (str && str != "No summary available.") {
-        return str.replace(/    /g, " ").replace(/   /g, " ").replace(/  /g, " ");
-      } else {
-        return " ";
-      }
-    }
-    function stripName(str) {
-        str = str.replace(/\./g, "");
-        str = str.replace(/,/g, "");
-        str = str.replace(/!/g, "");
-        str = str.replace(/\?/g, "");
-        str = str.replace(/\'/g, "");
-        str = str.replace(/The/gi, "the");
-        str = str.replace(/ company$/gi, "");
-        str = str.replace(/ corporation$/gi, "");
-        str = str.replace(/ corp$/gi, "");
-        str = str.replace(/ co$/gi, "");
-        str = str.replace(/ inc/gi, "");
-        str = str.replace(/.com$/gi, "");
-        str = str.replace(/ Ltd$/gi, "");
-        str = str.replace(/ group$/gi, "");
-        str = str.replace(/(the)/gi, "");
-        str = str.replace(/ /gi, "");
-        return str;
-    }
+  if (!session || !stock) return null;
+  if (stock.news) {
+    var array = [];  //an array of session objects
+    var news = [];   //array of quick read data
+    stock.news.forEach(function(el) {
+      el.headline = format.checkStr(el.headline);
+      el.summary = format.checkStr(el.summary);
+      el.url = format.checkStr(el.url);
+      if (el.headline == null) el.headline = "";
+      if (el.summary == null) el.summary = "";
+      if (el.url == null) el.url = "";
 
-    var relevant = []; 
-    var irrelevant = []
-    var company = stripName(stock.company.companyName);
-    stock.news.forEach(function(element) {
-      var head = element.headline.toLowerCase().replace(/ /g, "");
-      var sum = element.headline.toLowerCase().replace(/ /g, "");
-      //var prioritize news that is about the company
-      if ((head.indexOf(company) != -1) || (sum.indexOf(company) != -1)) {
-      relevant.push(new builder.HeroCard(session)
-        .title(checkStr(element.headline))
-        .text(checkStr(element.summary))
-        .buttons([
-            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
-        ]));
-      } else {
-      irrelevant.push(new builder.HeroCard(session)
-        .title(checkStr(element.headline))
-        .text(checkStr(element.summary))
-        .buttons([
-            builder.CardAction.openUrl(session, checkStr(element.url), 'Open')
-        ]));
+      if (el.headline != "") {
+        array.push(new builder.HeroCard(session)
+          .title(format.checkStr(el.headline))
+          .text(format.checkStr(el.summary))
+          .buttons([
+            builder.CardAction.imBack(session, el.headline, "Quick Read"),
+            builder.CardAction.openUrl(session, format.checkStr(el.url), 'Open')
+          ])
+        );
+      
+        var title = el.headline;
+        var sum = el.summary;
+        if (sum != "") {
+          news.push({"title" : title, "sum" : sum, "type" : "stock"});
+        } else {
+          news.push({"title" : title, sum : "Sorry but there is no summary Availble", "type" : "stock"});
+        }
       }
     });
-    if (relevant.length > 3) {
-      return relevant;
-    } else {
-      return relevant.concat(irrelevant);
-    }
+    return {"cards" : array, "news" : news};
+  } else {
+    return null;
   }
+}
 
 /* Stock finicials
   return an adaptive card*/
@@ -155,6 +137,40 @@ function makeChartCard(session, stock, url, title, text) {
     ]);
 }
 
+/*STOCK PEERS
+  return an hero card with stock chart*/
+function makePeersCards(session, stocks) {
+  if (!stocks) return null;
+  var cards = [];
+  for (var sym in stocks) {
+    if (stocks[sym].quote && stocks[sym].quote.companyName != "") {
+      var logo = "";
+      if (stocks[sym].logo && stocks[sym].logo.url) {
+        logo = stocks[sym].logo.url;
+      } else {
+        logo = "https://www.ledr.com/colours/white.jpg";
+      }
+      console.log(stocks[sym].quote.companyName + ',  ' + sym +  ',  ' + logo);
+      
+      cards.push(new builder.HeroCard(session)
+        .title(stocks[sym].quote.companyName)
+        .images([
+            builder.CardImage.create(session, logo)
+        ])
+        .buttons([
+            builder.CardAction.imBack(session, sym, sym)
+        ])
+      )
+    }
+  }
+  if (cards.length > 0) {
+    return cards;
+  } else {
+    return null;
+  }
+  
+}
+
 
 
 module.exports = {
@@ -164,6 +180,7 @@ module.exports = {
 	makeFinCard : makeFinCard,
 	// makeNewsCard : makeNewsCard,
   createNewsCards : createNewsCards,
-  makeChartCard : makeChartCard
+  makeChartCard : makeChartCard,
+  makePeersCards : makePeersCards
 
 }

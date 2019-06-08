@@ -20,6 +20,33 @@ function pickStr(array) {
 	}
 }
 
+function stripName(str) {
+    str = str.replace(/\./g, "");
+    str = str.replace(/,/g, "");
+    str = str.replace(/!/g, "");
+    str = str.replace(/\?/g, "");
+    str = str.replace(/\'/g, "");
+    str = str.replace(/The/gi, "the");
+    str = str.replace(/ company$/gi, "");
+    str = str.replace(/ corporation$/gi, "");
+    str = str.replace(/ corp$/gi, "");
+    str = str.replace(/ co$/gi, "");
+    str = str.replace(/ inc/gi, "");
+    str = str.replace(/.com$/gi, "");
+    str = str.replace(/ Ltd$/gi, "");
+    str = str.replace(/ group$/gi, "");
+    str = str.replace(/\(the\)/gi, "");
+    return str;
+}
+
+function checkStr(str) {
+    if (str && (typeof str == "string") && str != "" && str != " " && str != "No summary available.") {
+      return str.replace(/    /g, " ").replace(/   /g, " ").replace(/  /g, " ");
+    } else {
+      return null;
+    }
+  }
+
 function toStr(val) {
 	if (typeof val != "string") {
 		return String(roundTo(val, 2));
@@ -83,5 +110,7 @@ function dataToStr(value, na_on) {
 module.exports = {
     dataToStr : dataToStr,
     pickStr : pickStr,
-    toStr : toStr
+    toStr : toStr,
+    stripName : stripName,
+    checkStr : checkStr
 }

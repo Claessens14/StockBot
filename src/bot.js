@@ -12,8 +12,11 @@ var analysis = require('./analysis');
 var socialCard = require('./socialCard');
 var format = require('./format');
 
-var users = require('../assets/users.json');
-
+var users = {};
+if (process.env.USER == "HOLD") {
+  users = require('../assets/users.json');
+}
+  
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
@@ -53,17 +56,25 @@ var bot = new builder.UniversalBot(connector, function (session) {
   console.log("message recieved now ")
   session.sendTyping();
 
-
-   var payload = {
-      workspace_id: process.env.WATSON_WORKSPACE_ID,
-      context: getUser(session.message.user.name),    //should be no context value when program starts
-      input: { text: session.message.text}
-   };
+  var stockModes = ["Charts", "News", "Peers", /*"Earnings",*/ "Stats", "Financials", "About"];
+  var payload = {
+    workspace_id: process.env.WATSON_WORKSPACE_ID,
+    context: getUser(session.message.user.name),    //should be no context value when program starts
+    input: { text: session.message.text}
+  };
 
    if (payload.context) {
     if (payload.context.news) {
-      for (var summary in payload.context.news) {
-        console.log(summary);
+      for (var i in payload.context.news) {
+        var el = payload.context.news[i];
+        if (payload.input.text == el.title) {
+          if (el.type && el.type == "stock") {
+            send(session, el.sum, null, stockModes);
+          } else {
+            send(session, el.sum);
+          }
+          return;
+        }
       }
     } 
    }
@@ -116,15 +127,35 @@ var bot = new builder.UniversalBot(connector, function (session) {
               search.getNews((err, results) => {
                 //code for market goes here!
                 var news = [];
+                var cards = [];
                 var array = results.articles;
                 if (!watsonData.news) watsonData.news = [];
                 for (var i = 0; i < array.length; i++) {
-                  news.push(marketCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));
-                  var title = array[i].title;
-                  var text = array[i].description;
-                  //if (title != "" && title  != " " && title != null && text != "" && text != " " && text != null && text != "No summary available.") watsonData.news.push({title : text});
+                  var headline = array[i].title;
+                  var summary = array[i].description;
+                  var url = array[i].url;
+
+                  headline = format.checkStr(headline);
+                  summary = format.checkStr(summary);
+                  url = format.checkStr(url);
+                  if (headline == null) headline = "";
+                  if (summary == null) summary = "";
+                  if (url == null) url = "";
+
+                  if (headline != "") {
+                    cards.push(marketCard.marketNews(session, array[i].url, array[i].title, array[i].description, array[i].urlToImage));      
+                    var title = headline;
+                    var sum = summary;
+                    if (sum != "") {
+                      news.push({"title" : title, "sum" : sum});
+                    } else {
+                      news.push({"title" : title, sum : "Sorry but there is no summary Availble"});
+                    }
+                  }
                 }
-                send(session, null, news, null, null, true);
+                send(session, null, cards, null, null, true);
+                if (!watsonData.context.news) watsonData.context.news = [];
+                watsonData.context.news = watsonData.context.news.concat(news);
               });
             }
           });
@@ -132,11 +163,93 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
       if (watsonData.context.hasOwnProperty('mode')) {
-        var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
+        //var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
         if(watsonData.context.mode == "stock") {
           var str = getEntity(watsonData, "SP500");
           if (str == null || str == "") str = getEntity(watsonData, "iexStock");
-          var stock = {};
+          //var stock = {};
+          function sendData(session, stock, action) {
+            // stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
+            if (stock) {
+              var card = {};
+              if (action == "wantStats") {
+                var msg = new builder.Message(session);
+                card = socialCard.makeStatsCard(stock);
+                send(session, null, card, stockModes);
+              } else if (action == "wantEarnings") {
+                // var msg = new builder.Message(session);
+                // card = socialCard.makeEarningsCard(stock);
+                // send(session, null, card, stockModes);
+                var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+                send(session, callStr, null, stockModes);
+              } else if (action == "wantNews") {
+                  var obj = socialCard.createNewsCards(session, stock);
+                  if (obj && obj.cards && obj.news) {
+                    send(session, null, obj.cards, stockModes, null, true);
+                    if (!watsonData.context.news) watsonData.context.news = [];
+                    watsonData.context.news = watsonData.context.news.concat(obj.news);
+                  } else {
+                    send(session, "Sorry but something went wrong while getting the news");
+                  }
+              } else if (action == "wantPeers") {
+                var errMsg = "Sorry but I did not find any peers for this company";
+                if (stock.peers && stock.peers.length > 0) {
+                  search.getPeers(stock.peers, (err, res) =>  {
+                    if (err) {
+                      send(session, errMsg);
+                    } else {
+                      var cards = socialCard.makePeersCards(session, res);
+                      if (cards) {
+                        send(session, null, cards, stockModes, null, true)
+                      } else {
+                        send(session, errMsg);
+                      }
+                    }
+                  });
+                } else {
+                  send(session, errMsg);
+                }
+              } else if (action == "wantDesc") {
+                if (stock.company && stock.company.description && stock.company.description != "") {
+                  send(session, stock.company.description);
+                } else {
+                  send(session, "Sorry but I countn't find a description");
+                }
+              } else if (action == "wantChart") {
+                var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
+                send(session, format.pickStr(arr));
+                search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
+                  if (err) {
+                      console.log(err)
+                      send(session, "Sorry but I can't seem to retrieve that stock data", null, stockModes);
+                    } else {
+                      var companyName = stock.company.companyName.replace(/\(the\)/gi, "");
+                      chart.grapher(stock, res.year, {"dp": "close", "title" : companyName, "length" : "1 Year"}, (err, yearUrl) => {
+                        if (err) {
+                          console.log(err)
+                          send(session, "Sorry but I can't seem to build a graph", null, stockModes);
+                        } else {
+                          chart.grapher(stock, res.month, {"dp": "close", "title" : companyName, "length" : "3 Month"}, (err, monthUrl) => {
+                            var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
+                            send(session, null, cards, stockModes, null, true);
+                            //session.send(cards[0]);
+                          });
+                        }
+                      });
+                    }
+                })
+              } else if (action == "wantFin") {
+                var msg = new builder.Message(session);
+                card = socialCard.makeFinCard(stock)
+                send(session, null, card, stockModes);
+                var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
+                send(session, callStr, null, stockModes);
+              } else {
+                console.log("ERROR (sendData) Does not know of this action : " + action);
+              }
+            }
+            if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
+          }
           //if a new search then show header
           if (str) {
             search.getStock(str, (err, stockJson) => {
@@ -180,56 +293,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
    });
 });
 
-function sendData(session, stock, action) {
-  var stockModes = ["Charts", "Earnings", "Stats", "Financials", "News"];
-  if (stock) {
-    var card = {};
-    if (action == "wantStats") {
-      var msg = new builder.Message(session);
-      card = socialCard.makeStatsCard(stock);
-      send(session, null, card, stockModes);
-    } else if (action == "wantEarnings") {
-      var msg = new builder.Message(session);
-      card = socialCard.makeEarningsCard(stock);
-      send(session, null, card, stockModes);
-    } else if (action == "wantNews") {
-        var cards = socialCard.createNewsCards(session, stock);
-        send(session, null, cards, stockModes, null, true);
-    } else if (action == "wantChart") {
-      var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
-      send(session, format.pickStr(arr));
-      search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
-        if (err) {
-            console.log(err)
-            send(session, "Sorry but I can't seem to retrieve that stock data", null, stockModes);
-          } else {
-            var companyName = stock.company.companyName.replace(/\(the\)/gi, "");
-            chart.grapher(stock, res.year, {"dp": "close", "title" : companyName, "length" : "1 Year"}, (err, yearUrl) => {
-              if (err) {
-                console.log(err)
-                send(session, "Sorry but I can't seem to build a graph", null, stockModes);
-              } else {
-                chart.grapher(stock, res.month, {"dp": "close", "title" : companyName, "length" : "3 Month"}, (err, monthUrl) => {
-                  var cards = [socialCard.makeChartCard(session, stock, yearUrl, "1 Year (" + format.dataToStr(stock.stats.year1ChangePercent * 100) + "%)"), socialCard.makeChartCard(session, stock, monthUrl, "3 Month (" + format.dataToStr(stock.stats.month3ChangePercent * 100) + "%)")];
-                  send(session, null, cards, stockModes, null, true);
-                  //session.send(cards[0]);
-                });
-              }
-            });
-          }
-      })
-    } else if (action == "wantFin") {
-      var msg = new builder.Message(session);
-      card = socialCard.makeFinCard(stock)
-      send(session, null, card, stockModes);
-      var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
-      send(session, callStr, null, stockModes);
-    } else {
-      console.log("ERROR (sendData) Does not know of this action : " + action);
-    }
-  }
-  if (process.env.SHOWCARD == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(card, null, 2) + '\n________________________________\n');
-}
+
 
 /*array is for multiple strings
 * obj is for a specific attachment
@@ -339,7 +403,8 @@ function getEntity(watsonData, entity) {
 }
 
 function getUser(name) {
-  return users[name]
+  if (users[name]) return users[name];
+  return {}
 }
 
 function putUser(name, data) {

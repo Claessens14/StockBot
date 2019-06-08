@@ -33,6 +33,7 @@ List of [companies](https://api.iextrading.com/1.0/ref-data/symbols)
 -remove -B and -b from ticker then split at (the). replace 'e' wit 'a'
 
 Example Stock [Data](https://api.iextrading.com/1.0/stock/aapl/batch?types=company,logo,quote,stats,financials,news,chart,earnings)  
+IEX api [docs](https://iextrading.com/developer/docs/#stocks)  
 
 Upload the xml map to https://draw.io
 

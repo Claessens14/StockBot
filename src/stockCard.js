@@ -365,6 +365,11 @@ function makeFinCard(stock) {
 
 
 function makeEarningsCard(stock) {
+  console.log(JSON.stringify(stock, null, 2));
+  if (!(stock && stock.earnings && stock.earnings.earnings)) {
+    return null;
+  }
+  
   earn = stock.earnings.earnings;
   var i = 0;
   if (typeof earn[0].EPSSurpriseDollar == "number") {
