@@ -21,6 +21,12 @@
             "request": "launch",
             "name": "Update Watson",
             "program": "${workspaceFolder}/Util/updateWatson.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "test.js",
+            "program": "${workspaceFolder}/test.js"
         }
    ]
 }

@@ -107,39 +107,41 @@ function getIndices(callback) {
 		return new Promise(function(resolve, reject) {
 			request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
 				if (err) {
-					reject("ERROR (getIndices->getPrice->promise) an error occurred during request  \n " + err);
+					resolve("ERROR (getIndices->getPrice->promise) an error occurred during request  \n " + err);
 				} else{
 					try {
 						body = JSON.parse(body);
-					} catch (e) {
-						callback("ERROR (getIndices->promise->getData) JSON.parse failed!", null);
-					}
-					var name = body["Meta Data"]["2. Symbol"];
-					var dateStr = body["Meta Data"]["3. Last Refreshed"];
-					var data = body["Time Series (Daily)"];
-					
-					var open = "";
-					var close = "";
-					var high = "";
-					var low = "";
-					var volume = "";
-					var lastClose = "";
-					var i = 0;
-					for (var line in data) {
-						if (i == 0) {
-							i++;
-							open = data[line]["1. open"];
-							close = data[line]["4. close"];
-							high = data[line]["2. high"];
-							low = data[line]["3. low"];
-							volume = data[line]["5. volume"];
-						} else if (i == 1) {
-							lastClose = data[line]["4. close"];
-							resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume, "lastClose" : lastClose});
-							i++;
-						}
+						(!body || body == {}) ? callback("ERROR (getIndices->promise->getData) 'body' variable is empty", null) : null;
+						//TODO -- meta data is null
+						var name = body["Meta Data"]["2. Symbol"];
+						var dateStr = body["Meta Data"]["3. Last Refreshed"];
+						var data = body["Time Series (Daily)"];
 						
+						var open = "";
+						var close = "";
+						var high = "";
+						var low = "";
+						var volume = "";
+						var lastClose = "";
+						var i = 0;
+						for (var line in data) {
+							if (i == 0) {
+								i++;
+								open = data[line]["1. open"];
+								close = data[line]["4. close"];
+								high = data[line]["2. high"];
+								low = data[line]["3. low"];
+								volume = data[line]["5. volume"];
+							} else if (i == 1) {
+								lastClose = data[line]["4. close"];
+								resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume, "lastClose" : lastClose});
+								i++;
+							}
+						}
+					} catch (e) {
+						resolve("ERROR (getIndices->promise->getData) JSON.parse failed!", null);
 					}
+
 				}
 			});
 		});
@@ -147,11 +149,16 @@ function getIndices(callback) {
 	var par = []; //parrellel
 	par.push(getData("DJI"));
 	par.push(getData("GSPC"));
-	par.push(getData("IXIC"));
+	//par.push(getData("IXIC"));
 
 	Promise.all(par).then(function(values) {
-	  console.log(values);
-	  callback(null, values);
+		for (i in values) {
+			if (typeof values[i] == "string") {
+				values.splice(i, 1);
+			}
+		}
+	  	return callback(null, values);
+	  callback(null, values)
 	}).catch(function(values) {
 	  callback(values);
 	});
@@ -169,32 +176,32 @@ function getMarketData(symbol, callback) {
 			} catch (e) {
 				callback("ERROR (getMarketData) JSON.parse failed");
 			}
-				var json = body["Time Series (Daily)"];
-				//console.log(body)
-				try {
-					for (var key in json) {
-						throw json[key];
-					}
-				} catch (e) {
-					var json = {}
-					for (var key in e) {
+			var json = body["Time Series (Daily)"];
+			//console.log(body)
+			try {
+				for (var key in json) {
+					throw json[key];
+				}
+			} catch (e) {
+				var json = {}
+				for (var key in e) {
 					if(e[key].match(/[0-9]\.[0-9]/g)) {
 						e[key] = e[key].replace(/[0-9][0-9]$/g, "");
 						console.log(e[key]);
 					}
-						json[key.slice(3)] = e[key];
-					}
-					json["name"] = body["Meta Data"]["2. Symbol"];
-					//get a formatted date
-					getStock("AAPL", (err, stock) => {
-						if (err) {
-							callback(err, null);
-						} else {
-							json["dateStr"] = stock.quote.latestTime;
-							callback(null, json)
-						}
-					});
+					json[key.slice(3)] = e[key];
 				}
+				json["name"] = body["Meta Data"]["2. Symbol"];
+				//get a formatted date
+				getStock("AAPL", (err, stock) => {
+					if (err) {
+						callback(err, null);
+					} else {
+						json["dateStr"] = stock.quote.latestTime;
+						callback(null, json)
+					}
+				});
+			}
 	    } else {
 	    	//console.log("ERROR (getMarketData) body is null from request");
 	    	callback("ERROR (getMarketData) body is null from request", null);
