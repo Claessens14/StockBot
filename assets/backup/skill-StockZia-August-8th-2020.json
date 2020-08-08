@@ -1,0 +1,6071 @@
+{
+  "intents": [
+    {
+      "intent": "goodbye",
+      "examples": [
+        {
+          "text": "see ya later"
+        },
+        {
+          "text": "see ya"
+        },
+        {
+          "text": "gooodbye"
+        },
+        {
+          "text": "have a good day"
+        },
+        {
+          "text": "thats all"
+        },
+        {
+          "text": "ok thats all"
+        },
+        {
+          "text": "can you stop talking"
+        },
+        {
+          "text": "goodbye"
+        },
+        {
+          "text": "byye"
+        },
+        {
+          "text": "byee"
+        },
+        {
+          "text": "bye"
+        },
+        {
+          "text": "so long"
+        },
+        {
+          "text": "seee ya"
+        },
+        {
+          "text": "i dont wanna talk anymore"
+        },
+        {
+          "text": "i dont wanna talk"
+        },
+        {
+          "text": "please go away"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "addToportfolio",
+      "examples": [
+        {
+          "text": "can you add it to my watch list"
+        },
+        {
+          "text": "add to protfolio"
+        },
+        {
+          "text": "add to list"
+        },
+        {
+          "text": "trach this stock"
+        },
+        {
+          "text": "add"
+        },
+        {
+          "text": "add to lsit"
+        },
+        {
+          "text": "add to my portfolio"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "downMovers",
+      "examples": [
+        {
+          "text": "whats in a slump"
+        },
+        {
+          "text": "what is todays bears pulling down"
+        },
+        {
+          "text": "market lows"
+        },
+        {
+          "text": "todays lows"
+        },
+        {
+          "text": "what are todays lows"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "upMovers",
+      "examples": [
+        {
+          "text": "what are todays top movers"
+        },
+        {
+          "text": "whats moving up"
+        },
+        {
+          "text": "what are the bulls pushing"
+        },
+        {
+          "text": "Top Movers"
+        },
+        {
+          "text": "what are the top movers"
+        }
+      ],
+      "description": "The movement of a index"
+    },
+    {
+      "intent": "earnings",
+      "examples": [
+        {
+          "text": "companies profit margin?"
+        },
+        {
+          "text": "what are there earnings like"
+        },
+        {
+          "text": "what are the companies earnigns"
+        },
+        {
+          "text": "what are there profit margin like"
+        },
+        {
+          "text": "companies profit?"
+        },
+        {
+          "text": "earnings beat?"
+        },
+        {
+          "text": "when are earningings reported"
+        },
+        {
+          "text": "earnings call"
+        },
+        {
+          "text": "earnings report"
+        },
+        {
+          "text": "q1 earnings"
+        },
+        {
+          "text": "please tell me the earnings"
+        },
+        {
+          "text": "earnings for this quarter"
+        },
+        {
+          "text": "what are the earnigns"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "learn",
+      "examples": [
+        {
+          "text": "teach me"
+        },
+        {
+          "text": "i want to learn more"
+        },
+        {
+          "text": "teeach me about"
+        },
+        {
+          "text": "educate"
+        },
+        {
+          "text": "educate me"
+        },
+        {
+          "text": "what is a value stock"
+        },
+        {
+          "text": "what is dividend"
+        },
+        {
+          "text": "what is a pe ratio"
+        },
+        {
+          "text": "what is the definition of a dividend"
+        },
+        {
+          "text": "Teach me about"
+        },
+        {
+          "text": "educatoin"
+        },
+        {
+          "text": "education"
+        },
+        {
+          "text": "i want to learn"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "removeFromPortfolio",
+      "examples": [
+        {
+          "text": "remove from portfolio"
+        },
+        {
+          "text": "remove stock"
+        },
+        {
+          "text": "delete from portfolio"
+        },
+        {
+          "text": "remove this stock"
+        },
+        {
+          "text": "exit this position"
+        },
+        {
+          "text": "remove from portofio"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "financials",
+      "examples": [
+        {
+          "text": "cash flow"
+        },
+        {
+          "text": "i need the financials"
+        },
+        {
+          "text": "what are ibms financials"
+        },
+        {
+          "text": "what are the financials of ibm"
+        },
+        {
+          "text": "can you tell me the financials"
+        },
+        {
+          "text": "financials"
+        },
+        {
+          "text": "whats the balance sheet like"
+        },
+        {
+          "text": "cash flow statement"
+        },
+        {
+          "text": "income statements"
+        },
+        {
+          "text": "financial statement"
+        },
+        {
+          "text": "what are there financials"
+        },
+        {
+          "text": "what are there financial"
+        },
+        {
+          "text": "what are the fincials"
+        },
+        {
+          "text": "what is there finicials statement"
+        },
+        {
+          "text": "what are there fincials like"
+        },
+        {
+          "text": "balance sheet"
+        },
+        {
+          "text": "income statement"
+        },
+        {
+          "text": "cashflow"
+        },
+        {
+          "text": "cashflow statement"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "help",
+      "examples": [
+        {
+          "text": "i need help"
+        },
+        {
+          "text": "examples"
+        },
+        {
+          "text": "im struggling"
+        },
+        {
+          "text": "help me"
+        },
+        {
+          "text": "please help"
+        },
+        {
+          "text": "help"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "quote",
+      "examples": [
+        {
+          "text": "stock price quote"
+        },
+        {
+          "text": "quote"
+        },
+        {
+          "text": "stock quote"
+        },
+        {
+          "text": "looking for a stock"
+        },
+        {
+          "text": "find me a stock"
+        },
+        {
+          "text": "quote price"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "market",
+      "examples": [
+        {
+          "text": "market"
+        },
+        {
+          "text": "Markets"
+        },
+        {
+          "text": "indexes"
+        },
+        {
+          "text": "what are the indexes at"
+        },
+        {
+          "text": "what is the stock market at"
+        },
+        {
+          "text": "what is the market at"
+        },
+        {
+          "text": "what is the s and p 500"
+        },
+        {
+          "text": "todays stock market?"
+        },
+        {
+          "text": "what is the stock market at todya"
+        },
+        {
+          "text": "how is the stock market doing"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "news",
+      "examples": [
+        {
+          "text": "can you tell me the news"
+        },
+        {
+          "text": "what the companies news"
+        },
+        {
+          "text": "pull up the news"
+        },
+        {
+          "text": "any headlines"
+        },
+        {
+          "text": "in the paper?"
+        },
+        {
+          "text": "what is the news of ibm"
+        },
+        {
+          "text": "is there any news"
+        },
+        {
+          "text": "im looking for the news"
+        },
+        {
+          "text": "news"
+        },
+        {
+          "text": "tell me the news"
+        },
+        {
+          "text": "i need the news"
+        },
+        {
+          "text": "what is the news"
+        },
+        {
+          "text": "recent stories"
+        },
+        {
+          "text": "any recent stories"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "showPortfolio",
+      "examples": [
+        {
+          "text": "what is my portfolio at"
+        },
+        {
+          "text": "how are my positions"
+        },
+        {
+          "text": "how is my portfolio"
+        },
+        {
+          "text": "show me my portfolio stocks"
+        },
+        {
+          "text": "whats my portfolio at"
+        },
+        {
+          "text": "portfolio"
+        },
+        {
+          "text": "Show me my portfolio"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Stats",
+      "examples": [
+        {
+          "text": "what is the p/e ratio"
+        },
+        {
+          "text": "what is the volume like"
+        },
+        {
+          "text": "average volume"
+        },
+        {
+          "text": "tell me some ratios"
+        },
+        {
+          "text": "price to book"
+        },
+        {
+          "text": "price to sales"
+        },
+        {
+          "text": "price to earngigns"
+        },
+        {
+          "text": "i need the stats of ibm please"
+        },
+        {
+          "text": "what are the stats"
+        },
+        {
+          "text": "what are the stats of ibm"
+        },
+        {
+          "text": "please tell me the stats of ibm"
+        },
+        {
+          "text": "stats"
+        },
+        {
+          "text": "statisticals"
+        },
+        {
+          "text": "ratios"
+        },
+        {
+          "text": "p/e ratio"
+        },
+        {
+          "text": "market cap"
+        },
+        {
+          "text": "what is the market cap"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "hello",
+      "examples": [
+        {
+          "text": "olah"
+        },
+        {
+          "text": "get started"
+        },
+        {
+          "text": "hey!"
+        },
+        {
+          "text": "hye"
+        },
+        {
+          "text": "hi theree"
+        },
+        {
+          "text": "hello there"
+        },
+        {
+          "text": "heeyy"
+        },
+        {
+          "text": "yo yo"
+        },
+        {
+          "text": "getting started"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "whats up"
+        },
+        {
+          "text": "helloo"
+        },
+        {
+          "text": "what is up"
+        },
+        {
+          "text": "sup"
+        },
+        {
+          "text": "yo"
+        },
+        {
+          "text": "yooo"
+        },
+        {
+          "text": "hi there"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "market",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "GSPC",
+          "synonyms": [
+            "s and p 500",
+            "sp500",
+            "s&p500",
+            "s&p 500",
+            "sp 500",
+            "standard and pours 500",
+            "s and p",
+            "Standard & Poor's 500 Index (S&P 500)",
+            "Standard and Poor's 500 Index",
+            "Standard and Poor's 500"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VIX",
+          "synonyms": [
+            "^vix",
+            "volatility index",
+            "CBOE volatility index",
+            "volitility index"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IXIC",
+          "synonyms": [
+            "nasdaq",
+            "^IXIC",
+            "nas dack",
+            "Nasdaq Composite"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DJI",
+          "synonyms": [
+            "dow",
+            "dow jones industrial average",
+            "dow jones",
+            "dow jones index",
+            "dji"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "learn",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "blue chip stocks",
+          "synonyms": [
+            "bluechipstcoks",
+            "blue-chip stocks",
+            "blue chip stocks",
+            "blue chip stock",
+            "bluechip stock"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "bear market",
+          "synonyms": [
+            "bearmarket",
+            "bears market",
+            "bear market",
+            "bear markets"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "equities",
+          "synonyms": [
+            "equitiess",
+            "equitieys",
+            "equities"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "dividend",
+          "synonyms": [
+            "dividends",
+            "dividend yield",
+            "dividend"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "pe",
+          "synonyms": [
+            "p/e",
+            "price earnings",
+            "price earning ratio",
+            "price to earnings ratio",
+            "pe ratio",
+            "p/e ratio"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "bull market",
+          "synonyms": [
+            "bullmarket",
+            "bull markets",
+            "bull market",
+            "bulls market"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "basis point",
+          "synonyms": [
+            "basis point",
+            "basis points",
+            "bp",
+            "basispoint",
+            "point basis",
+            "basispoints"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "bonds",
+          "synonyms": [
+            "bond",
+            "bon"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "insight",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "pe",
+          "synonyms": [
+            "price to earnings ratoi",
+            "price to earngins ratio",
+            "pe ratio",
+            "p/e ratio",
+            "forward pe"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "mover",
+          "synonyms": [
+            "up mover",
+            "down mover",
+            "todays move",
+            "moving"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "dividend",
+          "synonyms": [
+            "dividend yeild",
+            "dividend rate",
+            "special dividend"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "volume",
+          "synonyms": [
+            "average volume",
+            "trading volume",
+            "dialy volume"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "short",
+          "synonyms": [
+            "short interest",
+            "short squeeze",
+            "short ratio"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "sector",
+          "synonyms": [
+            "peers"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "beta",
+          "synonyms": [
+            "beta"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "eps",
+          "synonyms": [
+            "eps surprise",
+            "earnings report",
+            "earnings estimates",
+            "analysist income estimate",
+            "earnings consensus"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "SP500",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "AEE",
+          "synonyms": [
+            "AEE",
+            "Ameren Corp",
+            "Ameren"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AAL",
+          "synonyms": [
+            "AAL",
+            "American Airlines Group",
+            "American Airlines",
+            "American Airline"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AEP",
+          "synonyms": [
+            "AEP",
+            "American Electric Power"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AXP",
+          "synonyms": [
+            "AXP",
+            "American Express Co",
+            "American Express",
+            "American Expres",
+            "American Expre"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AIG",
+          "synonyms": [
+            "AIG",
+            "American International Group, Inc.",
+            "American International Group, Inc",
+            "American International Group Inc",
+            "American International Group",
+            "American International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AMT",
+          "synonyms": [
+            "AMT",
+            "American Tower Corp A"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AWK",
+          "synonyms": [
+            "AWK",
+            "American Water Works Company Inc",
+            "American Water Works Company"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AMP",
+          "synonyms": [
+            "AMP",
+            "Ameriprise Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ABC",
+          "synonyms": [
+            "ABC",
+            "AmerisourceBergen Corp",
+            "AmerisourceBergen"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AME",
+          "synonyms": [
+            "AME",
+            "AMETEK Inc",
+            "AMETEK"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AMGN",
+          "synonyms": [
+            "AMGN",
+            "Amgen Inc",
+            "Amgen"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "APH",
+          "synonyms": [
+            "APH",
+            "Amphenol Corp",
+            "Amphenol"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "APC",
+          "synonyms": [
+            "APC",
+            "Anadarko Petroleum Corp",
+            "Anadarko Petroleum"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ADI",
+          "synonyms": [
+            "ADI",
+            "Analog Devices, Inc.",
+            "Analog Devices, Inc",
+            "Analog Devices Inc",
+            "Analog Devices",
+            "Analog Device"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ANTM",
+          "synonyms": [
+            "ANTM",
+            "Anthem Inc.",
+            "Anthem Inc",
+            "Anthem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AON",
+          "synonyms": [
+            "AON",
+            "Aon plc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "APA",
+          "synonyms": [
+            "APA",
+            "Apache Corporation",
+            "Apache"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AIV",
+          "synonyms": [
+            "AIV",
+            "Apartment Investment & Mgmt",
+            "Apartment Investment and Mgmt"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AAPL",
+          "synonyms": [
+            "AAPL",
+            "Apple Inc.",
+            "Apple Inc",
+            "Apple"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AMAT",
+          "synonyms": [
+            "AMAT",
+            "Applied Materials Inc",
+            "Applied Materials",
+            "Applied Material"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ADM",
+          "synonyms": [
+            "ADM",
+            "Archer-Daniels-Midland Co",
+            "ArcherDanielsMidland Co",
+            "ArcherDanielsMidland"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ARNC",
+          "synonyms": [
+            "ARNC",
+            "Arconic Inc",
+            "Arconic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AJG",
+          "synonyms": [
+            "AJG",
+            "Arthur J. Gallagher & Co.",
+            "Arthur J Gallagher & Co",
+            "Arthur J Gallagher and Co",
+            "Arthur J Gallagher and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AIZ",
+          "synonyms": [
+            "AIZ",
+            "Assurant Inc",
+            "Assurant"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "T",
+          "synonyms": [
+            "T",
+            "AT&T Inc",
+            "ATandT Inc",
+            "ATandT"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ADSK",
+          "synonyms": [
+            "ADSK",
+            "Autodesk Inc",
+            "Autodesk"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ADP",
+          "synonyms": [
+            "ADP",
+            "Automatic Data Processing"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AN",
+          "synonyms": [
+            "AN",
+            "AutoNation Inc",
+            "AutoNation"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AZO",
+          "synonyms": [
+            "AZO",
+            "AutoZone Inc",
+            "AutoZone"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AVB",
+          "synonyms": [
+            "AVB",
+            "AvalonBay Communities, Inc.",
+            "AvalonBay Communities, Inc",
+            "AvalonBay Communities Inc",
+            "AvalonBay Communities",
+            "AvalonBay Communitie",
+            "AvalonBay Communitys, Inc."
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AVY",
+          "synonyms": [
+            "AVY",
+            "Avery Dennison Corp",
+            "Avery Dennison"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BHI",
+          "synonyms": [
+            "BHI",
+            "Baker Hughes Inc",
+            "Baker Hughes",
+            "Baker Hughe"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BLL",
+          "synonyms": [
+            "BLL",
+            "Ball Corp",
+            "Ball"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BAC",
+          "synonyms": [
+            "BAC",
+            "Bank of America Corp",
+            "Bank of America"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BCR",
+          "synonyms": [
+            "BCR",
+            "Bard (C.R.) Inc.",
+            "Bard (CR) Inc",
+            "Bard (CR)"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BAX",
+          "synonyms": [
+            "BAX",
+            "Baxter International Inc.",
+            "Baxter International Inc",
+            "Baxter International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BBT",
+          "synonyms": [
+            "BBT",
+            "BB&T Corporation",
+            "BBandT Corporation",
+            "BBandT"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BDX",
+          "synonyms": [
+            "BDX",
+            "Becton Dickinson"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BBBY",
+          "synonyms": [
+            "BBBY",
+            "Bed Bath & Beyond",
+            "Bed Bath and Beyond"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BRK.B",
+          "synonyms": [
+            "BRK.B",
+            "Berkshire Hathaway"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BBY",
+          "synonyms": [
+            "BBY",
+            "Best Buy Co. Inc.",
+            "Best Buy Co Inc",
+            "Best Buy Co"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BIIB",
+          "synonyms": [
+            "BIIB",
+            "BIOGEN IDEC Inc.",
+            "BIOGEN IDEC Inc",
+            "BIOGEN IDEC"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BLK",
+          "synonyms": [
+            "BLK",
+            "BlackRock"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HRB",
+          "synonyms": [
+            "HRB",
+            "Block H&R",
+            "Block HandR"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BA",
+          "synonyms": [
+            "BA",
+            "Boeing Company",
+            "Boeing"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BWA",
+          "synonyms": [
+            "BWA",
+            "BorgWarner"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BXP",
+          "synonyms": [
+            "BXP",
+            "Boston Properties",
+            "Boston Propertie",
+            "Boston Propertys",
+            "Boston Property"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BSX",
+          "synonyms": [
+            "BSX",
+            "Boston Scientific"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BMY",
+          "synonyms": [
+            "BMY",
+            "Bristol-Myers Squibb",
+            "BristolMyers Squibb"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AVGO",
+          "synonyms": [
+            "AVGO",
+            "Broadcom",
+            "Broa"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BF.B",
+          "synonyms": [
+            "BF.B",
+            "Brown-Forman Corp.",
+            "Brown-Forman Corp",
+            "BrownForman Corp",
+            "BrownForman"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CHRW",
+          "synonyms": [
+            "CHRW",
+            "C. H. Robinson Worldwide",
+            "C H Robinson Worldwide"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CA",
+          "synonyms": [
+            "CA",
+            "CA, Inc.",
+            "CA, Inc",
+            "CA Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COG",
+          "synonyms": [
+            "COG",
+            "Cabot Oil & Gas",
+            "Cabot Oil and Gas",
+            "Cabot Oil and Ga"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CPB",
+          "synonyms": [
+            "CPB",
+            "Campbell Soup"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COF",
+          "synonyms": [
+            "COF",
+            "Capital One Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CAH",
+          "synonyms": [
+            "CAH",
+            "Cardinal Health Inc.",
+            "Cardinal Health Inc",
+            "Cardinal Health"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KMX",
+          "synonyms": [
+            "KMX",
+            "Carmax Inc",
+            "Carmax"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CCL",
+          "synonyms": [
+            "CCL",
+            "Carnival Corp.",
+            "Carnival Corp",
+            "Carnival"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CAT",
+          "synonyms": [
+            "CAT",
+            "Caterpillar Inc.",
+            "Caterpillar Inc",
+            "Caterpillar"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CBOE",
+          "synonyms": [
+            "CBOE",
+            "CBOE Holdings",
+            "CBOE Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CBG",
+          "synonyms": [
+            "CBG",
+            "CBRE Group",
+            "CBRE"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CBS",
+          "synonyms": [
+            "CBS",
+            "CBS Corp.",
+            "CBS Corp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CELG",
+          "synonyms": [
+            "CELG",
+            "Celgene Corp.",
+            "Celgene Corp",
+            "Celgene"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CNC",
+          "synonyms": [
+            "CNC",
+            "Centene Corporation",
+            "Centene"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CNP",
+          "synonyms": [
+            "CNP",
+            "CenterPoint Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CTL",
+          "synonyms": [
+            "CTL",
+            "CenturyLink Inc",
+            "CenturyLink"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CERN",
+          "synonyms": [
+            "CERN",
+            "Cerner"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CF",
+          "synonyms": [
+            "CF",
+            "CF Industries Holdings Inc",
+            "CF Industries Holdings",
+            "CF Industries Holding",
+            "CF Industrys Holdings Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SCHW",
+          "synonyms": [
+            "SCHW",
+            "Charles Schwab Corporation",
+            "Charles Schwab"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CHTR",
+          "synonyms": [
+            "CHTR",
+            "Charter Communications",
+            "Charter Communication"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CHK",
+          "synonyms": [
+            "CHK",
+            "Chesapeake Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CVX",
+          "synonyms": [
+            "CVX",
+            "Chevron Corp.",
+            "Chevron Corp",
+            "Chevron"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CMG",
+          "synonyms": [
+            "CMG",
+            "Chipotle Mexican Grill"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CB",
+          "synonyms": [
+            "CB",
+            "Chubb Limited"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CHD",
+          "synonyms": [
+            "CHD",
+            "Church & Dwight",
+            "Church and Dwight"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CI",
+          "synonyms": [
+            "CI",
+            "CIGNA Corp.",
+            "CIGNA Corp",
+            "CIGNA"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XEC",
+          "synonyms": [
+            "XEC",
+            "Cimarex Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CINF",
+          "synonyms": [
+            "CINF",
+            "Cincinnati Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CTAS",
+          "synonyms": [
+            "CTAS",
+            "Cintas Corporation",
+            "Cintas",
+            "Cinta"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CSCO",
+          "synonyms": [
+            "CSCO",
+            "Cisco Systems",
+            "Cisco System",
+            "Cisco Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "C",
+          "synonyms": [
+            "C",
+            "Citigroup Inc.",
+            "Citigroup Inc",
+            "Citigroup"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CFG",
+          "synonyms": [
+            "CFG",
+            "Citizens Financial Group",
+            "Citizens Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CTXS",
+          "synonyms": [
+            "CTXS",
+            "Citrix Systems",
+            "Citrix System",
+            "Citrix Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CME",
+          "synonyms": [
+            "CME",
+            "CME Group Inc.",
+            "CME Group Inc",
+            "CME Group"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CMS",
+          "synonyms": [
+            "CMS",
+            "CMS Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COH",
+          "synonyms": [
+            "COH",
+            "Coach Inc.",
+            "Coach Inc",
+            "Coach"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KO",
+          "synonyms": [
+            "KO",
+            "Coca Cola Company",
+            "Coca Cola"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CTSH",
+          "synonyms": [
+            "CTSH",
+            "Cognizant Technology Solutions",
+            "Cognizant Technology Solution"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CL",
+          "synonyms": [
+            "CL",
+            "Colgate-Palmolive",
+            "ColgatePalmolive"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CMCSA",
+          "synonyms": [
+            "CMCSA",
+            "Comcast Corp.",
+            "Comcast Corp",
+            "Comcast"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CMA",
+          "synonyms": [
+            "CMA",
+            "Comerica Inc.",
+            "Comerica Inc",
+            "Comerica"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CAG",
+          "synonyms": [
+            "CAG",
+            "ConAgra Foods Inc.",
+            "ConAgra Foods Inc",
+            "ConAgra Foods",
+            "ConAgra Food"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CXO",
+          "synonyms": [
+            "CXO",
+            "Concho Resources",
+            "Concho Resource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COP",
+          "synonyms": [
+            "COP",
+            "ConocoPhillips",
+            "ConocoPhillip"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ED",
+          "synonyms": [
+            "ED",
+            "Consolidated Edison"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "STZ",
+          "synonyms": [
+            "STZ",
+            "Constellation Brands",
+            "Constellation Brand"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GLW",
+          "synonyms": [
+            "GLW",
+            "Corning Inc.",
+            "Corning Inc",
+            "Corning"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COST",
+          "synonyms": [
+            "COST",
+            "Costco Co.",
+            "Costco Co",
+            "Costco"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COTY",
+          "synonyms": [
+            "COTY",
+            "Coty, Inc",
+            "Coty Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CCI",
+          "synonyms": [
+            "CCI",
+            "Crown Castle International Corp.",
+            "Crown Castle International Corp",
+            "Crown Castle International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CSRA",
+          "synonyms": [
+            "CSRA",
+            "CSRA Inc.",
+            "CSRA Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CSX",
+          "synonyms": [
+            "CSX",
+            "CSX Corp.",
+            "CSX Corp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CMI",
+          "synonyms": [
+            "CMI",
+            "Cummins Inc.",
+            "Cummins Inc",
+            "Cummins",
+            "Cummin"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CVS",
+          "synonyms": [
+            "CVS",
+            "CVS Health"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DHI",
+          "synonyms": [
+            "DHI",
+            "D. R. Horton",
+            "D R Horton"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DHR",
+          "synonyms": [
+            "DHR",
+            "Danaher Corp.",
+            "Danaher Corp",
+            "Danaher"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DRI",
+          "synonyms": [
+            "DRI",
+            "Darden Restaurants",
+            "Darden Restaurant"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DVA",
+          "synonyms": [
+            "DVA",
+            "DaVita Inc.",
+            "DaVita Inc",
+            "DaVita"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DE",
+          "synonyms": [
+            "DE",
+            "Deere & Co.",
+            "Deere & Co",
+            "Deere and Co",
+            "Deere and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DLPH",
+          "synonyms": [
+            "DLPH",
+            "Delphi Automotive"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DAL",
+          "synonyms": [
+            "DAL",
+            "Delta Air Lines",
+            "Delta Air Line"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XRAY",
+          "synonyms": [
+            "XRAY",
+            "Dentsply Sirona"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DVN",
+          "synonyms": [
+            "DVN",
+            "Devon Energy Corp.",
+            "Devon Energy Corp",
+            "Devon Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DLR",
+          "synonyms": [
+            "DLR",
+            "Digital Realty Trust"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DFS",
+          "synonyms": [
+            "DFS",
+            "Discover Financial Services",
+            "Discover Financial Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DISCA",
+          "synonyms": [
+            "DISCA",
+            "Discovery Communications-A",
+            "Discovery CommunicationsA"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DISCK",
+          "synonyms": [
+            "DISCK",
+            "Discovery Communications-C",
+            "Discovery CommunicationsC"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DG",
+          "synonyms": [
+            "DG",
+            "Dollar General"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DLTR",
+          "synonyms": [
+            "DLTR",
+            "Dollar Tree"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "D",
+          "synonyms": [
+            "D",
+            "Dominion Resources",
+            "Dominion Resource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DOV",
+          "synonyms": [
+            "DOV",
+            "Dover Corp.",
+            "Dover Corp",
+            "Dover"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DOW",
+          "synonyms": [
+            "DOW",
+            "Dow Chemical"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DPS",
+          "synonyms": [
+            "DPS",
+            "Dr Pepper Snapple Group",
+            "Dr Pepper Snapple"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DTE",
+          "synonyms": [
+            "DTE",
+            "DTE Energy Co.",
+            "DTE Energy Co",
+            "DTE Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DD",
+          "synonyms": [
+            "DD",
+            "Du Pont (E.I.)",
+            "Du Pont (EI)"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DUK",
+          "synonyms": [
+            "DUK",
+            "Duke Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DNB",
+          "synonyms": [
+            "DNB",
+            "Dun & Bradstreet",
+            "Dun and Bradstreet"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ETFC",
+          "synonyms": [
+            "ETFC",
+            "E*Trade"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EMN",
+          "synonyms": [
+            "EMN",
+            "Eastman Chemical"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ETN",
+          "synonyms": [
+            "ETN",
+            "Eaton Corporation",
+            "Eaton"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EBAY",
+          "synonyms": [
+            "EBAY",
+            "eBay Inc.",
+            "eBay Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ECL",
+          "synonyms": [
+            "ECL",
+            "Ecolab Inc.",
+            "Ecolab Inc",
+            "Ecolab"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EIX",
+          "synonyms": [
+            "EIX",
+            "Edison Int'l",
+            "Edison Intl"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EW",
+          "synonyms": [
+            "EW",
+            "Edwards Lifesciences",
+            "Edwards Lifescience"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EA",
+          "synonyms": [
+            "EA",
+            "Electronic Arts",
+            "Electronic Art"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EMR",
+          "synonyms": [
+            "EMR",
+            "Emerson Electric Company",
+            "Emerson Electric"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ETR",
+          "synonyms": [
+            "ETR",
+            "Entergy Corp.",
+            "Entergy Corp",
+            "Entergy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EVHC",
+          "synonyms": [
+            "EVHC",
+            "Envision Healthcare"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EOG",
+          "synonyms": [
+            "EOG",
+            "EOG Resources",
+            "EOG Resource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EQT",
+          "synonyms": [
+            "EQT",
+            "EQT Corporation"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EFX",
+          "synonyms": [
+            "EFX",
+            "Equifax Inc.",
+            "Equifax Inc",
+            "Equifax"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EQIX",
+          "synonyms": [
+            "EQIX",
+            "Equinix"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EQR",
+          "synonyms": [
+            "EQR",
+            "Equity Residential"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ESS",
+          "synonyms": [
+            "ESS",
+            "Essex Property Trust, Inc.",
+            "Essex Property Trust, Inc",
+            "Essex Property Trust Inc",
+            "Essex Property Trust"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EL",
+          "synonyms": [
+            "EL",
+            "Estee Lauder Cos.",
+            "Estee Lauder Cos",
+            "Estee Lauder Co"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ES",
+          "synonyms": [
+            "ES",
+            "Eversource Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EXC",
+          "synonyms": [
+            "EXC",
+            "Exelon Corp.",
+            "Exelon Corp",
+            "Exelon"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EXPE",
+          "synonyms": [
+            "EXPE",
+            "Expedia Inc.",
+            "Expedia Inc",
+            "Expedia"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EXPD",
+          "synonyms": [
+            "EXPD",
+            "Expeditors Int'l",
+            "Expeditors Intl"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ESRX",
+          "synonyms": [
+            "ESRX",
+            "Express Scripts",
+            "Express Script"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "EXR",
+          "synonyms": [
+            "EXR",
+            "Extra Space Storage"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XOM",
+          "synonyms": [
+            "XOM",
+            "Exxon Mobil Corp.",
+            "Exxon Mobil Corp",
+            "Exxon Mobil"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FFIV",
+          "synonyms": [
+            "FFIV",
+            "F5 Networks",
+            "F5 Network"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FB",
+          "synonyms": [
+            "FB",
+            "Facebook, Inc.",
+            "Facebook, Inc",
+            "Facebook Inc",
+            "Facebook"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FAST",
+          "synonyms": [
+            "FAST",
+            "Fastenal Co",
+            "Fastenal"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FRT",
+          "synonyms": [
+            "FRT",
+            "Federal Realty Investment Trust"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FDX",
+          "synonyms": [
+            "FDX",
+            "FedEx Corporation",
+            "FedEx"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FIS",
+          "synonyms": [
+            "FIS",
+            "Fidelity National Information Services",
+            "Fidelity National Information Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FITB",
+          "synonyms": [
+            "FITB",
+            "Fifth Third Bancorp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FSLR",
+          "synonyms": [
+            "FSLR",
+            "First Solar Inc",
+            "First Solar"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FE",
+          "synonyms": [
+            "FE",
+            "FirstEnergy Corp",
+            "FirstEnergy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FISV",
+          "synonyms": [
+            "FISV",
+            "Fiserv Inc",
+            "Fiserv"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FLIR",
+          "synonyms": [
+            "FLIR",
+            "FLIR Systems",
+            "FLIR System",
+            "FLIR Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FLS",
+          "synonyms": [
+            "FLS",
+            "Flowserve Corporation",
+            "Flowserve"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FLR",
+          "synonyms": [
+            "FLR",
+            "Fluor Corp.",
+            "Fluor Corp",
+            "Fluor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FMC",
+          "synonyms": [
+            "FMC",
+            "FMC Corporation"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FTI",
+          "synonyms": [
+            "FTI",
+            "FMC Technologies Inc.",
+            "FMC Technologies Inc",
+            "FMC Technologies",
+            "FMC Technologie",
+            "FMC Technologys Inc."
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FL",
+          "synonyms": [
+            "FL",
+            "Foot Locker Inc",
+            "Foot Locker"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "F",
+          "synonyms": [
+            "F",
+            "Ford Motor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FTV",
+          "synonyms": [
+            "FTV",
+            "Fortive Corp",
+            "Fortive"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FBHS",
+          "synonyms": [
+            "FBHS",
+            "Fortune Brands Home & Security",
+            "Fortune Brands Home and Security"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BEN",
+          "synonyms": [
+            "BEN",
+            "Franklin Resources",
+            "Franklin Resource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FCX",
+          "synonyms": [
+            "FCX",
+            "Freeport-McMoRan Inc.",
+            "Freeport-McMoRan Inc",
+            "FreeportMcMoRan Inc",
+            "FreeportMcMoRan"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FTR",
+          "synonyms": [
+            "FTR",
+            "Frontier Communications",
+            "Frontier Communication"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GPS",
+          "synonyms": [
+            "GPS",
+            "Gap (The)"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GRMN",
+          "synonyms": [
+            "GRMN",
+            "Garmin Ltd.",
+            "Garmin Ltd",
+            "Garmin"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GD",
+          "synonyms": [
+            "GD",
+            "General Dynamics",
+            "General Dynamic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GE",
+          "synonyms": [
+            "GE",
+            "General Electric"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GGP",
+          "synonyms": [
+            "GGP",
+            "General Growth Properties Inc.",
+            "General Growth Properties Inc",
+            "General Growth Properties",
+            "General Growth Propertie",
+            "General Growth Propertys Inc."
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GIS",
+          "synonyms": [
+            "GIS",
+            "General Mills",
+            "General Mill"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GM",
+          "synonyms": [
+            "GM",
+            "General Motors",
+            "General Motor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GPC",
+          "synonyms": [
+            "GPC",
+            "Genuine Parts",
+            "Genuine Part"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GILD",
+          "synonyms": [
+            "GILD",
+            "Gilead Sciences",
+            "Gilead Science"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GPN",
+          "synonyms": [
+            "GPN",
+            "Global Payments Inc",
+            "Global Payments",
+            "Global Payment"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GS",
+          "synonyms": [
+            "GS",
+            "Goldman Sachs Group",
+            "Goldman Sachs",
+            "Goldman Sach"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GT",
+          "synonyms": [
+            "GT",
+            "Goodyear Tire & Rubber",
+            "Goodyear Tire and Rubber"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GWW",
+          "synonyms": [
+            "GWW",
+            "Grainger (W.W.) Inc.",
+            "Grainger (WW) Inc",
+            "Grainger (WW)"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HAL",
+          "synonyms": [
+            "HAL",
+            "Halliburton Co.",
+            "Halliburton Co",
+            "Halliburton"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HBI",
+          "synonyms": [
+            "HBI",
+            "Hanesbrands Inc",
+            "Hanesbrands",
+            "Hanesbrand"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HOG",
+          "synonyms": [
+            "HOG",
+            "Harley-Davidson",
+            "HarleyDavidson"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HAR",
+          "synonyms": [
+            "HAR",
+            "Harman Int'l Industries",
+            "Harman Intl Industries",
+            "Harman Intl Industrie",
+            "Harman Int'l Industrys",
+            "Harman Int'l Industry"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HRS",
+          "synonyms": [
+            "HRS",
+            "Harris Corporation",
+            "Harris",
+            "Harri"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HIG",
+          "synonyms": [
+            "HIG",
+            "Hartford Financial Svc.Gp.",
+            "Hartford Financial SvcGp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HAS",
+          "synonyms": [
+            "HAS",
+            "Hasbro Inc.",
+            "Hasbro Inc",
+            "Hasbro"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HCA",
+          "synonyms": [
+            "HCA",
+            "HCA Holdings",
+            "HCA Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HCP",
+          "synonyms": [
+            "HCP",
+            "HCP Inc.",
+            "HCP Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HP",
+          "synonyms": [
+            "HP",
+            "Helmerich & Payne",
+            "Helmerich and Payne"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HSIC",
+          "synonyms": [
+            "HSIC",
+            "Henry Schein"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HES",
+          "synonyms": [
+            "HES",
+            "Hess Corporation",
+            "Hess"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HPE",
+          "synonyms": [
+            "HPE",
+            "Hewlett Packard Enterprise"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HOLX",
+          "synonyms": [
+            "HOLX",
+            "Hologic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HD",
+          "synonyms": [
+            "HD",
+            "Home Depot"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HON",
+          "synonyms": [
+            "HON",
+            "Honeywell Int'l Inc.",
+            "Honeywell Int'l Inc",
+            "Honeywell Intl Inc",
+            "Honeywell Intl"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HRL",
+          "synonyms": [
+            "HRL",
+            "Hormel Foods Corp.",
+            "Hormel Foods Corp",
+            "Hormel Foods",
+            "Hormel Food"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HST",
+          "synonyms": [
+            "HST",
+            "Host Hotels & Resorts",
+            "Host Hotels and Resorts",
+            "Host Hotels and Resort"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HPQ",
+          "synonyms": [
+            "HPQ",
+            "HP Inc.",
+            "HP Inc",
+            "HP"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HUM",
+          "synonyms": [
+            "HUM",
+            "Humana Inc.",
+            "Humana Inc",
+            "Humana"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HBAN",
+          "synonyms": [
+            "HBAN",
+            "Huntington Bancshares",
+            "Huntington Bancshare"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IDXX",
+          "synonyms": [
+            "IDXX",
+            "IDEXX Laboratories",
+            "IDEXX Laboratorie",
+            "IDEXX Laboratorys",
+            "IDEXX Laboratory"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ITW",
+          "synonyms": [
+            "ITW",
+            "Illinois Tool Works",
+            "Illinois Tool Work"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ILMN",
+          "synonyms": [
+            "ILMN",
+            "Illumina Inc",
+            "Illumina"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "INCY",
+          "synonyms": [
+            "INCY",
+            "Incyte"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IR",
+          "synonyms": [
+            "IR",
+            "Ingersoll-Rand PLC",
+            "IngersollRand PLC"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "INTC",
+          "synonyms": [
+            "INTC",
+            "Intel Corp.",
+            "Intel Corp",
+            "Intel"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ICE",
+          "synonyms": [
+            "ICE",
+            "Intercontinental Exchange"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IBM",
+          "synonyms": [
+            "IBM",
+            "International Business Machines",
+            "International Business Machine"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IP",
+          "synonyms": [
+            "IP",
+            "International Paper"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IPG",
+          "synonyms": [
+            "IPG",
+            "Interpublic Group",
+            "Interpublic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IFF",
+          "synonyms": [
+            "IFF",
+            "Intl Flavors & Fragrances",
+            "Intl Flavors and Fragrances",
+            "Intl Flavors and Fragrance"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "INTU",
+          "synonyms": [
+            "INTU",
+            "Intuit Inc.",
+            "Intuit Inc",
+            "Intuit"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ISRG",
+          "synonyms": [
+            "ISRG",
+            "Intuitive Surgical Inc.",
+            "Intuitive Surgical Inc",
+            "Intuitive Surgical"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IVZ",
+          "synonyms": [
+            "IVZ",
+            "Invesco Ltd.",
+            "Invesco Ltd",
+            "Invesco"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "IRM",
+          "synonyms": [
+            "IRM",
+            "Iron Mountain Incorporated",
+            "Iron Mountainorporated"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JBHT",
+          "synonyms": [
+            "JBHT",
+            "J. B. Hunt Transport Services",
+            "J B Hunt Transport Services",
+            "J B Hunt Transport Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JEC",
+          "synonyms": [
+            "JEC",
+            "Jacobs Engineering Group",
+            "Jacobs Engineering"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SJM",
+          "synonyms": [
+            "SJM",
+            "JM Smucker"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JNJ",
+          "synonyms": [
+            "JNJ",
+            "Johnson & Johnson",
+            "Johnson and Johnson"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JCI",
+          "synonyms": [
+            "JCI",
+            "Johnson Controls International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JPM",
+          "synonyms": [
+            "JPM",
+            "JPMorgan Chase & Co.",
+            "JPMorgan Chase & Co",
+            "JPMorgan Chase and Co",
+            "JPMorgan Chase and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JNPR",
+          "synonyms": [
+            "JNPR",
+            "Juniper Networks",
+            "Juniper Network"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KSU",
+          "synonyms": [
+            "KSU",
+            "Kansas City Southern"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "K",
+          "synonyms": [
+            "K",
+            "Kellogg Co.",
+            "Kellogg Co",
+            "Kellogg"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KEY",
+          "synonyms": [
+            "KEY",
+            "KeyCorp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KMB",
+          "synonyms": [
+            "KMB",
+            "Kimberly-Clark",
+            "KimberlyClark"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KIM",
+          "synonyms": [
+            "KIM",
+            "Kimco Realty"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KMI",
+          "synonyms": [
+            "KMI",
+            "Kinder Morgan"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KLAC",
+          "synonyms": [
+            "KLAC",
+            "KLA-Tencor Corp.",
+            "KLA-Tencor Corp",
+            "KLATencor Corp",
+            "KLATencor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KSS",
+          "synonyms": [
+            "KSS",
+            "Kohl's Corp.",
+            "Kohl's Corp",
+            "Kohls Corp",
+            "Kohls",
+            "Kohl"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KHC",
+          "synonyms": [
+            "KHC",
+            "Kraft Heinz Co",
+            "Kraft Heinz"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KR",
+          "synonyms": [
+            "KR",
+            "Kroger Co.",
+            "Kroger Co",
+            "Kroger"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LB",
+          "synonyms": [
+            "LB",
+            "L Brands Inc.",
+            "L Brands Inc",
+            "L Brands",
+            "L Brand"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LLL",
+          "synonyms": [
+            "LLL",
+            "L-3 Communications Holdings",
+            "L3 Communications Holdings",
+            "L3 Communications Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LH",
+          "synonyms": [
+            "LH",
+            "Laboratory Corp. of America Holding",
+            "Laboratory Corp of America Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LRCX",
+          "synonyms": [
+            "LRCX",
+            "Lam Research"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LEG",
+          "synonyms": [
+            "LEG",
+            "Leggett & Platt",
+            "Leggett and Platt"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LEN",
+          "synonyms": [
+            "LEN",
+            "Lennar Corp.",
+            "Lennar Corp",
+            "Lennar"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LUK",
+          "synonyms": [
+            "LUK",
+            "Leucadia National Corp.",
+            "Leucadia National Corp",
+            "Leucadia National"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LVLT",
+          "synonyms": [
+            "LVLT",
+            "Level 3 Communications",
+            "Level 3 Communication"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LLY",
+          "synonyms": [
+            "LLY",
+            "Lilly (Eli) & Co.",
+            "Lilly (Eli) & Co",
+            "Lilly (Eli) and Co",
+            "Lilly (Eli) and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LNC",
+          "synonyms": [
+            "LNC",
+            "Lincoln National"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LLTC",
+          "synonyms": [
+            "LLTC",
+            "Linear Technology Corp.",
+            "Linear Technology Corp",
+            "Linear Technology"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LKQ",
+          "synonyms": [
+            "LKQ",
+            "LKQ Corporation"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LMT",
+          "synonyms": [
+            "LMT",
+            "Lockheed Martin Corp.",
+            "Lockheed Martin Corp",
+            "Lockheed Martin"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "L",
+          "synonyms": [
+            "L",
+            "Loews Corp.",
+            "Loews Corp",
+            "Loews",
+            "Loew"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LOW",
+          "synonyms": [
+            "LOW",
+            "Lowe's Cos.",
+            "Lowe's Cos",
+            "Lowes Cos",
+            "Lowes Co"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LYB",
+          "synonyms": [
+            "LYB",
+            "LyondellBasell"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MTB",
+          "synonyms": [
+            "MTB",
+            "M&T Bank Corp.",
+            "M&T Bank Corp",
+            "MandT Bank Corp",
+            "MandT Bank"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MAC",
+          "synonyms": [
+            "MAC",
+            "Macerich"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "M",
+          "synonyms": [
+            "M",
+            "Macy's Inc.",
+            "Macy's Inc",
+            "Macys Inc",
+            "Macys",
+            "Macy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MNK",
+          "synonyms": [
+            "MNK",
+            "Mallinckrodt Plc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MRO",
+          "synonyms": [
+            "MRO",
+            "Marathon Oil Corp.",
+            "Marathon Oil Corp",
+            "Marathon Oil"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MPC",
+          "synonyms": [
+            "MPC",
+            "Marathon Petroleum"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MAR",
+          "synonyms": [
+            "MAR",
+            "Marriott Int'l.",
+            "Marriott Int'l",
+            "Marriott Intl"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MMC",
+          "synonyms": [
+            "MMC",
+            "Marsh & McLennan",
+            "Marsh and McLennan"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MLM",
+          "synonyms": [
+            "MLM",
+            "Martin Marietta Materials",
+            "Martin Marietta Material"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MAS",
+          "synonyms": [
+            "MAS",
+            "Masco Corp.",
+            "Masco Corp",
+            "Masco"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MA",
+          "synonyms": [
+            "MA",
+            "Mastercard Inc.",
+            "Mastercard Inc",
+            "Mastercard"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MAT",
+          "synonyms": [
+            "MAT",
+            "Mattel Inc.",
+            "Mattel Inc",
+            "Mattel"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MKC",
+          "synonyms": [
+            "MKC",
+            "McCormick & Co.",
+            "McCormick & Co",
+            "McCormick and Co",
+            "McCormick and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MCD",
+          "synonyms": [
+            "MCD",
+            "McDonald's Corp.",
+            "McDonald's Corp",
+            "McDonalds Corp",
+            "McDonalds",
+            "McDonald"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MCK",
+          "synonyms": [
+            "MCK",
+            "McKesson Corp.",
+            "McKesson Corp",
+            "McKesson"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MJN",
+          "synonyms": [
+            "MJN",
+            "Mead Johnson"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MDT",
+          "synonyms": [
+            "MDT",
+            "Medtronic plc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MRK",
+          "synonyms": [
+            "MRK",
+            "Merck & Co.",
+            "Merck & Co",
+            "Merck and Co",
+            "Merck and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MET",
+          "synonyms": [
+            "MET",
+            "MetLife Inc.",
+            "MetLife Inc",
+            "MetLife"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MTD",
+          "synonyms": [
+            "MTD",
+            "Mettler Toledo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "KORS",
+          "synonyms": [
+            "KORS",
+            "Michael Kors Holdings",
+            "Michael Kors Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MCHP",
+          "synonyms": [
+            "MCHP",
+            "Microchip Technology"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MU",
+          "synonyms": [
+            "MU",
+            "Micron Technology"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MSFT",
+          "synonyms": [
+            "MSFT",
+            "Microsoft Corp.",
+            "Microsoft Corp",
+            "Microsoft"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MAA",
+          "synonyms": [
+            "MAA",
+            "Mid-America Apartments",
+            "MidAmerica Apartments",
+            "MidAmerica Apartment"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MHK",
+          "synonyms": [
+            "MHK",
+            "Mohawk Industries",
+            "Mohawk Industrie",
+            "Mohawk Industrys",
+            "Mohawk Industry"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TAP",
+          "synonyms": [
+            "TAP",
+            "Molson Coors Brewing Company",
+            "Molson Coors Brewing"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MDLZ",
+          "synonyms": [
+            "MDLZ",
+            "Mondelez International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MON",
+          "synonyms": [
+            "MON",
+            "Monsanto Co.",
+            "Monsanto Co",
+            "Monsanto"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MNST",
+          "synonyms": [
+            "MNST",
+            "Monster Beverage"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MCO",
+          "synonyms": [
+            "MCO",
+            "Moody's Corp",
+            "Moodys Corp",
+            "Moodys",
+            "Moody"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MS",
+          "synonyms": [
+            "MS",
+            "Morgan Stanley"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MSI",
+          "synonyms": [
+            "MSI",
+            "Motorola Solutions Inc.",
+            "Motorola Solutions Inc",
+            "Motorola Solutions",
+            "Motorola Solution"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MUR",
+          "synonyms": [
+            "MUR",
+            "Murphy Oil"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MYL",
+          "synonyms": [
+            "MYL",
+            "Mylan N.V.",
+            "Mylan NV"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NDAQ",
+          "synonyms": [
+            "NDAQ",
+            "NASDAQ OMX Group",
+            "NASDAQ OMX"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NOV",
+          "synonyms": [
+            "NOV",
+            "National Oilwell Varco Inc.",
+            "National Oilwell Varco Inc",
+            "National Oilwell Varco"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NAVI",
+          "synonyms": [
+            "NAVI",
+            "Navient"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NTAP",
+          "synonyms": [
+            "NTAP",
+            "NetApp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NFLX",
+          "synonyms": [
+            "NFLX",
+            "Netflix Inc.",
+            "Netflix Inc",
+            "Netflix"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NWL",
+          "synonyms": [
+            "NWL",
+            "Newell Brands",
+            "Newell Brand"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NFX",
+          "synonyms": [
+            "NFX",
+            "Newfield Exploration Co",
+            "Newfield Exploration"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NEM",
+          "synonyms": [
+            "NEM",
+            "Newmont Mining Corp. (Hldg. Co.)",
+            "Newmont Mining Corp (Hldg Co)"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NWSA",
+          "synonyms": [
+            "NWSA",
+            "News Corp. Class A",
+            "News Corp Class A"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NWS",
+          "synonyms": [
+            "NWS",
+            "News Corp. Class B",
+            "News Corp Class B"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NEE",
+          "synonyms": [
+            "NEE",
+            "NextEra Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NLSN",
+          "synonyms": [
+            "NLSN",
+            "Nielsen Holdings",
+            "Nielsen Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NKE",
+          "synonyms": [
+            "NKE",
+            "Nike"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NI",
+          "synonyms": [
+            "NI",
+            "NiSource Inc.",
+            "NiSource Inc",
+            "NiSource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NBL",
+          "synonyms": [
+            "NBL",
+            "Noble Energy Inc",
+            "Noble Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "JWN",
+          "synonyms": [
+            "JWN",
+            "Nordstrom"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NSC",
+          "synonyms": [
+            "NSC",
+            "Norfolk Southern Corp.",
+            "Norfolk Southern Corp",
+            "Norfolk Southern"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NTRS",
+          "synonyms": [
+            "NTRS",
+            "Northern Trust Corp.",
+            "Northern Trust Corp",
+            "Northern Trust"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NOC",
+          "synonyms": [
+            "NOC",
+            "Northrop Grumman Corp.",
+            "Northrop Grumman Corp",
+            "Northrop Grumman"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NRG",
+          "synonyms": [
+            "NRG",
+            "NRG Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NUE",
+          "synonyms": [
+            "NUE",
+            "Nucor Corp.",
+            "Nucor Corp",
+            "Nucor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "NVDA",
+          "synonyms": [
+            "NVDA",
+            "Nvidia Corporation",
+            "Nvidia"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ORLY",
+          "synonyms": [
+            "ORLY",
+            "O'Reilly Automotive",
+            "OReilly Automotive"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "OXY",
+          "synonyms": [
+            "OXY",
+            "Occidental Petroleum"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "OMC",
+          "synonyms": [
+            "OMC",
+            "Omnicom Group",
+            "Omnicom"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "OKE",
+          "synonyms": [
+            "OKE",
+            "ONEOK"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ORCL",
+          "synonyms": [
+            "ORCL",
+            "Oracle Corp.",
+            "Oracle Corp",
+            "Oracle"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PCAR",
+          "synonyms": [
+            "PCAR",
+            "PACCAR Inc.",
+            "PACCAR Inc",
+            "PACCAR"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PH",
+          "synonyms": [
+            "PH",
+            "Parker-Hannifin",
+            "ParkerHannifin"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PDCO",
+          "synonyms": [
+            "PDCO",
+            "Patterson Companies",
+            "Patterson Companie",
+            "Patterson Companys",
+            "Patterson Company"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PAYX",
+          "synonyms": [
+            "PAYX",
+            "Paychex Inc.",
+            "Paychex Inc",
+            "Paychex"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PYPL",
+          "synonyms": [
+            "PYPL",
+            "PayPal"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PNR",
+          "synonyms": [
+            "PNR",
+            "Pentair Ltd.",
+            "Pentair Ltd",
+            "Pentair"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PBCT",
+          "synonyms": [
+            "PBCT",
+            "People's United Financial",
+            "Peoples United Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PEP",
+          "synonyms": [
+            "PEP",
+            "PepsiCo Inc.",
+            "PepsiCo Inc",
+            "PepsiCo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PKI",
+          "synonyms": [
+            "PKI",
+            "PerkinElmer"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PRGO",
+          "synonyms": [
+            "PRGO",
+            "Perrigo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PFE",
+          "synonyms": [
+            "PFE",
+            "Pfizer Inc.",
+            "Pfizer Inc",
+            "Pfizer"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PCG",
+          "synonyms": [
+            "PCG",
+            "PG&E Corp.",
+            "PG&E Corp",
+            "PGandE Corp",
+            "PGandE"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PM",
+          "synonyms": [
+            "PM",
+            "Philip Morris International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PSX",
+          "synonyms": [
+            "PSX",
+            "Phillips 66"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PNW",
+          "synonyms": [
+            "PNW",
+            "Pinnacle West Capital"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PXD",
+          "synonyms": [
+            "PXD",
+            "Pioneer Natural Resources",
+            "Pioneer Natural Resource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PNC",
+          "synonyms": [
+            "PNC",
+            "PNC Financial Services",
+            "PNC Financial Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RL",
+          "synonyms": [
+            "RL",
+            "Polo Ralph Lauren Corp.",
+            "Polo Ralph Lauren Corp",
+            "Polo Ralph Lauren"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PPG",
+          "synonyms": [
+            "PPG",
+            "PPG Industries",
+            "PPG Industrie",
+            "PPG Industrys",
+            "PPG Industry"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PPL",
+          "synonyms": [
+            "PPL",
+            "PPL Corp.",
+            "PPL Corp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PX",
+          "synonyms": [
+            "PX",
+            "Praxair Inc.",
+            "Praxair Inc",
+            "Praxair"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PCLN",
+          "synonyms": [
+            "PCLN",
+            "Priceline.com Inc",
+            "Pricelinecom Inc",
+            "Pricelinecom",
+            "Pricelin"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PFG",
+          "synonyms": [
+            "PFG",
+            "Principal Financial Group",
+            "Principal Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PG",
+          "synonyms": [
+            "PG",
+            "Procter & Gamble",
+            "Procter and Gamble"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PGR",
+          "synonyms": [
+            "PGR",
+            "Progressive Corp.",
+            "Progressive Corp",
+            "Progressive"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PLD",
+          "synonyms": [
+            "PLD",
+            "Prologis",
+            "Prologi"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PRU",
+          "synonyms": [
+            "PRU",
+            "Prudential Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PEG",
+          "synonyms": [
+            "PEG",
+            "Public Serv. Enterprise Inc.",
+            "Public Serv Enterprise Inc",
+            "Public Serv Enterprise"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PSA",
+          "synonyms": [
+            "PSA",
+            "Public Storage"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PHM",
+          "synonyms": [
+            "PHM",
+            "Pulte Homes Inc.",
+            "Pulte Homes Inc",
+            "Pulte Homes",
+            "Pulte Home"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PVH",
+          "synonyms": [
+            "PVH",
+            "PVH Corp.",
+            "PVH Corp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "QRVO",
+          "synonyms": [
+            "QRVO",
+            "Qorvo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "QCOM",
+          "synonyms": [
+            "QCOM",
+            "QUALCOMM Inc.",
+            "QUALCOMM Inc",
+            "QUALCOMM"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PWR",
+          "synonyms": [
+            "PWR",
+            "Quanta Services Inc.",
+            "Quanta Services Inc",
+            "Quanta Services",
+            "Quanta Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DGX",
+          "synonyms": [
+            "DGX",
+            "Quest Diagnostics",
+            "Quest Diagnostic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RRC",
+          "synonyms": [
+            "RRC",
+            "Range Resources Corp.",
+            "Range Resources Corp",
+            "Range Resources",
+            "Range Resource"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RTN",
+          "synonyms": [
+            "RTN",
+            "Raytheon Co.",
+            "Raytheon Co",
+            "Raytheon"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "O",
+          "synonyms": [
+            "O",
+            "Realty Income Corporation",
+            "Realty Income",
+            "Realtyome"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RHT",
+          "synonyms": [
+            "RHT",
+            "Red Hat Inc.",
+            "Red Hat Inc",
+            "Red Hat"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "REG",
+          "synonyms": [
+            "REG",
+            "Regency Centers Corporation",
+            "Regency Centers",
+            "Regency Center"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "REGN",
+          "synonyms": [
+            "REGN",
+            "Regeneron"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RF",
+          "synonyms": [
+            "RF",
+            "Regions Financial Corp.",
+            "Regions Financial Corp",
+            "Regions Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RSG",
+          "synonyms": [
+            "RSG",
+            "Republic Services Inc",
+            "Republic Services",
+            "Republic Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RAI",
+          "synonyms": [
+            "RAI",
+            "Reynolds American Inc.",
+            "Reynolds American Inc",
+            "Reynolds American"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RHI",
+          "synonyms": [
+            "RHI",
+            "Robert Half International"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ROK",
+          "synonyms": [
+            "ROK",
+            "Rockwell Automation Inc.",
+            "Rockwell Automation Inc",
+            "Rockwell Automation"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COL",
+          "synonyms": [
+            "COL",
+            "Rockwell Collins",
+            "Rockwell Collin"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ROP",
+          "synonyms": [
+            "ROP",
+            "Roper Industries",
+            "Roper Industrie",
+            "Roper Industrys",
+            "Roper Industry"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MMM",
+          "synonyms": [
+            "MMM",
+            "3M Company",
+            "3M"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RCL",
+          "synonyms": [
+            "RCL",
+            "Royal Caribbean Cruises Ltd",
+            "Royal Caribbean Cruises",
+            "Royal Caribbean Cruise"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "R",
+          "synonyms": [
+            "R",
+            "Ryder System",
+            "Ryder Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SPGI",
+          "synonyms": [
+            "SPGI",
+            "S&P Global, Inc.",
+            "S&P Global, Inc",
+            "S&P Global Inc",
+            "SandP Global Inc",
+            "SandP Global"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CRM",
+          "synonyms": [
+            "CRM",
+            "Salesforce.com",
+            "Salesforcecom",
+            "Salesforc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SCG",
+          "synonyms": [
+            "SCG",
+            "SCANA Corp",
+            "SCANA"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SLB",
+          "synonyms": [
+            "SLB",
+            "Schlumberger Ltd.",
+            "Schlumberger Ltd",
+            "Schlumberger"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SNI",
+          "synonyms": [
+            "SNI",
+            "Scripps Networks Interactive Inc.",
+            "Scripps Networks Interactive Inc",
+            "Scripps Networks Interactive"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "STX",
+          "synonyms": [
+            "STX",
+            "Seagate Technology"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SEE",
+          "synonyms": [
+            "SEE",
+            "Sealed Air"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SRE",
+          "synonyms": [
+            "SRE",
+            "Sempra Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SHW",
+          "synonyms": [
+            "SHW",
+            "Sherwin-Williams",
+            "SherwinWilliams",
+            "SherwinWilliam"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SIG",
+          "synonyms": [
+            "SIG",
+            "Signet Jewelers",
+            "Signet Jeweler"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SPG",
+          "synonyms": [
+            "SPG",
+            "Simon Property Group Inc",
+            "Simon Property Group",
+            "Simon Property"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SWKS",
+          "synonyms": [
+            "SWKS",
+            "Skyworks Solutions",
+            "Skyworks Solution"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SLG",
+          "synonyms": [
+            "SLG",
+            "SL Green Realty"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SNA",
+          "synonyms": [
+            "SNA",
+            "Snap-On Inc.",
+            "Snap-On Inc",
+            "SnapOn Inc",
+            "SnapOn"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SO",
+          "synonyms": [
+            "SO",
+            "Southern Co.",
+            "Southern Co",
+            "Southern"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LUV",
+          "synonyms": [
+            "LUV",
+            "Southwest Airlines",
+            "Southwest Airline"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SWN",
+          "synonyms": [
+            "SWN",
+            "Southwestern Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SWK",
+          "synonyms": [
+            "SWK",
+            "Stanley Black & Decker",
+            "Stanley Black and Decker"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SPLS",
+          "synonyms": [
+            "SPLS",
+            "Staples Inc.",
+            "Staples Inc",
+            "Staples",
+            "Staple"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SBUX",
+          "synonyms": [
+            "SBUX",
+            "Starbucks Corp.",
+            "Starbucks Corp",
+            "Starbucks",
+            "Starbuck"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "STT",
+          "synonyms": [
+            "STT",
+            "State Street Corp.",
+            "State Street Corp",
+            "State Street"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SRCL",
+          "synonyms": [
+            "SRCL",
+            "Stericycle Inc",
+            "Stericycle"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SYK",
+          "synonyms": [
+            "SYK",
+            "Stryker Corp.",
+            "Stryker Corp",
+            "Stryker"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "STI",
+          "synonyms": [
+            "STI",
+            "SunTrust Banks",
+            "SunTrust Bank"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SYMC",
+          "synonyms": [
+            "SYMC",
+            "Symantec Corp.",
+            "Symantec Corp",
+            "Symantec"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SYF",
+          "synonyms": [
+            "SYF",
+            "Synchrony Financial"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SYY",
+          "synonyms": [
+            "SYY",
+            "Sysco Corp.",
+            "Sysco Corp",
+            "Sysco",
+            "Siesco"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TROW",
+          "synonyms": [
+            "TROW",
+            "T. Rowe Price Group",
+            "T Rowe Price Group",
+            "T Rowe Price"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TGT",
+          "synonyms": [
+            "TGT",
+            "Target Corp.",
+            "Target Corp",
+            "Target"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TEL",
+          "synonyms": [
+            "TEL",
+            "TE Connectivity Ltd.",
+            "TE Connectivity Ltd",
+            "TE Connectivity"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TGNA",
+          "synonyms": [
+            "TGNA",
+            "Tegna, Inc.",
+            "Tegna, Inc",
+            "Tegna Inc",
+            "Tegna"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TDC",
+          "synonyms": [
+            "TDC",
+            "Teradata Corp.",
+            "Teradata Corp",
+            "Teradata"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TSO",
+          "synonyms": [
+            "TSO",
+            "Tesoro Petroleum Co.",
+            "Tesoro Petroleum Co",
+            "Tesoro Petroleum"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TXN",
+          "synonyms": [
+            "TXN",
+            "Texas Instruments",
+            "Texas Instrument"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TXT",
+          "synonyms": [
+            "TXT",
+            "Textron Inc.",
+            "Textron Inc",
+            "Textron"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "BK",
+          "synonyms": [
+            "BK",
+            "The Bank of New York Mellon Corp.",
+            "The Bank of New York Mellon Corp",
+            "The Bank of New York Mellon",
+            "Bank of New York Mellon"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "CLX",
+          "synonyms": [
+            "CLX",
+            "The Clorox Company",
+            "The Clorox",
+            "Clorox"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "COO",
+          "synonyms": [
+            "COO",
+            "The Cooper Companies",
+            "Cooper Companies",
+            "Cooper Companie",
+            "The Cooper Companys",
+            "The Cooper Company"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HSY",
+          "synonyms": [
+            "HSY",
+            "The Hershey Company",
+            "The Hershey",
+            "Hershey"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MOS",
+          "synonyms": [
+            "MOS",
+            "The Mosaic Company",
+            "The Mosaic",
+            "Mosaic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TRV",
+          "synonyms": [
+            "TRV",
+            "The Travelers Companies Inc.",
+            "The Travelers Companies Inc",
+            "The Travelers Companies",
+            "Travelers Companies",
+            "Travelers Companie",
+            "The Travelers Companys Inc."
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "DIS",
+          "synonyms": [
+            "DIS",
+            "The Walt Disney Company",
+            "The Walt Disney",
+            "Walt Disney"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TMO",
+          "synonyms": [
+            "TMO",
+            "Thermo Fisher Scientific"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TIF",
+          "synonyms": [
+            "TIF",
+            "Tiffany & Co.",
+            "Tiffany & Co",
+            "Tiffany and Co",
+            "Tiffany and"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TWX",
+          "synonyms": [
+            "TWX",
+            "Time Warner Inc.",
+            "Time Warner Inc",
+            "Time Warner"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TJX",
+          "synonyms": [
+            "TJX",
+            "TJX Companies Inc.",
+            "TJX Companies Inc",
+            "TJX Companies",
+            "TJX Companie",
+            "TJX Companys Inc."
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TMK",
+          "synonyms": [
+            "TMK",
+            "Torchmark Corp.",
+            "Torchmark Corp",
+            "Torchmark"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TSS",
+          "synonyms": [
+            "TSS",
+            "Total System Services",
+            "Total System Service",
+            "Total Siestem Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TSCO",
+          "synonyms": [
+            "TSCO",
+            "Tractor Supply Company",
+            "Tractor Supply"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TDG",
+          "synonyms": [
+            "TDG",
+            "TransDigm Group",
+            "TransDigm"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "RIG",
+          "synonyms": [
+            "RIG",
+            "Transocean"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TRIP",
+          "synonyms": [
+            "TRIP",
+            "TripAdvisor"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FOXA",
+          "synonyms": [
+            "FOXA",
+            "Twenty-First Century Fox Class A",
+            "TwentyFirst Century Fox Class A"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "FOX",
+          "synonyms": [
+            "FOX",
+            "Twenty-First Century Fox Class B",
+            "TwentyFirst Century Fox Class B"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "TSN",
+          "synonyms": [
+            "TSN",
+            "Tyson Foods",
+            "Tyson Food",
+            "Tieson Food"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "USB",
+          "synonyms": [
+            "USB",
+            "U.S. Bancorp",
+            "US Bancorp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UDR",
+          "synonyms": [
+            "UDR",
+            "UDR Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ULTA",
+          "synonyms": [
+            "ULTA",
+            "Ulta Salon Cosmetics & Fragrance Inc",
+            "Ulta Salon Cosmetics and Fragrance Inc",
+            "Ulta Salon Cosmetics and Fragrance"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UA",
+          "synonyms": [
+            "UA",
+            "Under Armour"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UAA",
+          "synonyms": [
+            "UAA",
+            "Under Armour"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UNP",
+          "synonyms": [
+            "UNP",
+            "Union Pacific"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UAL",
+          "synonyms": [
+            "UAL",
+            "United Continental Holdings",
+            "United Continental Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UPS",
+          "synonyms": [
+            "UPS",
+            "United Parcel Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "URI",
+          "synonyms": [
+            "URI",
+            "United Rentals, Inc.",
+            "United Rentals, Inc",
+            "United Rentals Inc",
+            "United Rentals",
+            "United Rental"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UTX",
+          "synonyms": [
+            "UTX",
+            "United Technologies",
+            "United Technologie",
+            "United Technologys",
+            "United Technology"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UHS",
+          "synonyms": [
+            "UHS",
+            "Universal Health Services, Inc.",
+            "Universal Health Services, Inc",
+            "Universal Health Services Inc",
+            "Universal Health Services",
+            "Universal Health Service"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UNM",
+          "synonyms": [
+            "UNM",
+            "Unum Group",
+            "Unum"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "URBN",
+          "synonyms": [
+            "URBN",
+            "Urban Outfitters",
+            "Urban Outfitter"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VFC",
+          "synonyms": [
+            "VFC",
+            "V.F. Corp.",
+            "VF Corp",
+            "VF"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VLO",
+          "synonyms": [
+            "VLO",
+            "Valero Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VAR",
+          "synonyms": [
+            "VAR",
+            "Varian Medical Systems",
+            "Varian Medical System",
+            "Varian Medical Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VTR",
+          "synonyms": [
+            "VTR",
+            "Ventas Inc",
+            "Ventas",
+            "Venta"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VRSN",
+          "synonyms": [
+            "VRSN",
+            "Verisign Inc.",
+            "Verisign Inc",
+            "Verisign"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VRSK",
+          "synonyms": [
+            "VRSK",
+            "Verisk Analytics",
+            "Verisk Analytic"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VZ",
+          "synonyms": [
+            "VZ",
+            "Verizon Communications",
+            "Verizon Communication"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VRTX",
+          "synonyms": [
+            "VRTX",
+            "Vertex Pharmaceuticals Inc",
+            "Vertex Pharmaceuticals",
+            "Vertex Pharmaceutical"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VIAB",
+          "synonyms": [
+            "VIAB",
+            "Viacom Inc.",
+            "Viacom Inc",
+            "Viacom",
+            "Vi"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "V",
+          "synonyms": [
+            "V",
+            "Visa Inc.",
+            "Visa Inc",
+            "Visa"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VNO",
+          "synonyms": [
+            "VNO",
+            "Vornado Realty Trust"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "VMC",
+          "synonyms": [
+            "VMC",
+            "Vulcan Materials",
+            "Vulcan Material"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WMT",
+          "synonyms": [
+            "WMT",
+            "Wal-Mart Stores",
+            "WalMart Stores",
+            "WalMart Store"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WBA",
+          "synonyms": [
+            "WBA",
+            "Walgreens Boots Alliance"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WM",
+          "synonyms": [
+            "WM",
+            "Waste Management Inc.",
+            "Waste Management Inc",
+            "Waste Management"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WEC",
+          "synonyms": [
+            "WEC",
+            "Wec Energy Group Inc",
+            "Wec Energy Group",
+            "Wec Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WFC",
+          "synonyms": [
+            "WFC",
+            "Wells Fargo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "HCN",
+          "synonyms": [
+            "HCN",
+            "Welltower Inc.",
+            "Welltower Inc",
+            "Welltower"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WDC",
+          "synonyms": [
+            "WDC",
+            "Western Digital"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WU",
+          "synonyms": [
+            "WU",
+            "Western Union Co",
+            "Western Union"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WRK",
+          "synonyms": [
+            "WRK",
+            "WestRock Company",
+            "WestRock"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WY",
+          "synonyms": [
+            "WY",
+            "Weyerhaeuser Corp.",
+            "Weyerhaeuser Corp",
+            "Weyerhaeuser"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WHR",
+          "synonyms": [
+            "WHR",
+            "Whirlpool Corp.",
+            "Whirlpool Corp",
+            "Whirlpool"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WFM",
+          "synonyms": [
+            "WFM",
+            "Whole Foods Market"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WMB",
+          "synonyms": [
+            "WMB",
+            "Williams Cos.",
+            "Williams Cos",
+            "Williams Co"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WLTW",
+          "synonyms": [
+            "WLTW",
+            "Willis Towers Watson"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WYN",
+          "synonyms": [
+            "WYN",
+            "Wyndham Worldwide"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WYNN",
+          "synonyms": [
+            "WYNN",
+            "Wynn Resorts Ltd",
+            "Wynn Resorts",
+            "Wynn Resort"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XEL",
+          "synonyms": [
+            "XEL",
+            "Xcel Energy Inc",
+            "Xcel Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XRX",
+          "synonyms": [
+            "XRX",
+            "Xerox Corp.",
+            "Xerox Corp",
+            "Xerox"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XLNX",
+          "synonyms": [
+            "XLNX",
+            "Xilinx Inc",
+            "Xilinx"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XL",
+          "synonyms": [
+            "XL",
+            "XL Capital"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "XYL",
+          "synonyms": [
+            "XYL",
+            "Xylem Inc.",
+            "Xylem Inc",
+            "Xylem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "YHOO",
+          "synonyms": [
+            "YHOO",
+            "Yahoo Inc.",
+            "Yahoo Inc",
+            "Yahoo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "YUM",
+          "synonyms": [
+            "YUM",
+            "Yum! Brands Inc",
+            "Yum Brands Inc",
+            "Yum Brands",
+            "Yum Brand"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ZBH",
+          "synonyms": [
+            "ZBH",
+            "Zimmer Biomet Holdings",
+            "Zimmer Biomet Holding"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ZION",
+          "synonyms": [
+            "ZION",
+            "Zions Bancorp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ZTS",
+          "synonyms": [
+            "ZTS",
+            "Zoetis",
+            "Zoeti"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "WAT1",
+          "synonyms": [
+            "Waters Corporation",
+            "Waters",
+            "Water"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ROST",
+          "synonyms": [
+            "ROST",
+            "Ross Stores",
+            "Ross Store"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ABT",
+          "synonyms": [
+            "ABT",
+            "Abbott Laboratories",
+            "Abbott Laboratorie",
+            "Abbott Laboratorys",
+            "Abbott Laboratory"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ABBV",
+          "synonyms": [
+            "ABBV",
+            "AbbVie"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ACN",
+          "synonyms": [
+            "ACN",
+            "Accenture plc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ATVI",
+          "synonyms": [
+            "ATVI",
+            "Activision Blizzard"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AYI",
+          "synonyms": [
+            "AYI",
+            "Acuity Brands Inc",
+            "Acuity Brands",
+            "Acuity Brand"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ADBE",
+          "synonyms": [
+            "ADBE",
+            "Adobe Systems Inc",
+            "Adobe Systems",
+            "Adobe System",
+            "Adobe Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AAP",
+          "synonyms": [
+            "AAP",
+            "Advance Auto Parts",
+            "Advance Auto Part"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "UNH",
+          "synonyms": [
+            "UNH",
+            "United Health Group Inc.",
+            "United Health Group Inc",
+            "United Health Group",
+            "United Health"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AES",
+          "synonyms": [
+            "AES",
+            "AES Corp"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AET",
+          "synonyms": [
+            "AET",
+            "Aetna Inc",
+            "Aetna"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AMG",
+          "synonyms": [
+            "AMG",
+            "Affiliated Managers Group Inc",
+            "Affiliated Managers Group",
+            "Affiliated Managers",
+            "Affiliated Manager"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AFL",
+          "synonyms": [
+            "AFL",
+            "AFLAC Inc",
+            "AFLAC"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "A",
+          "synonyms": [
+            "A",
+            "Agilent Technologies Inc",
+            "Agilent Technologies",
+            "Agilent Technologie",
+            "Agilent Technologys Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "APD",
+          "synonyms": [
+            "APD",
+            "Air Products & Chemicals Inc",
+            "Air Products and Chemicals Inc",
+            "Air Products and Chemicals",
+            "Air Products and Chemical"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AKAM",
+          "synonyms": [
+            "AKAM",
+            "Akamai Technologies Inc",
+            "Akamai Technologies",
+            "Akamai Technologie",
+            "Akamai Technologys Inc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ALK",
+          "synonyms": [
+            "ALK",
+            "Alaska Air Group Inc",
+            "Alaska Air Group",
+            "Alaska Air"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ALB",
+          "synonyms": [
+            "ALB",
+            "Albemarle Corp",
+            "Albemarle"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ALXN",
+          "synonyms": [
+            "ALXN",
+            "Alexion Pharmaceuticals",
+            "Alexion Pharmaceutical"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ALLE",
+          "synonyms": [
+            "ALLE",
+            "Allegion"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AGN",
+          "synonyms": [
+            "AGN",
+            "Allergan, Plc",
+            "Allergan Plc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ADS",
+          "synonyms": [
+            "ADS",
+            "Alliance Data Systems",
+            "Alliance Data System",
+            "Alliance Data Siestem"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "LNT",
+          "synonyms": [
+            "LNT",
+            "Alliant Energy Corp",
+            "Alliant Energy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "ALL",
+          "synonyms": [
+            "ALL",
+            "Allstate Corp",
+            "Allstate"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GOOGL",
+          "synonyms": [
+            "GOOGL",
+            "Alphabet Inc Class A",
+            "Alphabet Class A"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "GOOG",
+          "synonyms": [
+            "GOOG",
+            "Alphabet Inc Class C",
+            "Alphabet Class C"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "MO",
+          "synonyms": [
+            "MO",
+            "Altria Group Inc",
+            "Altria Group",
+            "Altria"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "AMZN",
+          "synonyms": [
+            "AMZN",
+            "Amazon.com Inc",
+            "Amazoncom Inc",
+            "Amazoncom",
+            "Amazo"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "Here is a snap shot of the market as of today.."
+          ],
+          "selection_policy": "sequential"
+        },
+        "action": "rollout",
+        "user_defined": {
+          "action": "rollout"
+        }
+      },
+      "parent": "node_1_1520475921809",
+      "metadata": {},
+      "conditions": "#market",
+      "dialog_node": "node_7_1520476242297",
+      "previous_sibling": "node_3_1520476136969"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        },
+        "action": "showMarket",
+        "user_defined": {
+          "action": "rollout"
+        }
+      },
+      "parent": "node_1_1520475921809",
+      "metadata": {},
+      "conditions": "@market",
+      "dialog_node": "node_3_1520476136969"
+    },
+    {
+      "type": "standard",
+      "output": {},
+      "parent": "node_2_1518667684816",
+      "context": {
+        "mode": "stock"
+      },
+      "metadata": {},
+      "conditions": "@SP500",
+      "dialog_node": "node_9_1521004121267",
+      "previous_sibling": "node_2_1521425970873"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "What stock would you be looking for?",
+            "Ok, what stock were you thinking of?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#quote",
+      "dialog_node": "node_2_1522114814887",
+      "previous_sibling": "node_8_1521003942964"
+    },
+    {
+      "type": "standard",
+      "title": "wantFin",
+      "output": {
+        "action": "wantFin"
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#financials",
+      "dialog_node": "node_4_1520999230483",
+      "previous_sibling": "node_3_1520999223899"
+    },
+    {
+      "type": "standard",
+      "output": {},
+      "parent": "node_2_1518667684816",
+      "context": {
+        "mode": "learn"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_8_1520481303756"
+      },
+      "conditions": "$mode && @learn",
+      "dialog_node": "node_8_1521003942964",
+      "previous_sibling": "node_7_1521003623512"
+    },
+    {
+      "type": "standard",
+      "output": {},
+      "parent": "node_2_1518667684816",
+      "context": {
+        "mode": "other"
+      },
+      "metadata": {},
+      "conditions": "$mode",
+      "dialog_node": "node_10_1521004296449",
+      "previous_sibling": "node_2_1522114814887"
+    },
+    {
+      "type": "standard",
+      "title": "wantNews",
+      "output": {
+        "action": "wantNews"
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#news",
+      "dialog_node": "node_3_1520999223899",
+      "previous_sibling": "node_2_1520999220295"
+    },
+    {
+      "type": "standard",
+      "output": {},
+      "parent": "node_2_1518667684816",
+      "context": {
+        "mode": "market"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_1_1520475921809"
+      },
+      "conditions": "$mode && @market || #market",
+      "dialog_node": "node_7_1521003623512",
+      "previous_sibling": "node_9_1521004121267"
+    },
+    {
+      "type": "standard",
+      "title": "addToPortfolio",
+      "output": {
+        "action": "addToPortfolio"
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#addToportfolio",
+      "dialog_node": "node_1_1521422988995",
+      "previous_sibling": "node_4_1520999230483"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "action": "removeFromPortfolio"
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#removeFromPortfolio",
+      "dialog_node": "node_2_1521425970873",
+      "previous_sibling": "node_1_1521422988995"
+    },
+    {
+      "type": "standard",
+      "title": "wantEarnings",
+      "output": {
+        "action": "wantEarnings"
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#earnings",
+      "dialog_node": "node_2_1520999220295",
+      "previous_sibling": "node_1_1520999215585"
+    },
+    {
+      "type": "standard",
+      "title": "wantStats",
+      "output": {
+        "action": "wantStats"
+      },
+      "parent": "node_2_1518667684816",
+      "metadata": {},
+      "conditions": "#Stats",
+      "dialog_node": "node_1_1520999215585"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Hello. How can I help you?",
+            "Hi there, how are you?"
+          ],
+          "selection_policy": "random"
+        }
+      },
+      "parent": "Welcome",
+      "metadata": {},
+      "conditions": "#hello",
+      "dialog_node": "node_2_1521177918907",
+      "previous_sibling": "node_2_1520827543880"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Hi, How can I help?"
+          ]
+        }
+      },
+      "parent": "Welcome",
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "node_3_1521177934956",
+      "previous_sibling": "node_2_1521177918907"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "I am your personal assistant to everything regarding the stock market, I can provide information and updates for stock on the S&P500, such as a stock financials, statistics, news and more! Also I can provide market overviews, so you can keep tabs on Furthermore, if you have education question, I can do my best to that answer that also. Type \"examples\" for suggested actions.",
+            "Here are some examples questions.. \"what do the earnings look like for chevron?\" or \"what is the NASDAQ at?\" or \"what's a bear market?\""
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Welcome",
+      "metadata": {},
+      "conditions": "#help || welcome || #hello",
+      "dialog_node": "node_2_1520827543880"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "The price to earnings is the ratio of a company's stock price to the company's earnings per share."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:pe",
+      "dialog_node": "node_2_1520790483238",
+      "previous_sibling": "node_1_1520789959455"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "What would you like to learn about?",
+            "Ask me a question, I'll try to help"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "#learn",
+      "dialog_node": "node_1_1520826735120",
+      "previous_sibling": "node_5_1520818645770"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "Common and preferred stocks, which represent a share in the ownership of a company."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:equities",
+      "dialog_node": "node_5_1520818645770",
+      "previous_sibling": "node_4_1520818290315"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "Stocks of leading and nationally known companies that offer a record of continuous dividend payments and other strong investment qualities."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:(blue chip stocks)",
+      "dialog_node": "node_4_1520818290315",
+      "previous_sibling": "node_3_1520817535458"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "A fixed income investment, in which the investor loans money usually a corporation or the government, where the funds are borrowed for a set period of time and the money is returned with interest."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:bonds",
+      "dialog_node": "node_1_1520816831232",
+      "previous_sibling": "node_2_1520790483238"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "A market in which stock prices are falling."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:(bear market)",
+      "dialog_node": "node_3_1520817535458",
+      "previous_sibling": "node_2_1520817351725"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "A dividend is when a company pays its shareholders a part of profit, usually occurs each quarter."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:dividend",
+      "dialog_node": "node_1_1520789959455",
+      "previous_sibling": "node_1_1520789015934"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "A market in which stock prices are rising."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:(bull market)",
+      "dialog_node": "node_2_1520817351725",
+      "previous_sibling": "node_1_1520816831232"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "A basis point is 1/100 of a percent"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1520481303756",
+      "metadata": {},
+      "conditions": "@learn:(basis point)",
+      "dialog_node": "node_1_1520789015934"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "action": "showPortfolio"
+      },
+      "metadata": {},
+      "conditions": "#showPortfolio",
+      "dialog_node": "node_3_1521428100153",
+      "previous_sibling": "node_1_1520475921809"
+    },
+    {
+      "type": "standard",
+      "title": "Market",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#market || @market",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1520475921809",
+      "previous_sibling": "node_2_1518667684816"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't understand. You can try rephrasing.",
+            "Can you reword your statement? I'm not understanding.",
+            "I didn't get your meaning."
+          ],
+          "selection_policy": "sequential"
+        },
+        "action": "logRequest"
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_1_1518667497709"
+    },
+    {
+      "type": "standard",
+      "title": "Search Action",
+      "output": {
+        "action": "findStock",
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Stock Mode set.  evaluating child nodes also"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "mode": "stock"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "@SP500 || $mode == \"stock\" || #quote",
+      "dialog_node": "node_2_1518667684816",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Learn",
+      "output": {},
+      "metadata": {},
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "@learn || #learn",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_8_1520481303756",
+      "previous_sibling": "node_3_1521428100153"
+    },
+    {
+      "type": "standard",
+      "title": "Goodbye",
+      "output": {
+        "text": {
+          "values": [
+            "Goodbye.",
+            "Have a nice day!",
+            "Ok, talk soon!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "#goodbye",
+      "dialog_node": "node_1_1518667497709",
+      "previous_sibling": "node_8_1520481303756"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#hello || welcome || #help",
+      "digress_in": "does_not_return",
+      "dialog_node": "Welcome",
+      "digress_out": "allow_all"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "what is Kohls at"
+    },
+    {
+      "text": "what is the price of netflix"
+    }
+  ],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "StockZia",
+  "language": "en",
+  "description": "Bot that you can talk to about the market"
+}

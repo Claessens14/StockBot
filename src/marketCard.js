@@ -80,8 +80,34 @@ function singleMarketCard(data) {
 /*build the body of the card
 */
 function buildMarketCardSlip(data) {
-  var change = roundTo(data.close - data.lastClose, 2);
-  var changePercent = roundTo(change * 100/ data.lastClose, 2);
+  /* 
+  {
+  "symbol" : "^DJI",
+  "name" : "Dow Jones Industrial Average",
+  "price" : 27433.48000000,
+  "changesPercentage" : 0.17000000,
+  "change" : 46.50000000,
+  "dayLow" : 27223.55000000,
+  "dayHigh" : 27456.24000000,
+  "yearHigh" : 29568.57000000,
+  "yearLow" : 18213.65000000,
+  "marketCap" : null,
+  "priceAvg50" : 26294.80000000,
+  "priceAvg200" : 25439.35700000,
+  "volume" : 324930822,
+  "avgVolume" : 403359218,
+  "exchange" : "INDEX",
+  "open" : 27321.68000000,
+  "previousClose" : 27386.98000000,
+  "eps" : null,
+  "pe" : null,
+  "earningsAnnouncement" : null,
+  "sharesOutstanding" : null,
+  "timestamp" : 1596840715
+}  
+  */
+  var change = roundTo(data.change, 2);  //roundTo(data.close - data.lastClose, 2);
+  var changePercent = roundTo(data.changesPercentage, 2);
   var name = data.name   //.replace(/index/gi, "");
   if (name.match(/Dow Jones Industrial Average/gi) != -1) name = name.replace(/index/gi, "");
   var todaysSign = "";
@@ -114,7 +140,7 @@ function buildMarketCardSlip(data) {
                     },
                     {
                       "type": "TextBlock",
-                      "text": String(roundTo(Number(data.close), 2)),
+                      "text": String(roundTo(Number(data.price), 2)),
                       "size": "extraLarge",
                       "spacing": "none"   
                                     
@@ -134,7 +160,7 @@ function buildMarketCardSlip(data) {
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": data.dateStr,
+                      "text": "Date",
                       "isSubtle": true
                     },
                     {
@@ -147,11 +173,11 @@ function buildMarketCardSlip(data) {
                         },
                         {
                           "title": "High",
-                          "value": String(roundTo(Number(data.high), 2))
+                          "value": String(roundTo(Number(data.dayHigh), 2))
                         },
                         {
                           "title": "Low",
-                          "value": String(roundTo(Number(data.low), 2))
+                          "value": String(roundTo(Number(data.dayLow), 2))
                         }
                       ]
                     }
