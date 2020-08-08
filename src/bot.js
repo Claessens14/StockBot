@@ -109,7 +109,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
       //SEND WATSON RESPONSE
       if (watsonData.output.generic /*&& watsonData.output.generic.text && watsonData.output.generic.text != "" */) {
          for (var output_text_obj of watsonData.output.generic) {
-          if (output_text_obj.response_type == "text") send(session, output_text_obj.text);
+          if (output_text_obj.response_type == "text") {
+            var buttons = (watsonData.output.action && watsonData.output.action.buttons) ? watsonData.output.action.buttons : null;
+            send(session, output_text_obj.text, null, buttons);
+          }
          }
         //make array sned
         console.log('________________________________\nWatson Data : \n' + JSON.stringify(watsonData.output, null, 2) + '\n________________________________\n')

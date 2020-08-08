@@ -23,6 +23,7 @@
     "random-number": "0.0.9",
     "restify": "^5.0.0",
     "round-to": "^2.0.0",
+    "tough-cookie": "^4.0.0",
     "watson-developer-cloud": "^3.0.4"
   },
   "devDependencies": {
