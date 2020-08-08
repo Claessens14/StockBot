@@ -178,32 +178,32 @@ function getMarketData(symbol, callback) {
 			} catch (e) {
 				callback("ERROR (getMarketData) JSON.parse failed");
 			}
-				var json = body["Time Series (Daily)"];
-				//console.log(body)
-				try {
-					for (var key in json) {
-						throw json[key];
-					}
-				} catch (e) {
-					var json = {}
-					for (var key in e) {
+			var json = body["Time Series (Daily)"];
+			//console.log(body)
+			try {
+				for (var key in json) {
+					throw json[key];
+				}
+			} catch (e) {
+				var json = {}
+				for (var key in e) {
 					if(e[key].match(/[0-9]\.[0-9]/g)) {
 						e[key] = e[key].replace(/[0-9][0-9]$/g, "");
 						console.log(e[key]);
 					}
-						json[key.slice(3)] = e[key];
-					}
-					json["name"] = body["Meta Data"]["2. Symbol"];
-					//get a formatted date
-					getStock("AAPL", (err, stock) => {
-						if (err) {
-							callback(err, null);
-						} else {
-							json["dateStr"] = stock.quote.latestTime;
-							callback(null, json)
-						}
-					});
+					json[key.slice(3)] = e[key];
 				}
+				json["name"] = body["Meta Data"]["2. Symbol"];
+				//get a formatted date
+				getStock("AAPL", (err, stock) => {
+					if (err) {
+						callback(err, null);
+					} else {
+						json["dateStr"] = stock.quote.latestTime;
+						callback(null, json)
+					}
+				});
+			}
 	    } else {
 	    	//console.log("ERROR (getMarketData) body is null from request");
 	    	callback("ERROR (getMarketData) body is null from request", null);
