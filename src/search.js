@@ -82,7 +82,8 @@ function getStock(str, callback) {
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
-	var url = 'https://api.iextrading.com/1.0/stock/' + str + '/batch?types=company,logo,quote,stats,financials,news,earnings,peers';
+	//Peer and finicials have been removed from teer
+	var url = 'https://cloud.iexapis.com/stable/stock/' + str + '/batch?types=company,logo,quote,stats,news,earnings&token=' + process.env.IEX_CLOUD_SECRET_TOKEN;
 	request(url, function (err, resp, body) {
 		if (err) {
 			callback("ERROR (search->getStock) request returned a error " + err, null);
@@ -103,59 +104,67 @@ function getStock(str, callback) {
 * callback (err, res)
 */
 function getIndices(callback) {
-	function getData(symbol) {
-		return new Promise(function(resolve, reject) {
-			request("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + '^' + symbol + "&apikey=your_api_key&outputsize=compact", function (err, resp, body) {
+			//https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=^IXIC&apikey=your_api_key&outputsize=compact
+			request("https://financialmodelingprep.com/api/v3/quote/%5EGSPC,%5EDJI,%5EIXIC?apikey=" + process.env.FIN_MODEL_PREP_API_KEY, function (err, resp, body) {
 				if (err) {
 					reject("ERROR (getIndices->getPrice->promise) an error occurred during request  \n " + err);
-				} else{
+				} else {
 					try {
 						body = JSON.parse(body);
+						callback(null, body);
 					} catch (e) {
 						callback("ERROR (getIndices->promise->getData) JSON.parse failed!", null);
 					}
-					var name = body["Meta Data"]["2. Symbol"];
-					var dateStr = body["Meta Data"]["3. Last Refreshed"];
-					var data = body["Time Series (Daily)"];
-					
-					var open = "";
-					var close = "";
-					var high = "";
-					var low = "";
-					var volume = "";
-					var lastClose = "";
-					var i = 0;
-					for (var line in data) {
-						if (i == 0) {
-							i++;
-							open = data[line]["1. open"];
-							close = data[line]["4. close"];
-							high = data[line]["2. high"];
-							low = data[line]["3. low"];
-							volume = data[line]["5. volume"];
-						} else if (i == 1) {
-							lastClose = data[line]["4. close"];
-							resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume, "lastClose" : lastClose});
-							i++;
-						}
-						
-					}
-				}
-			});
-		});
-	}
-	var par = []; //parrellel
-	par.push(getData("DJI"));
-	par.push(getData("GSPC"));
-	par.push(getData("IXIC"));
 
-	Promise.all(par).then(function(values) {
-	  console.log(values);
-	  callback(null, values);
-	}).catch(function(values) {
-	  callback(values);
-	});
-}
+
+
+					// for (var obj of body) {
+					// 	var name = 
+					// }
+					// var name = body["Meta Data"]["2. Symbol"];
+					// var dateStr = body["Meta Data"]["3. Last Refreshed"];
+					// var data = body["Time Series (Daily)"];
+					
+					// var open = "";
+					// var close = "";
+					// var high = "";
+					// var low = "";
+					// var volume = "";
+					// var lastClose = "";
+					// var i = 0;
+					// for (var line in data) {
+					// 	if (i == 0) {
+					// 		i++;
+					// 		open = data[line]["1. open"];
+					// 		close = data[line]["4. close"];
+					// 		high = data[line]["2. high"];
+					// 		low = data[line]["3. low"];
+					// 		volume = data[line]["5. volume"];
+					// 	} else if (i == 1) {
+					// 		lastClose = data[line]["4. close"];
+					// 		resolve({"name" : name, "dateStr" : dateStr, "open" : open, "low" : low, "high" : high, "close" : close, "volume" : volume, "lastClose" : lastClose});
+					// 		i++;
+					// 	}
+				
+				}
+				// 	}
+				// }
+			});
+		}
+	
+	// var par = []; //parrellel
+	// par.push(getData("DJI"));
+	// par.push(getData("GSPC"));
+	// par.push(getData("IXIC"));
+	//get
+
+	// Promise.all(par).then(function(values) {
+	//   console.log(values);
+	//   callback(null, values);
+	// }).catch(function(values) {
+	//   callback(values);
+	// });
+
 /*GET CHOSEN STOCK INDEX. series is the time series
 callback(err, json)
 */
@@ -234,7 +243,7 @@ function getPeers(array, callback) {
 /*GET MARKET NEWS and send back the data
 TODO : append a source tag to the end*/
 function getNews(callback) {
-	request("https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=" + process.env.NEWS, (err, body, resp) => {
+	request("https://newsapi.org/v2/top-headlines?sources=business-insider&apiKey=" + process.env.NEWS, (err, body, resp) => {
 		if (err) {
 			callback(err, null);
 		} else if (body) {

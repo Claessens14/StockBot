@@ -1,34 +1,37 @@
 {
-  "Jacob Claessens": {
-    "conversation_id": "c00c9479-d18d-4ec9-bae9-b8ad0fff66e4",
-    "system": {
-      "dialog_stack": [
-        {
-          "dialog_node": "root"
-        }
-      ],
-      "dialog_turn_counter": 1,
-      "dialog_request_counter": 1,
-      "branch_exited": true,
-      "branch_exited_reason": "completed"
+  "User": {
+    "global": {
+      "system": {
+        "turn_count": 1
+      },
+      "session_id": "b3b6285c-f676-4b51-9940-b558ede6783f"
     },
-    "mode": "stock",
-    "user": {
-      "id": "mid.$cAAcRR38D9CZpfi-w0FjTOpocZvhc",
-      "channelId": "facebook",
-      "user": {
-        "id": "1531011940353275",
-        "name": "Jacob Claessens"
-      },
-      "conversation": {
-        "isGroup": false,
-        "id": "1531011940353275-2053562471594797"
-      },
-      "bot": {
-        "id": "2053562471594797",
-        "name": "StockZia_Dev"
-      },
-      "serviceUrl": "https://facebook.botframework.com"
+    "skills": {
+      "main skill": {
+        "system": {
+          "state": "eyJzZXNzaW9uX2lkIjoiYjNiNjI4NWMtZjY3Ni00YjUxLTk5NDAtYjU1OGVkZTY3ODNmIiwic2tpbGxfcmVmZXJlbmNlIjoibWFpbiBza2lsbCIsImFzc2lzdGFudF9pZCI6ImViMzA1ZWUyLTQ5MjItNDRlNy04MTY4LTMzODk4NTZjYzRjZSIsImluaXRpYWxpemVkIjp0cnVlLCJkaWFsb2dfc3RhY2siOlt7ImRpYWxvZ19ub2RlIjoicm9vdCJ9XSwibGFzdF9kaXNhbWJpZ3VhdGlvbl9ldmVudF9pZCI6IjIxNjM1NGRiLTk1MjItNGQ2Ni05ZTVlLWQ1NWUwZmZiZTkwNCIsIl9ub2RlX291dHB1dF9tYXAiOnsibm9kZV8yXzE1MjExNzc5MTg5MDciOlswLDEsMF0sIm5vZGVfMl8xNTIwODI3NTQzODgwIjpbMF19LCJsYXN0X2JyYW5jaF9ub2RlIjoiV2VsY29tZSJ9"
+        },
+        "user_defined": {
+          "user": {
+            "id": "a2a39f70-d998-11ea-9e8d-3393f0fe11ef",
+            "channelId": "emulator",
+            "user": {
+              "id": "8034b65c-f839-49de-b649-d4b55657816b",
+              "name": "User",
+              "role": "user"
+            },
+            "conversation": {
+              "id": "964d5bd0-d998-11ea-9e8d-3393f0fe11ef|livechat"
+            },
+            "bot": {
+              "id": "964d0db0-d998-11ea-822b-1d8c1861c643",
+              "name": "Bot",
+              "role": "bot"
+            },
+            "serviceUrl": "http://localhost:50124"
+          }
+        }
+      }
     }
   }
 }

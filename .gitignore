@@ -6,6 +6,8 @@
 ./bin/
 ./bin/*.png
 
+#Enviroment Variables
+.env
 
 # Logs
 logs

@@ -62,7 +62,7 @@ function reviewStock(stock, query) {
 		addResp("epsSurpriseMiss", pickStr(responses.epsSurpriseMiss).replace(/@/g, company).replace(/#/g, toStr(stock.earnings.earnings[0].EPSSurpriseDollar)));
 	}
 
-	if (stock.financials.financials[0].totalRevinue && stock.financials.financials[0].netIncome) {
+	if (stock.financials && stock.financials.financials[0].totalRevinue && stock.financials.financials[0].netIncome) {
 		var rev = true;
 		var earn = true;
 		var eps = true;

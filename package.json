@@ -16,6 +16,7 @@
     "botbuilder-azure": "^3.0.4",
     "cloudinary": "^1.10.0",
     "dotenv": "^4.0.0",
+    "ibm-watson": "^5.6.2",
     "iex-api": "0.0.3",
     "isomorphic-fetch": "^2.2.1",
     "plotly": "^1.0.6",

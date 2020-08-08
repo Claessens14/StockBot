@@ -2,7 +2,8 @@ var restify = require('restify');
 var fs = require('fs');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
-var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
+const AssistantV2 = require('ibm-watson/assistant/v2');
+const { IamAuthenticator } = require('ibm-watson/auth');
 require('dotenv').config();
 
 var search = require('./search');
@@ -16,6 +17,8 @@ var users = {};
 if (process.env.USER == "HOLD") {
   users = require('../assets/users.json');
 }
+
+var inMemoryStorage = new builder.MemoryBotStorage();
   
 // Setup Restify Server
 var server = restify.createServer();
@@ -23,12 +26,13 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
   
-// Create the service wrapper
-var conversation = new Conversation({
-   username: process.env.WATSON_USERNAME,
-   password: process.env.WATSON_PASSWORD,
-   url: 'https://gateway.watsonplatform.net/conversation/api',  //idk what this is for
-   version_date: Conversation.VERSION_DATE_2017_04_21
+// Create the watson assistant connector
+const assistant = new AssistantV2({
+  version: '2020-04-01', //found here   https://cloud.ibm.com/apidocs/assistant/assistant-v2?code=node#versioning
+  authenticator: new IamAuthenticator({
+    apikey: process.env.WATSON_ASSISTANT_V2_APIKEY,
+  }),
+  url: process.env.WATSON_ASSISTANT_V2_URL,
 });
 
 // Create chat connector for communicating with the Bot Framework Service
@@ -58,15 +62,17 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
   var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials", "About"];
   var payload = {
-    workspace_id: process.env.WATSON_WORKSPACE_ID,
+    //workspace_id: process.env.WATSON_WORKSPACE_ID,
+    assistantId: process.env.WATSON_ASSISTANT_V2_ID,
+    //sessionId: 'b624f50f-00b1-4377-80aa-440ce623e534',  //may need to create sessions
     context: getUser(session.message.user.name),    //should be no context value when program starts
     input: { text: session.message.text}
   };
 
-   if (payload.context) {
-    if (payload.context.news) {
-      for (var i in payload.context.news) {
-        var el = payload.context.news[i];
+   if (payload.context && payload.context.skills && payload.context.skills['main skill'] && payload.context.skills['main skill']['user_defined']) {
+    if (payload.context.skills['main skill']['user_defined']['news']) {
+      for (var i in payload.context.skills['main skill']['user_defined']['news']) {
+        var el = payload.context.skills['main skill']['user_defined']['news'][i];
         if (payload.input.text == el.title) {
           if (el.type && el.type == "stock") {
             send(session, el.sum, null, stockModes);
@@ -80,24 +86,41 @@ var bot = new builder.UniversalBot(connector, function (session) {
    }
 
    if (process.env.PAYLOAD == "TRUE") console.log('________________________________\nPRE CONVO PAYLOAD : \n' + JSON.stringify(payload, null, 2) + '\n________________________________\n');
-   conversation.message(payload, function(err, watsonData) {
-      if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
-      if (err) {
-         send(session, "Sorry but something went wrong");
-      } else {
+   assistant.messageStateless(
+    payload 
+    )
+    .then(response => {
+    var watsonData = response.result; 
+      //QUICK FIX -- adding user-defined action as output action so code doesnt need to be changed (8 changes needed)
+    if (watsonData.output.user_defined && watsonData.output.user_defined.action) watsonData.output.action = watsonData.output.user_defined.action;
+    if (!watsonData.context.skills['main skill']['user_defined']) watsonData.context.skills['main skill']['user_defined'] = {};  //avoid undefined error
+    //if (watsonData.context.skills && watsonData.context.skills['main skill'] && watsonData.context.skills['main skill']['user_defined'])  watsonData.context
 
-      if (watsonData && watsonData.output && watsonData.output.error) {
+   if (process.env.WATSONDATA == "TRUE") console.log('________________________________\nWATSONDATA : \n' + JSON.stringify(watsonData, null, 2) + '\n________________________________\n');
+      // if (err) {
+      //    send(session, "Sorry but something went wrong");
+      // } else {
+
+      if (watsonData && watsonData && watsonData.output && watsonData.output.error) {
         console.log(watsonData.output.error);
         send(session, "Sorry but something went wrong");
         return;
       } 
       //SEND WATSON RESPONSE
-      if (watsonData.output.text && watsonData.output.text != "") {
-         send(session, watsonData.output.text);
+      if (watsonData.output.generic /*&& watsonData.output.generic.text && watsonData.output.generic.text != "" */) {
+         for (var output_text_obj of watsonData.output.generic) {
+          if (output_text_obj.response_type == "text") send(session, output_text_obj.text);
+         }
+        //make array sned
+        console.log('________________________________\nWatson Data : \n' + JSON.stringify(watsonData.output, null, 2) + '\n________________________________\n')
+        
       }
 
       ////SEND MARKET UPDATE!
+      
       if (watsonData.output.hasOwnProperty('action')) {
+        
+        //TODO -- build single market cardout
         function buildSlip(str) {
             search.getMarketData(str, (err, data) => {
               if (process.env.MARKETDATA == "TRUE") console.log('________________________________\nSHOW CARD : \n' + JSON.stringify(data, null, 2) + '\n________________________________\n');
@@ -154,17 +177,18 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   }
                 }
                 send(session, null, cards, null, null, true);
-                if (!watsonData.context.news) watsonData.context.news = [];
-                watsonData.context.news = watsonData.context.news.concat(news);
+                if (!watsonData.context.skills['main skill']['user_defined']['news']) watsonData.context.skills['main skill']['user_defined']['news'] = [];
+                var tempStr = watsonData.context.skills['main skill']['user_defined']['news'];
+                watsonData.context.skills['main skill']['user_defined']['news'] = tempStr.concat(news);
               });
             }
           });
         }
       }
 
-      if (watsonData.context.hasOwnProperty('mode')) {
+      if (watsonData.context.skills['main skill'] && watsonData.context.skills['main skill']['user_defined'] && watsonData.context.skills['main skill']['user_defined']['mode']) {
         //var stockModes = ["Charts", "News", "Peers", "Earnings", "Stats", "Financials"];
-        if(watsonData.context.mode == "stock") {
+        if(watsonData.context.skills['main skill']['user_defined']['mode'] == "stock") {
           var str = getEntity(watsonData, "SP500");
           if (str == null || str == "") str = getEntity(watsonData, "iexStock");
           //var stock = {};
@@ -184,8 +208,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
                   var obj = socialCard.createNewsCards(session, stock);
                   if (obj && obj.cards && obj.news) {
                     send(session, null, obj.cards, stockModes, null, true);
-                    if (!watsonData.context.news) watsonData.context.news = [];
-                    watsonData.context.news = watsonData.context.news.concat(obj.news);
+                    if (!watsonData.context.skills['main skill']['user_defined']['mode']['news']) watsonData.context.skills['main skill']['user_defined']['mode']['news'] = [];
+                    var tempStr = watsonData.context.skills['main skill']['user_defined']['mode']['news'];
+                    watsonData.context.skills['main skill']['user_defined']['mode']['news'] = tempStr.concat(obj.news);
                   } else {
                     send(session, "Sorry but something went wrong while getting the news");
                   }
@@ -256,8 +281,8 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 send(session, "Sorry but I couldn't pull up that stocks information");
               } else {
 
-                watsonData.context.lastStock = str;
-                watsonData.context["stock"] = stockJson;
+                watsonData.context.skills['main skill']['user_defined']['lastStock'] = str;
+                watsonData.context.skills['main skill']['user_defined']["stock"] = stockJson;
                   
                 send(session, null, socialCard.makeHeaderCard(stockJson), stockModes);
                 if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
@@ -268,10 +293,10 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 send(session, analysis.reviewStock(stockJson), null, stockModes);
               }
             });
-          } else if (watsonData.context.lastStock && watsonData.output.action) {
+          } else if (watsonData.context.skills['main skill']['user_defined']['lastStock'] && watsonData.output.action) {
             //if there is a stock to talk about and an action
             if (watsonData.output.action) {
-              sendData(session, watsonData.context.stock, watsonData.output.action);
+              sendData(session, watsonData.context.skills['main skill']['user_defined']['stock'], watsonData.output.action);
             }
           }
         }
@@ -285,11 +310,14 @@ var bot = new builder.UniversalBot(connector, function (session) {
       }
 
       //save user
-      watsonData.context["user"] = session.message.address;
+      watsonData.context.skills['main skill']['user_defined']["user"] = session.message.address;
+
       putUser(session.message.user.name, watsonData.context);
-      }
-   });
-});
+      //}
+   }).catch(err => {  //if error in watson assistant request
+    console.log('ERROR:  ' + err);
+  });;
+}).set('storage', inMemoryStorage);;
 
 
 
@@ -390,10 +418,10 @@ function send(session, val, obj, buttons, top, carousel) {
 /*pass in watson data and get out the entity value
 TODO: passback the first entity if there is more than one found for the entity group*/
 function getEntity(watsonData, entity) {
-  if (watsonData.entities) {
-    for (var i in watsonData.entities) {
-      if (watsonData.entities[i].entity == entity) {
-        return watsonData.entities[i].value;
+  if (watsonData.output.entities) {
+    for (var i in watsonData.output.entities) {
+      if (watsonData.output.entities[i].entity == entity) {
+        return watsonData.output.entities[i].value;
       }
     }
     return null;
@@ -411,4 +439,14 @@ function putUser(name, data) {
     if (err) return console.log(err);
   });
 }
+
+// function setContext(watsonData_long_context) {
+//   for (var )
+
+//   return watsonData_long_context.context.skills['main skill']['user_defined'];
+// }
+
+// function fixContext(watsonData_short_context) {
+
+// }
 
