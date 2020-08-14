@@ -1,5 +1,5 @@
 ---
 applications:
- - name: StockZia
+ - name: StockBot
    random-route: true
    memory: 256M

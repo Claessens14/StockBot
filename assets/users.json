@@ -2,35 +2,284 @@
   "User": {
     "global": {
       "system": {
-        "turn_count": 2
+        "turn_count": 4
       },
-      "session_id": "53486d87-95eb-4659-99ac-8977000738da"
+      "session_id": "6f50a5c4-c1de-48e4-b7c7-41fbdc75e959"
     },
     "skills": {
       "main skill": {
         "user_defined": {
-          "mode": "stock",
           "user": {
-            "id": "6dbddd60-d9bc-11ea-9e8d-3393f0fe11ef",
+            "id": "ej8ih1fd6de7",
             "channelId": "emulator",
             "user": {
-              "id": "533c64bf-ff88-46e4-bb1a-6eaf60da4218",
-              "name": "User",
-              "role": "user"
+              "id": "default-user",
+              "name": "User"
             },
             "conversation": {
-              "id": "5e282e90-d9ae-11ea-9e8d-3393f0fe11ef|livechat"
+              "id": "hd2lf0i2mk7"
             },
             "bot": {
-              "id": "5e27b960-d9ae-11ea-822b-1d8c1861c643",
-              "name": "Bot",
-              "role": "bot"
+              "id": "default-bot",
+              "name": "Bot"
             },
-            "serviceUrl": "http://localhost:50124"
+            "serviceUrl": "http://localhost:54437"
+          },
+          "mode": "stock",
+          "lastStock": "CAT",
+          "stock": {
+            "company": {
+              "symbol": "CAT",
+              "companyName": "Caterpillar, Inc.",
+              "exchange": "New York Stock Exchange",
+              "industry": "Trucks/Construction/Farm Machinery",
+              "website": "http://www.caterpillar.com",
+              "description": "Caterpillar, Inc. engages in the manufacture of construction and mining equipment, diesel and natural gas engines, industrial gas turbines, and diesel-electric locomotives. It operates through the following segments: Construction Industries, Resource Industries, Energy and Transportation, Financial Products, and All Other. The Construction Industries segment supports customers using machinery in infrastructure and building construction applications. The Resource Industries segment is responsible for supporting customers using machinery in mining and quarrying applications and it includes business strategy, product design, product management and development, manufacturing, marketing and sales and product support. The Energy and Transportation segment supports customers in oil and gas, power generation, marine, rail, and industrial applications. The Financial Products segment offers a range of financing alternatives to customers and dealers for caterpillar machinery and engines, solar gas turbines, as well as other equipment and marine vessels. The All Other segment include activities such as the business strategy, product management and development, and manufacturing of filters and fluids, undercarriage, tires and rims, engaging tools, and fluid transfers. The company was founded on April 15, 1925 and is headquartered in Deerfield, IL.",
+              "CEO": "Donald James Umpleby",
+              "securityName": "Caterpillar Inc.",
+              "issueType": "cs",
+              "sector": "Producer Manufacturing",
+              "primarySicCode": 3531,
+              "employees": 102300,
+              "tags": [
+                "Producer Manufacturing",
+                "Trucks/Construction/Farm Machinery"
+              ],
+              "address": "510 Lake Cook Road",
+              "address2": null,
+              "state": "IL",
+              "city": "Deerfield",
+              "zip": "60015",
+              "country": "US",
+              "phone": "1.224.551.4000"
+            },
+            "logo": {
+              "url": "https://storage.googleapis.com/iexcloud-hl37opg/api/logos/CAT.png"
+            },
+            "quote": {
+              "symbol": "CAT",
+              "companyName": "Caterpillar, Inc.",
+              "primaryExchange": "New York Stock Exchange",
+              "calculationPrice": "close",
+              "open": null,
+              "openTime": null,
+              "openSource": "official",
+              "close": null,
+              "closeTime": null,
+              "closeSource": "official",
+              "high": null,
+              "highTime": 1597441564802,
+              "highSource": "15 minute delayed price",
+              "low": null,
+              "lowTime": 1597411816217,
+              "lowSource": "15 minute delayed price",
+              "latestPrice": 139.96,
+              "latestSource": "Close",
+              "latestTime": "August 14, 2020",
+              "latestUpdate": 1597435201871,
+              "latestVolume": null,
+              "iexRealtimePrice": 139.84,
+              "iexRealtimeSize": 23,
+              "iexLastUpdated": 1597435196925,
+              "delayedPrice": null,
+              "delayedPriceTime": null,
+              "oddLotDelayedPrice": null,
+              "oddLotDelayedPriceTime": null,
+              "extendedPrice": null,
+              "extendedChange": null,
+              "extendedChangePercent": null,
+              "extendedPriceTime": null,
+              "previousClose": 140.67,
+              "previousVolume": 2939915,
+              "change": -0.71,
+              "changePercent": -0.00505,
+              "volume": null,
+              "iexMarketPercent": 0.02214419719247334,
+              "iexVolume": 45113,
+              "avgTotalVolume": 3055161,
+              "iexBidPrice": 0,
+              "iexBidSize": 0,
+              "iexAskPrice": 0,
+              "iexAskSize": 0,
+              "iexOpen": null,
+              "iexOpenTime": null,
+              "iexClose": 139.85,
+              "iexCloseTime": 1597435196925,
+              "marketCap": 75789319720,
+              "peRatio": 18.6,
+              "week52High": 150.55,
+              "week52Low": 87.5,
+              "ytdChange": -0.070552,
+              "lastTradeTime": 1597435201847,
+              "isUSMarketOpen": false
+            },
+            "stats": {
+              "week52change": 0.22098800000000002,
+              "week52high": 150.55,
+              "week52low": 87.5,
+              "marketcap": 76173789690,
+              "employees": 102300,
+              "day200MovingAvg": 129.7,
+              "day50MovingAvg": 132.03,
+              "float": 540400701,
+              "avg10Volume": 3428605.4,
+              "avg30Volume": 3055160.97,
+              "ttmEPS": 7.5238,
+              "ttmDividendRate": 4.12,
+              "companyName": "Caterpillar, Inc.",
+              "sharesOutstanding": 541507000,
+              "maxChangePercent": 3.9158,
+              "year5ChangePercent": 0.38,
+              "year2ChangePercent": -0.1063,
+              "year1ChangePercent": 0.220988,
+              "ytdChangePercent": -0.065502,
+              "month6ChangePercent": 0.019422,
+              "month3ChangePercent": 0.324701,
+              "month1ChangePercent": 0.027688,
+              "day30ChangePercent": 0.101394,
+              "day5ChangePercent": 0.042618,
+              "nextDividendDate": null,
+              "dividendYield": 0.029288405488021613,
+              "nextEarningsDate": "2020-10-27",
+              "exDividendDate": "2020-07-17",
+              "peRatio": 18.6,
+              "beta": 1.0677528646416656
+            },
+            "news": [
+              {
+                "datetime": 1597399200000,
+                "headline": "Thompson's Station, TN, New Home for Caterpillar Equipment Dealer",
+                "source": "Benzinga",
+                "url": "https://cloud.iexapis.com/v1/news/article/1c3a9317-3730-4e1d-895d-5ec67dcd516c",
+                "summary": "NASHVILLE, Tenn. , Aug. 14, 2020 /PRNewswire/ -- Construction in Middle Tennessee continues to push forward, enabling Thompson Machinery, the local Caterpillar dealer, to invest $15 million in Thompson's Station, TN. Even with a presidential election looming, global economic uncertainty, and national social unrest, Nashville and its surrounding counties continue to be the darling of the southeast for new residential and commercial construction investment. \"Customer demand for new, used, and rental machines continues to amaze us all,\" states Chet Kelley , Manager at Thompson. \"It's a testament to the strength of our community and the attractiveness of living in Tennessee .\" Chet has lived in Franklin, TN since 1999 and has experienced firsthand the evolution of the mid-state area, including the growing traffic gridlock in rush hours. \"Growth is good,\" explains Chet, \"but it makes travel for everyone a challenge, including our customers. That is why we are excited to announce a new store opening in the coming weeks in Thompson's Station, just south of Franklin and north of Spring Hill , near Interstate 840 on Columbia Pike.",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/1c3a9317-3730-4e1d-895d-5ec67dcd516c",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1597092780000,
+                "headline": "Stock Market Today: The Dow Heats Up as Tech Tones It Down",
+                "source": "Kiplinger Washington Editors",
+                "url": "https://cloud.iexapis.com/v1/news/article/e7be63d9-0d52-4104-9080-4e7895d06f46",
+                "summary": "Mixed trading continued on Wall Street to start the week, following new actions on federal stimulus over the weekend and another shot to U.S.-China relations on Monday. President Donald Trump announced several executive orders on Saturday, as Congress dithered on a new stimulus bill, that would temporarily halt payroll-tax collections and partially extend \"bonus\" jobless benefits that expired in June. However, politicians and analysts alike questioned how much effect each EO could have on its intended goal, not to mention whether they would stand up to likely forthcoming legal challenges. SEE MORE 20 Dividend Stocks to Fund 20 Years of Retirement Also Monday, China ratcheted up tensions even further by sanctioning nearly a dozen American politicians in retaliation for similar U.S. actions in Hong Kong. But perhaps the day's most important development was the continuing rebound by beaten-down cyclical stocks, in contrast to many declining large-cap tech stocks whose gains have driven the Nasdaq Composite to considerable outperformance in 2020.",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/e7be63d9-0d52-4104-9080-4e7895d06f46",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1597090125000,
+                "headline": "Dow climbs 358 points as Trump stimulus orders offset China tensions",
+                "source": "Business Insider",
+                "url": "https://cloud.iexapis.com/v1/news/article/d64643b0-3931-4b6e-97b1-284e4379bbcf",
+                "summary": "US stocks climbed on Monday as investors digested President Donald Trump's weekend stimulus orders against China tensions and new coronavirus cases. On Saturday, President Trump signed four executive actions to extend coronavirus aid after Congress failed to come to an agreement last week. US-China tensions escalated when China imposed fresh sanctions on several members of Congress including senators Marco Rubio and Ted Cruz over Hong Kong. US coronavirus cases hit 5 million over the weekend, according to data from Johns Hopkins University. Oil rose as Saudi Aramco said demand will continue to improve. Read more on Business Insider. US stocks rose on Monday as investors weighed President Trump's virus stimulus orders against escalating China tensions and increasing coronavirus cases. Investors are digesting the potential effect of four executive orders signed by President Donald Trump on Saturday to extend fiscal assistance amid the coronavirus pandemic recession. The orders include a temporary payroll tax holiday , stop some evictions, and defer student-loan payments.",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/d64643b0-3931-4b6e-97b1-284e4379bbcf",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1597081140000,
+                "headline": "The Dow Jumps 250 Points Because Boeing and Caterpillar Are Trouncing Amazon and Facebook",
+                "source": "Barron's",
+                "url": "https://cloud.iexapis.com/v1/news/article/311dce6e-ebe9-44c9-b5de-b7d65b22fd21",
+                "summary": "Economically sensitive ‘cyclical’ stocks are beating tech stocks.",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/311dce6e-ebe9-44c9-b5de-b7d65b22fd21",
+                "lang": "en",
+                "hasPaywall": true
+              },
+              {
+                "datetime": 1596832080000,
+                "headline": "Caterpillar share price forecast: is the market preparing for some heavy lifting?",
+                "source": "Capital Com",
+                "url": "https://cloud.iexapis.com/v1/news/article/346dd0e6-7147-4a96-b539-ad08c2e67311",
+                "summary": "Follow the Caterpillar stock predictions at Capital.com. View the latest CAT stock analysis and decide whether to include this world-famous American developer of mining and construction products into your portfolio. Read More…",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/346dd0e6-7147-4a96-b539-ad08c2e67311",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1596830435000,
+                "headline": "'Halftime Report' Traders Share Their Thoughts On Micron, Caterpillar And More",
+                "source": "Benzinga",
+                "url": "https://cloud.iexapis.com/v1/news/article/59e74d69-5076-4a73-b9bf-db1563b9d612",
+                "summary": "Stephen Weiss said on CNBC's \"Fast Money Halftime Report,\" that Micron Technology, Inc. (NASDAQ: MU ) has been down because of the memory being down. He owns the stock and he didn't sell any. He is looking to buy some more if it drops to the low $40s. Pete Najarian bought Las Vegas Sands Corp. (NYSE: LVS ), but it hasn't moved as he expected. He … Full story available on Benzinga.com",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/59e74d69-5076-4a73-b9bf-db1563b9d612",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1596639600000,
+                "headline": "Asia-Pacific Mining Equipment Market 2020-2025 with Profiles of Caterpillar, Hitachi and AB Volvo Amongst Others",
+                "source": "PR Newswire",
+                "url": "https://cloud.iexapis.com/v1/news/article/f96fec75-2b75-4a90-a00a-c810a13b7d27",
+                "summary": "DUBLIN, Aug. 5, 2020 /PRNewswire/ -- The \"Asia-Pacific Mining Equipment Market - Growth, Trends, and Forecasts (2020-2025)\" report has been added to ResearchAndMarkets.com's offering. The Asia-Pacific mining equipment market is anticipated to register a CAGR of about 6% during the…",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/f96fec75-2b75-4a90-a00a-c810a13b7d27",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1596622500000,
+                "headline": "Six Large-Cap Stocks With Solid Dividends That Have Weathered the Pandemic",
+                "source": "Barron's",
+                "url": "https://cloud.iexapis.com/v1/news/article/45fa2674-fa57-45d9-a3f3-d97de3a4e0a3",
+                "summary": "Coca-Cola, Raytheon and Caterpillar are among the S&P Aristocrats whose dividend yields have held steady, even as their stock prices have faltered.",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/45fa2674-fa57-45d9-a3f3-d97de3a4e0a3",
+                "lang": "en",
+                "hasPaywall": true
+              },
+              {
+                "datetime": 1596472680000,
+                "headline": "Caterpillar Stock Dropped After Earnings. Why Analysts Are More Upbeat.",
+                "source": "Barron's",
+                "url": "https://cloud.iexapis.com/v1/news/article/2b923d08-2b91-4a44-bb28-0f77656d5ac9",
+                "summary": "The heavy-equipment company’s second-quarter results were stronger than expected.",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/2b923d08-2b91-4a44-bb28-0f77656d5ac9",
+                "lang": "en",
+                "hasPaywall": true
+              },
+              {
+                "datetime": 1596282784000,
+                "headline": "'Fast Money' Picks For August 3: SIlver, Apple And More",
+                "source": "Benzinga",
+                "url": "https://cloud.iexapis.com/v1/news/article/0de4a123-2b3c-4fff-bf03-a11243d81aa8",
+                "summary": "On CNBC's \"Fast Money,\" Bonawyn Eison revealed that he is bullish on Caterpillar Inc. (NYSE: CAT ). Carter Worth said that it is … Full story available on Benzinga.com",
+                "related": "CAT",
+                "image": "https://cloud.iexapis.com/v1/news/image/0de4a123-2b3c-4fff-bf03-a11243d81aa8",
+                "lang": "en",
+                "hasPaywall": false
+              }
+            ],
+            "earnings": {
+              "symbol": "CAT",
+              "earnings": [
+                {
+                  "actualEPS": 1.03,
+                  "consensusEPS": 0.64,
+                  "announceTime": "BTO",
+                  "numberOfEstimates": 21,
+                  "EPSSurpriseDollar": 0.39,
+                  "EPSReportDate": "2020-07-31",
+                  "fiscalPeriod": "Q2 2020",
+                  "fiscalEndDate": "2020-06-30",
+                  "yearAgo": 2.83,
+                  "yearAgoChangePercent": -0.636,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "url": "https://cloud.iexapis.com/stable/stock/CAT/batch?types=company,logo,quote,stats,news,earnings&token=sk_81471b899847488bb471e7d13240855c"
           }
         },
         "system": {
-          "state": "eyJzZXNzaW9uX2lkIjoiNTM0ODZkODctOTVlYi00NjU5LTk5YWMtODk3NzAwMDczOGRhIiwic2tpbGxfcmVmZXJlbmNlIjoibWFpbiBza2lsbCIsImFzc2lzdGFudF9pZCI6ImViMzA1ZWUyLTQ5MjItNDRlNy04MTY4LTMzODk4NTZjYzRjZSIsImluaXRpYWxpemVkIjp0cnVlLCJkaWFsb2dfc3RhY2siOlt7ImRpYWxvZ19ub2RlIjoicm9vdCJ9XSwibGFzdF9kaXNhbWJpZ3VhdGlvbl9ldmVudF9pZCI6ImZjNDUyNzJlLTM0ZjctNGIzMy05NjIxLTA1NzYyNzIzNWNiOSIsIl9ub2RlX291dHB1dF9tYXAiOnsibm9kZV8yXzE1MTg2Njc2ODQ4MTYiOnsiMCI6WzBdfSwibm9kZV8yXzE1MjIxMTQ4MTQ4ODciOlswXX0sImxhc3RfYnJhbmNoX25vZGUiOiJub2RlXzJfMTUxODY2NzY4NDgxNiJ9"
+          "state": "eyJzZXNzaW9uX2lkIjoiNmY1MGE1YzQtYzFkZS00OGU0LWI3YzctNDFmYmRjNzVlOTU5Iiwic2tpbGxfcmVmZXJlbmNlIjoibWFpbiBza2lsbCIsImFzc2lzdGFudF9pZCI6ImViMzA1ZWUyLTQ5MjItNDRlNy04MTY4LTMzODk4NTZjYzRjZSIsImluaXRpYWxpemVkIjp0cnVlLCJkaWFsb2dfc3RhY2siOlt7ImRpYWxvZ19ub2RlIjoicm9vdCJ9XSwibGFzdF9kaXNhbWJpZ3VhdGlvbl9ldmVudF9pZCI6ImYwYjc2MmFkLTkxYjktNDEwOS1hY2E4LTEyMzlkNTU0Yzg4MyIsIl9ub2RlX291dHB1dF9tYXAiOnsibm9kZV8yXzE1MjExNzc5MTg5MDciOlswLDEsMF0sIm5vZGVfMl8xNTIwODI3NTQzODgwIjpbMF0sIm5vZGVfMl8xNTE4NjY3Njg0ODE2Ijp7IjAiOlswXX0sIm5vZGVfMl8xNTIyMTE0ODE0ODg3IjpbMF19LCJsYXN0X2JyYW5jaF9ub2RlIjoibm9kZV8yXzE1MTg2Njc2ODQ4MTYifQ=="
         }
       }
     }

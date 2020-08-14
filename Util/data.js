@@ -5,15 +5,19 @@ var request = require('request');
 var iex = require('../assets/data/iexList.json');
 var industry = require('../assets/data/industry.json');
 var sector = require('../assets/data/sector.json');
-var market = require('../assets/data/market.json');
+var market = require('../assets/newData/market.json');
 var outlook = require('../assets/data/outlook.json');
 var sp500 = require('../assets/data/sp500names.js').array;
 
 var str = "";
-var dir = './assets/data/';
+var dir = './assets/newData/';
 
 /*--------------------------------------------------------
 This File is for deriving static stock market information
+Steps to run/update:  
+1. node Util/data.js getList       (this make the market.json file)
+2. add array [] brackets to market.json manually
+3. node Util/data.js getIndustry
 ----------------------------------------------------------*/
 
 if (process.argv.length > 1) {
@@ -46,7 +50,7 @@ function getList() {
                     if (err) {
                         console.log(err);
                     } else {
-                        fs.appendFile(dir + 'market.json', JSON.stringify(res, null, 2) + ',', function (err) {
+                        fs.appendFile(dir + 'market.json', JSON.stringify({res}, null, 2) + ',', function (err) {
                             if (err) return console.log(err);
                         });
                     }
@@ -213,15 +217,11 @@ function bestIndex(build) {
     //     }
     // }
     // console.log(outlook)
-
-
-
-
-    
 }
 
 function batchSearch(str, callback) {
-    var url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=' + str + '&types=company,quote';
+    //https://cloud.iexapis.com/stable/stock/market/batch?symbols=amzn,appl&types=company,quote&token=API_KEY
+    var url = 'https://cloud.iexapis.com/stable/stock/market/batch?symbols=' + str + '&types=company,quote&token=' + process.env.IEX_CLOUD_SECRET_TOKEN;
     request(url, function (err, resp, body) {
 		if (err) {
 			callback("ERROR (batchSearch) request returned a error " + err, null);

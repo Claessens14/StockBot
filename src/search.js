@@ -11,6 +11,7 @@ function getVantageChart(str, type, length, interval, callback) {
 	if (!(length)) length = 254;  //one year of buesiness days
 	if (!(interval)) interval = "daily";
 	if (!(type))  type = "TIME_SERIES_DAILY";
+	//https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=amzn&interval=daily&time_period=daily&series_type=close&outputsize=full&apikey=
 	var url = "https://www.alphavantage.co/query?function="+ type +"&symbol="+ str +"&interval="+interval+"&time_period="+ length +"&series_type=close&outputsize=full&apikey=" + process.env.VANTAGE_KEY;
 	request(url, function (err, resp, body) {
 		if (err) {
@@ -83,7 +84,11 @@ function getStock(str, callback) {
 	str = str.replace(/1$/g, "");
 	str = str.replace(/1$/g, "");
 	//Peer and finicials have been removed from teer
+	// https://cloud.iexapis.com/stable/stock/HD/batch?types=company,logo,quote,stats,news,earnings&token=
 	var url = 'https://cloud.iexapis.com/stable/stock/' + str + '/batch?types=company,logo,quote,stats,news,earnings&token=' + process.env.IEX_CLOUD_SECRET_TOKEN;
+
+	// https://sandbox.iexapis.com/stable/stock/amzn/batch?types=company,quote,logo,news,chart,balance-sheet,earnings,cash-flow&range=1m&last=10&token=Tsk_a0ec83cc7b884b0eb6a0facb3792ef2e
+	//var url = 'https://sandbox.iexapis.com/stable/stock/'+ str + '/batch?types=company,quote,logo,stats,news,balance-sheet,earnings,cash-flow&token=' + process.env.IEX_CLOUD_SANDBOX_SECRET_TOKEN;
 	request(url, function (err, resp, body) {
 		if (err) {
 			callback("ERROR (search->getStock) request returned a error " + err, null);
