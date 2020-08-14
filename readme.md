@@ -1,5 +1,4 @@
-# StockZia
-![Build and deploy Node.js app to Azure Web App - stockzia](https://github.com/Claessens14/StockBot/workflows/Build%20and%20deploy%20Node.js%20app%20to%20Azure%20Web%20App%20-%20stockzia/badge.svg)    
+# StockZia   
 [![Chatbot Gif](./assets/photos/sample_chat_gif.gif)](https://youtu.be/2l6Mg-fjxEk)
 
 ## App
@@ -8,13 +7,13 @@ The lastest stable version of the app can be tested [here](https://webchat.botfr
 ## Run Bot Locally
 
 1. First you will need to download the [micrsoft botframework emulator](https://github.com/Microsoft/BotFramework-Emulator)
-2. Next you will need accounts with the following services (all provide a free teir and student trials)
+2. Next you will need accounts with the following services (all provide a free teir and student trials)  
         * IBM Cloud (IBM Watson)
         * IEX Cloud (Stock Market Api Data)
         * Cloudinary (image hosting)
         * Plotly (chart maker)
         * AlphaVantage (S&P, NASDAQ, DJI data)
-3. Gather Api credentials and plug them into the .env_unfilled file
+3. Gather Api credentials and plug them into the .env_unfilled file  
         * Note that for IBM Cloud you have to first make an Watson Assistant Service, and use the Api Keys for that
         * Note that not all the .env fields need to be filled to run locally
         * Note change the `.env_unfilled filename` to `.env`
