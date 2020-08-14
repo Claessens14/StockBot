@@ -1,0 +1,26 @@
+{
+    "name": "Local Host Bot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "3d65ae7d-073c-47db-b7c8-0bb38ca64144",
+            "appPassword": "{4CYZS6;)nSu*PAjp-g;IYrJnjKWP",
+            "endpoint": "http://localhost:3978/api/messages",
+            "id": "73a59d30-d8c2-11ea-9928-e360d5626465",
+            "name": "http://localhost:3978/api/messages"
+        },
+        {
+            "type": "endpoint",
+            "appId": "3d65ae7d-073c-47db-b7c8-0bb38ca64144",
+            "appPassword": "{4CYZS6;)nSu*PAjp-g;IYrJnjKWP",
+            "endpoint": "https://stockziawebappbot.azurewebsites.net/api/messages",
+            "id": "159",
+            "name": "Azure-StockZia"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "/Users/JacobClaessens/OneDrive - University of Guelph/jacob/code/StockBot/Local_Host_Bot.bot",
+    "overrides": null
+}
