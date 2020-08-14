@@ -7,11 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "azure-publish": "node publish.js",
-    "open": "./Util/ngrok http 3978"
+    "open": "./Util/ngrok http 3978",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && mkdir -p dist/src && mkdir -p dist/node_modules && babel src node_modules -d dist/src dist/node_modules"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "botbuilder": "^3.9.1",
     "botbuilder-azure": "^3.0.4",
     "cloudinary": "^1.10.0",
@@ -27,6 +30,12 @@
     "watson-developer-cloud": "^3.0.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "request": "^2.83.0",
     "zip-folder": "^1.0.0"
   }

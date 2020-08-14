@@ -2,35 +2,284 @@
   "User": {
     "global": {
       "system": {
-        "turn_count": 2
+        "turn_count": 9
       },
-      "session_id": "53486d87-95eb-4659-99ac-8977000738da"
+      "session_id": "1cef9fd6-79de-41c5-9b52-81ba05e0d613"
     },
     "skills": {
       "main skill": {
         "user_defined": {
-          "mode": "stock",
           "user": {
-            "id": "6dbddd60-d9bc-11ea-9e8d-3393f0fe11ef",
+            "id": "8gamafa8ccl4",
             "channelId": "emulator",
             "user": {
-              "id": "533c64bf-ff88-46e4-bb1a-6eaf60da4218",
-              "name": "User",
-              "role": "user"
+              "id": "default-user",
+              "name": "User"
             },
             "conversation": {
-              "id": "5e282e90-d9ae-11ea-9e8d-3393f0fe11ef|livechat"
+              "id": "f8gj757m2n1"
             },
             "bot": {
-              "id": "5e27b960-d9ae-11ea-822b-1d8c1861c643",
-              "name": "Bot",
-              "role": "bot"
+              "id": "default-bot",
+              "name": "Bot"
             },
-            "serviceUrl": "http://localhost:50124"
+            "serviceUrl": "http://localhost:54437"
+          },
+          "mode": "stock",
+          "lastStock": "DE",
+          "stock": {
+            "company": {
+              "symbol": "DE",
+              "companyName": "Deere & Co.",
+              "exchange": "New York Stock Exchange",
+              "industry": "Trucks/Construction/Farm Machinery",
+              "website": "http://www.deere.com",
+              "description": "Deere & Co. engages in the manufacturing and distribution of equipment used in agriculture, construction, forestry, and turf care. It operates through the following segments: Agriculture and Turf, Construction and Forestry, and Financial Services. The Agriculture and Turf segment focuses on the distribution and manufacturing of full line of agriculture and turf equipment and related service parts. The Construction and Forestry segment offers machines and service parts used in construction, earthmoving, road building, material handling, and timber harvesting. The Financial Services segment finances sales and leases by John Deere dealers of new and used agriculture and turf equipment and construction and forestry equipment. The company was founded by John Deere in 1837 and is headquartered in Moline, IL.",
+              "CEO": "John C. May",
+              "securityName": "Deere & Company",
+              "issueType": "cs",
+              "sector": "Producer Manufacturing",
+              "primarySicCode": 3523,
+              "employees": 73500,
+              "tags": [
+                "Producer Manufacturing",
+                "Trucks/Construction/Farm Machinery"
+              ],
+              "address": "One John Deere Place",
+              "address2": null,
+              "state": "IL",
+              "city": "Moline",
+              "zip": "61265-8098",
+              "country": "US",
+              "phone": "1.309.765.8000"
+            },
+            "logo": {
+              "url": "https://storage.googleapis.com/iexcloud-hl37opg/api/logos/DE.png"
+            },
+            "quote": {
+              "symbol": "DE",
+              "companyName": "Deere & Co.",
+              "primaryExchange": "New York Stock Exchange",
+              "calculationPrice": "tops",
+              "open": null,
+              "openTime": null,
+              "openSource": "official",
+              "close": null,
+              "closeTime": null,
+              "closeSource": "official",
+              "high": null,
+              "highTime": 1597432330172,
+              "highSource": "15 minute delayed price",
+              "low": null,
+              "lowTime": 1597411892560,
+              "lowSource": "15 minute delayed price",
+              "latestPrice": 191.29,
+              "latestSource": "IEX real time price",
+              "latestTime": "3:23:51 PM",
+              "latestUpdate": 1597433031406,
+              "latestVolume": null,
+              "iexRealtimePrice": 191.29,
+              "iexRealtimeSize": 100,
+              "iexLastUpdated": 1597433031406,
+              "delayedPrice": null,
+              "delayedPriceTime": null,
+              "oddLotDelayedPrice": null,
+              "oddLotDelayedPriceTime": null,
+              "extendedPrice": null,
+              "extendedChange": null,
+              "extendedChangePercent": null,
+              "extendedPriceTime": null,
+              "previousClose": 189.5,
+              "previousVolume": 1324832,
+              "change": 1.79,
+              "changePercent": 0.00945,
+              "volume": null,
+              "iexMarketPercent": 0.028912987939707348,
+              "iexVolume": 16410,
+              "avgTotalVolume": 1284642,
+              "iexBidPrice": 182.42,
+              "iexBidSize": 100,
+              "iexAskPrice": 0,
+              "iexAskSize": 0,
+              "iexOpen": null,
+              "iexOpenTime": null,
+              "iexClose": 191.29,
+              "iexCloseTime": 1597433031406,
+              "marketCap": 59846798110,
+              "peRatio": 21.46,
+              "week52High": 195.85,
+              "week52Low": 106.14,
+              "ytdChange": 0.080919,
+              "lastTradeTime": 1597433031406,
+              "isUSMarketOpen": true
+            },
+            "stats": {
+              "week52change": 0.323601,
+              "week52high": 195.85,
+              "week52low": 106.14,
+              "marketcap": 59286780500,
+              "employees": 73500,
+              "day200MovingAvg": 159.78,
+              "day50MovingAvg": 167.54,
+              "float": 312293664,
+              "avg10Volume": 1400772.6,
+              "avg30Volume": 1284642.27,
+              "ttmEPS": 8.9125,
+              "ttmDividendRate": 3.04,
+              "companyName": "Deere & Co.",
+              "sharesOutstanding": 312859000,
+              "maxChangePercent": 6.6313,
+              "year5ChangePercent": 0.6064,
+              "year2ChangePercent": 0.0776,
+              "year1ChangePercent": 0.323601,
+              "ytdChangePercent": 0.071469,
+              "month6ChangePercent": 0.127506,
+              "month3ChangePercent": 0.494479,
+              "month1ChangePercent": 0.117598,
+              "day30ChangePercent": 0.200127,
+              "day5ChangePercent": 0.032698,
+              "nextDividendDate": null,
+              "dividendYield": 0.01604221635883905,
+              "nextEarningsDate": "2020-08-21",
+              "exDividendDate": "2020-06-29",
+              "peRatio": 21.46,
+              "beta": 1.14255190096431
+            },
+            "news": [
+              {
+                "datetime": 1597333866000,
+                "headline": "JPMorgan Cuts Deere To Sell Ahead Of 3Q Results",
+                "source": "Smarter Analyst",
+                "url": "https://cloud.iexapis.com/v1/news/article/0f287559-ac24-4f0b-ae8c-6d1f7a1571d7",
+                "summary": "JPMorgan downgraded Deere & Co. to Sell from Hold on Thursday ahead of the construction equipment maker’s 3Q results on August 21. The post JPMorgan Cuts Deere To Sell Ahead Of 3Q Results appeared first on Smarter Analyst .",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/0f287559-ac24-4f0b-ae8c-6d1f7a1571d7",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1596897295000,
+                "headline": "Carter Worth And Mike Khouw's Deere & Company Trade",
+                "source": "Benzinga",
+                "url": "https://cloud.iexapis.com/v1/news/article/ba171da6-2af8-47bb-a7f0-b91677f1b9a7",
+                "summary": "On CNBC's \"Options Action,\" Carter Worth spoke about Deere & Company (NYSE: DE ) from a technical standpoint. He said that the stock is trading close to its resistance and he expects it to break out on the upside and move to $200 after earnings. Deere … Full story available on Benzinga.com",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/ba171da6-2af8-47bb-a7f0-b91677f1b9a7",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1595949540000,
+                "headline": "'Halftime Report' Traders Share Their Thoughts On Deere, Square And More",
+                "source": "Benzinga",
+                "url": "https://cloud.iexapis.com/v1/news/article/594b5935-c92c-4a74-8a0f-1e9ac79ba2ff",
+                "summary": "On CNBC‘s \"Fast Money Halftime Report,\" Stephanie Link said she likes Deere & Company (NYSE: DE) a lot. She would wait for a …",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/594b5935-c92c-4a74-8a0f-1e9ac79ba2ff",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1594839600000,
+                "headline": "Global Smart Agriculture Market Outlook (2018 to 2027) - Featuring DeLaval, Deere & Company and BouMatic Among Others",
+                "source": "PR Newswire",
+                "url": "https://cloud.iexapis.com/v1/news/article/fc2c8ac1-7981-49bd-9500-c4e2fd600431",
+                "summary": "DUBLIN, July 15, 2020 /PRNewswire/ -- The \"Smart Agriculture - Global Market Outlook (2018-2027)\" report has been added to ResearchAndMarkets.com's offering. The Global Smart Agriculture market accounted for $11.45 billion in 2018 and is expected to reach $30.00 billion by 2027 growing at…",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/fc2c8ac1-7981-49bd-9500-c4e2fd600431",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1592410982000,
+                "headline": "Deere Unveils New Operating Model | MarketScreener",
+                "source": "MarketScreener",
+                "url": "https://cloud.iexapis.com/v1/news/article/b7f34322-6404-4af4-a2ec-b6463154bd92",
+                "summary": "By Michael Dabaie Deere & Co. on Wednesday unveiled a new operating model to accelerate integration of smart technology innovation. The maker of equipment used in agriculture,… | June 17, 2020",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/b7f34322-6404-4af4-a2ec-b6463154bd92",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1590760800000,
+                "headline": "Deere Board elects John Stone as President, Worldwide Construction & Forestry and Power Systems",
+                "source": "PR Newswire",
+                "url": "https://cloud.iexapis.com/v1/news/article/a95bd56f-7f4b-43cc-b869-58fdee337ea5",
+                "summary": "MOLINE, Ill., May 29, 2020 /PRNewswire/ -- Deere & Company (NYSE: DE) announced that its Board of Directors elected John Stone, 50, to the position of President, Worldwide Construction & Forestry and Power Systems, effective July 1. He will be responsible for the overall management and…",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/a95bd56f-7f4b-43cc-b869-58fdee337ea5",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1590614100000,
+                "headline": "Low-Speed Vehicle (LSV) Industry Report 2020-2025 - Impact of COVID-19, Trends & Developments, Competitive Landscape",
+                "source": "Benzinga Feeds",
+                "url": "https://cloud.iexapis.com/v1/news/article/89f2b232-da95-4334-a504-0f9772ce4572",
+                "summary": "DUBLIN , May 27, 2020 /PRNewswire/ -- The \"Low-Speed Vehicle Market by Type (Commercial Turf & Industrial Utility Vehicle, Golf Cart, and Personal Mobility Vehicle), Power Output (<8 kW, 8-15 kW, and >15 kW), Propulsion (Diesel, Electric, and Gasoline), Application and Region - Forecast to 2025\" report has been added to ResearchAndMarkets.com's offering. The global low-speed vehicle market is projected to reach USD 6,388 million by 2025 from USD 4,226 million in 2020. The key companies profiled in the study are Ingersoll Rand (US), Textron Inc. (US), Yamaha Motor Corporation ( Japan ), Polaris Inc. (US), and Deere & Company (US), The Toro Company (US), Kubota Corporation ( Japan ), American Landmaster (US), Columbia Vehicle Group (US), AGT Electric Cars (US) and Bintelli Electric Cars (US) and other additional companies. Increase in stringent emission regulations and growing adoption from the geriatric population drive the low-speed vehicles market. The rising trend of using LSVs in hotels & resorts, industrial facilities, golf course, gated communities & college campuses is projected to fuel the demand of these vehicles.",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/89f2b232-da95-4334-a504-0f9772ce4572",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1590378900000,
+                "headline": "Deere & Co (NYSE: DE) Q2 2020 Earnings Call Transcript | AlphaStreet",
+                "source": "News Alphastreet",
+                "url": "https://cloud.iexapis.com/v1/news/article/ec08e035-4ed5-481c-8e8d-cda55c8d783e",
+                "summary": "Final earnings conference call transcript of Deere & Co - DE stock",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/ec08e035-4ed5-481c-8e8d-cda55c8d783e",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1590154693000,
+                "headline": "US stocks slide amid signs of a sluggish economic recovery in China",
+                "source": "Business Insider",
+                "url": "https://cloud.iexapis.com/v1/news/article/75440381-df0c-4ec2-96d1-0385b39aa55c",
+                "summary": "US stocks edged lower Friday following signs that China's economic recovery my be more fragile than hoped. China's government did not set an annual economic target for the nation for the first time in decades amid the coronavirus pandemic. Oil prices slumped as much as 9% amid broader risk-off sentiment. Tensions between the US and China flared again after Beijing said it would impose new national security legislation's in Hong Kong. Read more on Business Insider . US stocks edged lower on Friday as investors weighed signs that China's economic recovery may not be as strong as previously hoped. China's government decided to pull its annual target for economic growth for the first time in decades amid uncertainty from the coronavirus pandemic. Renewed tensions between Washington and Beijing also impacted sentiment. China proposed new security legislation in Hong Kong that would threaten the financial hub and could cause further issues with the US. On Thursday, President Donald Trump said the US would react strongly if China were to impose the national security legislation in Hong Kong.",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/75440381-df0c-4ec2-96d1-0385b39aa55c",
+                "lang": "en",
+                "hasPaywall": false
+              },
+              {
+                "datetime": 1590145189000,
+                "headline": "Deere (DE) Q2 profit dips 41% but beats estimates",
+                "source": "News Alphastreet",
+                "url": "https://cloud.iexapis.com/v1/news/article/3955ca21-7d96-41b1-be9b-36921256e951",
+                "summary": "Deere & Company (NYSE: DE) reported its financial results for the quarter ended May 3, 2020, on Friday before the market opens. The results exceeded analysts’ expectations. Deere posted a 41% dip in earnings for the second quarter of 2020 due to lower revenues. The company recorded impairments related to certain fixed assets, operating lease […]",
+                "related": "DE",
+                "image": "https://cloud.iexapis.com/v1/news/image/3955ca21-7d96-41b1-be9b-36921256e951",
+                "lang": "en",
+                "hasPaywall": false
+              }
+            ],
+            "earnings": {
+              "symbol": "DE",
+              "earnings": [
+                {
+                  "actualEPS": 2.11,
+                  "consensusEPS": 1.69,
+                  "announceTime": "BTO",
+                  "numberOfEstimates": 18,
+                  "EPSSurpriseDollar": 0.42,
+                  "EPSReportDate": "2020-05-22",
+                  "fiscalPeriod": "Q2 2020",
+                  "fiscalEndDate": "2020-04-30",
+                  "yearAgo": 3.52,
+                  "yearAgoChangePercent": -0.4006,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "url": "https://cloud.iexapis.com/stable/stock/DE/batch?types=company,logo,quote,stats,news,earnings&token=sk_81471b899847488bb471e7d13240855c"
           }
         },
         "system": {
-          "state": "eyJzZXNzaW9uX2lkIjoiNTM0ODZkODctOTVlYi00NjU5LTk5YWMtODk3NzAwMDczOGRhIiwic2tpbGxfcmVmZXJlbmNlIjoibWFpbiBza2lsbCIsImFzc2lzdGFudF9pZCI6ImViMzA1ZWUyLTQ5MjItNDRlNy04MTY4LTMzODk4NTZjYzRjZSIsImluaXRpYWxpemVkIjp0cnVlLCJkaWFsb2dfc3RhY2siOlt7ImRpYWxvZ19ub2RlIjoicm9vdCJ9XSwibGFzdF9kaXNhbWJpZ3VhdGlvbl9ldmVudF9pZCI6ImZjNDUyNzJlLTM0ZjctNGIzMy05NjIxLTA1NzYyNzIzNWNiOSIsIl9ub2RlX291dHB1dF9tYXAiOnsibm9kZV8yXzE1MTg2Njc2ODQ4MTYiOnsiMCI6WzBdfSwibm9kZV8yXzE1MjIxMTQ4MTQ4ODciOlswXX0sImxhc3RfYnJhbmNoX25vZGUiOiJub2RlXzJfMTUxODY2NzY4NDgxNiJ9"
+          "state": "eyJzZXNzaW9uX2lkIjoiMWNlZjlmZDYtNzlkZS00MWM1LTliNTItODFiYTA1ZTBkNjEzIiwic2tpbGxfcmVmZXJlbmNlIjoibWFpbiBza2lsbCIsImFzc2lzdGFudF9pZCI6ImViMzA1ZWUyLTQ5MjItNDRlNy04MTY4LTMzODk4NTZjYzRjZSIsImluaXRpYWxpemVkIjp0cnVlLCJkaWFsb2dfc3RhY2siOlt7ImRpYWxvZ19ub2RlIjoicm9vdCJ9XSwibGFzdF9kaXNhbWJpZ3VhdGlvbl9ldmVudF9pZCI6IjZkMWM2MGM5LTA4MjgtNDcxMy1hZDkxLTVhNGRhZTViOWQwNCIsIl9ub2RlX291dHB1dF9tYXAiOnsibm9kZV8yXzE1MjExNzc5MTg5MDciOlswLDEsMF0sIm5vZGVfMl8xNTIwODI3NTQzODgwIjpbMF0sIm5vZGVfMl8xNTE4NjY3Njg0ODE2Ijp7IjAiOlswXX0sIm5vZGVfMl8xNTIyMTE0ODE0ODg3IjpbMV19LCJsYXN0X2JyYW5jaF9ub2RlIjoibm9kZV8yXzE1MTg2Njc2ODQ4MTYifQ=="
         }
       }
     }

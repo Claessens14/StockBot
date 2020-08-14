@@ -499,7 +499,7 @@ function makeNewsCard(stock) {
     return array;
 }
 
-//takes in array of json, if the object has most things filled then it will return the first in the array
+//takes in array of json, if the object has more than half things filled then it will return the first in the array
 function getBestIndex(array) {
   var empty = 0;
   for (key in array[0]) {

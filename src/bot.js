@@ -12,6 +12,7 @@ var marketCard = require('./marketCard');
 var analysis = require('./analysis');
 var socialCard = require('./socialCard');
 var format = require('./format');
+var industriesJson = require('../assets/newData/spIndustry.json');
 
 var users = {};
 if (process.env.USER == "HOLD") {
@@ -220,30 +221,41 @@ var bot = new builder.UniversalBot(connector, function (session) {
                     send(session, "Sorry but something went wrong while getting the news");
                   }
               } else if (action == "wantPeers") {
-                var errMsg = "Sorry but I did not find any peers for this company";
-                if (stock.peers && stock.peers.length > 0) {
-                  search.getPeers(stock.peers, (err, res) =>  {
-                    if (err) {
-                      send(session, errMsg);
-                    } else {
-                      var cards = socialCard.makePeersCards(session, res);
-                      if (cards) {
-                        send(session, null, cards, stockModes, null, true)
-                      } else {
-                        send(session, errMsg);
-                      }
-                    }
-                  });
-                } else {
-                  send(session, errMsg);
+                // TODO -- Bug with IEX Data. The companies industries are different depend on if you make a 'stock query' or a 'batch stock query'
+                var outputButtons = [];
+                var industry = stock.company.industry;
+                if (industriesJson && industriesJson[industry]) {
+                  for (obj of industriesJson[industry]) {
+                    outputButtons.push(obj.company.companyName)
+                  }
                 }
+                (outputButtons.length > 0) ? send(session, "Here are some peers in the " + industry +  " industry", null, outputButtons) : send(session, "Sorry but I didn't find any industry peers")
+                
+
+                // var errMsg = "Sorry but I did not find any peers for this company";
+                // if (stock.peers && stock.peers.length > 0) {
+                //   search.getPeers(stock.peers, (err, res) =>  {
+                //     if (err) {
+                //       send(session, errMsg);
+                //     } else {
+                //       var cards = socialCard.makePeersCards(session, res);
+                //       if (cards) {
+                //         send(session, null, cards, stockModes, null, true)
+                //       } else {
+                //         send(session, errMsg);
+                //       }
+                //     }
+                //   });
+                // } else {
+                //   send(session, errMsg);
+                // }
               } else if (action == "wantDesc") {
                 if (stock.company && stock.company.description && stock.company.description != "") {
                   send(session, stock.company.description);
                 } else {
                   send(session, "Sorry but I countn't find a description");
                 }
-              } else if (action == "wantChart") {
+              } else if (action == "wantCharts") {
                 var arr = ["Ok, let me draw it out", "Ok, I'll start drawing", "Let me get that chart for you", "Pulling up the chart now"];
                 send(session, format.pickStr(arr));
                 search.getVantageChart(stock.company.symbol , null, null, null, (err, res, change) => {
@@ -272,6 +284,11 @@ var bot = new builder.UniversalBot(connector, function (session) {
                 send(session, null, card, stockModes);
                 var callStr = "For more insight on the stocks performace, checkout the conference call at " + 'https://earningscast.com/' + stock.company.symbol + '/2018';
                 send(session, callStr, null, stockModes);
+              } else if (action == "wantAbout") {
+                if (watsonData.context.skills['main skill']['user_defined']["stock"]) {
+                  var stockJson = watsonData.context.skills['main skill']['user_defined']["stock"];
+                  if (stockJson.company.description && (stockJson.company.description != "") && (stockJson.company.description != " ")) send(session, stockJson.company.description);
+                }
               } else {
                 console.log("ERROR (sendData) Does not know of this action : " + action);
               }
