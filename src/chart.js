@@ -1,5 +1,5 @@
 require('dotenv').config();
-var plotly = require('plotly')('Claessens14','MkCocRcO2xGZEiGHhNLf');
+var plotly = require('plotly')(process.env.PLOTLY_USERNAME, process.env.PLOTLY_PASSWORD);
 var cloudinary = require('cloudinary');
 var fs = require('fs');
 const rn = require('random-number');
