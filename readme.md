@@ -1,4 +1,6 @@
-# StockZia   
+# StockZia 🤖
+[![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://webchat.botframework.com/embed/StockZia_Bot_Channel_Linux/gemini?b=StockZia_Bot_Channel_Linux&s=Yvp7bW7sc7Q.Xu6lkr1z2l6l0GW_gcqTBCievCeTPy0IC3CL3vHxKWE&username=You)  
+StockZia, your Personal Assistant for everything stocks.  
 [![Chatbot Gif](./assets/photos/sample_chat_gif.gif)](https://youtu.be/2l6Mg-fjxEk)
 
 ## App
