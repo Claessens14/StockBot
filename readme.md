@@ -1,6 +1,5 @@
 # StockZia 🤖
 [![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)](https://webchat.botframework.com/embed/StockZia_Bot_Channel_Linux/gemini?b=StockZia_Bot_Channel_Linux&s=Yvp7bW7sc7Q.Xu6lkr1z2l6l0GW_gcqTBCievCeTPy0IC3CL3vHxKWE&username=You)  
-![Build and deploy Node.js app to Azure Web App - stockzia](https://github.com/Claessens14/StockBot/workflows/Build%20and%20deploy%20Node.js%20app%20to%20Azure%20Web%20App%20-%20stockzia/badge.svg)    
 [![Chatbot Gif](./assets/photos/sample_chat_gif.gif)](https://youtu.be/2l6Mg-fjxEk)
 
 ## App
